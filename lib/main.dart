@@ -1,9 +1,12 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:gatherthem_mobile_app/blocs/bloc_int.dart';
 import 'package:gatherthem_mobile_app/theme/app_theme_data.dart';
+import 'package:gatherthem_mobile_app/ui/screens/home_screen.dart';
 
-void main() {
+void main(){
+
   runApp(const MyApp());
 }
 
@@ -12,6 +15,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ///Permet de bloquer la rotation de l'écran
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown
+    ]);
     return AdaptiveTheme(
       light: buildLightTheme(),
       dark: buildDarkTheme(),
@@ -20,12 +28,14 @@ class MyApp extends StatelessWidget {
         title: 'GatherThem',
         debugShowCheckedModeBanner: false,
         theme: theme,
-        home: const MyHomePage(title: 'GatherThem'),
+        home: const HomeScreen(),
       ),
     );
   }
 }
 
+
+/// Je laisse cette page ici comme exemple pour le moment
 class MyHomePage extends StatelessWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
   

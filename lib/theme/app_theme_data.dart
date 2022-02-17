@@ -7,7 +7,8 @@ ThemeData buildLightTheme(){
     backgroundColor: CustomColors.lightBackground,
     cardColor: CustomColors.lightCard,
     bottomAppBarColor: CustomColors.lightMenu,
-    focusColor: CustomColors.lightContrast
+    focusColor: CustomColors.lightContrast,
+    primaryColor: CustomColors.lightFont
   );
 }
 
@@ -17,6 +18,7 @@ ThemeData buildDarkTheme(){
     backgroundColor: CustomColors.darkBackground,
     cardColor: CustomColors.darkCard,
     bottomAppBarColor: CustomColors.darkMenu,
-    focusColor: CustomColors.darkContrast
+    focusColor: CustomColors.darkContrast,
+      primaryColor: CustomColors.darkFont
   );
 }
