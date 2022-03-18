@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:gatherthem_mobile_app/blocs/bloc_int.dart';
 import 'package:gatherthem_mobile_app/theme/app_theme_data.dart';
 import 'package:gatherthem_mobile_app/ui/screens/home_screen.dart';
+import 'package:gatherthem_mobile_app/ui/screens/login_screen.dart';
 
 void main(){
 
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
         title: 'GatherThem',
         debugShowCheckedModeBanner: false,
         theme: theme,
-        home: const HomeScreen(),
+        home: const LoginScreen(),
       ),
     );
   }
