@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+  import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/ui/tiles/collection_tile.dart';
 
 class CollectionsList extends StatelessWidget{

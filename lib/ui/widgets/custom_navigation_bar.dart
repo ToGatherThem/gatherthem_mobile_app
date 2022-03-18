@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gatherthem_mobile_app/ui/lists/collections_list.dart';
 
 class CustomNavigationBar extends StatelessWidget{
   const CustomNavigationBar({Key? key}) : super(key: key);
@@ -25,11 +26,18 @@ class CustomNavigationBar extends StatelessWidget{
            child: Row(
              mainAxisAlignment: MainAxisAlignment.spaceBetween,
              children: [
-               Icon(
-                 Icons.home_rounded,
-                 size: iconSize,
-                 color: Theme.of(context).primaryColor,
-               ),
+               InkWell(
+                 child: Icon(
+                   Icons.home_rounded,
+                   size: iconSize,
+                   color: Theme.of(context).primaryColor,
+                 ),
+               onTap: (){
+                 Navigator.push(
+                   context,
+                   MaterialPageRoute(builder: (context) => const CollectionsList()),
+                 );
+               },),
                Icon(
                  Icons.person,
                  size: iconSize,
