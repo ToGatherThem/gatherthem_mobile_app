@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:gatherthem_mobile_app/ui/screens/home_screen.dart';
 
 class FilledRectButton extends StatelessWidget {
-  const FilledRectButton({Key? key}) : super(key: key);
+  final String? text;
+  final StatelessWidget? targetWidget;
+  const FilledRectButton({Key? key, this.text, this.targetWidget}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +16,9 @@ class FilledRectButton extends StatelessWidget {
           backgroundColor: Theme.of(context).cardColor,
           textStyle: const TextStyle(fontSize: 15)
         ),
-        child: const Text("Se connecter"),
+        child: Text(text!),
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+          Navigator.push(context, MaterialPageRoute(builder: (context) => targetWidget!));
         },
       ),
     );

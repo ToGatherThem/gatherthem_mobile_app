@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:gatherthem_mobile_app/ui/screens/register_screen.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/buttons/filled_rect_button.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/inputs/text_input.dart';
 
 import 'home_screen.dart';
+import 'login_screen.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class RegisterScreen extends StatelessWidget {
+  const RegisterScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +35,18 @@ class LoginScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 80),
                     Align(
+                      child: Text("Email",
+                          style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                              fontSize: 15
+                          )
+                      ),
+                      alignment: Alignment.centerLeft,
+                    ),
+                    const SizedBox(height: 10),
+                    const TextInput(),
+                    const SizedBox(height: 30),
+                    Align(
                       child: Text("Nom d'utilisateur",
                           style: TextStyle(
                               color: Theme.of(context).primaryColor,
@@ -58,16 +70,28 @@ class LoginScreen extends StatelessWidget {
                     const SizedBox(height: 10),
                     const TextInput(),
                     const SizedBox(height: 30),
-                    const FilledRectButton(text: "Se connecter", targetWidget: HomeScreen()),
+                    Align(
+                      child: Text("Confirmer le mot de passe",
+                          style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                              fontSize: 15
+                          )
+                      ),
+                      alignment: Alignment.centerLeft,
+                    ),
+                    const SizedBox(height: 10),
+                    const TextInput(),
+                    const SizedBox(height: 30),
+                    const FilledRectButton(text: "S'inscrire", targetWidget: HomeScreen()),
                     const SizedBox(height: 20),
                     TextButton(
                       style: TextButton.styleFrom(
                           primary: Theme.of(context).primaryColor,
                           textStyle: const TextStyle(fontSize: 15)
                       ),
-                      child: const Text("Pas encore de compte ? S'inscrire"),
+                      child: const Text("Déjà un compte ? Se connecter"),
                       onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => const RegisterScreen()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginScreen()));
                       },
                     )
                   ],
