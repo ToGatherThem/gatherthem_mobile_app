@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/services/service.dart';
 import 'package:gatherthem_mobile_app/ui/screens/home_screen.dart';
+import 'package:gatherthem_mobile_app/ui/screens/login_screen.dart';
 
 class AuthenticationService extends Service {
 
@@ -10,7 +11,9 @@ class AuthenticationService extends Service {
         .then((value) => Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen())));
   }
 
-  register(BuildContext context) {
+  register(BuildContext context, String email, String username, String password) {
     const url = "http://localhost:8080/user/register";
+    requestPost(url, { "email": email, "username": username, "password": password })
+        .then((value) => Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginScreen())));
   }
 }

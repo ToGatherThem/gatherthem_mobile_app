@@ -3,12 +3,15 @@ import 'package:gatherthem_mobile_app/globals.dart';
 
 class TextInput extends StatelessWidget {
   final String? credential;
-  const TextInput({Key? key, this.credential}) : super(key: key);
+  final bool obscureText;
+  const TextInput({Key? key, this.credential, this.obscureText = false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: TextFormField(
+        initialValue: credentials[credential],
+        obscureText: obscureText,
         cursorColor: Colors.black,
         style: const TextStyle(
             color: Colors.black
@@ -29,7 +32,8 @@ class TextInput extends StatelessWidget {
           color: const Color(0xFFD6D6D6),
           borderRadius: BorderRadius.circular(10),
           border: Border.all(color: Theme.of(context).primaryColor, width: 5)
-      ),
+      )
     );
   }
+
 }
