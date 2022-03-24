@@ -36,14 +36,6 @@ class LoginScreen extends StatelessWidget {
                           )
                       ),
                       const SizedBox(height: 80),
-                      FilledRectButton(text: "Se connecter en admin", onPressed: (){
-                        AuthenticationService().login(
-                            context,
-                            "administrateur",
-                            "exemple"
-                        );
-                      }),
-                      const SizedBox(height: 30),
                       Align(
                         child: Text("Nom d'utilisateur",
                             style: TextStyle(
@@ -68,13 +60,26 @@ class LoginScreen extends StatelessWidget {
                       const SizedBox(height: 10),
                       const TextInput(credential: "password", obscureText: true),
                       const SizedBox(height: 30),
-                      FilledRectButton(text: "Se connecter", onPressed: (){
-                        AuthenticationService().login(
-                            context,
-                            credentials["username"]!,
-                            credentials["password"]!
-                        );
-                      }),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          FilledRectButton(text: "Se connecter", onPressed: (){
+                            AuthenticationService().login(
+                                context,
+                                credentials["username"]!,
+                                credentials["password"]!
+                            );
+                          }),
+                          const SizedBox(width: 10),
+                          FilledRectButton(text: "Admin", onPressed: (){
+                            AuthenticationService().login(
+                                context,
+                                "administrateur",
+                                "exemple"
+                            );
+                          }),
+                        ],
+                      ),
                       const SizedBox(height: 20),
                       TextButton(
                         style: TextButton.styleFrom(
