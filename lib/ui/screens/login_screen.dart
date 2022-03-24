@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:gatherthem_mobile_app/globals.dart';
+import 'package:gatherthem_mobile_app/services/authentication_service.dart';
 import 'package:gatherthem_mobile_app/ui/screens/register_screen.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/buttons/filled_rect_button.dart';
-import 'package:gatherthem_mobile_app/ui/widgets/inputs/text_input.dart';
 
-import 'home_screen.dart';
+import '../widgets/inputs/text_form_input.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -44,7 +45,7 @@ class LoginScreen extends StatelessWidget {
                       alignment: Alignment.centerLeft,
                     ),
                     const SizedBox(height: 10),
-                    const TextInput(),
+                    const TextInput(credential: "username"),
                     const SizedBox(height: 30),
                     Align(
                       child: Text("Mot de passe",
@@ -56,9 +57,15 @@ class LoginScreen extends StatelessWidget {
                       alignment: Alignment.centerLeft,
                     ),
                     const SizedBox(height: 10),
-                    const TextInput(),
+                    const TextInput(credential: "password"),
                     const SizedBox(height: 30),
-                    const FilledRectButton(text: "Se connecter", targetWidget: HomeScreen()),
+                    FilledRectButton(text: "Se connecter", onPressed: (){
+                      AuthenticationService().login(
+                          context,
+                          credentials["username"]!,
+                          credentials["password"]!
+                      );
+                    }),
                     const SizedBox(height: 20),
                     TextButton(
                       style: TextButton.styleFrom(

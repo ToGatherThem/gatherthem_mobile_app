@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:gatherthem_mobile_app/services/authentication_service.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/buttons/filled_rect_button.dart';
-import 'package:gatherthem_mobile_app/ui/widgets/inputs/text_input.dart';
 
-import 'home_screen.dart';
+import '../widgets/inputs/text_form_input.dart';
 import 'login_screen.dart';
 
 class RegisterScreen extends StatelessWidget {
@@ -82,7 +82,7 @@ class RegisterScreen extends StatelessWidget {
                     const SizedBox(height: 10),
                     const TextInput(),
                     const SizedBox(height: 30),
-                    const FilledRectButton(text: "S'inscrire", targetWidget: HomeScreen()),
+                    FilledRectButton(text: "S'inscrire", onPressed: (){ AuthenticationService().register(context); }),
                     const SizedBox(height: 20),
                     TextButton(
                       style: TextButton.styleFrom(

@@ -1,9 +1,9 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
+import 'package:gatherthem_mobile_app/globals.dart';
 
 class TextInput extends StatelessWidget {
-  const TextInput({Key? key}) : super(key: key);
+  final String? credential;
+  const TextInput({Key? key, this.credential}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,12 +14,16 @@ class TextInput extends StatelessWidget {
             color: Colors.black
         ),
         decoration: const InputDecoration(
-          contentPadding: EdgeInsets.symmetric(horizontal: 10),
+          isDense: true,
+          contentPadding: EdgeInsets.all(8),
           focusColor: Colors.transparent,
           focusedBorder: UnderlineInputBorder(
               borderSide: BorderSide(color: Colors.transparent)
           ),
         ),
+        onChanged: (value) {
+          credentials[credential!] = value;
+        },
       ),
       decoration: BoxDecoration(
           color: const Color(0xFFD6D6D6),

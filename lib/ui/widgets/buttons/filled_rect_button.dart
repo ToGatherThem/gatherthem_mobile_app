@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 class FilledRectButton extends StatelessWidget {
   final String? text;
-  final StatelessWidget? targetWidget;
-  const FilledRectButton({Key? key, this.text, this.targetWidget}) : super(key: key);
+  final Function()? onPressed;
+  const FilledRectButton({Key? key, this.text, this.onPressed}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +17,7 @@ class FilledRectButton extends StatelessWidget {
           textStyle: const TextStyle(fontSize: 15)
         ),
         child: Text(text!),
-        onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => targetWidget!));
-        },
+        onPressed: onPressed,
       ),
     );
   }
