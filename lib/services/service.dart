@@ -8,9 +8,10 @@ abstract class Service{
 
   Service() {
     dio = Dio();
-    options = Options(headers: {
-      "Accept": "application/json",
-    });
+    options = Options(
+      headers: { "Accept": "application/json" },
+      responseType: ResponseType.plain
+    );
   }
 
   Future<dynamic> request(String urlString) async {

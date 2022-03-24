@@ -36,6 +36,14 @@ class LoginScreen extends StatelessWidget {
                           )
                       ),
                       const SizedBox(height: 80),
+                      FilledRectButton(text: "Se connecter en admin", onPressed: (){
+                        AuthenticationService().login(
+                            context,
+                            "administrateur",
+                            "exemple"
+                        );
+                      }),
+                      const SizedBox(height: 30),
                       Align(
                         child: Text("Nom d'utilisateur",
                             style: TextStyle(
