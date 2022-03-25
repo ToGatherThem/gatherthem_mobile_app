@@ -22,8 +22,17 @@ abstract class Service{
         urlString,
         options: options
     );
-    //final body = json.decode(json.encode(result.data)); //For REST
-    final body = json.decode(result.data); //For HTTP
+    final body = json.decode(json.encode(result.data));
+    return body;
+  }
+
+  Future<dynamic> getList(String urlString) async {
+    //print(urlString);
+    final result = await dio.get(
+        urlString,
+        options: options
+    );
+    final body = json.decode(result.data);
     return body;
   }
 

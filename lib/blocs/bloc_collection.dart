@@ -12,7 +12,6 @@ class BlocCollection extends Bloc {
 
   fetchCollections() async {
     var resultRequest = await CollectionService().fetchCollections();
-
     setCollections(resultRequest);
   }
 

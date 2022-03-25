@@ -4,7 +4,7 @@ import 'package:gatherthem_mobile_app/services/service.dart';
 
 class CollectionService extends Service {
   Future<List<CollectionModel>> fetchCollections() async {
-    List<dynamic> resultRequest = await get(apiHost + "/collections");
+    List<dynamic> resultRequest = await getList(apiHost + "/collections");
     return resultRequest.map((json) => CollectionModel.fromJson(json)).toList();
   }
 
