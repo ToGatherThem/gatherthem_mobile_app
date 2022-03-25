@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gatherthem_mobile_app/globals.dart';
+import 'package:gatherthem_mobile_app/services/collection_service.dart';
 import 'package:gatherthem_mobile_app/ui/screens/home_screen.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/buttons/filled_rect_button.dart';
 
@@ -49,6 +51,9 @@ class AddCollectionScreen extends StatelessWidget {
                                 borderSide: BorderSide(color: Colors.transparent)
                             ),
                           ),
+                          onChanged: (value) {
+                            addCollection["type"] = value;
+                          },
                         ),
                         decoration: BoxDecoration(
                             color: const Color(0xFFD6D6D6),
@@ -81,6 +86,9 @@ class AddCollectionScreen extends StatelessWidget {
                                   borderSide: BorderSide(color: Colors.transparent)
                               ),
                             ),
+                            onChanged: (value) {
+                              addCollection["name"] = value;
+                            },
                           ),
                           decoration: BoxDecoration(
                               color: const Color(0xFFD6D6D6),
@@ -116,6 +124,9 @@ class AddCollectionScreen extends StatelessWidget {
                                   borderSide: BorderSide(color: Colors.transparent)
                               ),
                             ),
+                            onChanged: (value) {
+                              addCollection["description"] = value;
+                            },
                           ),
                           decoration: BoxDecoration(
                               color: const Color(0xFFD6D6D6),
@@ -130,7 +141,12 @@ class AddCollectionScreen extends StatelessWidget {
                           FilledRectButton(text: "Créer", onPressed: (){
                             // TODO faire la requete post pour le bouton créer
                             // le commentaire est en français car il est destiné à Bryan
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+                            CollectionService().createCollection(
+                              context,
+                              addCollection["type"]!,
+                              addCollection["name"]!,
+                              addCollection["description"]!
+                            );
                           }),
                           const SizedBox(width: 10),
                           FilledRectButton(text: "Annuler", onPressed: (){
