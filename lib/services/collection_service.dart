@@ -24,4 +24,16 @@ class CollectionService extends Service {
   Future<bool> deleteCollection(String id) async{
     return await delete(apiHost + "/collections?id=" + id);
   }
+
+  void editCollection(BuildContext context, String name, String type, String description, String id) {
+    patch(apiHost + "/collections?id="+id, {
+      'type': type,
+      'name': name,
+      'description': description,
+    }).then((value) {
+      if (value != null) {
+        Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+      }
+    });
+  }
 }
