@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gatherthem_mobile_app/ui/screens/add_collection_screen.dart';
 import 'package:gatherthem_mobile_app/ui/screens/home_screen.dart';
 
 class CustomNavigationBar extends StatelessWidget {
@@ -7,68 +6,106 @@ class CustomNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double iconSize = 40;
-    double addCircleSize = 60;
-    return Stack(
-      clipBehavior: Clip.none,
-      alignment: Alignment.bottomCenter,
-      children: [
-        Container(
-          decoration: BoxDecoration(
-              borderRadius:
-                  const BorderRadius.vertical(top: Radius.circular(8)),
-              color: Theme.of(context).bottomAppBarColor),
-          height: 50,
-          child: Padding(
-            padding: EdgeInsets.only(left: width / 5, right: width / 5),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                InkWell(
-                  child: Icon(
-                    Icons.home_rounded,
-                    size: iconSize,
-                    color: Theme.of(context).primaryColor,
-                  ),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const HomeScreen()),
-                    );
-                  },
-                ),
-                Icon(
-                  Icons.person,
-                  size: iconSize,
-                  color: Theme.of(context).primaryColor,
-                )
-              ],
-            ),
-          ),
-        ),
-        Positioned(
-          top: -30,
-          child: Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                color: Theme.of(context).focusColor),
-            height: addCircleSize,
-            width: addCircleSize,
-            child: IconButton(
-              icon: Icon(
-                Icons.add,
-                size: iconSize,
-                color: Theme.of(context).primaryColor,
+    double iconSize = 35;
+    return BottomAppBar(
+        shape: const CircularNotchedRectangle(),
+        child: SizedBox(
+          height: 50.0,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Spacer(),
+              IconButton(
+                iconSize: iconSize,
+                icon: const Icon(Icons.home_rounded),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const HomeScreen()),
+                  );
+                },
               ),
-              onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const AddCollectionScreen()));
-              },
-            ),
+              const Spacer(),
+              const Spacer(),
+              IconButton(
+                iconSize: iconSize,
+                icon: const Icon(Icons.people_rounded),
+                onPressed: () {
+                  print('Account');
+                },
+              ),
+              const Spacer(),
+            ],
           ),
-        ),
-      ],
-    );
+        ));
   }
+
+// @override
+// Widget build(BuildContext context) {
+//   double width = MediaQuery.of(context).size.width;
+//   double iconSize = 40;
+//   double addCircleSize = 60;
+//   return Stack(
+//     clipBehavior: Clip.none,
+//     alignment: Alignment.bottomCenter,
+//     children: [
+//       Container(
+//         decoration: BoxDecoration(
+//             borderRadius:
+//                 const BorderRadius.vertical(top: Radius.circular(8)),
+//             color: Theme.of(context).bottomAppBarColor),
+//         height: 50,
+//         child: Padding(
+//           padding: EdgeInsets.only(left: width / 5, right: width / 5),
+//           child: Row(
+//             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//             children: [
+//               InkWell(
+//                 child: Icon(
+//                   Icons.home_rounded,
+//                   size: iconSize,
+//                   color: Theme.of(context).primaryColor,
+//                 ),
+//                 onTap: () {
+//                   Navigator.push(
+//                     context,
+//                     MaterialPageRoute(
+//                         builder: (context) => const HomeScreen()),
+//                   );
+//                 },
+//               ),
+//               Icon(
+//                 Icons.person,
+//                 size: iconSize,
+//                 color: Theme.of(context).primaryColor,
+//               )
+//             ],
+//           ),
+//         ),
+//       ),
+//       Positioned(
+//         top: -30,
+//         child: Container(
+//           decoration: BoxDecoration(
+//               borderRadius: BorderRadius.circular(30),
+//               color: Theme.of(context).focusColor),
+//           height: addCircleSize,
+//           width: addCircleSize,
+//           child: IconButton(
+//             icon: Icon(
+//               Icons.add,
+//               size: iconSize,
+//               color: ,
+//             ),
+//             onPressed: (){
+//               Navigator.push(context, MaterialPageRoute(builder: (context) => const AddCollectionScreen()));
+//             },
+//           ),
+//         ),
+//       ),
+//     ],
+//   );
+// }
 }
