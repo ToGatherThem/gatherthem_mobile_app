@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gatherthem_mobile_app/models/collection_infos_model.dart';
 
 import '../../globals.dart';
 import '../../services/collection_service.dart';
@@ -10,6 +11,7 @@ class EditCollectionScreen extends StatelessWidget {
   final String id;
   @override
   Widget build(BuildContext context) {
+    CollectionInfosModel collectionInfosModel = CollectionInfosModel();
     return Scaffold(
         backgroundColor: Theme.of(context).backgroundColor,
         body: Stack(children: [
@@ -49,7 +51,7 @@ class EditCollectionScreen extends StatelessWidget {
                                       BorderSide(color: Colors.transparent)),
                             ),
                             onChanged: (value) {
-                              editCollection["name"] = value;
+                              collectionInfosModel.name = value;
                             },
                           ),
                           decoration: BoxDecoration(
@@ -80,7 +82,7 @@ class EditCollectionScreen extends StatelessWidget {
                                       BorderSide(color: Colors.transparent)),
                             ),
                             onChanged: (value) {
-                              editCollection["type"] = value;
+                              collectionInfosModel.type = value;
                             },
                           ),
                           decoration: BoxDecoration(
@@ -114,8 +116,7 @@ class EditCollectionScreen extends StatelessWidget {
                                       BorderSide(color: Colors.transparent)),
                             ),
                             onChanged: (value) {
-                              editCollection["description"] = value;
-                            },
+                              collectionInfosModel.description = value;                           },
                           ),
                           decoration: BoxDecoration(
                               color: const Color(0xFFD6D6D6),
@@ -128,25 +129,23 @@ class EditCollectionScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           FilledRectButton(
-                              text: "Modifier",
-                              onPressed: () {
-                                CollectionService().editCollection(
-                                    context,
-                                    editCollection["type"]!,
-                                    editCollection["name"]!,
-                                    editCollection["description"]!,
-                                    id
-                                );
-                              }),
-                          const SizedBox(width: 10),
-                          FilledRectButton(
                               text: "Annuler",
                               onPressed: () {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            const HomeScreen()));
+                                        const HomeScreen()));
+                              }),
+                          const SizedBox(width: 10),
+                          FilledRectButton(
+                              text: "Modifier",
+                              onPressed: () {
+                                CollectionService().editCollection(
+                                    context,
+                                    collectionInfosModel,
+                                    id
+                                );
                               }),
                         ],
                       ),

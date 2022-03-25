@@ -8,7 +8,6 @@ import 'package:gatherthem_mobile_app/ui/screens/home_screen.dart';
 class CollectionService extends Service {
 
   createCollection(BuildContext context, CollectionInfosModel collectionInfosModel) {
-    collectionInfosModel.creationDate = DateTime.now().millisecondsSinceEpoch;
     post(apiHost + "/collections", collectionInfosModel.toJson()).then((value) {
       if (value != null) {
         Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
@@ -25,12 +24,8 @@ class CollectionService extends Service {
     return await delete(apiHost + "/collections?id=" + id);
   }
 
-  void editCollection(BuildContext context, String name, String type, String description, String id) {
-    patch(apiHost + "/collections?id="+id, {
-      'type': type,
-      'name': name,
-      'description': description,
-    }).then((value) {
+  void editCollection(BuildContext context, CollectionInfosModel collectionInfosModel, String id) {
+    patch(apiHost + "/collections?id="+id, collectionInfosModel.toJson()).then((value) {
       if (value != null) {
         Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
       }
