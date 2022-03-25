@@ -6,10 +6,11 @@ import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 abstract class Service{
   late Dio dio;
   late Options options;
+  static late CookieJar cookieJar = CookieJar();
 
   Service() {
     dio = Dio();
-    dio.interceptors.add(CookieManager(PersistCookieJar()));
+    dio.interceptors.add(CookieManager(cookieJar));
     options = Options(
       headers: { "Accept": "application/json" },
       responseType: ResponseType.plain
