@@ -1,4 +1,7 @@
-import 'package:flutter/material.dart';
+  import 'package:flutter/material.dart';
+import 'package:gatherthem_mobile_app/blocs/bloc_collection.dart';
+import 'package:gatherthem_mobile_app/globals.dart';
+import 'package:gatherthem_mobile_app/models/collection_model.dart';
 import 'package:gatherthem_mobile_app/ui/tiles/collection_tile.dart';
 
 class CollectionsList extends StatelessWidget{
@@ -6,24 +9,25 @@ class CollectionsList extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    List<String> collections = [
-      "Livres",
-      "Timbres",
-      "Agraffes",
-      "Figurines",
-      "Cannettes",
-      "Jeux de sociétés",
-      "Projets"
-    ];
-
-    return ListView(
-      physics: const BouncingScrollPhysics(),
-      children: collections.map((title) =>
-        Padding(
-          padding: const EdgeInsets.only(top: 5, bottom: 5),
-          child: CollectionTile(title: title,),
-        )
-      ).toList(),
+    blocCollection.fetchCollections();
+    return StreamBuilder<List<CollectionModel>>(
+      stream: blocCollection.stream,
+      builder: (context, snapshotCollections) {
+        if(snapshotCollections.hasData){
+          return ListView(
+            physics: const BouncingScrollPhysics(),
+            children: snapshotCollections.data!.map((collection) =>
+                Padding(
+                  padding: const EdgeInsets.only(top: 5, bottom: 5),
+                  child: CollectionTile(collection: collection,),
+                )
+            ).toList(),
+          );
+        }
+        else{
+          return Container();
+        }
+      }
     );
   }
 
