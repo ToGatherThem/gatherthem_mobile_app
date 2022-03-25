@@ -47,6 +47,16 @@ abstract class Service{
     return body;
   }
 
+  Future<dynamic> patch(String urlString, dynamic data) async {
+    final result = await dio.patch(
+        urlString,
+        data: data,
+        options: options
+    );
+    final body = json.decode(json.encode(result.data));
+    return body;
+  }
+
   Future<bool> delete(String urlString) async {
     final result = await dio.delete(
         urlString,

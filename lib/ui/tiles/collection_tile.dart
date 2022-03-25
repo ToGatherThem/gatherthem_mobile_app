@@ -6,6 +6,8 @@ import 'package:gatherthem_mobile_app/services/collection_service.dart';
 import 'package:gatherthem_mobile_app/theme/custom_colors.dart';
 import 'package:gatherthem_mobile_app/ui/screens/collection_screen.dart';
 
+import '../screens/edit_collection_screen.dart';
+
 class CollectionTile extends StatelessWidget {
   final CollectionModel collection;
 
@@ -30,8 +32,11 @@ class CollectionTile extends StatelessWidget {
               icon: Icons.delete,
             ),
             SlidableAction(
-              onPressed: (context) {
-                print("edit");
+              onPressed: (context) async{
+                bool res = await CollectionService().deleteCollection(collection.id);
+                if(res){
+                  blocCollection.fetchCollections();
+                }
               },
               backgroundColor: Colors.orangeAccent,
               foregroundColor: CustomColors.lightFont,
@@ -45,7 +50,10 @@ class CollectionTile extends StatelessWidget {
           children: [
             SlidableAction(
                 onPressed: (context) {
-                  print("edit");
+
+                  Navigator.push(context, MaterialPageRoute(
+                      builder: (context) =>  EditCollectionScreen(
+                          id: collection.id)));
                 },
               backgroundColor: Colors.orangeAccent,
               foregroundColor: CustomColors.lightFont,
