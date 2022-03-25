@@ -1,5 +1,5 @@
   import 'package:flutter/material.dart';
-import 'package:gatherthem_mobile_app/ui/tiles/collection_tile.dart';
+import 'package:gatherthem_mobile_app/ui/screens/collection_screen.dart';
 
 class CollectionsList extends StatelessWidget{
   const CollectionsList({Key? key}) : super(key: key);
