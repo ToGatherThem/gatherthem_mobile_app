@@ -10,8 +10,10 @@ class AuthenticationService extends Service {
     String url = apiHost + "/user/login";
     post(url, { "username": username, "password": password })
         .catchError((e) {
-          if (e.response.statusCode == 401) {
+          if (e.response != null && e.response.statusCode == 401) {
             openDialog(context, "Connexion échouée : les identifiants sont incorrects");
+          } else {
+            openDialog(context, "Connexion échouée : Une erreur est survenue");
           }
         })
         .then((value) {
