@@ -3,6 +3,7 @@ import 'package:gatherthem_mobile_app/models/collection_model.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/custom_navigation_bar.dart';
 
 import '../widgets/app_brand.dart';
+import '../widgets/navigation_scaffold_widget.dart';
 
 class CollectionScreen extends StatelessWidget {
   const CollectionScreen({Key? key, required this.collection}) : super(key: key);
@@ -10,18 +11,8 @@ class CollectionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(bottom: Radius.circular(8))),
-        elevation: 0,
-        backgroundColor: Theme.of(context).bottomAppBarColor,
-        title: const AppBrand(),
-        automaticallyImplyLeading: true,
-      ),
-      body: bodyConfig(collection: collection, context: context),
-      bottomSheet: const CustomNavigationBar(),
-    );
+    Widget body = bodyConfig(collection: collection, context: context);
+    return NavigationScaffoldWidget(body: body);
   }
 
   Widget bodyConfig({required CollectionModel collection, required BuildContext context}) {
