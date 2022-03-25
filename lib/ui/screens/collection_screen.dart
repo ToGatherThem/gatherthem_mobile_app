@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gatherthem_mobile_app/blocs/bloc_collection.dart';
 import 'package:gatherthem_mobile_app/models/collection_model.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/custom_navigation_bar.dart';
 
@@ -20,12 +19,12 @@ class CollectionScreen extends StatelessWidget {
         title: const AppBrand(),
         automaticallyImplyLeading: true,
       ),
-      body: BodyConfig(collection: collection, context: context),
+      body: bodyConfig(collection: collection, context: context),
       bottomSheet: const CustomNavigationBar(),
     );
   }
 
-  Widget BodyConfig({required CollectionModel collection, required BuildContext context}) {
+  Widget bodyConfig({required CollectionModel collection, required BuildContext context}) {
     return Padding(
       padding: const EdgeInsets.only(left: 15, right: 15),
       child: Card(
@@ -40,7 +39,7 @@ class CollectionScreen extends StatelessWidget {
               Text(collection.name),
               Text(collection.type),
               Text(collection.description),
-              Text(collection.created_at.toString()),
+              Text(collection.creationDate.toString()),
 
             ],
           ),

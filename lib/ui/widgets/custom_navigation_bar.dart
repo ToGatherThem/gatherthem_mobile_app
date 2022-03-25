@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gatherthem_mobile_app/ui/lists/collections_list.dart';
 import 'package:gatherthem_mobile_app/ui/screens/home_screen.dart';
 
 class CustomNavigationBar extends StatelessWidget {
