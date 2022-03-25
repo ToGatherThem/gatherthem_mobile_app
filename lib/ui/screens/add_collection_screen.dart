@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/globals.dart';
+import 'package:gatherthem_mobile_app/models/collection_infos_model.dart';
 import 'package:gatherthem_mobile_app/services/collection_service.dart';
 import 'package:gatherthem_mobile_app/ui/screens/home_screen.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/buttons/filled_rect_button.dart';
@@ -9,6 +10,7 @@ class AddCollectionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    CollectionInfosModel collectionInfosModel = CollectionInfosModel();
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       body: Stack(
@@ -60,7 +62,7 @@ class AddCollectionScreen extends StatelessWidget {
                             ),
                           ),
                           onChanged: (value) {
-                            addCollection["type"] = value;
+                            collectionInfosModel.type = value;
                           },
                         ),
                         decoration: BoxDecoration(
@@ -95,7 +97,7 @@ class AddCollectionScreen extends StatelessWidget {
                               ),
                             ),
                             onChanged: (value) {
-                              addCollection["name"] = value;
+                              collectionInfosModel.name = value;
                             },
                           ),
                           decoration: BoxDecoration(
@@ -133,7 +135,7 @@ class AddCollectionScreen extends StatelessWidget {
                               ),
                             ),
                             onChanged: (value) {
-                              addCollection["description"] = value;
+                              collectionInfosModel.description = value;
                             },
                           ),
                           decoration: BoxDecoration(
@@ -153,9 +155,7 @@ class AddCollectionScreen extends StatelessWidget {
                           FilledRectButton(text: "Créer", onPressed: (){
                             CollectionService().createCollection(
                               context,
-                              addCollection["type"]!,
-                              addCollection["name"]!,
-                              addCollection["description"]!
+                              collectionInfosModel
                             );
                           }),
                         ],
