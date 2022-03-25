@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gatherthem_mobile_app/ui/lists/collections_list.dart';
+import 'package:gatherthem_mobile_app/ui/screens/add_collection_screen.dart';
 import 'package:gatherthem_mobile_app/ui/screens/home_screen.dart';
 
 class CustomNavigationBar extends StatelessWidget {
@@ -56,10 +56,15 @@ class CustomNavigationBar extends StatelessWidget {
                 color: Theme.of(context).focusColor),
             height: addCircleSize,
             width: addCircleSize,
-            child: Icon(
-              Icons.add,
-              size: iconSize,
-              color: Theme.of(context).primaryColor,
+            child: IconButton(
+              icon: Icon(
+                Icons.add,
+                size: iconSize,
+                color: Theme.of(context).primaryColor,
+              ),
+              onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const AddCollectionScreen()));
+              },
             ),
           ),
         ),
