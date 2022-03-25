@@ -1,72 +1,87 @@
 import 'package:flutter/material.dart';
-import 'package:gatherthem_mobile_app/blocs/bloc_collection.dart';
-import 'package:gatherthem_mobile_app/ui/widgets/custom_navigation_bar.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:gatherthem_mobile_app/blocs/bloc_bool.dart';
+import 'package:gatherthem_mobile_app/globals.dart';
+import 'package:gatherthem_mobile_app/models/collection_model.dart';
+import 'package:gatherthem_mobile_app/services/collection_service.dart';
+import 'package:gatherthem_mobile_app/ui/screens/collection_screen.dart';
 
-import '../widgets/app_brand.dart';
+class CollectionTile extends StatelessWidget {
+  final CollectionModel collection;
 
-class Collection extends StatelessWidget {
-  const Collection({Key? key, required this.title}) : super(key: key);
-  final String title;
+  const CollectionTile({Key? key, required this.collection}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(bottom: Radius.circular(8))),
-        elevation: 0,
-        backgroundColor: Theme.of(context).bottomAppBarColor,
-        title: const AppBrand(),
-        automaticallyImplyLeading: false,
+    return Slidable(
+      endActionPane: ActionPane(
+          motion: const BehindMotion(),
+          children: [
+            SlidableAction(
+                onPressed: (context) {
+                  print("edit");
+                },
+              backgroundColor: Colors.grey,
+              label: "Edit",
+            ),
+            SlidableAction(
+              onPressed: (context) async {
+                bool res = await CollectionService().deleteCollection(collection.id);
+                if(res){
+                  blocCollection.fetchCollections();
+                }
+              },
+              backgroundColor: Colors.red,
+              label: "Delete",
+            ),
+          ]
       ),
-      body: BodyConfig(title: title, context: context),
-      bottomSheet: const CustomNavigationBar(),
-    );
-  }
-
-  BodyConfig({String? title, required BuildContext context}) {
-    BlocCollection blocString = BlocCollection(initValue: null);
-    blocString.fetchCollection();
-    return Padding(
-      padding: const EdgeInsets.only(left: 15, right: 15),
-      child: Card(
-        elevation: 0,
-        child: Padding(
-          padding:
-              const EdgeInsets.only(top: 20, bottom: 20, left: 30, right: 30),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(
-                Icons.abc_rounded,
-                size: 55,
+      child: Container(
+        color: Theme.of(context).cardColor,
+        child: InkWell(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) =>
+                CollectionScreen(
+                    collection: collection
+                )
               ),
-              StreamBuilder<String>(
-                  stream: blocString.stream,
-                  builder: (context, snapshot) {
-                    if (snapshot.data != null) {
-                      return Expanded(
-                        child: Text(
-                          snapshot.data!,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 16,
-                              color: Theme.of(context).primaryColor),
-                        ),
-                      );
-                    } else {
-                      return Expanded(
-                        child: Text(
-                          "noText",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 16,
-                              color: Theme.of(context).primaryColor),
-                        ),
-                      );
-                    }
-                  })
-            ],
+            );
+            // swapped = !swapped;
+            // blocRound.setBool(swapped);
+          },
+          child: Padding(
+            padding:
+            const EdgeInsets.only(top: 20, bottom: 20, left: 30, right: 30),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Icon(
+                  Icons.photo,
+                  size: 55,
+                ),
+                Expanded(
+                  child: Text(
+                    collection.name,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 16, color: Theme
+                        .of(context)
+                        .primaryColor
+                    ),
+                  ),
+                ),
+                Text(
+                  collection.type,
+                  style: TextStyle(
+                      fontSize: 16, color: Theme
+                      .of(context)
+                      .primaryColor
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),

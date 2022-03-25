@@ -1,15 +1,18 @@
-class CollectionObject{
-  int id;
-  String owner_id;
+class CollectionModel{
+  String id;
+  //String owner_id;
   String type;
   String name;
   String description; //?
-  String created_at;
-  List<String> properties;
+  int created_at;
+  //List<String> properties;
 
-  CollectionObject( {required this.id,  required this.owner_id, required this.type,
-    required this.name, required this.description,required  this.created_at,
-    required this.properties});
+  CollectionModel.fromJson(Map json):
+    id = json['id'],
+    type = json['type'],
+    name = json['name'],
+    description = json['description'],
+    created_at = json['creationDate'];
 
 
 }
