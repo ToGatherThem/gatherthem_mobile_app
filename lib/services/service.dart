@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
+import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 
 abstract class Service{
   late Dio dio;
@@ -7,24 +9,25 @@ abstract class Service{
 
   Service() {
     dio = Dio();
+    dio.interceptors.add(CookieManager(PersistCookieJar()));
     options = Options(
       headers: { "Accept": "application/json" },
       responseType: ResponseType.plain
     );
   }
 
-  Future<dynamic> request(String urlString) async {
+  Future<dynamic> get(String urlString) async {
     //print(urlString);
     final result = await dio.get(
         urlString,
         options: options
     );
-    final body = json.decode(json.encode(result.data)); //For REST
-    //final body = json.decode(result.data); //For HTTP
+    //final body = json.decode(json.encode(result.data)); //For REST
+    final body = json.decode(result.data); //For HTTP
     return body;
   }
 
-  Future<dynamic> requestPost(String urlString, dynamic data) async {
+  Future<dynamic> post(String urlString, dynamic data) async {
     final result = await dio.post(
         urlString,
         data: data,
@@ -32,6 +35,14 @@ abstract class Service{
     );
     final body = json.decode(json.encode(result.data));
     return body;
+  }
+
+  Future<bool> delete(String urlString) async {
+    final result = await dio.delete(
+        urlString,
+        options: options
+    );
+    return result.statusCode == 204;
   }
 
 }

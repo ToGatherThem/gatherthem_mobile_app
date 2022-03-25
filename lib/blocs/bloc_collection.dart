@@ -1,31 +1,23 @@
 import 'package:gatherthem_mobile_app/blocs/bloc.dart';
-import 'package:gatherthem_mobile_app/services/service_collection.dart';
+import 'package:gatherthem_mobile_app/models/collection_model.dart';
+import 'package:gatherthem_mobile_app/services/collection_service.dart';
 import 'package:rxdart/rxdart.dart';
 
 class BlocCollection extends Bloc {
-  final _streamController = BehaviorSubject<String>();
+  final _streamController = BehaviorSubject<List<CollectionModel>>();
 
-  Stream<String> get stream => _streamController.stream;
+  Stream<List<CollectionModel>> get stream => _streamController.stream;
 
-  Sink<String> get sink => _streamController.sink;
-  final String? initValue;
+  Sink<List<CollectionModel>> get sink => _streamController.sink;
 
-  BlocCollection({this.initValue}) {
-    if (initValue != null) {
-      sink.add(initValue!);
-    } else {
-      sink.add("noText");
-    }
+  fetchCollections() async {
+    var resultRequest = await CollectionService().fetchCollections();
+
+    setCollections(resultRequest);
   }
 
-  fetchCollection() async {
-    var resultRequest = await ServiceCollection().fetchCollection();
-    print(resultRequest);
-    setTitle(resultRequest);
-  }
-
-  setTitle(String value) async {
-    sink.add(value);
+  setCollections(List<CollectionModel> collections) async {
+    sink.add(collections);
   }
 
   @override
