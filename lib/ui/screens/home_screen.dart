@@ -16,6 +16,7 @@ class HomeScreen extends StatelessWidget{
         elevation: 0,
         backgroundColor: Theme.of(context).bottomAppBarColor,
         title: const AppBrand(),
+        automaticallyImplyLeading: false,
       ),
       body: const CollectionsList(),
       bottomSheet: const CustomNavigationBar(),

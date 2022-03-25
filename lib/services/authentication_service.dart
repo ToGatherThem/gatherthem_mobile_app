@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gatherthem_mobile_app/globals.dart';
 import 'package:gatherthem_mobile_app/services/service.dart';
 import 'package:gatherthem_mobile_app/ui/screens/home_screen.dart';
 import 'package:gatherthem_mobile_app/ui/screens/login_screen.dart';
@@ -6,8 +7,8 @@ import 'package:gatherthem_mobile_app/ui/screens/login_screen.dart';
 class AuthenticationService extends Service {
 
   login(BuildContext context, String username, String password) {
-    const url = "http://localhost:8080/user/login";
-    requestPost(url, { "username": username, "password": password })
+    String url = apiHost + "/user/login";
+    post(url, { "username": username, "password": password })
         .catchError((e) {
           if (e.response.statusCode == 401) {
             openDialog(context, "Connexion échouée : les identifiants sont incorrects");
@@ -21,8 +22,8 @@ class AuthenticationService extends Service {
   }
 
   register(BuildContext context, String email, String username, String password) {
-    const url = "http://localhost:8080/user/register";
-    requestPost(url, { "email": email, "username": username, "password": password })
+    String url = apiHost + "/user/register";
+    post(url, { "email": email, "username": username, "password": password })
         .catchError((e) {
           if (e.response.statusCode == 409) {
             openDialog(context, "Inscription échouée : les identifiants sont déjà pris");
