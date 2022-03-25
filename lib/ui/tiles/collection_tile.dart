@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:gatherthem_mobile_app/blocs/bloc_bool.dart';
 import 'package:gatherthem_mobile_app/globals.dart';
 import 'package:gatherthem_mobile_app/models/collection_model.dart';
 import 'package:gatherthem_mobile_app/services/collection_service.dart';
+import 'package:gatherthem_mobile_app/theme/custom_colors.dart';
 import 'package:gatherthem_mobile_app/ui/screens/collection_screen.dart';
 
 class CollectionTile extends StatelessWidget {
@@ -14,6 +14,32 @@ class CollectionTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Slidable(
+      startActionPane: ActionPane(
+          motion: const BehindMotion(),
+          children: [
+            SlidableAction(
+              onPressed: (context) async {
+                bool res = await CollectionService().deleteCollection(collection.id);
+                if(res){
+                  blocCollection.fetchCollections();
+                }
+              },
+              backgroundColor: Colors.redAccent,
+              foregroundColor: CustomColors.lightFont,
+              label: "Delete",
+              icon: Icons.delete,
+            ),
+            SlidableAction(
+              onPressed: (context) {
+                print("edit");
+              },
+              backgroundColor: Colors.orangeAccent,
+              foregroundColor: CustomColors.lightFont,
+              label: "Edit",
+              icon: Icons.edit,
+            ),
+          ]
+      ),
       endActionPane: ActionPane(
           motion: const BehindMotion(),
           children: [
@@ -21,8 +47,10 @@ class CollectionTile extends StatelessWidget {
                 onPressed: (context) {
                   print("edit");
                 },
-              backgroundColor: Colors.grey,
+              backgroundColor: Colors.orangeAccent,
+              foregroundColor: CustomColors.lightFont,
               label: "Edit",
+              icon: Icons.edit,
             ),
             SlidableAction(
               onPressed: (context) async {
@@ -31,8 +59,10 @@ class CollectionTile extends StatelessWidget {
                   blocCollection.fetchCollections();
                 }
               },
-              backgroundColor: Colors.red,
+              backgroundColor: Colors.redAccent,
+              foregroundColor: CustomColors.lightFont,
               label: "Delete",
+              icon: Icons.delete,
             ),
           ]
       ),

@@ -1,5 +1,4 @@
   import 'package:flutter/material.dart';
-import 'package:gatherthem_mobile_app/blocs/bloc_collection.dart';
 import 'package:gatherthem_mobile_app/globals.dart';
 import 'package:gatherthem_mobile_app/models/collection_model.dart';
 import 'package:gatherthem_mobile_app/ui/tiles/collection_tile.dart';

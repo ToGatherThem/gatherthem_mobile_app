@@ -4,7 +4,7 @@ class CollectionModel{
   String type;
   String name;
   String description; //?
-  int created_at;
+  int creationDate;
   //List<String> properties;
 
   CollectionModel.fromJson(Map json):
@@ -12,7 +12,7 @@ class CollectionModel{
     type = json['type'],
     name = json['name'],
     description = json['description'],
-    created_at = json['creationDate'];
+    creationDate = json['creationDate'];
 
 
 }
