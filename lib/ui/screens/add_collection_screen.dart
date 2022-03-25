@@ -27,6 +27,14 @@ class AddCollectionScreen extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
+                      Text("Créer une collection",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                              fontSize: 30
+                          )
+                      ),
+                      const SizedBox(height: 50),
                       Align(
                         child: Text("Type",
                             style: TextStyle(
@@ -138,19 +146,17 @@ class AddCollectionScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+                          FilledRectButton(text: "Annuler", onPressed: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+                          }),
+                          const SizedBox(width: 10),
                           FilledRectButton(text: "Créer", onPressed: (){
-                            // TODO faire la requete post pour le bouton créer
-                            // le commentaire est en français car il est destiné à Bryan
                             CollectionService().createCollection(
                               context,
                               addCollection["type"]!,
                               addCollection["name"]!,
                               addCollection["description"]!
                             );
-                          }),
-                          const SizedBox(width: 10),
-                          FilledRectButton(text: "Annuler", onPressed: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
                           }),
                         ],
                       ),
