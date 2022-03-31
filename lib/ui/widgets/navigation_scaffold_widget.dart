@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-
-import '../screens/add_collection_screen.dart';
-import 'app_brand.dart';
-import 'custom_navigation_bar.dart';
+import 'package:gatherthem_mobile_app/ui/widgets/app_brand.dart';
+import 'package:gatherthem_mobile_app/ui/widgets/custom_navigation_bar.dart';
+import 'package:gatherthem_mobile_app/ui/widgets/modal_bottom_sheet.dart';
 
 class NavigationScaffoldWidget extends StatelessWidget {
   final Widget body;
@@ -26,10 +25,12 @@ class NavigationScaffoldWidget extends StatelessWidget {
       bottomNavigationBar: const CustomNavigationBar(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const AddCollectionScreen()));
+          showModalBottomSheet(
+              context: context,
+              builder: (BuildContext context) {
+                return const ModalBottomSheet();
+              }
+          );
         },
         child: const Icon(Icons.add),
         elevation: 2,
