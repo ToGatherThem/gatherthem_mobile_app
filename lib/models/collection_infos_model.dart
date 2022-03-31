@@ -1,7 +1,7 @@
 class CollectionInfosModel{
-  late String _type;
-  late String _name;
-  late String _description;
+  late String _type = "";
+  late String _name = "";
+  late String _description = "";
 
   set type(String value) {
     _type = value;
