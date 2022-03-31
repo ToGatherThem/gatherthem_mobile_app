@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/globals.dart';
 import 'package:gatherthem_mobile_app/services/authentication_service.dart';
+import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/ui/screens/login_screen.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/buttons/filled_rect_button.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/inputs/text_form_input.dart';
+
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -28,7 +30,7 @@ class RegisterScreen extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      Text("GatherThem",
+                      Text(Strings.appTitle,
                           style: TextStyle(
                               color: Theme.of(context).primaryColor,
                               fontSize: 30
@@ -36,7 +38,7 @@ class RegisterScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 80),
                       Align(
-                        child: Text("Email",
+                        child: Text(Strings.emailLabel,
                             style: TextStyle(
                                 color: Theme.of(context).primaryColor,
                                 fontSize: 15
@@ -48,7 +50,7 @@ class RegisterScreen extends StatelessWidget {
                       const TextInput(credential: "email"),
                       const SizedBox(height: 30),
                       Align(
-                        child: Text("Nom d'utilisateur",
+                        child: Text(Strings.userNameLabel,
                             style: TextStyle(
                                 color: Theme.of(context).primaryColor,
                                 fontSize: 15
@@ -60,7 +62,7 @@ class RegisterScreen extends StatelessWidget {
                       const TextInput(credential: "username"),
                       const SizedBox(height: 30),
                       Align(
-                        child: Text("Mot de passe",
+                        child: Text(Strings.passwordLabel,
                             style: TextStyle(
                                 color: Theme.of(context).primaryColor,
                                 fontSize: 15
@@ -72,7 +74,7 @@ class RegisterScreen extends StatelessWidget {
                       const TextInput(credential: "password", obscureText: true),
                       const SizedBox(height: 30),
                       Align(
-                        child: Text("Confirmer le mot de passe",
+                        child: Text(Strings.confirmPasswordLabel,
                             style: TextStyle(
                                 color: Theme.of(context).primaryColor,
                                 fontSize: 15
@@ -83,7 +85,7 @@ class RegisterScreen extends StatelessWidget {
                       const SizedBox(height: 10),
                       const TextInput(credential: "confirm_password", obscureText: true),
                       const SizedBox(height: 30),
-                      FilledRectButton(text: "S'inscrire", onPressed: (){
+                      FilledRectButton(text: Strings.signUpLabel, onPressed: (){
                         validate(context);
                       }),
                       const SizedBox(height: 20),
@@ -92,7 +94,7 @@ class RegisterScreen extends StatelessWidget {
                             primary: Theme.of(context).primaryColor,
                             textStyle: const TextStyle(fontSize: 15)
                         ),
-                        child: const Text("Déjà un compte ? Se connecter"),
+                        child: const Text(Strings.noAccountLabel),
                         onPressed: () {
                           Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginScreen()));
                         },
@@ -117,17 +119,17 @@ class RegisterScreen extends StatelessWidget {
     RegExp regex = RegExp(pattern);
 
     if (credentials["email"] == null || credentials["email"]!.isEmpty) {
-      errorText = "L'email n'est pas renseigné";
+      errorText = Strings.emailRequired;
     } else if (!regex.hasMatch(credentials["email"]!)) {
-      errorText = "L'email n'est pas valide";
+      errorText = Strings.emailNotValid;
     } else if (credentials["username"] == null || credentials["username"]!.isEmpty) {
-      errorText = "Le nom d'utilisateur n'est pas renseigné";
+      errorText = Strings.usernameRequired;
     } else if (credentials["password"] == null || credentials["password"]!.isEmpty) {
-      errorText = "Le mot de passe n'est pas renseigné";
+      errorText = Strings.passwordRequired;
     } else if (credentials["confirm_password"] == null || credentials["confirm_password"]!.isEmpty) {
-      errorText = "Le mot de passe n'a pas été confirmé";
+      errorText = Strings.confirmPasswordRequired;
     } else if (credentials["password"] != credentials["confirm_password"]) {
-      errorText = "Les mots de passe ne sont pas identiques";
+      errorText = Strings.passwordsDontMatch;
     }
 
     if (errorText != "") {
@@ -141,7 +143,7 @@ class RegisterScreen extends StatelessWidget {
               actions: [
                 Center(
                   child: TextButton(
-                    child: const Text("OK"),
+                    child: const Text(Strings.okLabel),
                     onPressed: () { Navigator.of(context).pop(); }
                   ),
                 ),

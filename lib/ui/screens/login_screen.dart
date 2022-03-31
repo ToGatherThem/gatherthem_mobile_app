@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/globals.dart';
 import 'package:gatherthem_mobile_app/services/authentication_service.dart';
+import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/ui/screens/register_screen.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/buttons/filled_rect_button.dart';
 
@@ -29,7 +30,7 @@ class LoginScreen extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      Text("GatherThem",
+                      Text(Strings.appTitle,
                           style: TextStyle(
                               color: Theme.of(context).primaryColor,
                               fontSize: 30
@@ -37,7 +38,7 @@ class LoginScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 80),
                       Align(
-                        child: Text("Nom d'utilisateur",
+                        child: Text(Strings.userNameLabel,
                             style: TextStyle(
                                 color: Theme.of(context).primaryColor,
                                 fontSize: 15
@@ -49,7 +50,7 @@ class LoginScreen extends StatelessWidget {
                       const TextInput(credential: "username"),
                       const SizedBox(height: 30),
                       Align(
-                        child: Text("Mot de passe",
+                        child: Text(Strings.passwordLabel,
                             style: TextStyle(
                                 color: Theme.of(context).primaryColor,
                                 fontSize: 15
@@ -60,7 +61,7 @@ class LoginScreen extends StatelessWidget {
                       const SizedBox(height: 10),
                       const TextInput(credential: "password", obscureText: true),
                       const SizedBox(height: 30),
-                      FilledRectButton(text: "Se connecter", onPressed: (){
+                      FilledRectButton(text: Strings.loginLabel, onPressed: (){
                         AuthenticationService().login(
                             context,
                             credentials["username"]!,
