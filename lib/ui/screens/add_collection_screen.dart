@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gatherthem_mobile_app/globals.dart';
 import 'package:gatherthem_mobile_app/models/collection_infos_model.dart';
 import 'package:gatherthem_mobile_app/services/collection_service.dart';
+import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/ui/screens/home_screen.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/buttons/filled_rect_button.dart';
 
@@ -29,7 +29,7 @@ class AddCollectionScreen extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      Text("Créer une collection",
+                      Text(Strings.createColl,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Theme.of(context).primaryColor,
@@ -38,7 +38,7 @@ class AddCollectionScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 50),
                       Align(
-                        child: Text("Type",
+                        child: Text(Strings.typeLabel,
                             style: TextStyle(
                                 color: Theme.of(context).primaryColor,
                                 fontSize: 15
@@ -73,7 +73,7 @@ class AddCollectionScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 30),
                       Align(
-                        child: Text("Nom",
+                        child: Text(Strings.labelName,
                             style: TextStyle(
                                 color: Theme.of(context).primaryColor,
                                 fontSize: 15
@@ -108,7 +108,7 @@ class AddCollectionScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 30),
                       Align(
-                        child: Text("Description",
+                        child: Text(Strings.labelDesc,
                             style: TextStyle(
                                 color: Theme.of(context).primaryColor,
                                 fontSize: 15
@@ -148,11 +148,11 @@ class AddCollectionScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          FilledRectButton(text: "Annuler", onPressed: (){
+                          FilledRectButton(text: Strings.cancelLabel, onPressed: (){
                             Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
                           }),
                           const SizedBox(width: 10),
-                          FilledRectButton(text: "Créer", onPressed: (){
+                          FilledRectButton(text: Strings.createLabel, onPressed: (){
                             CollectionService().createCollection(
                               context,
                               collectionInfosModel
