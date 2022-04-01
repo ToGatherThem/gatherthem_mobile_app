@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/models/collection_model.dart';
+import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:intl/intl.dart';
 import '../widgets/navigation_scaffold_widget.dart';
 
@@ -48,7 +49,7 @@ class CollectionScreen extends StatelessWidget {
                             style: subtitleStyle
                         ),
                         Text(
-                            DateFormat('dd/MM/yyyy').format(DateTime.fromMillisecondsSinceEpoch(collection.creationDate)).toString(),
+                            DateFormat(Strings.dayFormat).format(DateTime.fromMillisecondsSinceEpoch(collection.creationDate)).toString(),
                             style: subtitleStyle
                         ),
                       ],
