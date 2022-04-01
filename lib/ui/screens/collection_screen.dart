@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/models/collection_model.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
+import 'package:gatherthem_mobile_app/ui/widgets/navigation_scaffold_widget.dart';
 import 'package:intl/intl.dart';
-import '../widgets/navigation_scaffold_widget.dart';
 
 class CollectionScreen extends StatelessWidget {
   const CollectionScreen({Key? key, required this.collection}) : super(key: key);

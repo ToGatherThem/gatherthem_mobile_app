@@ -1,7 +1,7 @@
 class Strings{
 
   static const String appTitle = "Gather Them";
-  static const String createColl = "Créer une collection";
+  static const String createColl = "Ajouter une collection";
   static const String labelName = "Nom";
   static const String labelDesc = "Description";
   static const String cancelLabel = "Annuler";

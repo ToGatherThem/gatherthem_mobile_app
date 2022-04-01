@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gatherthem_mobile_app/services/user_service.dart';
 import 'package:gatherthem_mobile_app/ui/screens/home_screen.dart';
 
 class CustomNavigationBar extends StatelessWidget {
@@ -33,7 +34,7 @@ class CustomNavigationBar extends StatelessWidget {
                 iconSize: iconSize,
                 icon: const Icon(Icons.people_rounded),
                 onPressed: () {
-                  print('Account');
+                  UserService().getProfile(context);
                 },
               ),
               const Spacer(),
