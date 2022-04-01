@@ -1,9 +1,8 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:gatherthem_mobile_app/models/collection_model.dart';
 import 'package:gatherthem_mobile_app/theme/app_theme_data.dart';
-import 'package:gatherthem_mobile_app/ui/screens/collection_screen.dart';
+import 'package:gatherthem_mobile_app/ui/screens/login_screen.dart';
 
 void main(){
 
@@ -28,13 +27,7 @@ class MyApp extends StatelessWidget {
         title: 'GatherThem',
         debugShowCheckedModeBanner: false,
         theme: theme,
-        home: CollectionScreen(collection: CollectionModel.fromJson({
-          'id': "dzodqjzmoqjd",
-          'name': "Test",
-          'description': "Test",
-          'type': "Livres",
-          'creationDate': 1648734067000,
-        }),)//const LoginScreen(),
+        home: const LoginScreen(),
       ),
     );
   }
