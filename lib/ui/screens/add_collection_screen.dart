@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gatherthem_mobile_app/globals.dart';
 import 'package:gatherthem_mobile_app/models/collection_infos_model.dart';
 import 'package:gatherthem_mobile_app/services/collection_service.dart';
 import 'package:gatherthem_mobile_app/ui/screens/home_screen.dart';
@@ -29,7 +28,7 @@ class AddCollectionScreen extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      Text("Créer une collection",
+                      Text("Ajouter une collection",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Theme.of(context).primaryColor,
@@ -152,7 +151,7 @@ class AddCollectionScreen extends StatelessWidget {
                             Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
                           }),
                           const SizedBox(width: 10),
-                          FilledRectButton(text: "Créer", onPressed: (){
+                          FilledRectButton(text: "Ajouter", onPressed: (){
                             CollectionService().createCollection(
                               context,
                               collectionInfosModel

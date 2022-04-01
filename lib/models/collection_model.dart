@@ -14,6 +14,12 @@ class CollectionModel{
     description = json['description'],
     creationDate = json['creationDate'];
 
+  CollectionModel.empty():
+    id = "",
+    type = "",
+    name = "",
+    description = "",
+    creationDate = 0;
 
 }
 //[ { "id": "a36f30f0-63aa-43c5-b9b6-09f94b9a0644",
