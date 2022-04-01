@@ -25,4 +25,7 @@ class Strings{
   static const String usernameRequired = "Le nom d'utilisateur n'est pas renseigné";
   static const String passwordsDontMatch = "Les mots de passe ne correspondent pas";
   static const String confirmPasswordRequired = "La confirmation du mot de passe n'est pas renseignée";
+
+
+  static const String dayFormat = "dd/MM/yyyy";
 }
