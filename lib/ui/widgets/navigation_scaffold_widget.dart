@@ -6,8 +6,9 @@ import 'custom_navigation_bar.dart';
 
 class NavigationScaffoldWidget extends StatelessWidget {
   final Widget body;
+  final bool leading;
 
-  const NavigationScaffoldWidget({Key? key, required this.body})
+  const NavigationScaffoldWidget({Key? key, required this.body, this.leading = false})
       : super(key: key);
 
   @override
@@ -20,7 +21,7 @@ class NavigationScaffoldWidget extends StatelessWidget {
         elevation: 0,
         backgroundColor: Theme.of(context).bottomAppBarColor,
         title: const AppBrand(),
-        automaticallyImplyLeading: false,
+        automaticallyImplyLeading: leading,
       ),
       body: body,
       bottomNavigationBar: const CustomNavigationBar(),

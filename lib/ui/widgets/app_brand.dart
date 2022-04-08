@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gatherthem_mobile_app/theme/strings.dart';
 
 class AppBrand extends StatelessWidget{
   const AppBrand({Key? key}) : super(key: key);
@@ -15,7 +16,7 @@ class AppBrand extends StatelessWidget{
         ),
         const Padding(padding: EdgeInsets.only(left: 5)),
         Text(
-            "GatherThem",
+          Strings.appTitle,
           style: TextStyle(
             color: Theme.of(context).primaryColor,
             fontSize: 16

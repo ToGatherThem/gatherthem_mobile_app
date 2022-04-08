@@ -4,6 +4,7 @@ import 'package:gatherthem_mobile_app/globals.dart';
 import 'package:gatherthem_mobile_app/models/collection_model.dart';
 import 'package:gatherthem_mobile_app/services/collection_service.dart';
 import 'package:gatherthem_mobile_app/theme/custom_colors.dart';
+import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/ui/screens/collection_screen.dart';
 
 import '../screens/edit_collection_screen.dart';
@@ -28,19 +29,18 @@ class CollectionTile extends StatelessWidget {
               },
               backgroundColor: Colors.redAccent,
               foregroundColor: CustomColors.lightFont,
-              label: "Delete",
+              label: Strings.deleteLabel,
               icon: Icons.delete,
             ),
             SlidableAction(
               onPressed: (context) async{
-                bool res = await CollectionService().deleteCollection(collection.id);
-                if(res){
-                  blocCollection.fetchCollections();
-                }
+                Navigator.push(context, MaterialPageRoute(
+                    builder: (context) =>  EditCollectionScreen(
+                        id: collection.id)));
               },
               backgroundColor: Colors.orangeAccent,
               foregroundColor: CustomColors.lightFont,
-              label: "Edit",
+              label: Strings.editLabel,
               icon: Icons.edit,
             ),
           ]
@@ -50,14 +50,13 @@ class CollectionTile extends StatelessWidget {
           children: [
             SlidableAction(
                 onPressed: (context) {
-
                   Navigator.push(context, MaterialPageRoute(
                       builder: (context) =>  EditCollectionScreen(
                           id: collection.id)));
                 },
               backgroundColor: Colors.orangeAccent,
               foregroundColor: CustomColors.lightFont,
-              label: "Edit",
+              label: Strings.editLabel,
               icon: Icons.edit,
             ),
             SlidableAction(
@@ -69,7 +68,7 @@ class CollectionTile extends StatelessWidget {
               },
               backgroundColor: Colors.redAccent,
               foregroundColor: CustomColors.lightFont,
-              label: "Delete",
+              label: Strings.deleteLabel,
               icon: Icons.delete,
             ),
           ]
@@ -86,8 +85,6 @@ class CollectionTile extends StatelessWidget {
                 )
               ),
             );
-            // swapped = !swapped;
-            // blocRound.setBool(swapped);
           },
           child: Padding(
             padding:
@@ -110,14 +107,15 @@ class CollectionTile extends StatelessWidget {
                     ),
                   ),
                 ),
-                Text(
+                // TODO: need to be change when we have template
+                /*Text(
                   collection.type,
                   style: TextStyle(
                       fontSize: 16, color: Theme
                       .of(context)
                       .primaryColor
                   ),
-                )
+                )*/
               ],
             ),
           ),
