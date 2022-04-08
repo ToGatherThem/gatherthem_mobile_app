@@ -34,10 +34,9 @@ class CollectionTile extends StatelessWidget {
             ),
             SlidableAction(
               onPressed: (context) async{
-                bool res = await CollectionService().deleteCollection(collection.id);
-                if(res){
-                  blocCollection.fetchCollections();
-                }
+                Navigator.push(context, MaterialPageRoute(
+                    builder: (context) =>  EditCollectionScreen(
+                        id: collection.id)));
               },
               backgroundColor: Colors.orangeAccent,
               foregroundColor: CustomColors.lightFont,
@@ -51,7 +50,6 @@ class CollectionTile extends StatelessWidget {
           children: [
             SlidableAction(
                 onPressed: (context) {
-
                   Navigator.push(context, MaterialPageRoute(
                       builder: (context) =>  EditCollectionScreen(
                           id: collection.id)));
@@ -109,14 +107,15 @@ class CollectionTile extends StatelessWidget {
                     ),
                   ),
                 ),
-                Text(
+                // TODO: need to be change when we have template
+                /*Text(
                   collection.type,
                   style: TextStyle(
                       fontSize: 16, color: Theme
                       .of(context)
                       .primaryColor
                   ),
-                )
+                )*/
               ],
             ),
           ),
