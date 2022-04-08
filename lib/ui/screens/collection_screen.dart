@@ -44,12 +44,14 @@ class CollectionScreen extends StatelessWidget {
                         Text(
                             collection.name,
                             style: titleStyle
-                        ),Text(
+                        ),
+                        // TODO need to be add with template
+                        /*Text(
                             collection.type,
                             style: subtitleStyle
-                        ),
+                        ),*/
                         Text(
-                            DateFormat(Strings.dayFormat).format(DateTime.fromMillisecondsSinceEpoch(collection.creationDate)).toString(),
+                            DateFormat(Strings.dayFormat).format(DateTime.parse(collection.creationDate)).toString(),
                             style: subtitleStyle
                         ),
                       ],

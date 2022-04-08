@@ -72,7 +72,7 @@ class LoginScreen extends StatelessWidget {
                       FilledRectButton(text: "Admin", onPressed: (){
                         AuthenticationService().login(
                             context,
-                            "administrateur",
+                            "admin",
                             "exemple"
                         );
                       }),
