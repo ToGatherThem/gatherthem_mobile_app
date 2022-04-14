@@ -1,15 +1,14 @@
 import 'collection_item_property_model.dart';
 
 class CollectionItemModel{
-  int id;
+  String id;
   String label;
-  DateTime creationDate;
-  List<CollectionItemProperty> properties;
+  String obtentionDate;
+  //List<CollectionItemProperty> properties;
   CollectionItemModel.fromJson(Map json):
         id = json['id'],
-        label = json['type'],
-        creationDate = json['creationDate'],
-        properties = json['items']['id']
+        label = json['label'],
+        obtentionDate = json['obtentionDate']
       ;
 
 

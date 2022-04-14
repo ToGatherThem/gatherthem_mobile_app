@@ -22,7 +22,7 @@ class CollectionService extends Service {
     return resultRequest.map((json) => CollectionModel.fromJson(json)).toList();
   }
   Future<List<CollectionItemModel>> fetchCollectionItems(String id) async {
-    List<dynamic> resultRequest = await getList(apiHost + "/collections?id="+id);
+    List<dynamic> resultRequest = await getList(apiHost + "/collections/"+id+"/items");
     return resultRequest.map((json) => CollectionItemModel.fromJson(json)).toList();
   }
 
