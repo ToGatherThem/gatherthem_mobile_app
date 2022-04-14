@@ -4,8 +4,8 @@ import 'package:gatherthem_mobile_app/services/authentication_service.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/ui/screens/login_screen.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/buttons/filled_rect_button.dart';
+import 'package:gatherthem_mobile_app/ui/widgets/dialogs/error_dialog.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/inputs/text_form_input.dart';
-
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -136,19 +136,7 @@ class RegisterScreen extends StatelessWidget {
       return showDialog(
           context: context,
           builder: (BuildContext context) {
-            return AlertDialog(
-              content: SingleChildScrollView(
-                child: Text(errorText),
-              ),
-              actions: [
-                Center(
-                  child: TextButton(
-                    child: const Text(Strings.okLabel),
-                    onPressed: () { Navigator.of(context).pop(); }
-                  ),
-                ),
-              ],
-            );
+            return ErrorDialog(message: errorText);
           }
       );
     }

@@ -4,6 +4,7 @@ import 'package:gatherthem_mobile_app/services/collection_service.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/ui/screens/home_screen.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/buttons/filled_rect_button.dart';
+import 'package:gatherthem_mobile_app/ui/widgets/dialogs/error_dialog.dart';
 
 class AddCollectionScreen extends StatelessWidget {
   const AddCollectionScreen({Key? key}) : super(key: key);
@@ -156,10 +157,7 @@ class AddCollectionScreen extends StatelessWidget {
                           }),
                           const SizedBox(width: 10),
                           FilledRectButton(text: Strings.createLabel, onPressed: (){
-                            CollectionService().createCollection(
-                              context,
-                              collectionInfosModel
-                            );
+                            validate(context, collectionInfosModel);
                           }),
                         ],
                       ),
@@ -174,5 +172,26 @@ class AddCollectionScreen extends StatelessWidget {
     );
   }
 
+  validate(BuildContext context, CollectionInfosModel collectionInfosModel) {
+    String errorText = "";
+
+    if (collectionInfosModel.name == "") {
+      errorText = Strings.collectionNameRequired;
+    }
+
+    if (errorText != "") {
+      return showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return ErrorDialog(message: errorText);
+          }
+      );
+    }
+
+    CollectionService().createCollection(
+        context,
+        collectionInfosModel
+    );
+  }
 
 }

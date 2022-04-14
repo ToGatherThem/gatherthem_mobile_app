@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:gatherthem_mobile_app/services/user_service.dart';
 import 'package:gatherthem_mobile_app/ui/screens/home_screen.dart';
+import 'package:gatherthem_mobile_app/ui/screens/profile_screen.dart';
 
 class CustomNavigationBar extends StatelessWidget {
   const CustomNavigationBar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    bool isHomeScreen = context.findAncestorWidgetOfExactType<HomeScreen>() != null;
+    bool isProfileScreen = context.findAncestorWidgetOfExactType<ProfileScreen>() != null;
     double iconSize = 35;
     return BottomAppBar(
         shape: const CircularNotchedRectangle(),
@@ -19,8 +23,9 @@ class CustomNavigationBar extends StatelessWidget {
               const Spacer(),
               IconButton(
                 iconSize: iconSize,
-                icon: const Icon(Icons.home_rounded),
-                onPressed: () {
+                icon: (!isHomeScreen) ? const Icon(Icons.home_outlined) :const Icon(Icons.home_rounded),
+                disabledColor: Theme.of(context).primaryColor,
+                onPressed:(isHomeScreen)? null : () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const HomeScreen()),
@@ -31,9 +36,10 @@ class CustomNavigationBar extends StatelessWidget {
               const Spacer(),
               IconButton(
                 iconSize: iconSize,
-                icon: const Icon(Icons.people_rounded),
-                onPressed: () {
-                  print('Account');
+                icon: (!isProfileScreen)? const Icon(Icons.people_outline) : const Icon(Icons.people_rounded),
+                disabledColor: Theme.of(context).primaryColor,
+                onPressed: (context.findAncestorWidgetOfExactType<ProfileScreen>() != null) ? null :() {
+                  UserService().getProfile(context);
                 },
               ),
               const Spacer(),

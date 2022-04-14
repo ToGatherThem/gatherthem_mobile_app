@@ -26,11 +26,13 @@ class Strings{
   static const String usernameRequired = "Le nom d'utilisateur n'est pas renseigné";
   static const String passwordsDontMatch = "Les mots de passe ne correspondent pas";
   static const String confirmPasswordRequired = "La confirmation du mot de passe n'est pas renseignée";
+  static const String collectionNameRequired = "Le nom de la collection n'a pas été renseigné";
 
   // Item strings
   static const String itemAdd = "Ajouter un objet";
   static const String itemLabel = "Libellé";
   static const String itemObtentionDate = "Date d'obtention";
+  static const String itemLabelRequired = "Le libellé de l'objet n'a pas été renseigné";
 
   static const String dayFormat = "dd/MM/yyyy";
 }
