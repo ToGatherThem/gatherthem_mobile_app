@@ -6,6 +6,7 @@ import 'package:gatherthem_mobile_app/services/item_service.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/ui/screens/collection_screen.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/buttons/filled_rect_button.dart';
+import 'package:gatherthem_mobile_app/ui/widgets/dialogs/error_dialog.dart';
 
 class AddItemScreen extends StatelessWidget {
   final CollectionModel collection;
@@ -92,6 +93,7 @@ class AddItemScreen extends StatelessWidget {
                               locale: const Locale("fr", "FR"),
                               firstDate: DateTime(1970),
                               lastDate: DateTime.now(),
+                              initialValue: DateTime.now().toString(),
                               timePickerEntryModeInput: true,
                               cursorColor: Colors.black,
                               style: const TextStyle(
@@ -124,11 +126,7 @@ class AddItemScreen extends StatelessWidget {
                             }),
                             const SizedBox(width: 10),
                             FilledRectButton(text: Strings.createLabel, onPressed: (){
-                              ItemService().addItem(
-                                context,
-                                collection,
-                                itemInfosModel
-                              );
+                              validate(context, itemInfosModel);
                             }),
                           ],
                         ),
@@ -143,5 +141,27 @@ class AddItemScreen extends StatelessWidget {
     );
   }
 
+  validate(BuildContext context, ItemInfosModel itemInfosModel) {
+    String errorText = "";
+
+    if (itemInfosModel.label == "") {
+      errorText = Strings.itemLabelRequired;
+    }
+
+    if (errorText != "") {
+      return showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return ErrorDialog(message: errorText);
+          }
+      );
+    }
+
+    ItemService().addItem(
+        context,
+        collection,
+        itemInfosModel
+    );
+  }
 
 }

@@ -39,13 +39,20 @@ class CollectionScreen extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Icon(
-                          Icons.add_photo_alternate_outlined,
-                          color: Theme.of(context).primaryColor,
-                          size: 80,
+                  Expanded(
+                    child: Icon(
+                      Icons.photo,
+                      color: Theme.of(context).primaryColor,
+                      size: 80,
+                    ),
+                  ),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                            collection.name,
+                            style: titleStyle
                         ),
                       ),
                       Expanded(
@@ -69,10 +76,18 @@ class CollectionScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const Padding(padding: EdgeInsets.only(top: 10)),
-                  Expanded(
-                    child: SizedBox(
-                      width: MediaQuery.of(context).size.width / 1.2,
+                ],
+              ),
+              const Padding(padding: EdgeInsets.only(top: 10)),
+              Expanded(
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width/1.2,
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: Card(
+                      color: Theme.of(context).bottomAppBarColor,
+                      elevation: 0,
+                      margin: EdgeInsets.zero,
                       child: Padding(
                         padding: const EdgeInsets.only(bottom: 10),
                         child: Card(
