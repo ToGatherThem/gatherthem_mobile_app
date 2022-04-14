@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/models/collection_item_model.dart';
 import 'package:gatherthem_mobile_app/models/collection_model.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
+import 'package:gatherthem_mobile_app/ui/tiles/item_tile.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/navigation_scaffold_widget.dart';
 import 'package:intl/intl.dart';
 import '../../globals.dart';
@@ -111,7 +112,8 @@ class CollectionScreen extends StatelessWidget {
                   children: snapshot.data!.map((item) {
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Card(
+                      child:ItemTile(item: item,)
+                      /*child: Card(
                         elevation: 0,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
@@ -122,11 +124,11 @@ class CollectionScreen extends StatelessWidget {
                               Text(item.label.toString()),
                               Text(DateFormat(Strings.dayFormat)
                                   .format(
-                                  DateTime.parse(item.obtentionDate)).toString()),
+                                  DateTime.parse(item.obtentionDate))
+                                  .toString()),
                             ],
                           ),
-                        ),
-                      ),
+                        ),*/
                     );
                   }).toList(),
                 ),
