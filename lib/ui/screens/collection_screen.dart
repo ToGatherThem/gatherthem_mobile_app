@@ -34,7 +34,7 @@ class CollectionScreen extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Icon(
-                      Icons.add_photo_alternate_rounded,
+                      Icons.photo,
                       color: Theme.of(context).primaryColor,
                       size: 80,
                     ),
@@ -68,6 +68,7 @@ class CollectionScreen extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(bottom: 10),
                     child: Card(
+                      color: Theme.of(context).bottomAppBarColor,
                       elevation: 0,
                       margin: EdgeInsets.zero,
                       child: Padding(

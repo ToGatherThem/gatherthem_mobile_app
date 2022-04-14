@@ -156,10 +156,7 @@ class AddCollectionScreen extends StatelessWidget {
                           }),
                           const SizedBox(width: 10),
                           FilledRectButton(text: Strings.createLabel, onPressed: (){
-                            CollectionService().createCollection(
-                              context,
-                              collectionInfosModel
-                            );
+                            validate(context, collectionInfosModel);
                           }),
                         ],
                       ),
@@ -174,5 +171,38 @@ class AddCollectionScreen extends StatelessWidget {
     );
   }
 
+  validate(BuildContext context, CollectionInfosModel collectionInfosModel) {
+    String errorText = "";
+
+    if (collectionInfosModel.name == "") {
+      errorText = Strings.collectionNameRequired;
+    }
+
+    if (errorText != "") {
+      return showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              content: SingleChildScrollView(
+                child: Text(errorText),
+              ),
+              actions: [
+                Center(
+                  child: TextButton(
+                      child: const Text(Strings.okLabel),
+                      onPressed: () { Navigator.of(context).pop(); }
+                  ),
+                ),
+              ],
+            );
+          }
+      );
+    }
+
+    CollectionService().createCollection(
+        context,
+        collectionInfosModel
+    );
+  }
 
 }
