@@ -23,7 +23,7 @@ class CustomNavigationBar extends StatelessWidget {
               const Spacer(),
               IconButton(
                 iconSize: iconSize,
-                icon: (isHomeScreen) ? const Icon(Icons.home_outlined) :const Icon(Icons.home_rounded),
+                icon: (!isHomeScreen) ? const Icon(Icons.home_outlined) :const Icon(Icons.home_rounded),
                 onPressed:(isHomeScreen)? null : () {
                   Navigator.push(
                     context,
@@ -35,7 +35,7 @@ class CustomNavigationBar extends StatelessWidget {
               const Spacer(),
               IconButton(
                 iconSize: iconSize,
-                icon: (isProfileScreen)? const Icon(Icons.people_outline) : const Icon(Icons.people_rounded),
+                icon: (!isProfileScreen)? const Icon(Icons.people_outline) : const Icon(Icons.people_rounded),
                 onPressed: (context.findAncestorWidgetOfExactType<ProfileScreen>() != null) ? null :() {
                   UserService().getProfile(context);
                 },
