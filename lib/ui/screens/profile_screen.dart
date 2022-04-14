@@ -42,6 +42,15 @@ class ProfileScreen extends StatelessWidget {
                       )
                   ),
                 ),
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(profile["authorities"][0]["name"],
+                      style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                          fontSize: 15
+                      )
+                  ),
+                ),
               ],
             ),
           ),
