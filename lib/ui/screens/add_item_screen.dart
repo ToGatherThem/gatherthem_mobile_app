@@ -1,7 +1,9 @@
+import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/models/collection_model.dart';
 import 'package:gatherthem_mobile_app/models/item_infos_model.dart';
 import 'package:gatherthem_mobile_app/services/item_service.dart';
+import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/ui/screens/collection_screen.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/buttons/filled_rect_button.dart';
 
@@ -30,7 +32,7 @@ class AddItemScreen extends StatelessWidget {
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
-                        Text("Ajouter un objet",
+                        Text(Strings.itemAdd,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: Theme.of(context).primaryColor,
@@ -39,7 +41,7 @@ class AddItemScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: 50),
                         Align(
-                          child: Text("Libellé",
+                          child: Text(Strings.itemLabel,
                               style: TextStyle(
                                   color: Theme.of(context).primaryColor,
                                   fontSize: 15
@@ -73,14 +75,55 @@ class AddItemScreen extends StatelessWidget {
                             )
                         ),
                         const SizedBox(height: 30),
+                        Align(
+                          child: Text(Strings.itemObtentionDate,
+                              style: TextStyle(
+                                  color: Theme.of(context).primaryColor,
+                                  fontSize: 15
+                              )
+                          ),
+                          alignment: Alignment.centerLeft,
+                        ),
+                        const SizedBox(height: 10),
+                        Container(
+                            child: DateTimePicker(
+                              type: DateTimePickerType.date,
+                              dateMask: "d MMMM yyyy",
+                              locale: const Locale("fr", "FR"),
+                              firstDate: DateTime(1970),
+                              lastDate: DateTime.now(),
+                              timePickerEntryModeInput: true,
+                              cursorColor: Colors.black,
+                              style: const TextStyle(
+                                color: Colors.black
+                              ),
+                              decoration: const InputDecoration(
+                                isDense: true,
+                                contentPadding: EdgeInsets.all(8),
+                                focusColor: Colors.transparent,
+                                focusedBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.transparent)
+                                ),
+                              ),
+                              onChanged: (value) {
+                                itemInfosModel.obtentionDate = value;
+                              },
+                            ),
+                            decoration: BoxDecoration(
+                                color: const Color(0xFFD6D6D6),
+                                borderRadius: BorderRadius.circular(10),
+                                border: Border.all(color: Theme.of(context).primaryColor, width: 5)
+                            )
+                        ),
+                        const SizedBox(height: 30),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            FilledRectButton(text: "Annuler", onPressed: (){
+                            FilledRectButton(text: Strings.cancelLabel, onPressed: (){
                               Navigator.push(context, MaterialPageRoute(builder: (context) => CollectionScreen(collection: collection)));
                             }),
                             const SizedBox(width: 10),
-                            FilledRectButton(text: "Ajouter", onPressed: (){
+                            FilledRectButton(text: Strings.createLabel, onPressed: (){
                               ItemService().addItem(
                                 context,
                                 collection,

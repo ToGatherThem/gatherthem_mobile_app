@@ -6,7 +6,7 @@ class Strings{
   static const String labelName = "Nom";
   static const String labelDesc = "Description";
   static const String cancelLabel = "Annuler";
-  static const String createLabel = "Créer";
+  static const String createLabel = "Ajouter";
   static const String typeLabel = "Type";
   static const String editLabel = "Modifier";
   static const String deleteLabel = "Supprimer";
@@ -27,6 +27,10 @@ class Strings{
   static const String passwordsDontMatch = "Les mots de passe ne correspondent pas";
   static const String confirmPasswordRequired = "La confirmation du mot de passe n'est pas renseignée";
 
+  // Item strings
+  static const String itemAdd = "Ajouter un objet";
+  static const String itemLabel = "Libellé";
+  static const String itemObtentionDate = "Date d'obtention";
 
   static const String dayFormat = "dd/MM/yyyy";
 }
