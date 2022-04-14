@@ -8,6 +8,8 @@ class CustomNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isHomeScreen = context.findAncestorWidgetOfExactType<HomeScreen>() != null;
+    bool isProfileScreen = context.findAncestorWidgetOfExactType<ProfileScreen>() != null;
     double iconSize = 35;
     return BottomAppBar(
         shape: const CircularNotchedRectangle(),
@@ -21,9 +23,8 @@ class CustomNavigationBar extends StatelessWidget {
               const Spacer(),
               IconButton(
                 iconSize: iconSize,
-                icon: const Icon(Icons.home_rounded),
-                disabledColor: Colors.grey,
-                onPressed:(context.findAncestorWidgetOfExactType<HomeScreen>() != null)? null : () {
+                icon: (isHomeScreen) ? const Icon(Icons.home_outlined) :const Icon(Icons.home_rounded),
+                onPressed:(isHomeScreen)? null : () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const HomeScreen()),
@@ -34,8 +35,7 @@ class CustomNavigationBar extends StatelessWidget {
               const Spacer(),
               IconButton(
                 iconSize: iconSize,
-                icon: const Icon(Icons.people_rounded),
-                disabledColor: Colors.grey,
+                icon: (isProfileScreen)? const Icon(Icons.people_outline) : const Icon(Icons.people_rounded),
                 onPressed: (context.findAncestorWidgetOfExactType<ProfileScreen>() != null) ? null :() {
                   UserService().getProfile(context);
                 },
