@@ -15,5 +15,10 @@ class CollectionModel{
     ,items = json['properties']
   ;
 
+  CollectionModel.empty():
+    id = "",
+    name = "",
+    description = "",
+    creationDate = "";
 
 }
