@@ -4,6 +4,7 @@ import 'package:gatherthem_mobile_app/services/collection_service.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/ui/screens/home_screen.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/buttons/filled_rect_button.dart';
+import 'package:gatherthem_mobile_app/ui/widgets/dialogs/error_dialog.dart';
 
 class AddCollectionScreen extends StatelessWidget {
   const AddCollectionScreen({Key? key}) : super(key: key);
@@ -182,19 +183,7 @@ class AddCollectionScreen extends StatelessWidget {
       return showDialog(
           context: context,
           builder: (BuildContext context) {
-            return AlertDialog(
-              content: SingleChildScrollView(
-                child: Text(errorText),
-              ),
-              actions: [
-                Center(
-                  child: TextButton(
-                      child: const Text(Strings.okLabel),
-                      onPressed: () { Navigator.of(context).pop(); }
-                  ),
-                ),
-              ],
-            );
+            return ErrorDialog(message: errorText);
           }
       );
     }
