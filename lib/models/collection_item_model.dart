@@ -8,8 +8,8 @@ class CollectionItemModel{
   CollectionItemModel.fromJson(Map json):
         id = json['id'],
         label = json['type'],
-        creationDate = json['creationDate'],
-        properties = json['items']['id']
+        creationDate = json['creationDate']
+        ,properties = json['items']//['id']
       ;
 
 
