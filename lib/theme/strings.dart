@@ -33,6 +33,7 @@ class Strings{
   static const String itemLabel = "Libellé";
   static const String itemObtentionDate = "Date d'obtention";
   static const String itemLabelRequired = "Le libellé de l'objet n'a pas été renseigné";
+  static const String itemObtentionDateRequired = "La date d'obtention n'est pas renseignée";
 
   static const String dayFormat = "dd/MM/yyyy";
 }
