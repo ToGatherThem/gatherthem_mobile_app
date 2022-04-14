@@ -10,6 +10,5 @@ String apiHost = "http://localhost:8080";
 
 ///Bloc for collection list
 BlocCollection blocCollection = BlocCollection();
-BlocCollectionItem blocCollectionItem = BlocCollectionItem();
 
 late CollectionModel currentCollection = CollectionModel.empty();
