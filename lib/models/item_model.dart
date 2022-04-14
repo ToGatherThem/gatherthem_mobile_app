@@ -1,7 +1,7 @@
 class ItemModel {
   String id;
   String label;
-  int creationDate;
+  String creationDate;
 
   ItemModel.fromJson(Map json):
     id = json["id"],

@@ -25,7 +25,7 @@ class CollectionService extends Service {
   }
 
   void editCollection(BuildContext context, CollectionInfosModel collectionInfosModel, String id) {
-    patch(apiHost + "/collections?id="+id, collectionInfosModel.toJson()).then((value) {
+    put(apiHost + "/collections?id="+id, collectionInfosModel.toJson()).then((value) {
       if (value != null) {
         Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
       }

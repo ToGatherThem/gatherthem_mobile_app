@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/models/collection_infos_model.dart';
 import 'package:gatherthem_mobile_app/services/collection_service.dart';
+import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/ui/screens/home_screen.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/buttons/filled_rect_button.dart';
 
@@ -28,7 +29,7 @@ class AddCollectionScreen extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      Text("Ajouter une collection",
+                      Text(Strings.createColl,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Theme.of(context).primaryColor,
@@ -36,6 +37,8 @@ class AddCollectionScreen extends StatelessWidget {
                           )
                       ),
                       const SizedBox(height: 50),
+                      // TODO: need to be changed according template
+                      /*
                       Align(
                         child: Text("Type",
                             style: TextStyle(
@@ -61,7 +64,7 @@ class AddCollectionScreen extends StatelessWidget {
                             ),
                           ),
                           onChanged: (value) {
-                            collectionInfosModel.type = value;
+                            collectionInfosModel.description = value;
                           },
                         ),
                         decoration: BoxDecoration(
@@ -70,6 +73,7 @@ class AddCollectionScreen extends StatelessWidget {
                             border: Border.all(color: Theme.of(context).primaryColor, width: 5)
                         )
                       ),
+                      */
                       const SizedBox(height: 30),
                       Align(
                         child: Text("Nom",
