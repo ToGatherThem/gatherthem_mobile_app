@@ -94,7 +94,7 @@ class RegisterScreen extends StatelessWidget {
                             primary: Theme.of(context).primaryColor,
                             textStyle: const TextStyle(fontSize: 15)
                         ),
-                        child: const Text(Strings.noAccountLabel),
+                        child: const Text(Strings.alreadyHaveAccountLabel),
                         onPressed: () {
                           Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginScreen()));
                         },
