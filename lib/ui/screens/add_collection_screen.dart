@@ -40,7 +40,7 @@ class AddCollectionScreen extends StatelessWidget {
                       // TODO: need to be changed according template
                       /*
                       Align(
-                        child: Text("Type",
+                        child: Text(Strings.typeLabel,
                             style: TextStyle(
                                 color: Theme.of(context).primaryColor,
                                 fontSize: 15
@@ -64,7 +64,7 @@ class AddCollectionScreen extends StatelessWidget {
                             ),
                           ),
                           onChanged: (value) {
-                            collectionInfosModel.description = value;
+                            collectionInfosModel.type = value;
                           },
                         ),
                         decoration: BoxDecoration(
@@ -76,7 +76,7 @@ class AddCollectionScreen extends StatelessWidget {
                       */
                       const SizedBox(height: 30),
                       Align(
-                        child: Text("Nom",
+                        child: Text(Strings.labelName,
                             style: TextStyle(
                                 color: Theme.of(context).primaryColor,
                                 fontSize: 15
@@ -111,7 +111,7 @@ class AddCollectionScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 30),
                       Align(
-                        child: Text("Description",
+                        child: Text(Strings.labelDesc,
                             style: TextStyle(
                                 color: Theme.of(context).primaryColor,
                                 fontSize: 15
@@ -151,11 +151,11 @@ class AddCollectionScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          FilledRectButton(text: "Annuler", onPressed: (){
+                          FilledRectButton(text: Strings.cancelLabel, onPressed: (){
                             Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
                           }),
                           const SizedBox(width: 10),
-                          FilledRectButton(text: "Ajouter", onPressed: (){
+                          FilledRectButton(text: Strings.createLabel, onPressed: (){
                             CollectionService().createCollection(
                               context,
                               collectionInfosModel

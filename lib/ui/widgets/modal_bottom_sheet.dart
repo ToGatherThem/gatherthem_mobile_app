@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/globals.dart';
+import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/ui/screens/add_collection_screen.dart';
 import 'package:gatherthem_mobile_app/ui/screens/add_item_screen.dart';
 
@@ -31,7 +32,7 @@ class ModalBottomSheet extends StatelessWidget {
             width: MediaQuery.of(context).size.width,
             height: 50,
             child: TextButton(
-              child: const Text("Ajouter une collection"),
+              child: const Text(Strings.createColl),
               style: TextButton.styleFrom(primary: Theme.of(context).primaryColor),
               onPressed: () {
                 Navigator.push(
@@ -47,7 +48,7 @@ class ModalBottomSheet extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               height: 50,
               child: TextButton(
-                child: const Text("Ajouter un objet dans cette collection"),
+                child: const Text(Strings.createCollItem),
                 style: TextButton.styleFrom(
                   primary: Theme.of(context).primaryColor
                 ),
