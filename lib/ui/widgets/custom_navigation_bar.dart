@@ -24,6 +24,7 @@ class CustomNavigationBar extends StatelessWidget {
               IconButton(
                 iconSize: iconSize,
                 icon: (!isHomeScreen) ? const Icon(Icons.home_outlined) :const Icon(Icons.home_rounded),
+                disabledColor: Theme.of(context).primaryColor,
                 onPressed:(isHomeScreen)? null : () {
                   Navigator.push(
                     context,
@@ -36,6 +37,7 @@ class CustomNavigationBar extends StatelessWidget {
               IconButton(
                 iconSize: iconSize,
                 icon: (!isProfileScreen)? const Icon(Icons.people_outline) : const Icon(Icons.people_rounded),
+                disabledColor: Theme.of(context).primaryColor,
                 onPressed: (context.findAncestorWidgetOfExactType<ProfileScreen>() != null) ? null :() {
                   UserService().getProfile(context);
                 },
