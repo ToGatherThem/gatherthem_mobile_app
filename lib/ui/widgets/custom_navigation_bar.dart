@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/services/user_service.dart';
 import 'package:gatherthem_mobile_app/ui/screens/home_screen.dart';
+import 'package:gatherthem_mobile_app/ui/screens/profile_screen.dart';
 
 class CustomNavigationBar extends StatelessWidget {
   const CustomNavigationBar({Key? key}) : super(key: key);
@@ -21,7 +22,8 @@ class CustomNavigationBar extends StatelessWidget {
               IconButton(
                 iconSize: iconSize,
                 icon: const Icon(Icons.home_rounded),
-                onPressed: () {
+                disabledColor: Colors.grey,
+                onPressed:(context.findAncestorWidgetOfExactType<HomeScreen>() != null)? null : () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const HomeScreen()),
@@ -33,7 +35,8 @@ class CustomNavigationBar extends StatelessWidget {
               IconButton(
                 iconSize: iconSize,
                 icon: const Icon(Icons.people_rounded),
-                onPressed: () {
+                disabledColor: Colors.grey,
+                onPressed: (context.findAncestorWidgetOfExactType<ProfileScreen>() != null) ? null :() {
                   UserService().getProfile(context);
                 },
               ),
