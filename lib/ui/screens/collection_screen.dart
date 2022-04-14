@@ -93,10 +93,17 @@ class CollectionScreen extends StatelessWidget {
             StreamBuilder<List<CollectionModel>>(
               stream: blocCollection.stream,
               builder: (context, snapshot) {
-                return ListView(physics: const BouncingScrollPhysics(),
-                  children: snapshot.data!.map((collection) =>
-                      Padding(
-                        padding: const EdgeInsets.only(left: 15, right: 15),
+                if(!snapshot.hasData){
+                  return Container();//TODO loading
+                }
+
+                return ListView(
+                  shrinkWrap : true,
+                  physics: const BouncingScrollPhysics(),
+
+                  children: snapshot.data!.map((collection)
+                      {return Padding(
+                        padding: const EdgeInsets.only(left: 400, right: 400),
                         child: Card(
                           elevation: 0,
                           child: Padding(
@@ -105,16 +112,14 @@ class CollectionScreen extends StatelessWidget {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text(collection.id.toString()),
-                                Text(collection.name),
-                                //Text(collection.items.first.toString()),
+                               // Text(collection.items.first.toString()),
                                 Text(collection.creationDate.toString()),
 
                               ],
                             ),
                           ),
                         ),
-                      )
+                      );}
                   ).toList(),);
               }
             ) ],

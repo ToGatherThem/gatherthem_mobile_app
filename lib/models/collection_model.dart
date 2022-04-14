@@ -5,14 +5,15 @@ class CollectionModel{
   String name;
   String description;
   String creationDate;
-  //List<CollectionItemModel> items;
+  List<CollectionItemModel> items;
 
   CollectionModel.fromJson(Map json):
     id = json['id'],
     name = json['name'],
     description = json['description'],
-    creationDate = json['creationDate'];
-    //items = json['properties'];
+    creationDate = json['creationDate']
+    ,items = json['properties']
+  ;
 
 
 }
