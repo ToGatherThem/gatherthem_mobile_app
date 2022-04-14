@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gatherthem_mobile_app/globals.dart';
 import 'package:gatherthem_mobile_app/models/collection_model.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/navigation_scaffold_widget.dart';
@@ -10,6 +11,7 @@ class CollectionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    currentCollection = collection;
     Widget body = bodyConfig(collection: collection, context: context);
     return NavigationScaffoldWidget(body: body, leading: true);
   }
@@ -44,12 +46,14 @@ class CollectionScreen extends StatelessWidget {
                         Text(
                             collection.name,
                             style: titleStyle
-                        ),Text(
+                        ),
+                        // TODO need to be add with template
+                        /*Text(
                             collection.type,
                             style: subtitleStyle
-                        ),
+                        ),*/
                         Text(
-                            DateFormat(Strings.dayFormat).format(DateTime.fromMillisecondsSinceEpoch(collection.creationDate)).toString(),
+                            DateFormat(Strings.dayFormat).format(DateTime.parse(collection.creationDate)).toString(),
                             style: subtitleStyle
                         ),
                       ],

@@ -60,7 +60,8 @@ class EditCollectionScreen extends StatelessWidget {
                                   color: Theme.of(context).primaryColor,
                                   width: 5))),
                       const SizedBox(height: 30),
-                      Align(
+                      // TODO: need to be change according to template
+                      /*Align(
                         child: Text(Strings.typeLabel,
                             style: TextStyle(
                                 color: Theme.of(context).primaryColor,
@@ -91,6 +92,7 @@ class EditCollectionScreen extends StatelessWidget {
                                   color: Theme.of(context).primaryColor,
                                   width: 5))),
                       const SizedBox(height: 30),
+                       */
                       Align(
                         child: Text(Strings.labelDesc,
                             style: TextStyle(

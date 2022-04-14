@@ -37,6 +37,8 @@ class AddCollectionScreen extends StatelessWidget {
                           )
                       ),
                       const SizedBox(height: 50),
+                      // TODO: need to be changed according template
+                      /*
                       Align(
                         child: Text(Strings.typeLabel,
                             style: TextStyle(
@@ -71,6 +73,7 @@ class AddCollectionScreen extends StatelessWidget {
                             border: Border.all(color: Theme.of(context).primaryColor, width: 5)
                         )
                       ),
+                      */
                       const SizedBox(height: 30),
                       Align(
                         child: Text(Strings.labelName,
