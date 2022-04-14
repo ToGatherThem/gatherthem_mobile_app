@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:gatherthem_mobile_app/globals.dart';
 import 'package:gatherthem_mobile_app/models/collection_model.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
+import 'package:gatherthem_mobile_app/ui/widgets/navigation_scaffold_widget.dart';
 import 'package:intl/intl.dart';
-import '../widgets/navigation_scaffold_widget.dart';
 
 class CollectionScreen extends StatelessWidget {
   const CollectionScreen({Key? key, required this.collection}) : super(key: key);
@@ -10,6 +11,7 @@ class CollectionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    currentCollection = collection;
     Widget body = bodyConfig(collection: collection, context: context);
     return NavigationScaffoldWidget(body: body, leading: true);
   }

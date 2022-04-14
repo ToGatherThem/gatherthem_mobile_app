@@ -72,7 +72,8 @@ class AddCollectionScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10),
                             border: Border.all(color: Theme.of(context).primaryColor, width: 5)
                         )
-                      ),*/
+                      ),
+                      */
                       const SizedBox(height: 30),
                       Align(
                         child: Text(Strings.labelName,
