@@ -93,7 +93,7 @@ class AddItemScreen extends StatelessWidget {
                               locale: const Locale("fr", "FR"),
                               firstDate: DateTime(1970),
                               lastDate: DateTime.now(),
-                              initialValue: DateTime.now().toString(),
+                              // initialDate: DateTime.now().toString(),
                               timePickerEntryModeInput: true,
                               cursorColor: Colors.black,
                               style: const TextStyle(
@@ -146,6 +146,8 @@ class AddItemScreen extends StatelessWidget {
 
     if (itemInfosModel.label == "") {
       errorText = Strings.itemLabelRequired;
+    } else if (itemInfosModel.obtentionDate == "") {
+      errorText = Strings.itemObtentionDateRequired;
     }
 
     if (errorText != "") {
