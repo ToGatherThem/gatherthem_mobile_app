@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:gatherthem_mobile_app/globals.dart';
+import 'package:gatherthem_mobile_app/models/collection_model.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/ui/screens/add_collection_screen.dart';
 import 'package:gatherthem_mobile_app/ui/screens/add_item_screen.dart';
 
 class ModalBottomSheet extends StatelessWidget {
-  const ModalBottomSheet({Key? key}) : super(key: key);
+  final CollectionModel? currentCollection;
+  const ModalBottomSheet({Key? key, this.currentCollection}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: currentCollection.id != "" ? 150 : 100,
+      height: (currentCollection != null && currentCollection!.id != "") ? 150 : 100,
       color: Theme.of(context).backgroundColor,
       child: Column(
         children: [
@@ -35,6 +36,7 @@ class ModalBottomSheet extends StatelessWidget {
               child: const Text(Strings.createColl),
               style: TextButton.styleFrom(primary: Theme.of(context).primaryColor),
               onPressed: () {
+                Navigator.pop(context);
                 Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const AddCollectionScreen())
@@ -43,7 +45,7 @@ class ModalBottomSheet extends StatelessWidget {
             ),
           ),
           Visibility(
-            visible: currentCollection.id != "",
+            visible: currentCollection != null && currentCollection!.id != "",
             child: SizedBox(
               width: MediaQuery.of(context).size.width,
               height: 50,
@@ -53,9 +55,10 @@ class ModalBottomSheet extends StatelessWidget {
                   primary: Theme.of(context).primaryColor
                 ),
                 onPressed: () {
+                  Navigator.pop(context);
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => AddItemScreen(collection: currentCollection))
+                    MaterialPageRoute(builder: (context) => AddItemScreen(collection: currentCollection!))
                   );
                 },
               ),

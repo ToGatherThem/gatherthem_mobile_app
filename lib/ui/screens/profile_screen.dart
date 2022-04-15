@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:gatherthem_mobile_app/blocs/bloc_profile.dart';
+import 'package:gatherthem_mobile_app/models/profile_model.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/navigation_scaffold_widget.dart';
 
 class ProfileScreen extends StatelessWidget {
-  final dynamic profile;
-  const ProfileScreen({Key? key, required this.profile}) : super(key: key);
+  const ProfileScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,6 +13,9 @@ class ProfileScreen extends StatelessWidget {
   }
 
   Widget bodyConfig({required BuildContext context}) {
+
+    BlocProfile blocProfile = BlocProfile();
+    blocProfile.fetchProfile();
     return SizedBox(
       width : MediaQuery.of(context).size.width,
       height: 100,
@@ -21,37 +25,46 @@ class ProfileScreen extends StatelessWidget {
           color: Theme.of(context).backgroundColor,
           child: Padding(
             padding: const EdgeInsets.all(10),
-            child: Column(
-              // mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(profile["username"],
-                      style: TextStyle(
-                          color: Theme.of(context).primaryColor,
-                          fontSize: 15
-                      )
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(profile["email"],
-                      style: TextStyle(
-                          color: Theme.of(context).primaryColor,
-                          fontSize: 15
-                      )
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(profile["authorities"][0]["name"],
-                      style: TextStyle(
-                          color: Theme.of(context).primaryColor,
-                          fontSize: 15
-                      )
-                  ),
-                ),
-              ],
+            child: StreamBuilder<ProfileModel>(
+              stream: blocProfile.stream,
+              builder: (context, snapshot) {
+                if (!snapshot.hasData){
+                  return Container();/// TODO loading
+                }
+                ProfileModel profile = snapshot.data!;
+                return Column(
+                  // mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(profile.username,
+                          style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                              fontSize: 15
+                          )
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(profile.email,
+                          style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                              fontSize: 15
+                          )
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(profile.authorities.first.name,
+                          style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                              fontSize: 15
+                          )
+                      ),
+                    ),
+                  ],
+                );
+              }
             ),
           ),
         ),

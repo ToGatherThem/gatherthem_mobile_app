@@ -10,7 +10,7 @@ import 'package:gatherthem_mobile_app/ui/widgets/dialogs/error_dialog.dart';
 
 class AddItemScreen extends StatelessWidget {
   final CollectionModel collection;
-  ItemInfosModel itemInfosModel = ItemInfosModel();
+  final ItemInfosModel itemInfosModel = ItemInfosModel();
   AddItemScreen({Key? key, required this.collection}) : super(key: key);
 
   @override
@@ -122,11 +122,12 @@ class AddItemScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             FilledRectButton(text: Strings.cancelLabel, onPressed: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => CollectionScreen(collection: collection)));
+                              Navigator.pop(context);
                             }),
                             const SizedBox(width: 10),
                             FilledRectButton(text: Strings.createLabel, onPressed: (){
                               validate(context, itemInfosModel);
+                              Navigator.pop(context);
                             }),
                           ],
                         ),
@@ -160,7 +161,6 @@ class AddItemScreen extends StatelessWidget {
     }
 
     ItemService().addItem(
-        context,
         collection,
         itemInfosModel
     );
