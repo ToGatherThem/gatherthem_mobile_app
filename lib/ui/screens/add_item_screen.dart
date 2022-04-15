@@ -10,11 +10,11 @@ import 'package:gatherthem_mobile_app/ui/widgets/dialogs/error_dialog.dart';
 
 class AddItemScreen extends StatelessWidget {
   final CollectionModel collection;
-  const AddItemScreen({Key? key, required this.collection}) : super(key: key);
+  ItemInfosModel itemInfosModel = ItemInfosModel();
+  AddItemScreen({Key? key, required this.collection}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    ItemInfosModel itemInfosModel = ItemInfosModel();
     return Scaffold(
         backgroundColor: Theme.of(context).backgroundColor,
         body: Stack(
