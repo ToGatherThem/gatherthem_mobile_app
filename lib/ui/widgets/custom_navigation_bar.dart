@@ -1,74 +1,57 @@
 import 'package:flutter/material.dart';
-import 'package:gatherthem_mobile_app/ui/screens/add_collection_screen.dart';
+import 'package:gatherthem_mobile_app/blocs/bloc_profile.dart';
+import 'package:gatherthem_mobile_app/models/profile_model.dart';
+import 'package:gatherthem_mobile_app/services/user_service.dart';
 import 'package:gatherthem_mobile_app/ui/screens/home_screen.dart';
+import 'package:gatherthem_mobile_app/ui/screens/profile_screen.dart';
 
 class CustomNavigationBar extends StatelessWidget {
   const CustomNavigationBar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double iconSize = 40;
-    double addCircleSize = 60;
-    return Stack(
-      clipBehavior: Clip.none,
-      alignment: Alignment.bottomCenter,
-      children: [
-        Container(
-          decoration: BoxDecoration(
-              borderRadius:
-                  const BorderRadius.vertical(top: Radius.circular(8)),
-              color: Theme.of(context).bottomAppBarColor),
-          height: 50,
-          child: Padding(
-            padding: EdgeInsets.only(left: width / 5, right: width / 5),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                InkWell(
-                  child: Icon(
-                    Icons.home_rounded,
-                    size: iconSize,
-                    color: Theme.of(context).primaryColor,
-                  ),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const HomeScreen()),
-                    );
-                  },
-                ),
-                Icon(
-                  Icons.person,
-                  size: iconSize,
-                  color: Theme.of(context).primaryColor,
-                )
-              ],
-            ),
-          ),
-        ),
-        Positioned(
-          top: -30,
-          child: Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                color: Theme.of(context).focusColor),
-            height: addCircleSize,
-            width: addCircleSize,
-            child: IconButton(
-              icon: Icon(
-                Icons.add,
-                size: iconSize,
-                color: Theme.of(context).primaryColor,
+    bool isHomeScreen = context.findAncestorWidgetOfExactType<HomeScreen>() != null;
+    bool isProfileScreen = context.findAncestorWidgetOfExactType<ProfileScreen>() != null;
+    double iconSize = 35;
+    return BottomAppBar(
+        shape: const CircularNotchedRectangle(),
+        child: SizedBox(
+          height: 50.0,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Spacer(),
+              IconButton(
+                iconSize: iconSize,
+                icon: (!isHomeScreen) ? const Icon(Icons.home_outlined) :const Icon(Icons.home_rounded),
+                disabledColor: Theme.of(context).primaryColor,
+                onPressed:(isHomeScreen)? null : () {
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => const HomeScreen()),
+                    ModalRoute.withName('/'),
+                  );
+                },
               ),
-              onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const AddCollectionScreen()));
-              },
-            ),
+              const Spacer(),
+              const Spacer(),
+              IconButton(
+                    iconSize: iconSize,
+                    icon: (!isProfileScreen)? const Icon(Icons.people_outline) : const Icon(Icons.people_rounded),
+                    disabledColor: Theme.of(context).primaryColor,
+                    onPressed: (context.findAncestorWidgetOfExactType<ProfileScreen>() != null) ? null :() {
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(builder: (context) => ProfileScreen()),
+                          ModalRoute.withName('/'),
+                        );
+                    },
+              ),
+              const Spacer(),
+            ],
           ),
-        ),
-      ],
-    );
+        ));
   }
 }

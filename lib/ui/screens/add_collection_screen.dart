@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:gatherthem_mobile_app/globals.dart';
 import 'package:gatherthem_mobile_app/models/collection_infos_model.dart';
 import 'package:gatherthem_mobile_app/services/collection_service.dart';
-import 'package:gatherthem_mobile_app/ui/screens/home_screen.dart';
+import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/buttons/filled_rect_button.dart';
+import 'package:gatherthem_mobile_app/ui/widgets/dialogs/error_dialog.dart';
 
 class AddCollectionScreen extends StatelessWidget {
   const AddCollectionScreen({Key? key}) : super(key: key);
@@ -29,7 +29,7 @@ class AddCollectionScreen extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      Text("Créer une collection",
+                      Text(Strings.createColl,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Theme.of(context).primaryColor,
@@ -37,8 +37,10 @@ class AddCollectionScreen extends StatelessWidget {
                           )
                       ),
                       const SizedBox(height: 50),
+                      // TODO: need to be changed according template
+                      /*
                       Align(
-                        child: Text("Type",
+                        child: Text(Strings.typeLabel,
                             style: TextStyle(
                                 color: Theme.of(context).primaryColor,
                                 fontSize: 15
@@ -71,9 +73,10 @@ class AddCollectionScreen extends StatelessWidget {
                             border: Border.all(color: Theme.of(context).primaryColor, width: 5)
                         )
                       ),
+                      */
                       const SizedBox(height: 30),
                       Align(
-                        child: Text("Nom",
+                        child: Text(Strings.labelName,
                             style: TextStyle(
                                 color: Theme.of(context).primaryColor,
                                 fontSize: 15
@@ -108,7 +111,7 @@ class AddCollectionScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 30),
                       Align(
-                        child: Text("Description",
+                        child: Text(Strings.labelDesc,
                             style: TextStyle(
                                 color: Theme.of(context).primaryColor,
                                 fontSize: 15
@@ -148,15 +151,12 @@ class AddCollectionScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          FilledRectButton(text: "Annuler", onPressed: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+                          FilledRectButton(text: Strings.cancelLabel, onPressed: (){
+                            Navigator.pop(context);
                           }),
                           const SizedBox(width: 10),
-                          FilledRectButton(text: "Créer", onPressed: (){
-                            CollectionService().createCollection(
-                              context,
-                              collectionInfosModel
-                            );
+                          FilledRectButton(text: Strings.createLabel, onPressed: (){
+                            validate(context, collectionInfosModel);
                           }),
                         ],
                       ),
@@ -171,5 +171,25 @@ class AddCollectionScreen extends StatelessWidget {
     );
   }
 
+  validate(BuildContext context, CollectionInfosModel collectionInfosModel) {
+    String errorText = "";
+
+    if (collectionInfosModel.name == "") {
+      errorText = Strings.collectionNameRequired;
+    }
+
+    if (errorText != "") {
+      return showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return ErrorDialog(message: errorText);
+          }
+      );
+    }
+
+    CollectionService().createCollection(
+        collectionInfosModel
+    ).then((value) => Navigator.pop(context));
+  }
 
 }

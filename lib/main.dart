@@ -1,7 +1,7 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:gatherthem_mobile_app/blocs/bloc_int.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:gatherthem_mobile_app/theme/app_theme_data.dart';
 import 'package:gatherthem_mobile_app/ui/screens/login_screen.dart';
 
@@ -28,59 +28,15 @@ class MyApp extends StatelessWidget {
         title: 'GatherThem',
         debugShowCheckedModeBanner: false,
         theme: theme,
+        localizationsDelegates: GlobalMaterialLocalizations.delegates,
+        supportedLocales: const [
+          Locale("en"),
+          Locale("fr"),
+        ],
         home: const LoginScreen(),
       ),
     );
   }
 }
 
-
-/// Je laisse cette page ici comme exemple pour le moment
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-  
-  final String title;
-
-  @override
-  Widget build(BuildContext context) {
-    BlocInt bloc = BlocInt(
-      initValue: 0
-    );
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            StreamBuilder<int>(
-              stream: bloc.stream,
-              builder: (context, snapshot) {
-                return Text(
-                  '${snapshot.data}',
-                  style: Theme.of(context).textTheme.headline4,
-                );
-              }
-            ),
-            Image.asset("assets/logo.png")
-
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => incrementCounter(bloc),
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
-  }
-
-  void incrementCounter(BlocInt bloc) {
-    bloc.increment();
-  }
-}
 

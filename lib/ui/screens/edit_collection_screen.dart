@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/models/collection_infos_model.dart';
-
-import '../../globals.dart';
-import '../../services/collection_service.dart';
-import '../widgets/buttons/filled_rect_button.dart';
+import 'package:gatherthem_mobile_app/services/collection_service.dart';
+import 'package:gatherthem_mobile_app/theme/strings.dart';
+import 'package:gatherthem_mobile_app/ui/widgets/buttons/filled_rect_button.dart';
 import 'home_screen.dart';
 
 class EditCollectionScreen extends StatelessWidget {
@@ -31,7 +30,7 @@ class EditCollectionScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       Align(
-                        child: Text("Name",
+                        child: Text(Strings.labelName,
                             style: TextStyle(
                                 color: Theme.of(context).primaryColor,
                                 fontSize: 15)),
@@ -61,8 +60,9 @@ class EditCollectionScreen extends StatelessWidget {
                                   color: Theme.of(context).primaryColor,
                                   width: 5))),
                       const SizedBox(height: 30),
-                      Align(
-                        child: Text("Type",
+                      // TODO: need to be change according to template
+                      /*Align(
+                        child: Text(Strings.typeLabel,
                             style: TextStyle(
                                 color: Theme.of(context).primaryColor,
                                 fontSize: 15)),
@@ -92,8 +92,9 @@ class EditCollectionScreen extends StatelessWidget {
                                   color: Theme.of(context).primaryColor,
                                   width: 5))),
                       const SizedBox(height: 30),
+                       */
                       Align(
-                        child: Text("Description",
+                        child: Text(Strings.labelDesc,
                             style: TextStyle(
                                 color: Theme.of(context).primaryColor,
                                 fontSize: 15)),
@@ -129,23 +130,24 @@ class EditCollectionScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           FilledRectButton(
-                              text: "Annuler",
+                              text: Strings.cancelLabel,
                               onPressed: () {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                        const HomeScreen()));
+                                        const HomeScreen()
+                                    )
+                                );
                               }),
                           const SizedBox(width: 10),
                           FilledRectButton(
-                              text: "Modifier",
+                              text: Strings.editLabel,
                               onPressed: () {
                                 CollectionService().editCollection(
-                                    context,
                                     collectionInfosModel,
                                     id
-                                );
+                                ).then((value) => Navigator.pop(context));
                               }),
                         ],
                       ),

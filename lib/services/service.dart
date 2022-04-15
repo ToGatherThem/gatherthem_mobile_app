@@ -47,8 +47,8 @@ abstract class Service{
     return body;
   }
 
-  Future<dynamic> patch(String urlString, dynamic data) async {
-    final result = await dio.patch(
+  Future<dynamic> put(String urlString, dynamic data) async {
+    final result = await dio.put(
         urlString,
         data: data,
         options: options
@@ -62,7 +62,7 @@ abstract class Service{
         urlString,
         options: options
     );
-    return result.statusCode == 204;
+    return result.statusCode == 200;
   }
 
 }
