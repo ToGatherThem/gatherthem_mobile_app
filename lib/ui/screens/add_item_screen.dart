@@ -122,11 +122,12 @@ class AddItemScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             FilledRectButton(text: Strings.cancelLabel, onPressed: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => CollectionScreen(collection: collection)));
+                              Navigator.pop(context);
                             }),
                             const SizedBox(width: 10),
                             FilledRectButton(text: Strings.createLabel, onPressed: (){
                               validate(context, itemInfosModel);
+                              Navigator.pop(context);
                             }),
                           ],
                         ),
@@ -160,7 +161,6 @@ class AddItemScreen extends StatelessWidget {
     }
 
     ItemService().addItem(
-        context,
         collection,
         itemInfosModel
     );
