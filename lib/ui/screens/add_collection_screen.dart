@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/models/collection_infos_model.dart';
 import 'package:gatherthem_mobile_app/services/collection_service.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
-import 'package:gatherthem_mobile_app/ui/screens/home_screen.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/buttons/filled_rect_button.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/dialogs/error_dialog.dart';
 
@@ -153,7 +152,7 @@ class AddCollectionScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           FilledRectButton(text: Strings.cancelLabel, onPressed: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+                            Navigator.pop(context);
                           }),
                           const SizedBox(width: 10),
                           FilledRectButton(text: Strings.createLabel, onPressed: (){
@@ -189,9 +188,8 @@ class AddCollectionScreen extends StatelessWidget {
     }
 
     CollectionService().createCollection(
-        context,
         collectionInfosModel
-    );
+    ).then((value) => Navigator.pop(context));
   }
 
 }

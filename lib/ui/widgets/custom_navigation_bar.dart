@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gatherthem_mobile_app/blocs/bloc_profile.dart';
+import 'package:gatherthem_mobile_app/models/profile_model.dart';
 import 'package:gatherthem_mobile_app/services/user_service.dart';
 import 'package:gatherthem_mobile_app/ui/screens/home_screen.dart';
 import 'package:gatherthem_mobile_app/ui/screens/profile_screen.dart';
@@ -26,21 +28,26 @@ class CustomNavigationBar extends StatelessWidget {
                 icon: (!isHomeScreen) ? const Icon(Icons.home_outlined) :const Icon(Icons.home_rounded),
                 disabledColor: Theme.of(context).primaryColor,
                 onPressed:(isHomeScreen)? null : () {
-                  Navigator.push(
+                  Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(builder: (context) => const HomeScreen()),
+                    ModalRoute.withName('/'),
                   );
                 },
               ),
               const Spacer(),
               const Spacer(),
               IconButton(
-                iconSize: iconSize,
-                icon: (!isProfileScreen)? const Icon(Icons.people_outline) : const Icon(Icons.people_rounded),
-                disabledColor: Theme.of(context).primaryColor,
-                onPressed: (context.findAncestorWidgetOfExactType<ProfileScreen>() != null) ? null :() {
-                  UserService().getProfile(context);
-                },
+                    iconSize: iconSize,
+                    icon: (!isProfileScreen)? const Icon(Icons.people_outline) : const Icon(Icons.people_rounded),
+                    disabledColor: Theme.of(context).primaryColor,
+                    onPressed: (context.findAncestorWidgetOfExactType<ProfileScreen>() != null) ? null :() {
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(builder: (context) => ProfileScreen()),
+                          ModalRoute.withName('/'),
+                        );
+                    },
               ),
               const Spacer(),
             ],

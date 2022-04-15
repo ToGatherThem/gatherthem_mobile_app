@@ -1,4 +1,3 @@
-import 'package:gatherthem_mobile_app/models/collection_item_model.dart';
 
 class CollectionModel{
   String id;

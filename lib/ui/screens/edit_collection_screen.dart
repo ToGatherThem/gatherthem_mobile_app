@@ -136,17 +136,18 @@ class EditCollectionScreen extends StatelessWidget {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                        const HomeScreen()));
+                                        const HomeScreen()
+                                    )
+                                );
                               }),
                           const SizedBox(width: 10),
                           FilledRectButton(
                               text: Strings.editLabel,
                               onPressed: () {
                                 CollectionService().editCollection(
-                                    context,
                                     collectionInfosModel,
                                     id
-                                );
+                                ).then((value) => Navigator.pop(context));
                               }),
                         ],
                       ),
