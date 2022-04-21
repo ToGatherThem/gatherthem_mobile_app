@@ -19,11 +19,12 @@ class ItemDetailScreen extends StatelessWidget {
     TextStyle descriptionStyle = const TextStyle(fontSize: 16);
     BlocCollectionItem blocCollectionItem = BlocCollectionItem();
     //blocCollectionItem.fetchCollections(collection.id);
-    Widget body =  bodyConfig(context, titleStyle, descriptionStyle);
+    Widget body = bodyConfig(context, titleStyle, descriptionStyle);
     return NavigationScaffoldWidget(body: body, leading: true);
   }
 
-  Scaffold bodyConfig(BuildContext context, TextStyle titleStyle, TextStyle descriptionStyle) {
+  Scaffold bodyConfig(
+      BuildContext context, TextStyle titleStyle, TextStyle descriptionStyle) {
     return Scaffold(
       body: Column(
         children: [
@@ -60,35 +61,51 @@ class ItemDetailScreen extends StatelessWidget {
                           ),
                         ),
                       ],
-                    ),
-                  ],
+                      ),
+                    Padding(
+                        padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
+                        child: ListView(
+                          shrinkWrap: true,
+                          physics: const BouncingScrollPhysics(),
+                          children: [
+                            Text("Id : " + collectionItem.id,
+                                style: descriptionStyle),
+                            Text(
+                                "Date : " +
+                                    DateFormat(Strings.dayFormat)
+                                        .format(DateTime.parse(
+                                        collectionItem.obtentionDate))
+                                        .toString(),
+                                style: descriptionStyle)
+                          ],
+                        )),   ],
                 ),
               ),
-            ),
-          ),
-          Card(
-
-            child: Padding(
-              padding: const EdgeInsets.all(5),
-              child:
-              ListView(
-
-                shrinkWrap: true,
-                physics: const BouncingScrollPhysics(),
-                children: [
-                  Text("Id : "+collectionItem.id, style: descriptionStyle),
-                  Text("Date : "+
-                      DateFormat(Strings.dayFormat)
-                          .format(DateTime.parse(collectionItem.obtentionDate))
-                          .toString(),
-                      style: descriptionStyle)
-                ],
-              )
             ),
           ),
         ],
       ),
     );
   }
-//
+//          // Padding(
+//           //   padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
+//           //   child: Card(
+//           //
+//               // child: Padding(
+//               //     padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
+//               //     child: ListView(
+//               //       shrinkWrap: true,
+//               //       physics: const BouncingScrollPhysics(),
+//               //       children: [
+//               //         Text("Id : " + collectionItem.id,
+//               //             style: descriptionStyle),
+//               //         Text(
+//               //             "Date : " +
+//               //                 DateFormat(Strings.dayFormat)
+//               //                     .format(DateTime.parse(
+//               //                         collectionItem.obtentionDate))
+//               //                     .toString(),
+//               //             style: descriptionStyle)
+//               //       ],
+//               //     )),
 }
