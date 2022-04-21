@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/blocs/bloc_bool.dart';
 import 'package:gatherthem_mobile_app/models/collection_item_model.dart';
+import 'package:gatherthem_mobile_app/services/item_service.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/ui/screens/edit_item_screen.dart';
 import 'package:gatherthem_mobile_app/ui/screens/item_detail_screen.dart';
@@ -106,7 +107,7 @@ class ItemTile extends StatelessWidget {
                         color: Colors.redAccent,
                       ),
                       onPressed: () {
-                        print('delete pressed');
+                        ItemService().deleteItem(item.id);
                       },
                     ),
                   ),
