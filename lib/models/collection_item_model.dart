@@ -1,4 +1,3 @@
-import 'collection_item_property_model.dart';
 
 class CollectionItemModel{
   String id;

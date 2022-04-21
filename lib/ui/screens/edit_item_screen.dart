@@ -1,16 +1,18 @@
+import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:gatherthem_mobile_app/models/collection_infos_model.dart';
-import 'package:gatherthem_mobile_app/services/collection_service.dart';
+import 'package:gatherthem_mobile_app/models/item_infos_model.dart';
+import 'package:gatherthem_mobile_app/services/item_service.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/buttons/filled_rect_button.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/dialogs/error_dialog.dart';
 
-class AddCollectionScreen extends StatelessWidget {
-  const AddCollectionScreen({Key? key}) : super(key: key);
+class EditItemScreen extends StatelessWidget {
+  final String itemId;
+  final ItemInfosModel itemInfosModel = ItemInfosModel();
+  EditItemScreen({Key? key, required this.itemId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    CollectionInfosModel collectionInfosModel = CollectionInfosModel();
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       body: Stack(
@@ -29,7 +31,7 @@ class AddCollectionScreen extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      Text(Strings.createColl,
+                      Text(Strings.itemAdd,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Theme.of(context).primaryColor,
@@ -37,46 +39,8 @@ class AddCollectionScreen extends StatelessWidget {
                           )
                       ),
                       const SizedBox(height: 50),
-                      // TODO: need to be changed according template
-                      /*
                       Align(
-                        child: Text(Strings.typeLabel,
-                            style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontSize: 15
-                            )
-                        ),
-                        alignment: Alignment.centerLeft,
-                      ),
-                      const SizedBox(height: 10),
-                      Container(
-                        child: TextFormField(
-                          cursorColor: Colors.black,
-                          style: const TextStyle(
-                              color: Colors.black
-                          ),
-                          decoration: const InputDecoration(
-                            isDense: true,
-                            contentPadding: EdgeInsets.all(8),
-                            focusColor: Colors.transparent,
-                            focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.transparent)
-                            ),
-                          ),
-                          onChanged: (value) {
-                            collectionInfosModel.type = value;
-                          },
-                        ),
-                        decoration: BoxDecoration(
-                            color: const Color(0xFFD6D6D6),
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: Theme.of(context).primaryColor, width: 5)
-                        )
-                      ),
-                      */
-                      const SizedBox(height: 30),
-                      Align(
-                        child: Text(Strings.labelName,
+                        child: Text(Strings.itemLabel,
                             style: TextStyle(
                                 color: Theme.of(context).primaryColor,
                                 fontSize: 15
@@ -100,7 +64,7 @@ class AddCollectionScreen extends StatelessWidget {
                               ),
                             ),
                             onChanged: (value) {
-                              collectionInfosModel.name = value;
+                              itemInfosModel.label = value;
                             },
                           ),
                           decoration: BoxDecoration(
@@ -111,7 +75,7 @@ class AddCollectionScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 30),
                       Align(
-                        child: Text(Strings.labelDesc,
+                        child: Text(Strings.itemObtentionDate,
                             style: TextStyle(
                                 color: Theme.of(context).primaryColor,
                                 fontSize: 15
@@ -121,10 +85,14 @@ class AddCollectionScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 10),
                       Container(
-                          child: TextFormField(
-                            minLines: 4,
-                            maxLines: null,
-                            keyboardType: TextInputType.multiline,
+                          child: DateTimePicker(
+                            type: DateTimePickerType.date,
+                            dateMask: "d MMMM yyyy",
+                            locale: const Locale("fr", "FR"),
+                            firstDate: DateTime(1970),
+                            lastDate: DateTime.now(),
+                            // initialDate: DateTime.now().toString(),
+                            timePickerEntryModeInput: true,
                             cursorColor: Colors.black,
                             style: const TextStyle(
                                 color: Colors.black
@@ -138,7 +106,7 @@ class AddCollectionScreen extends StatelessWidget {
                               ),
                             ),
                             onChanged: (value) {
-                              collectionInfosModel.description = value;
+                              itemInfosModel.obtentionDate = value;
                             },
                           ),
                           decoration: BoxDecoration(
@@ -156,7 +124,8 @@ class AddCollectionScreen extends StatelessWidget {
                           }),
                           const SizedBox(width: 10),
                           FilledRectButton(text: Strings.createLabel, onPressed: (){
-                            validate(context, collectionInfosModel);
+                            validate(context, itemInfosModel);
+                            Navigator.pop(context);
                           }),
                         ],
                       ),
@@ -166,16 +135,18 @@ class AddCollectionScreen extends StatelessWidget {
               ),
             ),
           ),
-        ]
-      )
+        ],
+      ),
     );
   }
 
-  validate(BuildContext context, CollectionInfosModel collectionInfosModel) {
+  validate(BuildContext context, ItemInfosModel itemInfosModel) {
     String errorText = "";
 
-    if (collectionInfosModel.name == "") {
-      errorText = Strings.collectionNameRequired;
+    if (itemInfosModel.label == "") {
+      errorText = Strings.itemLabelRequired;
+    } else if (itemInfosModel.obtentionDate == "") {
+      errorText = Strings.itemObtentionDateRequired;
     }
 
     if (errorText != "") {
@@ -187,9 +158,10 @@ class AddCollectionScreen extends StatelessWidget {
       );
     }
 
-    CollectionService().createCollection(
-        collectionInfosModel
-    ).then((value) => Navigator.pop(context));
+    ItemService().editItem(
+        itemId,
+        itemInfosModel
+    );
   }
 
 }
