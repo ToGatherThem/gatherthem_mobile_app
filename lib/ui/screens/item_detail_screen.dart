@@ -1,7 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/blocs/bloc_collection_item.dart';
+import 'package:gatherthem_mobile_app/globals.dart';
 import 'package:gatherthem_mobile_app/models/collection_item_model.dart';
+import 'package:gatherthem_mobile_app/services/collection_service.dart';
+import 'package:gatherthem_mobile_app/services/item_service.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
+import 'package:gatherthem_mobile_app/ui/screens/collection_screen.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/navigation_scaffold_widget.dart';
 import 'package:intl/intl.dart';
 
@@ -61,9 +66,10 @@ class ItemDetailScreen extends StatelessWidget {
                           ),
                         ),
                       ],
-                      ),
+                    ),
                     Padding(
-                        padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
+                        padding:
+                            const EdgeInsets.only(left: 10, right: 10, top: 10),
                         child: ListView(
                           shrinkWrap: true,
                           physics: const BouncingScrollPhysics(),
@@ -74,15 +80,65 @@ class ItemDetailScreen extends StatelessWidget {
                                 "Date : " +
                                     DateFormat(Strings.dayFormat)
                                         .format(DateTime.parse(
-                                        collectionItem.obtentionDate))
+                                            collectionItem.obtentionDate))
                                         .toString(),
                                 style: descriptionStyle)
                           ],
-                        )),   ],
+                        )),
+                  ],
                 ),
               ),
             ),
           ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: InkWell(
+                      child: Card(
+                          elevation: 0,
+                          child: Padding(
+                              padding: EdgeInsets.all(20),
+                              child: Row(
+                                children: const [
+                                  Icon(Icons.edit),
+                                  Padding(padding: EdgeInsets.all(10)),
+                                  Text("Modifier"),
+                                ],
+                              ))),
+                      onTap: () {}),
+                ),
+              ),
+              Expanded(
+                  child: Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: InkWell(
+                          child: Card(
+                              elevation: 0,
+                              child: Padding(
+                                  padding: EdgeInsets.all(20),
+                                  child: Row(
+                                    children: const [
+                                      Icon(
+                                        Icons.delete,
+                                      ),
+                                      Padding(padding: EdgeInsets.all(10)),
+                                      Text("Supprimer"),
+                                    ],
+                                  ))),
+                          onTap : () async {
+                            print("preworkout");
+                            bool res = await ItemService().deleteItem(collectionItem.id);
+                            if (res) {
+                              print("object");
+                              blocCollection.fetchCollections();
+                              Navigator.pop(context);
+                            }
+                          }))),
+            ],
+          )
         ],
       ),
     );

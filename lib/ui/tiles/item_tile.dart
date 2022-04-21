@@ -4,11 +4,9 @@ import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:intl/intl.dart';
 
 class ItemTile extends StatelessWidget {
-
   final CollectionItemModel item;
 
-  const ItemTile({Key? key, required this.item})
-      : super(key: key);
+  const ItemTile({Key? key, required this.item}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

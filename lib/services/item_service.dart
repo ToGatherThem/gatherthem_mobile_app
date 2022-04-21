@@ -15,4 +15,7 @@ class ItemService extends Service {
       }
     });
   }
+  Future<bool> deleteItem(String id) async{
+    return await delete(apiHost+"/collections/"+id+"/items");
+  }
 }
