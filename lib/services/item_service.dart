@@ -7,5 +7,9 @@ class ItemService extends Service {
   editItem(String id, ItemInfosModel itemInfos) {
     put('$apiHost/items?id=$id', itemInfos.toJson());
   }
-
+  
+  Future<bool> deleteItem(String id) async{
+    return await delete(apiHost+"/collections/"+id+"/items");
+  }
 }
+
