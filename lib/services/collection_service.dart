@@ -2,6 +2,7 @@ import 'package:gatherthem_mobile_app/globals.dart';
 import 'package:gatherthem_mobile_app/models/collection_infos_model.dart';
 import 'package:gatherthem_mobile_app/models/collection_item_model.dart';
 import 'package:gatherthem_mobile_app/models/collection_model.dart';
+import 'package:gatherthem_mobile_app/models/item_infos_model.dart';
 import 'package:gatherthem_mobile_app/services/service.dart';
 
 
@@ -26,5 +27,10 @@ class CollectionService extends Service {
 
   Future<dynamic> editCollection(CollectionInfosModel collectionInfosModel, String id) {
     return put(apiHost + "/collections?id="+id, collectionInfosModel.toJson());
+  }
+
+  addItem( CollectionModel collectionModel, ItemInfosModel itemInfosModel) {
+    String url = apiHost + "/collections/" + collectionModel.id + "/items";
+    post(url, itemInfosModel.toJson());
   }
 }

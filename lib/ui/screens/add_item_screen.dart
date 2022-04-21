@@ -2,9 +2,8 @@ import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/models/collection_model.dart';
 import 'package:gatherthem_mobile_app/models/item_infos_model.dart';
-import 'package:gatherthem_mobile_app/services/item_service.dart';
+import 'package:gatherthem_mobile_app/services/collection_service.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
-import 'package:gatherthem_mobile_app/ui/screens/collection_screen.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/buttons/filled_rect_button.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/dialogs/error_dialog.dart';
 
@@ -160,7 +159,7 @@ class AddItemScreen extends StatelessWidget {
       );
     }
 
-    ItemService().addItem(
+    CollectionService().addItem(
         collection,
         itemInfosModel
     );
