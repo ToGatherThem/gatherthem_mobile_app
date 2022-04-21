@@ -5,7 +5,7 @@ import 'package:gatherthem_mobile_app/services/service.dart';
 class ItemService extends Service {
 
   editItem(String id, ItemInfosModel itemInfos) {
-    put('$apiHost/items/$id', itemInfos.toJson());
+    put('$apiHost/items?id=$id', itemInfos.toJson());
   }
-  
+
 }
