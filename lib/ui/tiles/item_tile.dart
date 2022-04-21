@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/blocs/bloc_bool.dart';
 import 'package:gatherthem_mobile_app/models/collection_item_model.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
+import 'package:gatherthem_mobile_app/ui/screens/edit_item_screen.dart';
 import 'package:gatherthem_mobile_app/ui/screens/item_detail_screen.dart';
 import 'package:intl/intl.dart';
 
@@ -41,7 +42,8 @@ class ItemTile extends StatelessWidget {
               elevation: 0,
               margin: EdgeInsets.zero,
               child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -56,31 +58,35 @@ class ItemTile extends StatelessWidget {
             ),
           ),
           StreamBuilder<bool>(
-            stream: longPress.stream,
-            initialData: false,
-            builder: (context, snapshot) {
-              return Visibility(
-                visible: snapshot.data != null && snapshot.data!,
-                child: Align(
-                  alignment: Alignment.topLeft,
-                  child: FloatingActionButton(
-                    mini: true,
-                    elevation: 0,
-                    hoverElevation: 0,
-                    backgroundColor: Colors.transparent,
-                    heroTag: 'editButton${item.id}',
-                    child: const Icon(
+              stream: longPress.stream,
+              initialData: false,
+              builder: (context, snapshot) {
+                return Visibility(
+                  visible: snapshot.data != null && snapshot.data!,
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: FloatingActionButton(
+                      mini: true,
+                      elevation: 0,
+                      hoverElevation: 0,
+                      backgroundColor: Colors.transparent,
+                      heroTag: 'editButton${item.id}',
+                      child: const Icon(
                         Icons.edit,
                         color: Colors.orangeAccent,
-                    ),
+                      ),
                       onPressed: () {
-                        print('edit pressed');
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => EditItemScreen(
+                                      itemId: item.id,
+                                    )));
                       },
+                    ),
                   ),
-                ),
-              );
-            }
-          ),
+                );
+              }),
           StreamBuilder<bool>(
               stream: longPress.stream,
               initialData: false,
@@ -96,8 +102,8 @@ class ItemTile extends StatelessWidget {
                       backgroundColor: Colors.transparent,
                       heroTag: 'deleteButton${item.id}',
                       child: const Icon(
-                          Icons.delete,
-                          color: Colors.redAccent,
+                        Icons.delete,
+                        color: Colors.redAccent,
                       ),
                       onPressed: () {
                         print('delete pressed');
@@ -105,8 +111,7 @@ class ItemTile extends StatelessWidget {
                     ),
                   ),
                 );
-              }
-          )
+              })
         ],
       ),
     );
