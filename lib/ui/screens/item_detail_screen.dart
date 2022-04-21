@@ -3,10 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/blocs/bloc_collection_item.dart';
 import 'package:gatherthem_mobile_app/globals.dart';
 import 'package:gatherthem_mobile_app/models/collection_item_model.dart';
-import 'package:gatherthem_mobile_app/services/collection_service.dart';
 import 'package:gatherthem_mobile_app/services/item_service.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
-import 'package:gatherthem_mobile_app/ui/screens/collection_screen.dart';
+import 'package:gatherthem_mobile_app/ui/screens/edit_item_screen.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/navigation_scaffold_widget.dart';
 import 'package:intl/intl.dart';
 
@@ -108,7 +107,14 @@ class ItemDetailScreen extends StatelessWidget {
                                   Text("Modifier"),
                                 ],
                               ))),
-                      onTap: () {}),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => EditItemScreen(
+                                  itemId: collectionItem.id,
+                                )));
+                      }),
                 ),
               ),
               Expanded(
@@ -129,13 +135,11 @@ class ItemDetailScreen extends StatelessWidget {
                                     ],
                                   ))),
                           onTap : () async {
-                            print("preworkout");
                             bool res = await ItemService().deleteItem(collectionItem.id);
-                            if (res) {
-                              print("object");
-                              blocCollection.fetchCollections();
-                              Navigator.pop(context);
-                            }
+                            //if (res) {
+                              //blocCollection.fetchCollections(); TODO : update bloc
+                            Navigator.pop(context);
+                            //}
                           }))),
             ],
           )
