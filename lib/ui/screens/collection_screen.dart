@@ -3,7 +3,6 @@ import 'package:gatherthem_mobile_app/blocs/bloc_collection_item.dart';
 import 'package:gatherthem_mobile_app/models/collection_item_model.dart';
 import 'package:gatherthem_mobile_app/models/collection_model.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
-import 'package:gatherthem_mobile_app/ui/screens/item_detail_screen.dart';
 import 'package:gatherthem_mobile_app/ui/tiles/item_tile.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/navigation_scaffold_widget.dart';
 import 'package:intl/intl.dart';
@@ -125,7 +124,6 @@ class CollectionScreen extends StatelessWidget {
                   if (!snapshot.hasData) {
                     return Container(); //TODO loading
                   }
-
                   return Expanded(
                     child: GridView.count(
                       shrinkWrap: true,
@@ -134,15 +132,9 @@ class CollectionScreen extends StatelessWidget {
                       children: snapshot.data!.map((item) {
                         return Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: InkWell(
-                            child:ItemTile(
+                            child: ItemTile(
                               item: item,
                             ),
-                            onTap: (){
-                              Navigator.push(context, MaterialPageRoute(
-                                  builder: (context) =>
-                              ItemDetailScreen(collectionItem: item)));
-                            },),
                         );
 
                       }).toList(),
