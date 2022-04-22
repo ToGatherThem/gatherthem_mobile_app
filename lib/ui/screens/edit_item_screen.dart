@@ -1,5 +1,6 @@
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:gatherthem_mobile_app/blocs/bloc_item.dart';
 import 'package:gatherthem_mobile_app/models/item_infos_model.dart';
 import 'package:gatherthem_mobile_app/services/item_service.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
@@ -8,8 +9,10 @@ import 'package:gatherthem_mobile_app/ui/widgets/dialogs/error_dialog.dart';
 
 class EditItemScreen extends StatelessWidget {
   final String itemId;
+  final String collectionId;
+  final BlocItem blocItem;
   final ItemInfosModel itemInfosModel = ItemInfosModel();
-  EditItemScreen({Key? key, required this.itemId}) : super(key: key);
+  EditItemScreen({Key? key, required this.itemId, required this.collectionId, required this.blocItem}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -123,7 +126,7 @@ class EditItemScreen extends StatelessWidget {
                             Navigator.pop(context);
                           }),
                           const SizedBox(width: 10),
-                          FilledRectButton(text: Strings.createLabel, onPressed: (){
+                          FilledRectButton(text: Strings.editLabel, onPressed: (){
                             validate(context, itemInfosModel);
                             Navigator.pop(context);
                           }),
@@ -161,7 +164,7 @@ class EditItemScreen extends StatelessWidget {
     ItemService().editItem(
         itemId,
         itemInfosModel
-    );
+    ).then((value) => blocItem.fetchItems(collectionId));
   }
 
 }

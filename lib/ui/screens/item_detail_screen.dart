@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:gatherthem_mobile_app/blocs/bloc_collection_item.dart';
-import 'package:gatherthem_mobile_app/globals.dart';
-import 'package:gatherthem_mobile_app/models/collection_item_model.dart';
+import 'package:gatherthem_mobile_app/blocs/bloc_item.dart';
+import 'package:gatherthem_mobile_app/models/item_model.dart';
 import 'package:gatherthem_mobile_app/services/item_service.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/ui/screens/edit_item_screen.dart';
@@ -10,9 +9,13 @@ import 'package:gatherthem_mobile_app/ui/widgets/navigation_scaffold_widget.dart
 import 'package:intl/intl.dart';
 
 class ItemDetailScreen extends StatelessWidget {
-  const ItemDetailScreen({Key? key, required this.collectionItem})
+  final BlocItem blocItem;
+  final String collectionId;
+  final ItemModel collectionItem;
+
+  const ItemDetailScreen({Key? key, required this.collectionItem, required this.blocItem, required this.collectionId})
       : super(key: key);
-  final CollectionItemModel collectionItem;
+
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +24,7 @@ class ItemDetailScreen extends StatelessWidget {
     TextStyle subtitleStyle =
         const TextStyle(fontSize: 16, fontWeight: FontWeight.bold);
     TextStyle descriptionStyle = const TextStyle(fontSize: 16);
-    BlocCollectionItem blocCollectionItem = BlocCollectionItem();
+    BlocItem blocCollectionItem = BlocItem();
     //blocCollectionItem.fetchCollections(collection.id);
     Widget body = bodyConfig(context, titleStyle, descriptionStyle);
     return NavigationScaffoldWidget(body: body, leading: true);
@@ -113,6 +116,8 @@ class ItemDetailScreen extends StatelessWidget {
                             MaterialPageRoute(
                                 builder: (context) => EditItemScreen(
                                   itemId: collectionItem.id,
+                                  collectionId: collectionId,
+                                  blocItem: blocItem,
                                 )));
                       }),
                 ),
@@ -136,10 +141,10 @@ class ItemDetailScreen extends StatelessWidget {
                                   ))),
                           onTap : () async {
                             bool res = await ItemService().deleteItem(collectionItem.id);
-                            //if (res) {
-                              //blocCollection.fetchCollections(); TODO : update bloc
-                            Navigator.pop(context);
-                            //}
+                            if (res) {
+                              blocItem.fetchItems(collectionId);
+                              Navigator.pop(context);
+                            }
                           }))),
             ],
           )

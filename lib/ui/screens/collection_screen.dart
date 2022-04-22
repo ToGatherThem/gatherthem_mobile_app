@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gatherthem_mobile_app/blocs/bloc_collection_item.dart';
-import 'package:gatherthem_mobile_app/models/collection_item_model.dart';
+import 'package:gatherthem_mobile_app/blocs/bloc_item.dart';
 import 'package:gatherthem_mobile_app/models/collection_model.dart';
+import 'package:gatherthem_mobile_app/models/item_model.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/ui/tiles/item_tile.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/navigation_scaffold_widget.dart';
@@ -14,18 +14,18 @@ class CollectionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    BlocCollectionItem blocCollectionItem = BlocCollectionItem();
-    blocCollectionItem.fetchCollections(collection.id);
+    BlocItem blocItem = BlocItem();
+    blocItem.fetchItems(collection.id);
     Widget body = bodyConfig(
         collection: collection,
         context: context,
-        blocCollectionItem: blocCollectionItem);
-    return NavigationScaffoldWidget(body: body, leading: true, collectionModel: collection,);
+        blocItem: blocItem);
+    return NavigationScaffoldWidget(body: body, leading: true, collectionModel: collection, blocItem: blocItem);
   }
 
   Widget bodyConfig({required CollectionModel collection,
     required BuildContext context,
-    required BlocCollectionItem blocCollectionItem}) {
+    required BlocItem blocItem}) {
     TextStyle titleStyle =
     const TextStyle(fontSize: 24, fontWeight: FontWeight.bold);
     TextStyle subtitleStyle =
@@ -118,8 +118,8 @@ class CollectionScreen extends StatelessWidget {
                 ),
               ),
             ),
-            StreamBuilder<List<CollectionItemModel>>(
-                stream: blocCollectionItem.stream,
+            StreamBuilder<List<ItemModel>>(
+                stream: blocItem.stream,
                 builder: (context, snapshot) {
                   if (!snapshot.hasData) {
                     return Container(); //TODO loading
@@ -134,6 +134,8 @@ class CollectionScreen extends StatelessWidget {
                             padding: const EdgeInsets.all(8.0),
                             child: ItemTile(
                               item: item,
+                              blocItem: blocItem,
+                              collectionId: collection.id,
                             ),
                         );
 

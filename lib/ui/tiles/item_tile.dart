@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/blocs/bloc_bool.dart';
-import 'package:gatherthem_mobile_app/models/collection_item_model.dart';
+import 'package:gatherthem_mobile_app/blocs/bloc_item.dart';
+import 'package:gatherthem_mobile_app/models/item_model.dart';
 import 'package:gatherthem_mobile_app/services/item_service.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/ui/screens/edit_item_screen.dart';
@@ -8,9 +9,11 @@ import 'package:gatherthem_mobile_app/ui/screens/item_detail_screen.dart';
 import 'package:intl/intl.dart';
 
 class ItemTile extends StatelessWidget {
-  final CollectionItemModel item;
+  final ItemModel item;
+  final BlocItem blocItem;
+  final String collectionId;
 
-  const ItemTile({Key? key, required this.item}) : super(key: key);
+  const ItemTile({Key? key, required this.item, required this.blocItem, required this.collectionId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +32,11 @@ class ItemTile extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                       builder: (context) =>
-                          ItemDetailScreen(collectionItem: item)));
+                          ItemDetailScreen(
+                              collectionItem: item,
+                              collectionId: collectionId,
+                              blocItem: blocItem,
+                          )));
             },
             onLongPress: () {
               initalValue = !initalValue;
@@ -82,6 +89,8 @@ class ItemTile extends StatelessWidget {
                             MaterialPageRoute(
                                 builder: (context) => EditItemScreen(
                                       itemId: item.id,
+                                      blocItem: blocItem,
+                                      collectionId: collectionId,
                                     )));
                       },
                     ),
@@ -108,6 +117,7 @@ class ItemTile extends StatelessWidget {
                       ),
                       onPressed: () {
                         ItemService().deleteItem(item.id);
+                        blocItem.fetchItems(collectionId);
                       },
                     ),
                   ),
