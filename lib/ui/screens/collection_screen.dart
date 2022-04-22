@@ -70,11 +70,10 @@ class CollectionScreen extends StatelessWidget {
 
                               children: [
                                 Text(collection.name, style: titleStyle),
-                                // TODO need to be add with template
-                                /*Text(
-                                collection.type,
-                                style: subtitleStyle
-                            ),*/
+                                Text(
+                                  collection.template!.fullName,
+                                  style: subtitleStyle
+                                ),
                                 Text(
                                     DateFormat(Strings.dayFormat)
                                         .format(DateTime.parse(

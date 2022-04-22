@@ -96,26 +96,31 @@ class CollectionTile extends StatelessWidget {
                   Icons.photo,
                   size: 55,
                 ),
+                const Padding(padding: EdgeInsets.only(left: 20)),
                 Expanded(
-                  child: Text(
-                    collection.name,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontSize: 16, color: Theme
-                        .of(context)
-                        .primaryColor
-                    ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        collection.template?.fullName ?? '',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16, color: Theme
+                            .of(context)
+                            .primaryColor
+                        ),
+                      ),
+                      Text(
+                        collection.name,
+                        style: TextStyle(
+                            fontSize: 16, color: Theme
+                            .of(context)
+                            .primaryColor
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                // TODO: need to be change when we have template
-                /*Text(
-                  collection.type,
-                  style: TextStyle(
-                      fontSize: 16, color: Theme
-                      .of(context)
-                      .primaryColor
-                  ),
-                )*/
               ],
             ),
           ),

@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
+import 'dart:core';
+import 'package:gatherthem_mobile_app/blocs/bloc_templates.dart';
 import 'package:gatherthem_mobile_app/globals.dart';
 import 'package:gatherthem_mobile_app/models/collection_infos_model.dart';
+import 'package:gatherthem_mobile_app/models/template_model.dart';
 import 'package:gatherthem_mobile_app/services/collection_service.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/buttons/filled_rect_button.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/dialogs/error_dialog.dart';
 
 class AddCollectionScreen extends StatelessWidget {
-  const AddCollectionScreen({Key? key}) : super(key: key);
+  final CollectionInfosModel collectionInfosModel = CollectionInfosModel();
+  AddCollectionScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    CollectionInfosModel collectionInfosModel = CollectionInfosModel();
+    BlocTemplates blocTemplates = BlocTemplates();
+    blocTemplates.fetchTemplates();
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       body: Stack(
@@ -37,11 +42,9 @@ class AddCollectionScreen extends StatelessWidget {
                               fontSize: 30
                           )
                       ),
-                      const SizedBox(height: 50),
-                      // TODO: need to be changed according template
-                      /*
+                      const SizedBox(height: 30),
                       Align(
-                        child: Text(Strings.typeLabel,
+                        child: Text(Strings.labelTemplate,
                             style: TextStyle(
                                 color: Theme.of(context).primaryColor,
                                 fontSize: 15
@@ -50,31 +53,66 @@ class AddCollectionScreen extends StatelessWidget {
                         alignment: Alignment.centerLeft,
                       ),
                       const SizedBox(height: 10),
-                      Container(
-                        child: TextFormField(
-                          cursorColor: Colors.black,
-                          style: const TextStyle(
-                              color: Colors.black
-                          ),
-                          decoration: const InputDecoration(
-                            isDense: true,
-                            contentPadding: EdgeInsets.all(8),
-                            focusColor: Colors.transparent,
-                            focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.transparent)
-                            ),
-                          ),
-                          onChanged: (value) {
-                            collectionInfosModel.type = value;
-                          },
-                        ),
-                        decoration: BoxDecoration(
-                            color: const Color(0xFFD6D6D6),
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: Theme.of(context).primaryColor, width: 5)
-                        )
+                      StreamBuilder<List<TemplateModel>>(
+                        stream: blocTemplates.stream,
+                        builder: (context, snapshot) {
+                          if(snapshot.hasData) {
+                            return Container(
+                              child: Autocomplete<TemplateModel>(
+                                displayStringForOption: (TemplateModel option) => option.fullName,
+                                optionsBuilder: (TextEditingValue textEditingValue) {
+                                  if (textEditingValue.text.isEmpty) {
+                                    return <TemplateModel>[];
+                                  } else {
+                                    var templateNames = snapshot.data!.where((TemplateModel option) {
+                                      return option.fullName.toLowerCase().contains(textEditingValue.text.toLowerCase());
+                                    }).toList();
+
+                                    templateNames.sort((TemplateModel a, TemplateModel b) {
+                                      return a.fullName.compareTo(b.fullName);
+                                    });
+
+                                    return templateNames;
+                                  }
+                                },
+                                fieldViewBuilder: (
+                                    BuildContext context,
+                                    TextEditingController controller,
+                                    FocusNode focusNode,
+                                    VoidCallback onFieldSubmitted
+                                ) {
+                                  return TextFormField(
+                                    controller: controller,
+                                    focusNode: focusNode,
+                                    cursorColor: Colors.black,
+                                    style: const TextStyle(
+                                        color: Colors.black
+                                    ),
+                                    decoration: const InputDecoration(
+                                      isDense: true,
+                                      contentPadding: EdgeInsets.all(8),
+                                      focusColor: Colors.transparent,
+                                      focusedBorder: UnderlineInputBorder(
+                                          borderSide: BorderSide(color: Colors.transparent)
+                                      ),
+                                    ),
+                                  );
+                                },
+                                onSelected: (TemplateModel selected) {
+                                  collectionInfosModel.templateId = selected.id;
+                                },
+                              ),
+                              decoration: BoxDecoration(
+                                  color: const Color(0xFFD6D6D6),
+                                  borderRadius: BorderRadius.circular(10),
+                                  border: Border.all(color: Theme.of(context).primaryColor, width: 5)
+                              )
+                            );
+                          } else {
+                            return const CircularProgressIndicator();
+                          }
+                        },
                       ),
-                      */
                       const SizedBox(height: 30),
                       Align(
                         child: Text(Strings.labelName,
@@ -177,6 +215,8 @@ class AddCollectionScreen extends StatelessWidget {
 
     if (collectionInfosModel.name == "") {
       errorText = Strings.collectionNameRequired;
+    } else if(collectionInfosModel.templateId == "") {
+      errorText = Strings.templateRequired;
     }
 
     if (errorText != "") {
