@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gatherthem_mobile_app/blocs/bloc_item.dart';
+import 'package:gatherthem_mobile_app/blocs/bloc_items.dart';
 import 'package:gatherthem_mobile_app/models/collection_model.dart';
 import 'package:gatherthem_mobile_app/models/item_model.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
@@ -14,7 +14,7 @@ class CollectionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    BlocItem blocItem = BlocItem();
+    BlocItems blocItem = BlocItems();
     blocItem.fetchItems(collection.id);
     Widget body = bodyConfig(
         collection: collection,
@@ -25,7 +25,7 @@ class CollectionScreen extends StatelessWidget {
 
   Widget bodyConfig({required CollectionModel collection,
     required BuildContext context,
-    required BlocItem blocItem}) {
+    required BlocItems blocItem}) {
     TextStyle titleStyle =
     const TextStyle(fontSize: 24, fontWeight: FontWeight.bold);
     TextStyle subtitleStyle =

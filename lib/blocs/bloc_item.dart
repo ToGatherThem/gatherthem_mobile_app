@@ -1,22 +1,22 @@
 import 'package:gatherthem_mobile_app/models/item_model.dart';
-import 'package:gatherthem_mobile_app/services/collection_service.dart';
+import 'package:gatherthem_mobile_app/services/item_service.dart';
 import 'package:rxdart/rxdart.dart';
 import 'bloc.dart';
 
 class BlocItem extends Bloc {
-  final _streamController = BehaviorSubject<List<ItemModel>>();
+  final _streamController = BehaviorSubject<ItemModel>();
 
-  Stream<List<ItemModel>> get stream => _streamController.stream;
+  Stream<ItemModel> get stream => _streamController.stream;
 
-  Sink<List<ItemModel>> get sink => _streamController.sink;
+  Sink<ItemModel> get sink => _streamController.sink;
 
-  fetchItems(String id) async {
-    var resultRequest = await CollectionService().fetchCollectionItems(id);
-    setItems(resultRequest);
+  fetchItem(String id) async {
+    var resultRequest = await ItemService().fetchItem(id);
+    setItem(resultRequest);
   }
 
-  setItems(List<ItemModel> collections) async {
-    sink.add(collections);
+  setItem(ItemModel item) async {
+    sink.add(item);
   }
 
   @override

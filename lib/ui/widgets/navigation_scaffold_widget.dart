@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gatherthem_mobile_app/blocs/bloc_item.dart';
+import 'package:gatherthem_mobile_app/blocs/bloc_items.dart';
 import 'package:gatherthem_mobile_app/models/collection_model.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/app_brand.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/custom_navigation_bar.dart';
@@ -9,7 +9,7 @@ class NavigationScaffoldWidget extends StatelessWidget {
   final Widget body;
   final bool leading;
   final CollectionModel? collectionModel;
-  final BlocItem? blocItem;
+  final BlocItems? blocItem;
 
   const NavigationScaffoldWidget({Key? key, required this.body, this.leading = false, this.collectionModel, this.blocItem})
       : super(key: key);

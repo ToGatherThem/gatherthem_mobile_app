@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gatherthem_mobile_app/blocs/bloc_item.dart';
+import 'package:gatherthem_mobile_app/blocs/bloc_items.dart';
 import 'package:gatherthem_mobile_app/models/collection_model.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/ui/screens/add_collection_screen.dart';
@@ -7,7 +7,7 @@ import 'package:gatherthem_mobile_app/ui/screens/add_item_screen.dart';
 
 class ModalBottomSheet extends StatelessWidget {
   final CollectionModel? currentCollection;
-  final BlocItem? currentBlocItem;
+  final BlocItems? currentBlocItem;
   const ModalBottomSheet({Key? key, this.currentCollection, this.currentBlocItem}) : super(key: key);
 
   @override

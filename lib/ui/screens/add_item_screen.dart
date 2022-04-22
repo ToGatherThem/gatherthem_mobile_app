@@ -1,6 +1,6 @@
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:gatherthem_mobile_app/blocs/bloc_item.dart';
+import 'package:gatherthem_mobile_app/blocs/bloc_items.dart';
 import 'package:gatherthem_mobile_app/models/collection_model.dart';
 import 'package:gatherthem_mobile_app/models/item_infos_model.dart';
 import 'package:gatherthem_mobile_app/services/collection_service.dart';
@@ -11,7 +11,7 @@ import 'package:gatherthem_mobile_app/ui/widgets/dialogs/error_dialog.dart';
 class AddItemScreen extends StatelessWidget {
   final CollectionModel collection;
   final ItemInfosModel itemInfosModel = ItemInfosModel();
-  final BlocItem blocItem;
+  final BlocItems blocItem;
   AddItemScreen({Key? key, required this.collection, required this.blocItem}) : super(key: key);
 
   @override
