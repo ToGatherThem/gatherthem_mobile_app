@@ -1,28 +1,23 @@
+import 'package:gatherthem_mobile_app/models/template_model.dart';
 
 class CollectionModel{
   String id;
   String name;
   String description;
   String creationDate;
-  //List<CollectionItemModel> items;
+  TemplateModel? template;
 
   CollectionModel.fromJson(Map json):
     id = json['id'],
     name = json['name'],
     description = json['description'],
-    creationDate = json['creationDate']
-    //,items = json['items']
-  ;
-  // setItems(){
-  //   items = CollectionItemModel.fromJson(Map json):
-  //
-  //
-  // }
+    creationDate = json['creationDate'],
+    template = TemplateModel.fromJson(json['template']);
+
   CollectionModel.empty():
     id = "",
     name = "",
     description = "",
-    creationDate = ""
-    //,items = []
-  ;
+    creationDate = "",
+    template = null;
 }

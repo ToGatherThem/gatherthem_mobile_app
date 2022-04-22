@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gatherthem_mobile_app/globals.dart';
 import 'package:gatherthem_mobile_app/models/collection_infos_model.dart';
 import 'package:gatherthem_mobile_app/services/collection_service.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
@@ -147,7 +148,10 @@ class EditCollectionScreen extends StatelessWidget {
                                 CollectionService().editCollection(
                                     collectionInfosModel,
                                     id
-                                ).then((value) => Navigator.pop(context));
+                                ).then((value) {
+                                  Navigator.pop(context);
+                                  blocCollection.fetchCollections();
+                                });
                               }),
                         ],
                       ),

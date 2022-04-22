@@ -5,6 +5,7 @@ class Strings{
   static const String createCollItem = "Ajouter un objet dans cette collection";
   static const String labelName = "Nom";
   static const String labelDesc = "Description";
+  static const String labelTemplate = "Template";
   static const String cancelLabel = "Annuler";
   static const String createLabel = "Ajouter";
   static const String typeLabel = "Type";
@@ -27,6 +28,7 @@ class Strings{
   static const String passwordsDontMatch = "Les mots de passe ne correspondent pas";
   static const String confirmPasswordRequired = "La confirmation du mot de passe n'est pas renseignée";
   static const String collectionNameRequired = "Le nom de la collection n'a pas été renseigné";
+  static const String templateRequired = "Le template n'a pas été renseigné";
 
   // Item strings
   static const String itemAdd = "Ajouter un objet";
