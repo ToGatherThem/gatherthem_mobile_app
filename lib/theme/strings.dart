@@ -5,6 +5,7 @@ class Strings{
   static const String createCollItem = "Ajouter un objet dans cette collection";
   static const String labelName = "Nom";
   static const String labelDesc = "Description";
+  static const String labelTemplate = "Template";
   static const String cancelLabel = "Annuler";
   static const String createLabel = "Ajouter";
   static const String typeLabel = "Type";
