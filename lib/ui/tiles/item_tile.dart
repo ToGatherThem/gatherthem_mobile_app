@@ -88,7 +88,7 @@ class ItemTile extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => EditItemScreen(
-                                      itemId: item.id,
+                                      item: item,
                                       blocItems: blocItem,
                                       collectionId: collectionId,
                                     )));

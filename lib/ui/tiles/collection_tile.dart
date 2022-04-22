@@ -36,7 +36,7 @@ class CollectionTile extends StatelessWidget {
               onPressed: (context) async{
                 Navigator.push(context, MaterialPageRoute(
                     builder: (context) =>  EditCollectionScreen(
-                        id: collection.id)));
+                        collection: collection)));
               },
               backgroundColor: Colors.orangeAccent,
               foregroundColor: CustomColors.lightFont,
@@ -52,7 +52,7 @@ class CollectionTile extends StatelessWidget {
                 onPressed: (context) {
                   Navigator.push(context, MaterialPageRoute(
                       builder: (context) =>  EditCollectionScreen(
-                          id: collection.id)));
+                          collection: collection)));
                 },
               backgroundColor: Colors.orangeAccent,
               foregroundColor: CustomColors.lightFont,
