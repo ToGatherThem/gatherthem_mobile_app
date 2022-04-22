@@ -1,4 +1,4 @@
-import 'package:gatherthem_mobile_app/blocs/bloc_collection.dart';
+import 'package:gatherthem_mobile_app/blocs/bloc_collections.dart';
 
 ///Map for login purpose
 late Map<String, String> credentials = { "username": "", "password": "", "confirm_password": "", "email": "" };

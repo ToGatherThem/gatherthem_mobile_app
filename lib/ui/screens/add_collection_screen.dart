@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:core';
 import 'package:gatherthem_mobile_app/blocs/bloc_templates.dart';
+import 'package:gatherthem_mobile_app/globals.dart';
 import 'package:gatherthem_mobile_app/models/collection_infos_model.dart';
 import 'package:gatherthem_mobile_app/models/template_model.dart';
 import 'package:gatherthem_mobile_app/services/collection_service.dart';
@@ -229,7 +230,10 @@ class AddCollectionScreen extends StatelessWidget {
 
     CollectionService().createCollection(
         collectionInfosModel
-    ).then((value) => Navigator.pop(context));
+    ).then((value) {
+      Navigator.pop(context);
+      blocCollection.fetchCollections();
+    });
   }
 
 }
