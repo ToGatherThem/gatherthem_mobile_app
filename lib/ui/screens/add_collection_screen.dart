@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
+import 'dart:core';
 import 'package:gatherthem_mobile_app/blocs/bloc_templates.dart';
 import 'package:gatherthem_mobile_app/models/collection_infos_model.dart';
 import 'package:gatherthem_mobile_app/models/template_model.dart';
 import 'package:gatherthem_mobile_app/services/collection_service.dart';
-import 'package:gatherthem_mobile_app/services/template_service.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/buttons/filled_rect_button.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/dialogs/error_dialog.dart';
-import 'package:gatherthem_mobile_app/ui/widgets/inputs/text_form_input.dart';
 
 class AddCollectionScreen extends StatelessWidget {
-  const AddCollectionScreen({Key? key}) : super(key: key);
+  final CollectionInfosModel collectionInfosModel = CollectionInfosModel();
+  AddCollectionScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    CollectionInfosModel collectionInfosModel = CollectionInfosModel();
     BlocTemplates blocTemplates = BlocTemplates();
     blocTemplates.fetchTemplates();
     return Scaffold(
@@ -59,14 +58,20 @@ class AddCollectionScreen extends StatelessWidget {
                           if(snapshot.hasData) {
                             return Container(
                               child: Autocomplete<TemplateModel>(
-                                displayStringForOption: (TemplateModel option) => option.name,
+                                displayStringForOption: (TemplateModel option) => option.fullName,
                                 optionsBuilder: (TextEditingValue textEditingValue) {
                                   if (textEditingValue.text.isEmpty) {
                                     return <TemplateModel>[];
                                   } else {
-                                    return snapshot.data!.where((TemplateModel option) {
-                                      return option.name.toLowerCase().contains(textEditingValue.text.toLowerCase());
+                                    var templateNames = snapshot.data!.where((TemplateModel option) {
+                                      return option.fullName.toLowerCase().contains(textEditingValue.text.toLowerCase());
+                                    }).toList();
+
+                                    templateNames.sort((TemplateModel a, TemplateModel b) {
+                                      return a.fullName.compareTo(b.fullName);
                                     });
+
+                                    return templateNames;
                                   }
                                 },
                                 fieldViewBuilder: (
@@ -90,13 +95,10 @@ class AddCollectionScreen extends StatelessWidget {
                                           borderSide: BorderSide(color: Colors.transparent)
                                       ),
                                     ),
-                                    onChanged: (value) {
-                                      collectionInfosModel.name = value;
-                                    },
                                   );
                                 },
                                 onSelected: (TemplateModel selected) {
-                                  debugPrint("Selection : ${selected.name}");
+                                  collectionInfosModel.templateId = selected.id;
                                 },
                               ),
                               decoration: BoxDecoration(
@@ -212,6 +214,8 @@ class AddCollectionScreen extends StatelessWidget {
 
     if (collectionInfosModel.name == "") {
       errorText = Strings.collectionNameRequired;
+    } else if(collectionInfosModel.templateId == "") {
+      errorText = Strings.templateRequired;
     }
 
     if (errorText != "") {
