@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/globals.dart';
 import 'package:gatherthem_mobile_app/models/collection_infos_model.dart';
+import 'package:gatherthem_mobile_app/models/collection_model.dart';
 import 'package:gatherthem_mobile_app/services/collection_service.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/buttons/filled_rect_button.dart';
-import 'home_screen.dart';
+import 'package:gatherthem_mobile_app/ui/widgets/dialogs/error_dialog.dart';
 
 class EditCollectionScreen extends StatelessWidget {
-  const EditCollectionScreen({Key? key,  required this.id}) : super(key: key);
-  final String id;
+  EditCollectionScreen({Key? key, required this.collection}) : super(key: key);
+  final CollectionModel collection;
+  final CollectionInfosModel collectionInfosModel = CollectionInfosModel();
+
   @override
   Widget build(BuildContext context) {
-    CollectionInfosModel collectionInfosModel = CollectionInfosModel();
+    collectionInfosModel.name = collection.name;
+    collectionInfosModel.description = collection.description;
     return Scaffold(
         backgroundColor: Theme.of(context).backgroundColor,
         body: Stack(children: [
@@ -50,6 +54,7 @@ class EditCollectionScreen extends StatelessWidget {
                                   borderSide:
                                       BorderSide(color: Colors.transparent)),
                             ),
+                            initialValue: collectionInfosModel.name,
                             onChanged: (value) {
                               collectionInfosModel.name = value;
                             },
@@ -117,8 +122,10 @@ class EditCollectionScreen extends StatelessWidget {
                                   borderSide:
                                       BorderSide(color: Colors.transparent)),
                             ),
+                            initialValue: collectionInfosModel.description,
                             onChanged: (value) {
-                              collectionInfosModel.description = value;                           },
+                              collectionInfosModel.description = value;
+                            },
                           ),
                           decoration: BoxDecoration(
                               color: const Color(0xFFD6D6D6),
@@ -133,25 +140,13 @@ class EditCollectionScreen extends StatelessWidget {
                           FilledRectButton(
                               text: Strings.cancelLabel,
                               onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                        const HomeScreen()
-                                    )
-                                );
+                                Navigator.pop(context);
                               }),
                           const SizedBox(width: 10),
                           FilledRectButton(
                               text: Strings.editLabel,
                               onPressed: () {
-                                CollectionService().editCollection(
-                                    collectionInfosModel,
-                                    id
-                                ).then((value) {
-                                  Navigator.pop(context);
-                                  blocCollection.fetchCollections();
-                                });
+                                validate(context, collectionInfosModel);
                               }),
                         ],
                       ),
@@ -162,5 +157,30 @@ class EditCollectionScreen extends StatelessWidget {
             ),
           ),
         ]));
+  }
+
+  validate(BuildContext context, CollectionInfosModel collectionInfosModel) {
+    String errorText = "";
+
+    if (collectionInfosModel.name == "") {
+      errorText = Strings.collectionNameRequired;
+    }
+
+    if (errorText != "") {
+      return showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return ErrorDialog(message: errorText);
+          }
+      );
+    }
+
+    CollectionService().editCollection(
+        collectionInfosModel,
+        collection.id
+    ).then((value) {
+      Navigator.pop(context);
+      blocCollection.fetchCollections();
+    });
   }
 }

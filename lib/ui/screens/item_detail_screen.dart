@@ -125,7 +125,7 @@ class ItemDetailScreen extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => EditItemScreen(
-                                      itemId: item.id,
+                                      item: item,
                                       collectionId: collectionId,
                                       blocItems: blocItems,
                                       blocSingleItem: blocSingleItem,

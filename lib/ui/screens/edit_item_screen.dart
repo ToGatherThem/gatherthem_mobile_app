@@ -3,21 +3,24 @@ import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/blocs/bloc_item.dart';
 import 'package:gatherthem_mobile_app/blocs/bloc_items.dart';
 import 'package:gatherthem_mobile_app/models/item_infos_model.dart';
+import 'package:gatherthem_mobile_app/models/item_model.dart';
 import 'package:gatherthem_mobile_app/services/item_service.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/buttons/filled_rect_button.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/dialogs/error_dialog.dart';
 
 class EditItemScreen extends StatelessWidget {
-  final String itemId;
+  final ItemModel item;
   final String collectionId;
   final BlocItems blocItems;
   final BlocItem? blocSingleItem;
   final ItemInfosModel itemInfosModel = ItemInfosModel();
-  EditItemScreen({Key? key, required this.itemId, required this.collectionId, required this.blocItems, this.blocSingleItem}) : super(key: key);
+  EditItemScreen({Key? key, required this.item, required this.collectionId, required this.blocItems, this.blocSingleItem}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    itemInfosModel.label = item.label;
+    itemInfosModel.obtentionDate = item.obtentionDate;
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       body: Stack(
@@ -68,6 +71,7 @@ class EditItemScreen extends StatelessWidget {
                                   borderSide: BorderSide(color: Colors.transparent)
                               ),
                             ),
+                            initialValue: itemInfosModel.label,
                             onChanged: (value) {
                               itemInfosModel.label = value;
                             },
@@ -110,6 +114,7 @@ class EditItemScreen extends StatelessWidget {
                                   borderSide: BorderSide(color: Colors.transparent)
                               ),
                             ),
+                            initialValue: itemInfosModel.obtentionDate,
                             onChanged: (value) {
                               itemInfosModel.obtentionDate = value;
                             },
@@ -130,7 +135,6 @@ class EditItemScreen extends StatelessWidget {
                           const SizedBox(width: 10),
                           FilledRectButton(text: Strings.editLabel, onPressed: (){
                             validate(context, itemInfosModel);
-                            Navigator.pop(context);
                           }),
                         ],
                       ),
@@ -164,14 +168,15 @@ class EditItemScreen extends StatelessWidget {
     }
 
     ItemService().editItem(
-        itemId,
+        item.id,
         itemInfosModel
     ).then((value) {
+      Navigator.pop(context);
       if(blocSingleItem == null) {
         blocItems.fetchItems(collectionId);
       }
       else{
-        blocSingleItem!.fetchItem(itemId);
+        blocSingleItem!.fetchItem(item.id);
       }
     });
   }
