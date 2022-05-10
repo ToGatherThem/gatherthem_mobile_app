@@ -166,7 +166,7 @@ class AddItemScreen extends StatelessWidget {
         itemInfosModel
     ).then((value) {
       Navigator.pop(context);
-      blocItem.fetchItems(collection.id);
+      blocItems.fetchItems(collection.id);
     });
 
   }
