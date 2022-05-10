@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gatherthem_mobile_app/blocs/bloc_profile.dart';
-import 'package:gatherthem_mobile_app/models/profile_model.dart';
-import 'package:gatherthem_mobile_app/services/user_service.dart';
 import 'package:gatherthem_mobile_app/ui/screens/home_screen.dart';
 import 'package:gatherthem_mobile_app/ui/screens/profile_screen.dart';
 
@@ -44,7 +41,7 @@ class CustomNavigationBar extends StatelessWidget {
                     onPressed: (context.findAncestorWidgetOfExactType<ProfileScreen>() != null) ? null :() {
                         Navigator.pushAndRemoveUntil(
                           context,
-                          MaterialPageRoute(builder: (context) => ProfileScreen()),
+                          MaterialPageRoute(builder: (context) => const ProfileScreen()),
                           ModalRoute.withName('/'),
                         );
                     },

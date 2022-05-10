@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gatherthem_mobile_app/blocs/bloc_items.dart';
 import 'package:gatherthem_mobile_app/models/collection_model.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/ui/screens/add_collection_screen.dart';
@@ -7,8 +6,7 @@ import 'package:gatherthem_mobile_app/ui/screens/add_item_screen.dart';
 
 class ModalBottomSheet extends StatelessWidget {
   final CollectionModel? currentCollection;
-  final BlocItems? currentBlocItem;
-  const ModalBottomSheet({Key? key, this.currentCollection, this.currentBlocItem}) : super(key: key);
+  const ModalBottomSheet({Key? key, this.currentCollection}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +45,7 @@ class ModalBottomSheet extends StatelessWidget {
             ),
           ),
           Visibility(
-            visible: currentCollection != null && currentBlocItem != null && currentCollection!.id != "",
+            visible: currentCollection != null && currentCollection!.id != "",
             child: SizedBox(
               width: MediaQuery.of(context).size.width,
               height: 50,
@@ -60,7 +58,7 @@ class ModalBottomSheet extends StatelessWidget {
                   Navigator.pop(context);
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => AddItemScreen(collection: currentCollection!, blocItem: currentBlocItem!))
+                    MaterialPageRoute(builder: (context) => AddItemScreen(collection: currentCollection!))
                   );
                 },
               ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/blocs/bloc_items.dart';
+import 'package:gatherthem_mobile_app/globals.dart';
 import 'package:gatherthem_mobile_app/models/collection_model.dart';
 import 'package:gatherthem_mobile_app/models/item_model.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
@@ -14,13 +15,13 @@ class CollectionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    BlocItems blocItem = BlocItems();
-    blocItem.fetchItems(collection.id);
+    blocItems = BlocItems();
+    blocItems.fetchItems(collection.id);
     Widget body = bodyConfig(
         collection: collection,
         context: context,
-        blocItem: blocItem);
-    return NavigationScaffoldWidget(body: body, leading: true, collectionModel: collection, blocItem: blocItem);
+        blocItem: blocItems);
+    return NavigationScaffoldWidget(body: body, leading: true, collectionModel: collection);
   }
 
   Widget bodyConfig({required CollectionModel collection,

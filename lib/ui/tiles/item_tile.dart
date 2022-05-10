@@ -35,7 +35,6 @@ class ItemTile extends StatelessWidget {
                           ItemDetailScreen(
                               collectionItem: item,
                               collectionId: collectionId,
-                              blocItems: blocItem,
                           )));
             },
             onLongPress: () {
@@ -89,7 +88,6 @@ class ItemTile extends StatelessWidget {
                             MaterialPageRoute(
                                 builder: (context) => EditItemScreen(
                                       itemId: item.id,
-                                      blocItems: blocItem,
                                       collectionId: collectionId,
                                     )));
                       },
@@ -116,8 +114,7 @@ class ItemTile extends StatelessWidget {
                         color: Colors.redAccent,
                       ),
                       onPressed: () {
-                        ItemService().deleteItem(item.id);
-                        blocItem.fetchItems(collectionId);
+                        ItemService().deleteItem(item.id).then((value) => blocItem.fetchItems(collectionId));
                       },
                     ),
                   ),
