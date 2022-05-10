@@ -213,9 +213,9 @@ class AddCollectionScreen extends StatelessWidget {
   validate(BuildContext context, CollectionInfosModel collectionInfosModel) {
     String errorText = "";
 
-    if (collectionInfosModel.name == "") {
+    if (collectionInfosModel.name.trim().isEmpty) {
       errorText = Strings.collectionNameRequired;
-    } else if(collectionInfosModel.templateId == "") {
+    } else if(collectionInfosModel.templateId.trim().isEmpty) {
       errorText = Strings.templateRequired;
     }
 

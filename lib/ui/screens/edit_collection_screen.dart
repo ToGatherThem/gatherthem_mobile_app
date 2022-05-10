@@ -34,6 +34,14 @@ class EditCollectionScreen extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
+                      Text(Strings.collectionEdit,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                              fontSize: 30
+                          )
+                      ),
+                      const SizedBox(height: 50),
                       Align(
                         child: Text(Strings.labelName,
                             style: TextStyle(
@@ -162,7 +170,7 @@ class EditCollectionScreen extends StatelessWidget {
   validate(BuildContext context, CollectionInfosModel collectionInfosModel) {
     String errorText = "";
 
-    if (collectionInfosModel.name == "") {
+    if (collectionInfosModel.name.trim().isEmpty) {
       errorText = Strings.collectionNameRequired;
     }
 

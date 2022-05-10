@@ -39,7 +39,7 @@ class EditItemScreen extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      Text(Strings.itemAdd,
+                      Text(Strings.itemEdit,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Theme.of(context).primaryColor,
@@ -152,9 +152,9 @@ class EditItemScreen extends StatelessWidget {
   validate(BuildContext context, ItemInfosModel itemInfosModel) {
     String errorText = "";
 
-    if (itemInfosModel.label == "") {
+    if (itemInfosModel.label.trim().isEmpty) {
       errorText = Strings.itemLabelRequired;
-    } else if (itemInfosModel.obtentionDate == "") {
+    } else if (itemInfosModel.obtentionDate.trim().isEmpty) {
       errorText = Strings.itemObtentionDateRequired;
     }
 
