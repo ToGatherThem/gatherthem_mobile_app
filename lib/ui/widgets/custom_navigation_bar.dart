@@ -36,7 +36,7 @@ class CustomNavigationBar extends StatelessWidget {
               const Spacer(),
               IconButton(
                     iconSize: iconSize,
-                    icon: (!isProfileScreen)? const Icon(Icons.people_outline) : const Icon(Icons.people_rounded),
+                    icon: (!isProfileScreen)? const Icon(Icons.person_outline) : const Icon(Icons.person_rounded),
                     disabledColor: Theme.of(context).primaryColor,
                     onPressed: (context.findAncestorWidgetOfExactType<ProfileScreen>() != null) ? null :() {
                         Navigator.pushAndRemoveUntil(

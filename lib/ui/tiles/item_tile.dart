@@ -8,6 +8,8 @@ import 'package:gatherthem_mobile_app/ui/screens/edit_item_screen.dart';
 import 'package:gatherthem_mobile_app/ui/screens/item_detail_screen.dart';
 import 'package:intl/intl.dart';
 
+import '../../utils.dart';
+
 class ItemTile extends StatelessWidget {
   final ItemModel item;
   final BlocItems blocItem;
@@ -56,9 +58,7 @@ class ItemTile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(item.label.toString()),
-                    Text(DateFormat(Strings.dayFormat)
-                        .format(DateTime.parse(item.obtentionDate))
-                        .toString()),
+                    Text(Utils.convertUTCToLocalString(item.obtentionDate)),
                   ],
                 ),
               ),
