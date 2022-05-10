@@ -7,6 +7,8 @@ import 'package:gatherthem_mobile_app/ui/tiles/item_tile.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/navigation_scaffold_widget.dart';
 import 'package:intl/intl.dart';
 
+import '../../utils.dart';
+
 class CollectionScreen extends StatelessWidget {
   const CollectionScreen({Key? key, required this.collection})
       : super(key: key);
@@ -75,10 +77,7 @@ class CollectionScreen extends StatelessWidget {
                                   style: subtitleStyle
                                 ),
                                 Text(
-                                    DateFormat(Strings.dayFormat)
-                                        .format(DateTime.parse(
-                                        collection.creationDate))
-                                        .toString(),
+                                    Utils.convertUTCToLocalString(collection.creationDate),
                                     style: subtitleStyle),
                               ],
                             ),
