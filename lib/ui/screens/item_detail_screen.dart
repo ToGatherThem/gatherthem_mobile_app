@@ -1,7 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/blocs/bloc_item.dart';
-import 'package:gatherthem_mobile_app/blocs/bloc_items.dart';
+import 'package:gatherthem_mobile_app/globals.dart';
 import 'package:gatherthem_mobile_app/models/item_model.dart';
 import 'package:gatherthem_mobile_app/services/item_service.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
@@ -10,11 +9,10 @@ import 'package:gatherthem_mobile_app/ui/widgets/navigation_scaffold_widget.dart
 import 'package:intl/intl.dart';
 
 class ItemDetailScreen extends StatelessWidget {
-  final BlocItems blocItems;
   final String collectionId;
   final ItemModel collectionItem;
 
-  const ItemDetailScreen({Key? key, required this.collectionItem, required this.blocItems, required this.collectionId})
+  const ItemDetailScreen({Key? key, required this.collectionItem, required this.collectionId})
       : super(key: key);
 
 
@@ -22,8 +20,8 @@ class ItemDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     TextStyle titleStyle =
         const TextStyle(fontSize: 24, fontWeight: FontWeight.bold);
-    TextStyle subtitleStyle =
-        const TextStyle(fontSize: 16, fontWeight: FontWeight.bold);
+    /*TextStyle subtitleStyle =
+        const TextStyle(fontSize: 16, fontWeight: FontWeight.bold);*/
     TextStyle descriptionStyle = const TextStyle(fontSize: 16);
     Widget body = bodyConfig(context, titleStyle, descriptionStyle);
     return NavigationScaffoldWidget(body: body, leading: true);
@@ -112,7 +110,7 @@ class ItemDetailScreen extends StatelessWidget {
                           child: Card(
                               elevation: 0,
                               child: Padding(
-                                  padding: EdgeInsets.all(20),
+                                  padding: const EdgeInsets.all(20),
                                   child: Row(
                                     children: const [
                                       Icon(Icons.edit),
@@ -127,7 +125,6 @@ class ItemDetailScreen extends StatelessWidget {
                                     builder: (context) => EditItemScreen(
                                       item: item,
                                       collectionId: collectionId,
-                                      blocItems: blocItems,
                                       blocSingleItem: blocSingleItem,
                                     )));
                           }),
@@ -140,7 +137,7 @@ class ItemDetailScreen extends StatelessWidget {
                               child: Card(
                                   elevation: 0,
                                   child: Padding(
-                                      padding: EdgeInsets.all(20),
+                                      padding: const EdgeInsets.all(20),
                                       child: Row(
                                         children: const [
                                           Icon(
