@@ -146,9 +146,9 @@ class AddItemScreen extends StatelessWidget {
   validate(BuildContext context, ItemInfosModel itemInfosModel) {
     String errorText = "";
 
-    if (itemInfosModel.label == "") {
+    if (itemInfosModel.label.trim().isEmpty) {
       errorText = Strings.itemLabelRequired;
-    } else if (itemInfosModel.obtentionDate == "") {
+    } else if (itemInfosModel.obtentionDate.trim().isEmpty) {
       errorText = Strings.itemObtentionDateRequired;
     }
 
