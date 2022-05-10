@@ -16,6 +16,7 @@ class AddItemScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    itemInfosModel.obtentionDate = DateTime.now().toLocal().toIso8601String();
     return Scaffold(
         backgroundColor: Theme.of(context).backgroundColor,
         body: Stack(
@@ -108,6 +109,7 @@ class AddItemScreen extends StatelessWidget {
                                     borderSide: BorderSide(color: Colors.transparent)
                                 ),
                               ),
+                              initialValue: itemInfosModel.obtentionDate,
                               onChanged: (value) {
                                 itemInfosModel.obtentionDate = value;
                               },
@@ -128,7 +130,6 @@ class AddItemScreen extends StatelessWidget {
                             const SizedBox(width: 10),
                             FilledRectButton(text: Strings.createLabel, onPressed: (){
                               validate(context, itemInfosModel);
-                              Navigator.pop(context);
                             }),
                           ],
                         ),
@@ -164,7 +165,10 @@ class AddItemScreen extends StatelessWidget {
     CollectionService().addItem(
         collection,
         itemInfosModel
-    ).then((value) => blocItem.fetchItems(collection.id));
+    ).then((value) {
+      Navigator.pop(context);
+      blocItem.fetchItems(collection.id);
+    });
 
   }
 

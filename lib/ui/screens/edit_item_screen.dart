@@ -114,7 +114,7 @@ class EditItemScreen extends StatelessWidget {
                                   borderSide: BorderSide(color: Colors.transparent)
                               ),
                             ),
-                            initialValue: itemInfosModel.obtentionDate,
+                            initialValue: DateTime.parse(itemInfosModel.obtentionDate).toLocal().toIso8601String(),
                             onChanged: (value) {
                               itemInfosModel.obtentionDate = value;
                             },
