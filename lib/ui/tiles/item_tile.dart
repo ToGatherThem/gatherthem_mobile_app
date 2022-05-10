@@ -3,12 +3,9 @@ import 'package:gatherthem_mobile_app/blocs/bloc_bool.dart';
 import 'package:gatherthem_mobile_app/blocs/bloc_items.dart';
 import 'package:gatherthem_mobile_app/models/item_model.dart';
 import 'package:gatherthem_mobile_app/services/item_service.dart';
-import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/ui/screens/edit_item_screen.dart';
 import 'package:gatherthem_mobile_app/ui/screens/item_detail_screen.dart';
-import 'package:intl/intl.dart';
-
-import '../../utils.dart';
+import 'package:gatherthem_mobile_app/utils.dart';
 
 class ItemTile extends StatelessWidget {
   final ItemModel item;
@@ -87,7 +84,7 @@ class ItemTile extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => EditItemScreen(
-                                      itemId: item.id,
+                                      item: item,
                                       collectionId: collectionId,
                                     )));
                       },

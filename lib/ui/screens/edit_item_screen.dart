@@ -14,7 +14,7 @@ class EditItemScreen extends StatelessWidget {
   final String collectionId;
   final BlocItem? blocSingleItem;
   final ItemInfosModel itemInfosModel = ItemInfosModel();
-  EditItemScreen({Key? key, required this.itemId, required this.collectionId, this.blocSingleItem}) : super(key: key);
+  EditItemScreen({Key? key, required this.item, required this.collectionId, this.blocSingleItem}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
