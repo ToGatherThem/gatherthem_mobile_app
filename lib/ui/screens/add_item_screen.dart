@@ -15,6 +15,7 @@ class AddItemScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    itemInfosModel.obtentionDate = DateTime.now().toLocal().toIso8601String();
     return Scaffold(
         backgroundColor: Theme.of(context).backgroundColor,
         body: Stack(
@@ -107,6 +108,7 @@ class AddItemScreen extends StatelessWidget {
                                     borderSide: BorderSide(color: Colors.transparent)
                                 ),
                               ),
+                              initialValue: itemInfosModel.obtentionDate,
                               onChanged: (value) {
                                 itemInfosModel.obtentionDate = value;
                               },
@@ -163,8 +165,8 @@ class AddItemScreen extends StatelessWidget {
         collection,
         itemInfosModel
     ).then((value) {
-      blocItems.fetchItems(collection.id);
       Navigator.pop(context);
+      blocItem.fetchItems(collection.id);
     });
 
   }

@@ -3,10 +3,9 @@ import 'package:gatherthem_mobile_app/blocs/bloc_item.dart';
 import 'package:gatherthem_mobile_app/globals.dart';
 import 'package:gatherthem_mobile_app/models/item_model.dart';
 import 'package:gatherthem_mobile_app/services/item_service.dart';
-import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/ui/screens/edit_item_screen.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/navigation_scaffold_widget.dart';
-import 'package:intl/intl.dart';
+import 'package:gatherthem_mobile_app/utils.dart';
 
 class ItemDetailScreen extends StatelessWidget {
   final String collectionId;
@@ -88,10 +87,7 @@ class ItemDetailScreen extends StatelessWidget {
                                     style: descriptionStyle),
                                 Text(
                                     "Date : " +
-                                        DateFormat(Strings.dayFormat)
-                                            .format(DateTime.parse(
-                                              item.obtentionDate))
-                                            .toString(),
+                                        Utils.convertUTCToLocalString(item.obtentionDate),
                                     style: descriptionStyle)
                               ],
                             )),
