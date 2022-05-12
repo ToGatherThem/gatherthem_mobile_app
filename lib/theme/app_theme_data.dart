@@ -19,6 +19,11 @@ ThemeData buildDarkTheme(){
     cardColor: CustomColors.darkCard,
     bottomAppBarColor: CustomColors.darkMenu,
     focusColor: CustomColors.darkContrast,
-      primaryColor: CustomColors.darkFont
+      primaryColor: CustomColors.darkFont,
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        foregroundColor: MaterialStateProperty.all<Color>(CustomColors.darkMenu),
+      )
+    )
   );
 }
