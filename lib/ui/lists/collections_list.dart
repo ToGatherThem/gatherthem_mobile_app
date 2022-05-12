@@ -17,7 +17,7 @@ class CollectionsList extends StatelessWidget{
             physics: const BouncingScrollPhysics(),
             children: snapshotCollections.data!.map((collection) =>
                 Padding(
-                  padding: const EdgeInsets.only(top: 5, bottom: 5),
+                  padding: const EdgeInsets.only(bottom: 15),
                   child: CollectionTile(collection: collection,),
                 )
             ).toList(),

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/blocs/bloc_profile.dart';
 import 'package:gatherthem_mobile_app/ui/lists/collections_list.dart';
@@ -26,12 +25,12 @@ class HomeScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 15),
+                          padding: const EdgeInsets.symmetric(vertical: 20),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Container(
-                                width: 50,
+                                width: 80,
                                 margin: EdgeInsets.zero,
                                 decoration: const BoxDecoration(
                                   color: Colors.white,
@@ -42,7 +41,7 @@ class HomeScreen extends StatelessWidget {
                                   child: Icon(
                                       Icons.perm_identity,
                                       color: Colors.black,
-                                      size: 30
+                                      size: 60
                                   ),
                                 )
                               ),
@@ -87,6 +86,7 @@ class HomeScreen extends StatelessWidget {
                             ],
                           ),
                         ),
+                        const Padding(padding: EdgeInsets.only(top: 10),),
                         ElevatedButton(
                           onPressed: () {  },
                           child: Padding(
@@ -96,7 +96,8 @@ class HomeScreen extends StatelessWidget {
                               style: Theme.of(context).textTheme.subtitle1,
                             ),
                           ),
-                        )
+                        ),
+                        const Padding(padding: EdgeInsets.only(top: 40),)
                       ],
                     ),
                   ),
@@ -129,11 +130,11 @@ class CustomSliverDelegate extends SliverPersistentHeaderDelegate{
         children: [
           TabBar(
               indicator: BoxDecoration(
-                borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
+                borderRadius: const BorderRadius.vertical(top: Radius.circular(10)),
                 color: indicatorColor,
               ),
               unselectedLabelColor: indicatorColor,
-              tabs: [
+              tabs: const [
                 Tab(
                   text: 'Vos Collections',
                 ),
