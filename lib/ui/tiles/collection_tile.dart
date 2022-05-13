@@ -215,19 +215,3 @@ class CollectionTile extends StatelessWidget {
     );
   }
 }
-
-
-/*
-SlidableAction(
-onPressed: (context) async {
-bool res = await CollectionService().deleteCollection(collection.id);
-if(res){
-blocCollection.fetchCollections();
-}
-},
-onPressed: (context) async{
-Navigator.push(context, MaterialPageRoute(
-builder: (context) =>  EditCollectionScreen(
-collection: collection)));
-},
-*/
