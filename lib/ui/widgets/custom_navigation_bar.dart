@@ -9,7 +9,7 @@ class CustomNavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     bool isHomeScreen = context.findAncestorWidgetOfExactType<HomeScreen>() != null;
     bool isProfileScreen = context.findAncestorWidgetOfExactType<ProfileScreen>() != null;
-    double iconSize = 35;
+    double iconSize = 30;
     return BottomAppBar(
         shape: const CircularNotchedRectangle(),
         child: SizedBox(
@@ -21,8 +21,8 @@ class CustomNavigationBar extends StatelessWidget {
             children: [
               const Spacer(),
               IconButton(
-                iconSize: iconSize,
-                icon: (!isHomeScreen) ? const Icon(Icons.home_outlined) :const Icon(Icons.home_rounded),
+                iconSize: (isHomeScreen) ? iconSize+5 : iconSize,
+                icon: Icon(Icons.home_rounded, color: (!isHomeScreen) ? Colors.grey[500] : Colors.white),
                 disabledColor: Theme.of(context).primaryColor,
                 onPressed:(isHomeScreen)? null : () {
                   Navigator.pushAndRemoveUntil(
@@ -33,10 +33,9 @@ class CustomNavigationBar extends StatelessWidget {
                 },
               ),
               const Spacer(),
-              const Spacer(),
               IconButton(
-                    iconSize: iconSize,
-                    icon: (!isProfileScreen)? const Icon(Icons.person_outline) : const Icon(Icons.person_rounded),
+                    iconSize: (isProfileScreen) ? iconSize + 5 : iconSize,
+                    icon: Icon(Icons.person_rounded, color: (!isProfileScreen) ? Colors.grey[500] : Colors.white),
                     disabledColor: Theme.of(context).primaryColor,
                     onPressed: (context.findAncestorWidgetOfExactType<ProfileScreen>() != null) ? null :() {
                         Navigator.pushAndRemoveUntil(

@@ -17,8 +17,6 @@ class NavigationScaffoldWidget extends StatelessWidget {
     return Scaffold(
       extendBody: true,
       appBar: AppBar(
-        shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(bottom: Radius.circular(8))),
         elevation: 0,
         backgroundColor: Theme.of(context).bottomAppBarColor,
         title: const AppBrand(),
@@ -26,20 +24,18 @@ class NavigationScaffoldWidget extends StatelessWidget {
       ),
       body: body,
       bottomNavigationBar: const CustomNavigationBar(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showModalBottomSheet(
-              context: context,
-              builder: (BuildContext context) {
-                return ModalBottomSheet(currentCollection: collectionModel);
-              }
-          );
-        },
-        child: const Icon(Icons.add),
-        elevation: 2,
-        backgroundColor: Theme.of(context).focusColor,
+      floatingActionButton: Visibility(
+        visible: collectionModel != null && collectionModel!.id != "",
+        child: FloatingActionButton(
+          onPressed: () {
+            // todo
+          },
+          child: const Icon(Icons.add),
+          elevation: 2,
+          foregroundColor: Theme.of(context).primaryColor,
+          backgroundColor: Theme.of(context).highlightColor,
+        ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }
