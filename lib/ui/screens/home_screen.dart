@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/blocs/bloc_profile.dart';
 import 'package:gatherthem_mobile_app/ui/lists/collections_list.dart';
+import 'package:gatherthem_mobile_app/ui/lists/templates_list.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/navigation_scaffold_widget.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -111,7 +112,12 @@ class HomeScreen extends StatelessWidget {
             },
             body: const Padding(
               padding: EdgeInsets.only(top: 30),
-              child: CollectionsList(),
+              child: TabBarView(
+                  children: [
+                    CollectionsList(),
+                    TemplateList()
+                  ]
+              ),
             ),
           ),
         )

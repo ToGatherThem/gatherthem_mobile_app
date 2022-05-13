@@ -32,8 +32,7 @@ class CollectionScreen extends StatelessWidget {
     TextStyle subtitleStyle =
     const TextStyle(fontSize: 16, fontWeight: FontWeight.bold);
     TextStyle descriptionStyle = const TextStyle(fontSize: 16);
-    return Scaffold(
-        body: Column(
+    return Column(
           children: [
             SizedBox(
               width: MediaQuery
@@ -141,6 +140,6 @@ class CollectionScreen extends StatelessWidget {
                   );
                 })
           ],
-        ));
+        );
   }
 }
