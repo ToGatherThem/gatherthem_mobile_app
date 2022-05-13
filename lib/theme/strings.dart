@@ -15,6 +15,7 @@ class Strings{
   static const String userNameLabel = "Nom d'utilisateur";
   static const String passwordLabel = "Mot de passe";
   static const String confirmPasswordLabel = "Confirmer le mot de passe";
+  static const String loginTitle = "Connectez-vous à GatherThem";
   static const String loginLabel = "Connexion";
   static const String signUpLabel = "Inscription";
   static const String signOutLabel = "Déconnexion";
@@ -29,6 +30,11 @@ class Strings{
   static const String confirmPasswordRequired = "La confirmation du mot de passe n'est pas renseignée";
   static const String collectionNameRequired = "Le nom de la collection n'a pas été renseigné";
   static const String templateRequired = "Le template n'a pas été renseigné";
+
+  static const String notRegistered = "Pas encore inscrit ?";
+  static const String alreadyRegistered = "Déjà inscrit ?";
+  static const String signUpNow = "Inscrivez-vous";
+  static const String signInNow = "Connectez-vous";
 
   // Collection strings
   static const String collectionEdit = "Modifier une collection";
