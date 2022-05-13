@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/globals.dart';
 
-class TextInput extends StatelessWidget {
+class TextFormInput extends StatelessWidget {
   final String? credential;
   final bool obscureText;
-  const TextInput({Key? key, this.credential, this.obscureText = false}) : super(key: key);
+  const TextFormInput({Key? key, this.credential, this.obscureText = false, String? label}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
