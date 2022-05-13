@@ -3,9 +3,11 @@ import 'package:gatherthem_mobile_app/globals.dart';
 import 'package:gatherthem_mobile_app/services/authentication_service.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/ui/screens/login_screen.dart';
-import 'package:gatherthem_mobile_app/ui/widgets/buttons/filled_rect_button.dart';
+import 'package:gatherthem_mobile_app/ui/widgets/buttons/action_button.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/dialogs/error_dialog.dart';
-import 'package:gatherthem_mobile_app/ui/widgets/inputs/text_form_input.dart';
+import 'package:gatherthem_mobile_app/ui/widgets/inputs/email_input.dart';
+import 'package:gatherthem_mobile_app/ui/widgets/inputs/password_input.dart';
+import 'package:gatherthem_mobile_app/ui/widgets/inputs/text_input.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -14,98 +16,78 @@ class RegisterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
-      body: Stack(
-        children: [
-          Center(
-              child: Image.asset("assets/logo.png",
-                color: Colors.white.withOpacity(0.2),
-                colorBlendMode: BlendMode.modulate
-              )
-          ),
-          Center(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width / 6, vertical: 20),
-              child: ScrollConfiguration(
-                behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Text(Strings.appTitle,
-                          style: TextStyle(
-                              color: Theme.of(context).primaryColor,
-                              fontSize: 30
-                          )
-                      ),
-                      const SizedBox(height: 80),
-                      Align(
-                        child: Text(Strings.emailLabel,
-                            style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontSize: 15
-                            )
-                        ),
-                        alignment: Alignment.centerLeft,
-                      ),
-                      const SizedBox(height: 10),
-                      const TextFormInput(credential: "email"),
-                      const SizedBox(height: 30),
-                      Align(
-                        child: Text(Strings.userNameLabel,
-                            style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontSize: 15
-                            )
-                        ),
-                        alignment: Alignment.centerLeft,
-                      ),
-                      const SizedBox(height: 10),
-                      const TextFormInput(credential: "username"),
-                      const SizedBox(height: 30),
-                      Align(
-                        child: Text(Strings.passwordLabel,
-                            style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontSize: 15
-                            )
-                        ),
-                        alignment: Alignment.centerLeft,
-                      ),
-                      const SizedBox(height: 10),
-                      const TextFormInput(credential: "password", obscureText: true),
-                      const SizedBox(height: 30),
-                      Align(
-                        child: Text(Strings.confirmPasswordLabel,
-                            style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontSize: 15
-                            )
-                        ),
-                        alignment: Alignment.centerLeft,
-                      ),
-                      const SizedBox(height: 10),
-                      const TextFormInput(credential: "confirm_password", obscureText: true),
-                      const SizedBox(height: 30),
-                      FilledRectButton(text: Strings.signUpLabel, onPressed: (){
-                        validate(context);
-                      }),
-                      const SizedBox(height: 20),
-                      TextButton(
-                        style: TextButton.styleFrom(
-                            primary: Theme.of(context).primaryColor,
-                            textStyle: const TextStyle(fontSize: 15)
-                        ),
-                        child: const Text(Strings.alreadyHaveAccountLabel),
-                        onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginScreen()));
-                        },
-                      )
-                    ],
+      resizeToAvoidBottomInset: false,
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const Spacer(),
+            Image(
+                height: 100,
+                image: Image.asset('assets/logoWhite.png').image
+            ),
+            Text(
+              Strings.registerTitle,
+              style: getTitleStyle(context),
+              textAlign: TextAlign.center,
+            ),
+            const Padding(padding: EdgeInsets.only(top: 50)),
+            TextInput(
+                label: Strings.userNameLabel,
+                icon: Icons.person_rounded,
+                onChanged: (value){
+                  credentials["username"] = value;
+                }
+            ),
+            EmailInput(
+                label: Strings.emailLabel,
+                icon: Icons.mail_rounded,
+                onChanged: (value){
+                  credentials["email"] = value;
+                }
+            ),
+            PasswordInput(
+                label: Strings.passwordLabel,
+                icon: Icons.lock_rounded,
+                onChanged: (value){
+                  credentials["password"] = value;
+                }
+            ),
+            PasswordInput(
+                label: Strings.confirmPasswordLabel,
+                icon: Icons.lock_rounded,
+                onChanged: (value){
+                  credentials["confirm_password"] = value;
+                }
+            ),
+            const Padding(padding: EdgeInsets.only(top: 50)),
+            ActionButton(
+              onPressed: () {
+                validate(context);
+              },
+              text: Strings.signUpLabel,
+              icon: Icons.login_rounded,
+              width: 120,
+            ),
+            const Spacer(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  Strings.alreadyRegistered,
+                  style: TextStyle(
+                    color: Theme.of(context).primaryColor,
                   ),
                 ),
-              ),
-            ),
-          )
-        ],
+                TextButton(onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginScreen()));
+                }, child: Text(Strings.signInNow, style: TextStyle(color: Theme.of(context).highlightColor),)),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

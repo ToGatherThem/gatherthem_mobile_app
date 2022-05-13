@@ -16,6 +16,7 @@ class Strings{
   static const String passwordLabel = "Mot de passe";
   static const String confirmPasswordLabel = "Confirmer le mot de passe";
   static const String loginTitle = "Connectez-vous à GatherThem";
+  static const String registerTitle = "Inscrivez-vous à GatherThem";
   static const String loginLabel = "Connexion";
   static const String signUpLabel = "Inscription";
   static const String signOutLabel = "Déconnexion";
