@@ -52,6 +52,7 @@ class EditCollectionScreen extends StatelessWidget {
                       const SizedBox(height: 10),
                       Container(
                           child: TextFormField(
+                            maxLength: 50,
                             cursorColor: Colors.black,
                             style: const TextStyle(color: Colors.black),
                             decoration: const InputDecoration(
@@ -74,39 +75,6 @@ class EditCollectionScreen extends StatelessWidget {
                                   color: Theme.of(context).primaryColor,
                                   width: 5))),
                       const SizedBox(height: 30),
-                      // TODO: need to be change according to template
-                      /*Align(
-                        child: Text(Strings.typeLabel,
-                            style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontSize: 15)),
-                        alignment: Alignment.centerLeft,
-                      ),
-                      const SizedBox(height: 10),
-                      Container(
-                          child: TextFormField(
-                            cursorColor: Colors.black,
-                            style: const TextStyle(color: Colors.black),
-                            decoration: const InputDecoration(
-                              isDense: true,
-                              contentPadding: EdgeInsets.all(8),
-                              focusColor: Colors.transparent,
-                              focusedBorder: UnderlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: Colors.transparent)),
-                            ),
-                            onChanged: (value) {
-                              collectionInfosModel.type = value;
-                            },
-                          ),
-                          decoration: BoxDecoration(
-                              color: const Color(0xFFD6D6D6),
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border.all(
-                                  color: Theme.of(context).primaryColor,
-                                  width: 5))),
-                      const SizedBox(height: 30),
-                       */
                       Align(
                         child: Text(Strings.labelDesc,
                             style: TextStyle(
@@ -117,6 +85,7 @@ class EditCollectionScreen extends StatelessWidget {
                       const SizedBox(height: 10),
                       Container(
                           child: TextFormField(
+                            maxLength: 1000,
                             minLines: 4,
                             maxLines: null,
                             keyboardType: TextInputType.multiline,

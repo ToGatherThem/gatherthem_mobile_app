@@ -30,7 +30,7 @@ class AddItemScreen extends StatelessWidget {
           child: Column(
             children: [
               RichText(text: TextSpan(
-                style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor),
+                style: getTitleStyle(context),
                 children: <TextSpan>[
                   const TextSpan(
                     text: "Ajouter un objet à "

@@ -34,6 +34,7 @@ class ActionButton extends StatelessWidget {
       style: ButtonStyle(
         foregroundColor: MaterialStateProperty.all<Color>(color ?? Theme.of(context).primaryColor),
         backgroundColor: MaterialStateProperty.all<Color?>(backgroundColor ?? Theme.of(context).highlightColor),
+        shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
       ),
     );
   }

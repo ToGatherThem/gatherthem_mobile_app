@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/blocs/bloc_profile.dart';
 import 'package:gatherthem_mobile_app/ui/lists/collections_list.dart';
 import 'package:gatherthem_mobile_app/ui/lists/templates_list.dart';
+import 'package:gatherthem_mobile_app/ui/widgets/buttons/action_button.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/navigation_scaffold_widget.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -88,15 +89,12 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ),
                         const Padding(padding: EdgeInsets.only(top: 10),),
-                        ElevatedButton(
-                          onPressed: () {  },
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-                            child: Text(
-                              'Modifier mon profil',
-                              style: Theme.of(context).textTheme.subtitle1,
-                            ),
-                          ),
+                        ActionButton(
+                          text: 'Modifier mon profil',
+                          onPressed: () {  },///TODO
+                          width: 180,
+                          backgroundColor: Theme.of(context).cardColor,
+                          color: Theme.of(context).backgroundColor,
                         ),
                         const Padding(padding: EdgeInsets.only(top: 40),)
                       ],
@@ -137,9 +135,10 @@ class CustomSliverDelegate extends SliverPersistentHeaderDelegate{
           TabBar(
               indicator: BoxDecoration(
                 borderRadius: const BorderRadius.vertical(top: Radius.circular(10)),
-                color: indicatorColor,
+                color: Theme.of(context).highlightColor,
               ),
               unselectedLabelColor: indicatorColor,
+              labelColor: Theme.of(context).primaryColor,
               tabs: const [
                 Tab(
                   text: 'Vos Collections',
@@ -150,7 +149,7 @@ class CustomSliverDelegate extends SliverPersistentHeaderDelegate{
               ]),
           Container(
             height: 2,
-            color: indicatorColor,
+            color: Theme.of(context).highlightColor,
           )
         ],
       ),
