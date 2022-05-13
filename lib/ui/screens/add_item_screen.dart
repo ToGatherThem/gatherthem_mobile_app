@@ -9,6 +9,7 @@ import 'package:gatherthem_mobile_app/ui/widgets/buttons/action_button.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/dialogs/error_dialog.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/inputs/date_input.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/inputs/property_input.dart';
+import 'package:gatherthem_mobile_app/ui/widgets/modals/select_image_modal.dart';
 
 import '../widgets/inputs/text_input.dart';
 
@@ -19,6 +20,8 @@ class AddItemScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SelectImageModal selectImageModal = SelectImageModal();
+
     itemInfosModel.obtentionDate = DateTime.now().toLocal().toIso8601String();
     return Scaffold(
         backgroundColor: Theme.of(context).backgroundColor,
@@ -44,30 +47,33 @@ class AddItemScreen extends StatelessWidget {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Container(
-                      height: 115,
-                      width: 115,
-                      padding: const EdgeInsets.all(2),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(
-                          color: Theme.of(context).primaryColor,
-                          width: 1
+                    InkWell(
+                      onTap: () => selectImageModal.show(context),
+                      child: Container(
+                        height: 115,
+                        width: 115,
+                        padding: const EdgeInsets.all(2),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(
+                            color: Theme.of(context).primaryColor,
+                            width: 1
+                          )
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(6),
+                          child: Stack(
+                            children: [
+                              Container(
+                                color: Colors.grey,
+                              ),
+                              const Center(
+                                child: Icon(Icons.image_rounded, color: Colors.white, size: 50),
+                              )
+                            ]
+                          )
                         )
                       ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(6),
-                        child: Stack(
-                          children: [
-                            Container(
-                              color: Colors.grey,
-                            ),
-                            const Center(
-                              child: Icon(Icons.image_rounded, color: Colors.white, size: 50),
-                            )
-                          ]
-                        )
-                      )
                     ),
                     const SizedBox(width: 20),
                     Expanded(
@@ -155,4 +161,6 @@ class AddItemScreen extends StatelessWidget {
       blocItems.fetchItems(collection.id);
     });
   }
+
+
 }
