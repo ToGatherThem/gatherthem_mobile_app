@@ -1,4 +1,3 @@
-import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/globals.dart';
 import 'package:gatherthem_mobile_app/models/collection_model.dart';
@@ -8,7 +7,10 @@ import 'package:gatherthem_mobile_app/services/collection_service.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/buttons/action_button.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/dialogs/error_dialog.dart';
+import 'package:gatherthem_mobile_app/ui/widgets/inputs/date_input.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/inputs/property_input.dart';
+
+import '../widgets/inputs/text_input.dart';
 
 class AddItemScreen extends StatelessWidget {
   final CollectionModel collection;
@@ -44,6 +46,7 @@ class AddItemScreen extends StatelessWidget {
                   children: [
                     Container(
                       height: 115,
+                      width: 115,
                       padding: const EdgeInsets.all(2),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
@@ -54,8 +57,15 @@ class AddItemScreen extends StatelessWidget {
                       ),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(6),
-                        child: Image.network(
-                          "https://m.media-amazon.com/images/I/51rdksF61YL._SL500_.jpg",
+                        child: Stack(
+                          children: [
+                            Container(
+                              color: Colors.grey,
+                            ),
+                            const Center(
+                              child: Icon(Icons.image_rounded, color: Colors.white, size: 50),
+                            )
+                          ]
                         )
                       )
                     ),
@@ -63,27 +73,19 @@ class AddItemScreen extends StatelessWidget {
                     Expanded(
                       child: Column(
                         children: [
-                          TextField(
-                            decoration: InputDecoration(
-                              labelText: "${collection.template?.itemLabelName}",
-                            ),
-                            onChanged: (value) {
+                          TextInput(
+                            label: collection.template.itemLabelName,
+                            onChanged: (String value) {
                               itemInfosModel.label = value;
                             },
                           ),
                           const SizedBox(height: 10),
-                          DateTimePicker(
-                            type: DateTimePickerType.date,
-                            dateMask: "d MMMM yyyy",
-                            locale: const Locale("fr", "FR"),
-                            firstDate: DateTime(1970),
-                            lastDate: DateTime.now(),
-                            timePickerEntryModeInput: true,
-                            decoration: const InputDecoration(
-                              labelText: "Date d'obtention",
-                            ),
-                            initialValue: itemInfosModel.obtentionDate,
-                            onChanged: (value) {
+                          DateInput(
+                            label: Strings.itemObtentionDate,
+                            firstDate: DateTime(1700),
+                            lastDate: DateTime.now().add(const Duration(days: 60)),
+                            defaultValue: itemInfosModel.obtentionDate,
+                            onChanged: (String value) {
                               itemInfosModel.obtentionDate = value;
                             },
                           ),
@@ -93,7 +95,12 @@ class AddItemScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              for(PropertyModel property in collection.template?.allProperties ?? []) PropertyInput(property: property),
+              for(PropertyModel property in collection.template.allProperties) PropertyInput(
+                  property: property,
+                  onChanged: (String value) {
+                    itemInfosModel.setProperty(property.id, value);
+                  }
+              ),
               const SizedBox(height: 40),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

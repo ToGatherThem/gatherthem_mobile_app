@@ -1,56 +1,50 @@
-import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/models/property_model.dart';
+import 'package:gatherthem_mobile_app/ui/widgets/inputs/text_input.dart';
+
+import 'date_input.dart';
+import 'number_input.dart';
 
 class PropertyInput extends StatelessWidget{
   final PropertyModel property;
+  final void Function(String value) onChanged;
 
-  const PropertyInput({Key? key, required this.property}) : super(key: key);
+  const PropertyInput({Key? key, required this.property, required this.onChanged}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     switch (property.type) {
       case "INTEGER": {
-        return TextField(
-          keyboardType: TextInputType.number,
-          decoration: InputDecoration(
-            labelText: property.name,
-            icon: const Icon(Icons.numbers_rounded),
-          )
+        return NumberInput(
+          label: property.name,
+          icon: Icons.numbers_rounded,
+          onChanged: onChanged,
         );
       }
 
       case "DATE": {
-        return DateTimePicker(
-          type: DateTimePickerType.date,
-          dateMask: "d MMMM yyyy",
-          locale: const Locale("fr", "FR"),
-          firstDate: DateTime(1970),
-          lastDate: DateTime.now(),
-          timePickerEntryModeInput: true,
-          decoration: InputDecoration(
-            labelText: property.name,
-            icon: const Icon(Icons.calendar_today),
-          ),
+        return DateInput(
+          label: property.name,
+          icon: Icons.calendar_today,
+          firstDate: DateTime(0),
+          lastDate: DateTime.now().add(const Duration(days: 365*10)),
+          onChanged: onChanged
         );
       }
 
       case "DURATION": {
-        return TextField(
-          keyboardType: TextInputType.number,
-            decoration: InputDecoration(
-              labelText: property.name,
-              icon: const Icon(Icons.timer_rounded),
-            )
+        return NumberInput(
+          label: property.name,
+          icon: Icons.timer_rounded,
+          onChanged: onChanged,
         );
       }
 
       default: {
-        return TextField(
-          decoration: InputDecoration(
-            labelText: property.name,
-            icon: const Icon(Icons.text_fields),
-          )
+        return TextInput(
+          label: property.name,
+          icon: Icons.text_fields,
+          onChanged: onChanged,
         );
       }
     }

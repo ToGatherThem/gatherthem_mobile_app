@@ -47,7 +47,7 @@ class LoginScreen extends StatelessWidget {
                         alignment: Alignment.centerLeft,
                       ),
                       const SizedBox(height: 10),
-                      const TextInput(credential: "username"),
+                      const TextFormInput(credential: "username"),
                       const SizedBox(height: 30),
                       Align(
                         child: Text(Strings.passwordLabel,
@@ -59,7 +59,7 @@ class LoginScreen extends StatelessWidget {
                         alignment: Alignment.centerLeft,
                       ),
                       const SizedBox(height: 10),
-                      const TextInput(credential: "password", obscureText: true),
+                      const TextFormInput(credential: "password", obscureText: true),
                       const SizedBox(height: 30),
                       FilledRectButton(text: Strings.loginLabel, onPressed: (){
                         AuthenticationService().login(

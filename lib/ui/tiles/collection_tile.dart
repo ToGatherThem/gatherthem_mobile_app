@@ -102,7 +102,7 @@ class CollectionTile extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        collection.template?.fullName ?? '',
+                        collection.template.fullName,
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 16, color: Theme
