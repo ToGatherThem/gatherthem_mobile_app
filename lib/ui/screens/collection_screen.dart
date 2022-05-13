@@ -72,7 +72,7 @@ class CollectionScreen extends StatelessWidget {
                               children: [
                                 Text(collection.name, style: titleStyle),
                                 Text(
-                                  collection.template!.fullName,
+                                  collection.template.fullName,
                                   style: subtitleStyle
                                 ),
                                 Text(

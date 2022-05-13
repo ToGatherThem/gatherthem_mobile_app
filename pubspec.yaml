@@ -30,7 +30,7 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
-  adaptive_theme: ^2.3.0
+  adaptive_theme: ^2.3.1
   rxdart: ^0.27.3
   dio: ^4.0.4
   cookie_jar: 3.0.1

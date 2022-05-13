@@ -47,7 +47,7 @@ class RegisterScreen extends StatelessWidget {
                         alignment: Alignment.centerLeft,
                       ),
                       const SizedBox(height: 10),
-                      const TextInput(credential: "email"),
+                      const TextFormInput(credential: "email"),
                       const SizedBox(height: 30),
                       Align(
                         child: Text(Strings.userNameLabel,
@@ -59,7 +59,7 @@ class RegisterScreen extends StatelessWidget {
                         alignment: Alignment.centerLeft,
                       ),
                       const SizedBox(height: 10),
-                      const TextInput(credential: "username"),
+                      const TextFormInput(credential: "username"),
                       const SizedBox(height: 30),
                       Align(
                         child: Text(Strings.passwordLabel,
@@ -71,7 +71,7 @@ class RegisterScreen extends StatelessWidget {
                         alignment: Alignment.centerLeft,
                       ),
                       const SizedBox(height: 10),
-                      const TextInput(credential: "password", obscureText: true),
+                      const TextFormInput(credential: "password", obscureText: true),
                       const SizedBox(height: 30),
                       Align(
                         child: Text(Strings.confirmPasswordLabel,
@@ -83,7 +83,7 @@ class RegisterScreen extends StatelessWidget {
                         alignment: Alignment.centerLeft,
                       ),
                       const SizedBox(height: 10),
-                      const TextInput(credential: "confirm_password", obscureText: true),
+                      const TextFormInput(credential: "confirm_password", obscureText: true),
                       const SizedBox(height: 30),
                       FilledRectButton(text: Strings.signUpLabel, onPressed: (){
                         validate(context);
