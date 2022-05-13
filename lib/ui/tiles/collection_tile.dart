@@ -54,7 +54,7 @@ class CollectionTile extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  collection.template?.fullName ?? '',
+                                  collection.name,
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 16, color: Theme
@@ -63,7 +63,7 @@ class CollectionTile extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  collection.name,
+                                  collection.template.fullName,
                                   style: TextStyle(
                                       fontSize: 16, color: Theme
                                       .of(context)
@@ -164,9 +164,10 @@ class CollectionTile extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Icon(
+                      Icon(
                         Icons.photo,
                         size: 55,
+                        color: Theme.of(context).backgroundColor,
                       ),
                       const Padding(padding: EdgeInsets.only(left: 20)),
                       Expanded(
@@ -174,21 +175,15 @@ class CollectionTile extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              collection.template.fullName,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16, color: Theme
-                                  .of(context)
-                                  .primaryColor
-                              ),
+                              collection.name,
+                              style: getTextStyle(context, weight: FontWeight.bold, color: Theme.of(context).backgroundColor),
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
                             ),
                             Text(
-                              collection.name,
-                              style: TextStyle(
-                                  fontSize: 16, color: Theme
-                                  .of(context)
-                                  .primaryColor
-                              ),
+                              collection.template.fullName,
+                              style: getTextStyle(context, color: Theme.of(context).backgroundColor),
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ],
                         ),
@@ -199,7 +194,7 @@ class CollectionTile extends StatelessWidget {
                             onPressed: () => isEdition.setBool(snapshot.data != null && !snapshot.data!),
                             icon: Icon(
                               Icons.more_vert_rounded,
-                              color: Theme.of(context).primaryColor,
+                              color: Theme.of(context).backgroundColor,
                             )
                         ),
                       )

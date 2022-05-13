@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gatherthem_mobile_app/globals.dart';
 
 class TemplateTile extends StatelessWidget{
 
@@ -23,6 +24,7 @@ class TemplateTile extends StatelessWidget{
               Icon(
                   templateIcon,
                   size: 50,
+                  color: Theme.of(context).backgroundColor,
               ),
               Positioned(
                 top: 25,
@@ -44,7 +46,8 @@ class TemplateTile extends StatelessWidget{
             ],
           ),
           Text(
-              'Ajouter des $templateName'
+              'Ajouter des $templateName',
+            style: getTextStyle(context, color: Theme.of(context).backgroundColor),
           ),
         ],
       ),
