@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/models/collection_model.dart';
+import 'package:gatherthem_mobile_app/ui/screens/add_item_screen.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/app_brand.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/custom_navigation_bar.dart';
-import 'package:gatherthem_mobile_app/ui/widgets/modal_bottom_sheet.dart';
 
 class NavigationScaffoldWidget extends StatelessWidget {
   final Widget body;
@@ -28,7 +28,11 @@ class NavigationScaffoldWidget extends StatelessWidget {
         visible: collectionModel != null && collectionModel!.id != "",
         child: FloatingActionButton(
           onPressed: () {
-            // todo
+            Navigator.pop(context);
+            Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => AddItemScreen(collection: collectionModel!))
+            );
           },
           child: const Icon(Icons.add),
           elevation: 2,
