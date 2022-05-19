@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/blocs/bloc_profile.dart';
+import 'package:gatherthem_mobile_app/models/profile_model.dart';
+import 'package:gatherthem_mobile_app/theme/styles.dart';
 import 'package:gatherthem_mobile_app/ui/lists/collections_list.dart';
 import 'package:gatherthem_mobile_app/ui/lists/templates_list.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/buttons/action_button.dart';
@@ -27,63 +29,60 @@ class HomeScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 20),
+                          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Container(
-                                width: 80,
-                                margin: EdgeInsets.zero,
-                                decoration: const BoxDecoration(
-                                  color: Colors.white,
-                                  shape: BoxShape.circle,
+                              const Icon(Icons.account_circle_rounded, size: 90),
+                              Expanded(
+                                child: StreamBuilder<ProfileModel>(
+                                  stream: blocProfile.stream,
+                                  builder: (context, snapshotProfile) {
+                                    if(!snapshotProfile.hasData) {
+                                      return Container();
+                                    }
+                                    ProfileModel profile = snapshotProfile.data!;
+                                    return Column(
+                                      children: [
+                                        Text(
+                                          profile.username,
+                                          style: Styles.getPseudoStyle(context, weight: FontWeight.w600),
+                                        ),
+                                        const Padding(padding: EdgeInsets.only(bottom: 10)),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            Column(
+                                              children: [
+                                                Text(
+                                                  '0',
+                                                  style: Styles.getFigureStyle(context, weight: FontWeight.w600),
+                                                ),
+                                                Text(
+                                                  'Collections',
+                                                  style: Styles.getTextStyle(context),
+                                                ),
+                                              ],
+                                            ),
+                                            const Padding(padding: EdgeInsets.only(right: 10)),
+                                            Column(
+                                              children: [
+                                                Text(
+                                                  '0',
+                                                  style: Styles.getFigureStyle(context, weight: FontWeight.w600),
+                                                ),
+                                                Text(
+                                                  'Objets',
+                                                  style: Styles.getTextStyle(context),
+                                                ),
+                                              ],
+                                            )
+                                          ],
+                                        ),
+                                      ],
+                                    );
+                                  }
                                 ),
-                                child: const Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Icon(
-                                      Icons.perm_identity,
-                                      color: Colors.black,
-                                      size: 60
-                                  ),
-                                )
-                              ),
-                              Column(
-                                children: [
-                                  Text(
-                                    'John Doe',
-                                    style: Theme.of(context).textTheme.headline6,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Column(
-                                        children: [
-                                          Text(
-                                            '0',
-                                            style: Theme.of(context).textTheme.bodyMedium,
-                                          ),
-                                          Text(
-                                            'Collections',
-                                            style: Theme.of(context).textTheme.bodyMedium,
-                                          ),
-                                        ],
-                                      ),
-                                      const Padding(padding: EdgeInsets.only(right: 10)),
-                                      Column(
-                                        children: [
-                                          Text(
-                                            '0',
-                                            style: Theme.of(context).textTheme.bodyMedium,
-                                          ),
-                                          Text(
-                                            'Objets',
-                                            style: Theme.of(context).textTheme.bodyMedium,
-                                          ),
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                ],
                               )
                             ],
                           ),
@@ -139,6 +138,8 @@ class CustomSliverDelegate extends SliverPersistentHeaderDelegate{
               ),
               unselectedLabelColor: indicatorColor,
               labelColor: Theme.of(context).primaryColor,
+              labelStyle: Styles.getTextStyle(context, weight: FontWeight.bold),
+              unselectedLabelStyle: Styles.getTextStyle(context),
               tabs: const [
                 Tab(
                   text: 'Vos Collections',

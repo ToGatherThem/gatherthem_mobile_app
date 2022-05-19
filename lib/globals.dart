@@ -1,6 +1,3 @@
-import 'dart:ui';
-
-import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/blocs/bloc_collections.dart';
 
 import 'blocs/bloc_items.dart';
@@ -16,18 +13,3 @@ BlocCollection blocCollection = BlocCollection();
 
 late BlocItems blocItems;
 
-TextStyle getTextStyle(BuildContext context, {Color? color, FontWeight? weight}) {
-  return TextStyle(
-    fontWeight: weight ?? FontWeight.w400,
-    fontSize: 16,
-    color: color ?? Theme.of(context).primaryColor,
-  );
-}
-
-TextStyle getTitleStyle(BuildContext context, {Color? color, FontWeight? weight}) {
-  return TextStyle(
-    fontWeight: weight ?? FontWeight.bold,
-    fontSize: 35,
-    color: color ?? Theme.of(context).primaryColor,
-  );
-}

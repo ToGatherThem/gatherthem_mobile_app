@@ -5,6 +5,7 @@ import 'package:gatherthem_mobile_app/models/item_infos_model.dart';
 import 'package:gatherthem_mobile_app/models/property_model.dart';
 import 'package:gatherthem_mobile_app/services/collection_service.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
+import 'package:gatherthem_mobile_app/theme/styles.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/buttons/action_button.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/dialogs/error_dialog.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/inputs/date_input.dart';
@@ -30,7 +31,7 @@ class AddItemScreen extends StatelessWidget {
           child: Column(
             children: [
               RichText(text: TextSpan(
-                style: getTitleStyle(context),
+                style: Styles.getTitleStyle(context),
                 children: <TextSpan>[
                   const TextSpan(
                     text: "Ajouter un objet à "
