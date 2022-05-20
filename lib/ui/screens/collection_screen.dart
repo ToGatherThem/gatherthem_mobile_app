@@ -120,23 +120,21 @@ class CollectionScreen extends StatelessWidget {
                   if (!snapshot.hasData) {
                     return Container(); //TODO loading
                   }
-                  return Expanded(
-                    child: GridView.count(
+                  return ListView(
                       shrinkWrap: true,
                       physics: const BouncingScrollPhysics(),
-                      crossAxisCount: 2,
-                      children: snapshot.data!.map((item) {
-                        return Padding(
-                            padding: const EdgeInsets.all(8.0),
+                      children: snapshot.data!.map((item) =>
+                        Padding(
+                            padding: const EdgeInsets.only(bottom: 8.0),
                             child: ItemTile(
                               item: item,
                               blocItem: blocItem,
                               collectionId: collection.id,
                             ),
-                        );
+                        )
 
-                      }).toList(),
-                    ),
+                      ).toList(),
+
                   );
                 })
           ],
