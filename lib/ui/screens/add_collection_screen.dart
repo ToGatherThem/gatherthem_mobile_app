@@ -11,7 +11,8 @@ import 'package:gatherthem_mobile_app/ui/widgets/dialogs/error_dialog.dart';
 
 class AddCollectionScreen extends StatelessWidget {
   final CollectionInfosModel collectionInfosModel = CollectionInfosModel();
-  AddCollectionScreen({Key? key}) : super(key: key);
+  final String? templateFullName;
+  AddCollectionScreen({Key? key, this.templateFullName}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -57,9 +58,13 @@ class AddCollectionScreen extends StatelessWidget {
                         stream: blocTemplates.stream,
                         builder: (context, snapshot) {
                           if(snapshot.hasData) {
+                            if(templateFullName != null) {
+                              collectionInfosModel.templateId = snapshot.data!.firstWhere((template) => template.fullName == templateFullName).id;
+                            }
                             return Container(
                               child: Autocomplete<TemplateModel>(
                                 displayStringForOption: (TemplateModel option) => option.fullName,
+                                initialValue: templateFullName != null ? TextEditingValue(text: snapshot.data!.firstWhere((TemplateModel template) => template.fullName == templateFullName).fullName) : null,
                                 optionsBuilder: (TextEditingValue textEditingValue) {
                                   if (textEditingValue.text.isEmpty) {
                                     return <TemplateModel>[];
