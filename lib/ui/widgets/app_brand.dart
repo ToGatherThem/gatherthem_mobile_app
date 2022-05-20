@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gatherthem_mobile_app/theme/custom_colors.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
 
 class AppBrand extends StatelessWidget{
