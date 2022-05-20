@@ -45,10 +45,10 @@ class TemplateTile extends StatelessWidget{
                       color: Theme.of(context).backgroundColor,
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    child: const Icon(
+                    child: Icon(
                         Icons.add,
                       size: 15,
-                      color: Colors.white,
+                      color: Theme.of(context).primaryColor,
                     ),
                   ),
                 )

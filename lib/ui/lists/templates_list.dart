@@ -51,10 +51,10 @@ class TemplateList extends StatelessWidget {
                     color: Theme.of(context).backgroundColor,
                     shape: BoxShape.circle,
                   ),
-                  child: const Icon(
+                  child: Icon(
                     Icons.add,
                     size: 24,
-                    color: Colors.white,
+                    color: Theme.of(context).primaryColor,
                   ),
                 ),
                 Text(
