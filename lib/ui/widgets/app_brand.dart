@@ -9,10 +9,11 @@ class AppBrand extends StatelessWidget{
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Image.asset(
-          "assets/logo.png",
-          height: 20,
+          "assets/logoWhite.png",
+          height: 40,
         ),
         const Padding(padding: EdgeInsets.only(left: 5)),
         Text(
