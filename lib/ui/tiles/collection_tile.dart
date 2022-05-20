@@ -56,6 +56,7 @@ class CollectionTile extends StatelessWidget {
                             Expanded(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
                                     collection.name,
@@ -78,42 +79,39 @@ class CollectionTile extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 25),
+                  padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 25),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Column(
-                        children: [
-                          FloatingActionButton(
-                            heroTag: 'edit ${collection.id}',
-                            onPressed: () async{
-                              Navigator.push(context, MaterialPageRoute(
-                                  builder: (context) =>  EditCollectionScreen(
-                                      collection: collection)));
-                            },
-                            mini: true,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(50)
-                            ),
-                            backgroundColor: Colors.orangeAccent,
-                            child: const Icon(Icons.edit_outlined),
-                          ),
-                          const Padding(padding: EdgeInsets.only(top: 5)),
-                          FloatingActionButton(
-                              heroTag: 'delete ${collection.id}',
-                              onPressed: () async {
-                                bool res = await CollectionService().deleteCollection(collection.id);
-                                if(res){
-                                  blocCollection.fetchCollections();
-                                }
-                              },
-                              mini: true,
-                              backgroundColor: Colors.redAccent,
-                              child: const Icon(Icons.delete_outline_rounded)
-                          ),
-                        ],
+                      FloatingActionButton(
+                        heroTag: 'edit ${collection.id}',
+                        onPressed: () async{
+                          Navigator.push(context, MaterialPageRoute(
+                              builder: (context) =>  EditCollectionScreen(
+                                  collection: collection)));
+                        },
+                        mini: true,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50)
+                        ),
+                        backgroundColor: Colors.orangeAccent,
+                        child: const Icon(Icons.edit_outlined),
                       ),
+                      const Padding(padding: EdgeInsets.only(right: 10)),
+                      FloatingActionButton(
+                          heroTag: 'delete ${collection.id}',
+                          onPressed: () async {
+                            bool res = await CollectionService().deleteCollection(collection.id);
+                            if(res){
+                              blocCollection.fetchCollections();
+                            }
+                          },
+                          mini: true,
+                          backgroundColor: Colors.redAccent,
+                          child: const Icon(Icons.delete_outline_rounded)
+                      ),
+                      const Padding(padding: EdgeInsets.only(right: 10)),
                       IconButton(
                           onPressed: () {isEdition.setBool(false);},
                           icon: Icon(
@@ -163,6 +161,7 @@ class CollectionTile extends StatelessWidget {
                       const Padding(padding: EdgeInsets.only(left: 20)),
                       Expanded(
                         child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
