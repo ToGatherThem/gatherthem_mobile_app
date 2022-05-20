@@ -92,9 +92,6 @@ class CollectionTile extends StatelessWidget {
                                   collection: collection)));
                         },
                         mini: true,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50)
-                        ),
                         backgroundColor: Colors.orangeAccent,
                         child: const Icon(Icons.edit_outlined),
                       ),
