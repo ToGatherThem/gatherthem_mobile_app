@@ -159,8 +159,10 @@ class AddCollectionScreen extends StatelessWidget {
                 const SizedBox(height: 30),
                 TextInput(
                   label: 'Description',
-                  onChanged: (String ) {  },
-                  minLines: 2,
+                  onChanged: (String value) {
+                    collectionInfosModel.description = value;
+                  },
+                  minLines: 1,
                   maxLines: 10,
                   maxLength: 1000,
                 ),
