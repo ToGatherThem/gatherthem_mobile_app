@@ -25,216 +25,7 @@ class ItemTile extends StatelessWidget {
     required this.collectionId})
       : super(key: key);
 
-  /*@override
-  Widget build(BuildContext context) {
-    BlocBool longPress = BlocBool(initValue: false);
-    bool initalValue = false;
-    return Padding(
-      padding: EdgeInsets.only(top: 10),
-      child: SizedBox(
-        height: 105,
-        child: Stack(
-            children: [
-        ImageFiltered(
-        imageFilter: ImageFilter.blur(
-        sigmaX: 1,
-            sigmaY: 1,
-            tileMode: TileMode.decal
-        ),
-        // const Padding(
-        //   padding: EdgeInsets.all(2.0),
-        /*   child*/
 
-        child:Padding(
-          padding: const EdgeInsets.all(10),
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: Theme
-                  .of(context)
-                  .cardColor,
-            ),
-            child: Padding(
-              padding:
-              const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.photo,
-                    size: 55,
-                    color: Theme
-                        .of(context)
-                        .backgroundColor,
-                  ),
-                  const Padding(padding: EdgeInsets.only(left: 20)),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          item.label,
-                          style: Styles.getTextStyle(context, weight: FontWeight
-                              .bold, color: Theme
-                              .of(context)
-                              .backgroundColor),
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        Text(
-                          item.obtentionDate,
-                          style: Styles.getTextStyle(context, color: Theme
-                              .of(context)
-                              .backgroundColor),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-        ),
-        InkWell(
-          onTap: () {
-            initalValue = false;
-            longPress.setBool(initalValue);
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        ItemDetailScreen(
-                          collectionItem: item,
-                          collectionId: collectionId,
-                        )));
-          },
-          onLongPress: () {
-            initalValue = !initalValue;
-            longPress.setBool(initalValue);
-          },
-          //2.10.5
-          onDoubleTap: () {
-            initalValue = !initalValue;
-            longPress.setBool(initalValue);
-          },
-
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 25),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              FloatingActionButton(
-                heroTag: 'edit ${item.id}',
-                onPressed: () async {
-                  Navigator.push(context, MaterialPageRoute(
-                      builder: (context) =>
-                          EditItemScreen(
-                            item: item, collectionId: item.id,)));
-                },
-                mini: true,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50)
-                ),
-                backgroundColor: Colors.orangeAccent,
-                child: const Icon(Icons.edit_outlined),
-              ),
-              const Padding(padding: EdgeInsets.only(right: 10)),
-              FloatingActionButton(
-                  heroTag: 'delete ${item.id}',
-                  onPressed: () async {
-                    bool res = await CollectionService().deleteCollection(
-                        item.id);
-                    if (res) {
-                      blocItem.fetchItems(item.id);
-                    }
-                  },
-                  mini: true,
-                  backgroundColor: Colors.redAccent,
-                  child: const Icon(Icons.delete_outline_rounded)
-              ),
-              const Padding(padding: EdgeInsets.only(right: 10)),
-              IconButton(
-                  onPressed: () {
-                    isEdition.setBool(false);
-                  },
-                  icon: Icon(
-                      Icons.close,
-                      color: Theme
-                          .of(context)
-                          .backgroundColor
-                  )
-              ),
-            ],
-          ),
-        ),
-        // StreamBuilder<bool>(
-        //     stream: longPress.stream,
-        //     initialData: false,
-        //     builder: (context, snapshot) {
-        //       return Visibility(
-        //         visible: snapshot.data != null && snapshot.data!,
-        //         child: Align(
-        //           alignment: Alignment.topLeft,
-        //           child: FloatingActionButton(
-        //             mini: true,
-        //             elevation: 0,
-        //             hoverElevation: 0,
-        //             backgroundColor: Colors.transparent,
-        //             heroTag: 'editButton${item.id}',
-        //             child: const Icon(
-        //               Icons.edit,
-        //               color: Colors.orangeAccent,
-        //             ),
-        //             onPressed: () {
-        //               Navigator.push(
-        //                   context,
-        //                   MaterialPageRoute(
-        //                       builder: (context) => EditItemScreen(
-        //                             item: item,
-        //                             collectionId: collectionId,
-        //                           )));
-        //             },
-        //           ),
-        //         ),
-        //       );
-        //     }),
-        // StreamBuilder<bool>(
-        //     stream: longPress.stream,
-        //     initialData: false,
-        //     builder: (context, snapshot) {
-        //       return Visibility(
-        //         visible: snapshot.data != null && snapshot.data!,
-        //         child: Align(
-        //           alignment: Alignment.topRight,
-        //           child: FloatingActionButton(
-        //             mini: true,
-        //             elevation: 0,
-        //             hoverElevation: 0,
-        //             backgroundColor: Colors.transparent,
-        //             heroTag: 'deleteButton${item.id}',
-        //             child: const Icon(
-        //               Icons.delete,
-        //               color: Colors.redAccent,
-        //             ),
-        //             onPressed: () {
-        //               ItemService()
-        //                   .deleteItem(item.id)
-        //                   .then((value) => blocItem.fetchItems(collectionId));
-        //             },
-        //           ),
-        //         ),
-        //       );
-        //     })
-        ],
-      ),
-    ),);
-
-  }*/
 
   Widget build(BuildContext context) {
     return StreamBuilder<bool>(
@@ -242,7 +33,7 @@ class ItemTile extends StatelessWidget {
         initialData: false,
         builder: (context, snapshot) {
           if (snapshot.data ?? false) {
-            return SizedBox(
+            return Padding(padding: EdgeInsets.only(top:10),child: SizedBox(
               height: 95,
               child: Stack(
                 children: [
@@ -310,9 +101,6 @@ class ItemTile extends StatelessWidget {
                                     item: item, collectionId: item.id,)));
                           },
                           mini: true,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(50)
-                          ),
                           backgroundColor: Colors.orangeAccent,
                           child: const Icon(Icons.edit_outlined),
                         ),
@@ -342,6 +130,7 @@ class ItemTile extends StatelessWidget {
                   ),
                 ],
               ),
+            ),
             );
           }
           else{
