@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/globals.dart';
 import 'package:gatherthem_mobile_app/services/authentication_service.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
+import 'package:gatherthem_mobile_app/theme/styles.dart';
 import 'package:gatherthem_mobile_app/ui/screens/register_screen.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/buttons/action_button.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/inputs/password_input.dart';
@@ -28,7 +29,7 @@ class LoginScreen extends StatelessWidget {
             ),
             Text(
               Strings.loginTitle,
-              style: getTitleStyle(context),
+              style: Styles.getTitleStyle(context),
               textAlign: TextAlign.center,
             ),
             const Padding(padding: EdgeInsets.only(top: 50)),
