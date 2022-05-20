@@ -9,6 +9,7 @@ ThemeData buildLightTheme(){
     bottomAppBarColor: CustomColors.lightMenu,
     primaryColor: CustomColors.lightFont,
     highlightColor: CustomColors.lightHighlight,
+    dividerColor: CustomColors.lightDivider,
   );
 }
 
@@ -20,5 +21,6 @@ ThemeData buildDarkTheme(){
     bottomAppBarColor: CustomColors.darkMenu,
     primaryColor: CustomColors.darkFont,
     highlightColor: CustomColors.darkHighlight,
+    dividerColor: CustomColors.darkDivider,
   );
 }
