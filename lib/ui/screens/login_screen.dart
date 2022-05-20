@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/globals.dart';
 import 'package:gatherthem_mobile_app/services/authentication_service.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
+import 'package:gatherthem_mobile_app/theme/styles.dart';
 import 'package:gatherthem_mobile_app/ui/screens/register_screen.dart';
-import 'package:gatherthem_mobile_app/ui/widgets/buttons/filled_rect_button.dart';
-
-import '../widgets/inputs/text_form_input.dart';
+import 'package:gatherthem_mobile_app/ui/widgets/buttons/action_button.dart';
+import 'package:gatherthem_mobile_app/ui/widgets/inputs/password_input.dart';
+import 'package:gatherthem_mobile_app/ui/widgets/inputs/text_input.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -14,88 +15,87 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
-      body: Stack(
-        children: [
-          Center(
-              child: Image.asset("assets/logo.png",
-                color: Colors.white.withOpacity(0.2),
-                colorBlendMode: BlendMode.modulate
-              )
-          ),
-          Center(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width / 6, vertical: 20),
-              child: ScrollConfiguration(
-                behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Text(Strings.appTitle,
-                          style: TextStyle(
-                              color: Theme.of(context).primaryColor,
-                              fontSize: 30
-                          )
-                      ),
-                      const SizedBox(height: 80),
-                      Align(
-                        child: Text(Strings.userNameLabel,
-                            style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontSize: 15
-                            )
-                        ),
-                        alignment: Alignment.centerLeft,
-                      ),
-                      const SizedBox(height: 10),
-                      const TextInput(credential: "username"),
-                      const SizedBox(height: 30),
-                      Align(
-                        child: Text(Strings.passwordLabel,
-                            style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontSize: 15
-                            )
-                        ),
-                        alignment: Alignment.centerLeft,
-                      ),
-                      const SizedBox(height: 10),
-                      const TextInput(credential: "password", obscureText: true),
-                      const SizedBox(height: 30),
-                      FilledRectButton(text: Strings.loginLabel, onPressed: (){
-                        AuthenticationService().login(
-                            context,
-                            credentials["username"]!,
-                            credentials["password"]!
-                        );
-                      }),
-                      const SizedBox(height: 10),
-                      FilledRectButton(text: "Admin", onPressed: (){
-                        AuthenticationService().login(
-                            context,
-                            "admin",
-                            "exemple"
-                        );
-                      }),
-                      const SizedBox(height: 20),
-                      TextButton(
-                        style: TextButton.styleFrom(
-                            primary: Theme.of(context).primaryColor,
-                            textStyle: const TextStyle(fontSize: 15)
-                        ),
-                        child: const Text(Strings.noAccountLabel),
-                        onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => const RegisterScreen()));
-                        },
-                      )
-                    ],
+      resizeToAvoidBottomInset: false,
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const Spacer(),
+            Image(
+              height: 100,
+              image: Image.asset('assets/logoWhite.png').image
+            ),
+            Text(
+              Strings.loginTitle,
+              style: Styles.getTitleStyle(context),
+              textAlign: TextAlign.center,
+            ),
+            const Padding(padding: EdgeInsets.only(top: 50)),
+            TextInput(
+              label: Strings.userNameLabel,
+              icon: Icons.person_rounded,
+              onChanged: (value){
+                credentials["username"] = value;
+              }
+            ),
+            PasswordInput(
+                label: Strings.passwordLabel,
+                icon: Icons.lock_rounded,
+                onChanged: (value){
+                  credentials["password"] = value;
+                }
+            ),
+            const Padding(padding: EdgeInsets.only(top: 50)),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ActionButton(
+                  onPressed: () {
+                    AuthenticationService().login(
+                        context,
+                        "admin",
+                        "exemple"
+                    );
+                  },
+                  text: "Admin",
+                  backgroundColor: Colors.orangeAccent,
+                  icon: Icons.admin_panel_settings_rounded,
+                  width: 90,
+                ),
+                ActionButton(
+                  onPressed: () {
+                    AuthenticationService().login(
+                        context,
+                        credentials["username"]!,
+                        credentials["password"]!
+                    );
+                  },
+                  text: Strings.loginLabel,
+                  icon: Icons.login_rounded,
+                  width: 120,
+                ),
+              ]
+            ),
+            const Spacer(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  Strings.notRegistered,
+                  style: TextStyle(
+                    color: Theme.of(context).primaryColor,
                   ),
                 ),
-              ),
-            ),
-          )
-        ],
+                TextButton(onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const RegisterScreen()));
+                }, child: Text(Strings.signUpNow, style: TextStyle(color: Theme.of(context).highlightColor),)),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
-
 }

@@ -5,7 +5,7 @@ class CollectionModel{
   String name;
   String description;
   String creationDate;
-  TemplateModel? template;
+  TemplateModel template;
 
   CollectionModel.fromJson(Map json):
     id = json['id'],
@@ -13,11 +13,4 @@ class CollectionModel{
     description = json['description'],
     creationDate = json['creationDate'],
     template = TemplateModel.fromJson(json['template']);
-
-  CollectionModel.empty():
-    id = "",
-    name = "",
-    description = "",
-    creationDate = "",
-    template = null;
 }

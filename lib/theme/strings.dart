@@ -15,6 +15,8 @@ class Strings{
   static const String userNameLabel = "Nom d'utilisateur";
   static const String passwordLabel = "Mot de passe";
   static const String confirmPasswordLabel = "Confirmer le mot de passe";
+  static const String loginTitle = "Connectez-vous à GatherThem";
+  static const String registerTitle = "Inscrivez-vous à GatherThem";
   static const String loginLabel = "Connexion";
   static const String signUpLabel = "Inscription";
   static const String signOutLabel = "Déconnexion";
@@ -30,8 +32,17 @@ class Strings{
   static const String collectionNameRequired = "Le nom de la collection n'a pas été renseigné";
   static const String templateRequired = "Le template n'a pas été renseigné";
 
+  static const String notRegistered = "Pas encore inscrit ?";
+  static const String alreadyRegistered = "Déjà inscrit ?";
+  static const String signUpNow = "Inscrivez-vous";
+  static const String signInNow = "Connectez-vous";
+
+  // Collection strings
+  static const String collectionEdit = "Modifier une collection";
+
   // Item strings
   static const String itemAdd = "Ajouter un objet";
+  static const String itemEdit = "Modifier un objet";
   static const String itemLabel = "Libellé";
   static const String itemObtentionDate = "Date d'obtention";
   static const String itemLabelRequired = "Le libellé de l'objet n'a pas été renseigné";

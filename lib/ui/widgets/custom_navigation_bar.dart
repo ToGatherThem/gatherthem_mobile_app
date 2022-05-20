@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gatherthem_mobile_app/blocs/bloc_profile.dart';
-import 'package:gatherthem_mobile_app/models/profile_model.dart';
-import 'package:gatherthem_mobile_app/services/user_service.dart';
 import 'package:gatherthem_mobile_app/ui/screens/home_screen.dart';
 import 'package:gatherthem_mobile_app/ui/screens/profile_screen.dart';
 
@@ -12,7 +9,7 @@ class CustomNavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     bool isHomeScreen = context.findAncestorWidgetOfExactType<HomeScreen>() != null;
     bool isProfileScreen = context.findAncestorWidgetOfExactType<ProfileScreen>() != null;
-    double iconSize = 35;
+    double iconSize = 30;
     return BottomAppBar(
         shape: const CircularNotchedRectangle(),
         child: SizedBox(
@@ -24,8 +21,8 @@ class CustomNavigationBar extends StatelessWidget {
             children: [
               const Spacer(),
               IconButton(
-                iconSize: iconSize,
-                icon: (!isHomeScreen) ? const Icon(Icons.home_outlined) :const Icon(Icons.home_rounded),
+                iconSize: (isHomeScreen) ? iconSize+5 : iconSize,
+                icon: Icon(Icons.home_rounded, color: (!isHomeScreen) ? Colors.grey[500] : Colors.white),
                 disabledColor: Theme.of(context).primaryColor,
                 onPressed:(isHomeScreen)? null : () {
                   Navigator.pushAndRemoveUntil(
@@ -36,15 +33,14 @@ class CustomNavigationBar extends StatelessWidget {
                 },
               ),
               const Spacer(),
-              const Spacer(),
               IconButton(
-                    iconSize: iconSize,
-                    icon: (!isProfileScreen)? const Icon(Icons.people_outline) : const Icon(Icons.people_rounded),
+                    iconSize: (isProfileScreen) ? iconSize + 5 : iconSize,
+                    icon: Icon(Icons.person_rounded, color: (!isProfileScreen) ? Colors.grey[500] : Colors.white),
                     disabledColor: Theme.of(context).primaryColor,
                     onPressed: (context.findAncestorWidgetOfExactType<ProfileScreen>() != null) ? null :() {
                         Navigator.pushAndRemoveUntil(
                           context,
-                          MaterialPageRoute(builder: (context) => ProfileScreen()),
+                          MaterialPageRoute(builder: (context) => const ProfileScreen()),
                           ModalRoute.withName('/'),
                         );
                     },
