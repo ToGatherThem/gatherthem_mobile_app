@@ -28,7 +28,6 @@ class NavigationScaffoldWidget extends StatelessWidget {
         visible: collectionModel != null && collectionModel!.id != "",
         child: FloatingActionButton(
           onPressed: () {
-            Navigator.pop(context);
             Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => AddItemScreen(collection: collectionModel!))
