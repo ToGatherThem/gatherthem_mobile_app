@@ -10,6 +10,7 @@ class TemplateList extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridView.count(
       shrinkWrap: true,
+      physics: const BouncingScrollPhysics(),
       crossAxisSpacing: 50,
       mainAxisSpacing: 50,
       padding: const EdgeInsets.symmetric(horizontal: 20),
