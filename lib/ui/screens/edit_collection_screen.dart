@@ -4,8 +4,12 @@ import 'package:gatherthem_mobile_app/models/collection_infos_model.dart';
 import 'package:gatherthem_mobile_app/models/collection_model.dart';
 import 'package:gatherthem_mobile_app/services/collection_service.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
+import 'package:gatherthem_mobile_app/theme/styles.dart';
+import 'package:gatherthem_mobile_app/ui/widgets/buttons/action_button.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/buttons/filled_rect_button.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/dialogs/error_dialog.dart';
+import 'package:gatherthem_mobile_app/ui/widgets/inputs/text_input.dart';
+import 'package:gatherthem_mobile_app/ui/widgets/modals/select_image_modal.dart';
 
 class EditCollectionScreen extends StatelessWidget {
   EditCollectionScreen({Key? key, required this.collection}) : super(key: key);
@@ -16,124 +20,104 @@ class EditCollectionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     collectionInfosModel.name = collection.name;
     collectionInfosModel.description = collection.description;
+
+    SelectImageModal selectImageModal = SelectImageModal();
     return Scaffold(
         backgroundColor: Theme.of(context).backgroundColor,
-        body: Stack(children: [
-          Center(
-              child: Image.asset("assets/logo.png",
-                  color: Colors.white.withOpacity(0.2),
-                  colorBlendMode: BlendMode.modulate)),
-          Center(
+        body: ScrollConfiguration(
+          behavior:
+              ScrollConfiguration.of(context).copyWith(scrollbars: false),
+          child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
             child: Padding(
-              padding: EdgeInsets.symmetric(
-                  horizontal: MediaQuery.of(context).size.width / 6,
-                  vertical: 20),
-              child: ScrollConfiguration(
-                behavior:
-                    ScrollConfiguration.of(context).copyWith(scrollbars: false),
-                child: SingleChildScrollView(
-                  child: Column(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 50),
+              child: Column(
+                children: [
+                  Text(
+                      Strings.collectionEdit,
+                      style: Styles.getTitleStyle(context)
+                  ),
+                  const SizedBox(height: 50),
+                  Row(
                     children: [
-                      Text(Strings.collectionEdit,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              color: Theme.of(context).primaryColor,
-                              fontSize: 30
-                          )
-                      ),
-                      const SizedBox(height: 50),
-                      Align(
-                        child: Text(Strings.labelName,
-                            style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontSize: 15)),
-                        alignment: Alignment.centerLeft,
-                      ),
-                      const SizedBox(height: 10),
-                      Container(
-                          child: TextFormField(
-                            maxLength: 50,
-                            cursorColor: Colors.black,
-                            style: const TextStyle(color: Colors.black),
-                            decoration: const InputDecoration(
-                              isDense: true,
-                              contentPadding: EdgeInsets.all(8),
-                              focusColor: Colors.transparent,
-                              focusedBorder: UnderlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: Colors.transparent)),
+                      InkWell(
+                        onTap: () => selectImageModal.show(context),
+                        child: Container(
+                            height: 115,
+                            width: 115,
+                            padding: const EdgeInsets.all(2),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                border: Border.all(
+                                    color: Theme.of(context).primaryColor,
+                                    width: 1
+                                )
                             ),
-                            initialValue: collectionInfosModel.name,
-                            onChanged: (value) {
-                              collectionInfosModel.name = value;
-                            },
-                          ),
-                          decoration: BoxDecoration(
-                              color: const Color(0xFFD6D6D6),
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border.all(
-                                  color: Theme.of(context).primaryColor,
-                                  width: 5))),
-                      const SizedBox(height: 30),
-                      Align(
-                        child: Text(Strings.labelDesc,
-                            style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontSize: 15)),
-                        alignment: Alignment.centerLeft,
+                            child: ClipRRect(
+                                borderRadius: BorderRadius.circular(6),
+                                child: Stack(
+                                    children: [
+                                      Container(
+                                        color: Colors.grey,
+                                      ),
+                                      const Center(
+                                        child: Icon(Icons.image_rounded, color: Colors.white, size: 50),
+                                      )
+                                    ]
+                                )
+                            )
+                        ),
                       ),
-                      const SizedBox(height: 10),
-                      Container(
-                          child: TextFormField(
-                            maxLength: 1000,
-                            minLines: 4,
-                            maxLines: null,
-                            keyboardType: TextInputType.multiline,
-                            cursorColor: Colors.black,
-                            style: const TextStyle(color: Colors.black),
-                            decoration: const InputDecoration(
-                              isDense: true,
-                              contentPadding: EdgeInsets.all(8),
-                              focusColor: Colors.transparent,
-                              focusedBorder: UnderlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: Colors.transparent)),
-                            ),
-                            initialValue: collectionInfosModel.description,
-                            onChanged: (value) {
-                              collectionInfosModel.description = value;
-                            },
-                          ),
-                          decoration: BoxDecoration(
-                              color: const Color(0xFFD6D6D6),
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border.all(
-                                  color: Theme.of(context).primaryColor,
-                                  width: 5))),
-                      const SizedBox(height: 30),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          FilledRectButton(
-                              text: Strings.cancelLabel,
-                              onPressed: () {
-                                Navigator.pop(context);
-                              }),
-                          const SizedBox(width: 10),
-                          FilledRectButton(
-                              text: Strings.editLabel,
-                              onPressed: () {
-                                validate(context, collectionInfosModel);
-                              }),
-                        ],
+                      const SizedBox(width: 20),
+                      Expanded(
+                        child: TextInput(
+                          label: "Nom de la collection",
+                          initialValue: collection.name,
+                          onChanged: (String value) {
+                            collectionInfosModel.name = value;
+                          },
+                        ),
                       ),
                     ],
                   ),
-                ),
+                  const SizedBox(height: 30),
+                  TextInput(
+                    label: 'Description',
+                    initialValue: collection.description,
+                    onChanged: (String value) {
+                      collectionInfosModel.description = value;
+                    },
+                    minLines: 1,
+                    maxLines: 10,
+                    maxLength: 1000,
+                  ),
+                  const SizedBox(height: 30),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ActionButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        text: Strings.cancelLabel,
+                        backgroundColor: Colors.grey,
+                        icon: Icons.close_rounded,
+                      ),
+                      const SizedBox(width: 10),
+                      ActionButton(
+                        onPressed: () {
+                          validate(context, collectionInfosModel);
+                        },
+                        text: Strings.createLabel,
+                        icon: Icons.check_circle_outline_rounded,
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
           ),
-        ]));
+        ));
   }
 
   validate(BuildContext context, CollectionInfosModel collectionInfosModel) {
