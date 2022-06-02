@@ -49,4 +49,7 @@ class Strings{
   static const String itemObtentionDateRequired = "La date d'obtention n'est pas renseignée";
 
   static const String dayFormat = "dd/MM/yyyy";
+
+  static const String obtentionLabel = "Obtenu le";
+
 }
