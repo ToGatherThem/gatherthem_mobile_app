@@ -75,7 +75,7 @@ class EditCollectionScreen extends StatelessWidget {
                       const SizedBox(width: 20),
                       Expanded(
                         child: TextInput(
-                          label: "Nom de la collection",
+                          label: Strings.collectionEditName,
                           initialValue: collection.name,
                           onChanged: (String value) {
                             collectionInfosModel.name = value;
@@ -86,7 +86,7 @@ class EditCollectionScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 30),
                   TextInput(
-                    label: 'Description',
+                    label: Strings.collectionEditDescription,
                     initialValue: collection.description,
                     onChanged: (String value) {
                       collectionInfosModel.description = value;
@@ -112,7 +112,8 @@ class EditCollectionScreen extends StatelessWidget {
                         onPressed: () {
                           validate(context, collectionInfosModel);
                         },
-                        text: Strings.createLabel,
+                        width: 110,
+                        text: Strings.editLabel,
                         icon: Icons.check_circle_outline_rounded,
                       ),
                     ],

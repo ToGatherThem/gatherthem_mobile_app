@@ -2,11 +2,14 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:gatherthem_mobile_app/globals.dart';
 import 'package:gatherthem_mobile_app/theme/app_theme_data.dart';
 import 'package:gatherthem_mobile_app/ui/screens/login_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main(){
-
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  sharedPreferences = await SharedPreferences.getInstance();
   runApp(const MyApp());
 }
 

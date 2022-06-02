@@ -33,4 +33,9 @@ class CollectionService extends Service {
     String url = apiHost + "/collections/" + collectionModel.id + "/items";
     return post(url, itemInfosModel.toJson());
   }
+
+  Future<List<CollectionModel>> fetchPublicCollections() async {
+    List<dynamic> resultRequest = await getList(apiHost + "/collections/public");
+    return resultRequest.map((json) => CollectionModel.fromJson(json)).toList();
+  }
 }
