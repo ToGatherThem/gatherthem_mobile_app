@@ -33,7 +33,7 @@ class ItemTile extends StatelessWidget {
         initialData: false,
         builder: (context, snapshot) {
           if (snapshot.data ?? false) {
-            return Padding(padding: EdgeInsets.only(top:10),child: SizedBox(
+            return SizedBox(
               height: 95,
               child: Stack(
                 children: [
@@ -130,7 +130,7 @@ class ItemTile extends StatelessWidget {
                   ),
                 ],
               ),
-            ),
+
             );
           }
           else{
@@ -178,7 +178,7 @@ class ItemTile extends StatelessWidget {
                                 overflow: TextOverflow.ellipsis,
                               ),
                               Text(
-                                item.obtentionDate,
+                                Utils.convertUTCToLocalString(item.obtentionDate),
                                 style: Styles.getTextStyle(context, color: Theme.of(context).backgroundColor),
                                 overflow: TextOverflow.ellipsis,
                               ),
