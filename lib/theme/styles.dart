@@ -4,7 +4,7 @@ class Styles{
   static TextStyle getTextStyle(BuildContext context, {Color? color, FontWeight? weight}) {
     return TextStyle(
       fontWeight: weight ?? FontWeight.w400,
-      fontSize: 16,
+      fontSize: 15,
       color: color ?? Theme.of(context).primaryColor,
     );
   }

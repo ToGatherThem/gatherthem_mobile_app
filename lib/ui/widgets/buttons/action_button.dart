@@ -25,9 +25,9 @@ class ActionButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            if (icon != null) Icon(icon, color: color, size: iconSize),
+            if (icon != null) Icon(icon, color: color ?? Theme.of(context).primaryColor, size: iconSize),
             if (icon != null) const SizedBox(width: 10),
-            Text(text, style: TextStyle(color: color ?? Colors.white, fontSize: textSize ?? 18)),
+            Text(text, style: TextStyle(color: color ?? Theme.of(context).primaryColor, fontSize: textSize ?? 18)),
           ],
         ),
       ),

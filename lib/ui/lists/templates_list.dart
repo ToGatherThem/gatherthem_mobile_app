@@ -10,6 +10,7 @@ class TemplateList extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridView.count(
       shrinkWrap: true,
+      physics: const BouncingScrollPhysics(),
       crossAxisSpacing: 50,
       mainAxisSpacing: 50,
       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -51,10 +52,10 @@ class TemplateList extends StatelessWidget {
                     color: Theme.of(context).backgroundColor,
                     shape: BoxShape.circle,
                   ),
-                  child: const Icon(
+                  child: Icon(
                     Icons.add,
                     size: 24,
-                    color: Colors.white,
+                    color: Theme.of(context).primaryColor,
                   ),
                 ),
                 Text(

@@ -92,8 +92,8 @@ class HomeScreen extends StatelessWidget {
                           text: 'Modifier mon profil',
                           onPressed: () {  },///TODO
                           width: 180,
-                          backgroundColor: Theme.of(context).cardColor,
-                          color: Theme.of(context).backgroundColor,
+                          backgroundColor: Theme.of(context).highlightColor,
+                          color: Theme.of(context).primaryColor,
                         ),
                         const Padding(padding: EdgeInsets.only(top: 40),)
                       ],
@@ -134,7 +134,7 @@ class CustomSliverDelegate extends SliverPersistentHeaderDelegate{
           TabBar(
               indicator: BoxDecoration(
                 borderRadius: const BorderRadius.vertical(top: Radius.circular(10)),
-                color: Theme.of(context).highlightColor,
+                color: Theme.of(context).dividerColor,
               ),
               unselectedLabelColor: indicatorColor,
               labelColor: Theme.of(context).primaryColor,
@@ -150,7 +150,7 @@ class CustomSliverDelegate extends SliverPersistentHeaderDelegate{
               ]),
           Container(
             height: 2,
-            color: Theme.of(context).highlightColor,
+            color: Theme.of(context).dividerColor,
           )
         ],
       ),
