@@ -8,7 +8,6 @@ import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/ui/screens/edit_item_screen.dart';
 import 'package:gatherthem_mobile_app/ui/tiles/item_property_tile.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/buttons/action_button.dart';
-import 'package:gatherthem_mobile_app/ui/widgets/modals/select_image_modal.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/navigation_scaffold_widget.dart';
 import 'package:gatherthem_mobile_app/utils.dart';
 
@@ -70,7 +69,7 @@ class ItemDetailScreen extends StatelessWidget {
                                 ),
                                 child: ClipRRect(
                                     borderRadius: BorderRadius.circular(6),
-                                    child: Stack(
+                                    child: (item.image == null) ? Stack(
                                         children: [
                                           Container(
                                             color: Colors.grey,
@@ -79,6 +78,9 @@ class ItemDetailScreen extends StatelessWidget {
                                             child: Icon(Icons.image_rounded, color: Colors.white, size: 50),
                                           )
                                         ]
+                                    ) : Image(
+                                      image: MemoryImage(item.image!),
+                                      fit: BoxFit.cover,
                                     )
                                 )
                             ),
@@ -117,7 +119,6 @@ class ItemDetailScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(height: 40),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
