@@ -19,4 +19,9 @@ class ItemService extends Service {
     Map<String, dynamic> data = await json.decode(await get(apiHost+"/items/"+id));
     return ItemModel.fromJson(data);
   }
+
+  Future<List<ItemModel>> fetchPublicItems() async {
+    List<dynamic> resultRequest = await getList(apiHost + "/items/public");
+    return resultRequest.map((json) => ItemModel.fromJson(json)).toList();
+  }
 }
