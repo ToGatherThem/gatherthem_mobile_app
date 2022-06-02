@@ -13,7 +13,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     BlocProfile blocProfile = BlocProfile();
-    blocProfile.fetchProfile();
+    blocProfile.fetchProfile(context);
 
     return NavigationScaffoldWidget(
         body: DefaultTabController(

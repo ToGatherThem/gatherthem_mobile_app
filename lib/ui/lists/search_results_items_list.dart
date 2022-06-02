@@ -11,7 +11,7 @@ class SearchResultsItemsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     BlocPublicItems items = BlocPublicItems();
-    items.fetchItems();
+    items.fetchItems(context);
     return StreamBuilder<List<ItemModel>>(
         stream: items.stream,
         builder: (context, snapshotCollections) {

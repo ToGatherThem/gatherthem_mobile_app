@@ -8,7 +8,7 @@ class CollectionsList extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    blocCollection.fetchCollections();
+    blocCollection.fetchCollections(context);
     return StreamBuilder<List<CollectionModel>>(
       stream: blocCollection.stream,
       builder: (context, snapshotCollections) {

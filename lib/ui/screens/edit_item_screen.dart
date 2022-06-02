@@ -168,14 +168,15 @@ class EditItemScreen extends StatelessWidget {
 
     ItemService().editItem(
         item.id,
-        itemInfosModel
+        itemInfosModel,
+        context
     ).then((value) {
       Navigator.pop(context);
       if(blocSingleItem == null) {
-        blocItems.fetchItems(collectionId);
+        blocItems.fetchItems(collectionId, context);
       }
       else{
-        blocSingleItem!.fetchItem(item.id);
+        blocSingleItem!.fetchItem(item.id, context);
       }
     });
   }

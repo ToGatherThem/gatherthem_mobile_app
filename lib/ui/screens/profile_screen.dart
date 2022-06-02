@@ -15,7 +15,7 @@ class ProfileScreen extends StatelessWidget {
   Widget bodyConfig({required BuildContext context}) {
 
     BlocProfile blocProfile = BlocProfile();
-    blocProfile.fetchProfile();
+    blocProfile.fetchProfile(context);
     return SizedBox(
       width : MediaQuery.of(context).size.width,
       height: 100,

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/models/profile_model.dart';
 import 'package:gatherthem_mobile_app/services/user_service.dart';
 import 'package:rxdart/rxdart.dart';
@@ -11,8 +12,8 @@ class BlocProfile extends Bloc{
 
   Sink<ProfileModel> get sink => _streamController.sink;
 
-  fetchProfile() async {
-    var resultRequest = await UserService().getProfile();
+  fetchProfile(BuildContext context) async {
+    var resultRequest = await UserService().getProfile(context);
     if(resultRequest != null){
       setProfile(resultRequest);
     }
