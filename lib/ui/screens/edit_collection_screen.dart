@@ -6,7 +6,6 @@ import 'package:gatherthem_mobile_app/services/collection_service.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/theme/styles.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/buttons/action_button.dart';
-import 'package:gatherthem_mobile_app/ui/widgets/buttons/filled_rect_button.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/dialogs/error_dialog.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/inputs/text_input.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/modals/select_image_modal.dart';
@@ -71,7 +70,7 @@ class EditCollectionScreen extends StatelessWidget {
                       const SizedBox(width: 20),
                       Expanded(
                         child: TextInput(
-                          label: "Nom de la collection",
+                          label: Strings.collectionEditName,
                           initialValue: collection.name,
                           onChanged: (String value) {
                             collectionInfosModel.name = value;
@@ -82,7 +81,7 @@ class EditCollectionScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 30),
                   TextInput(
-                    label: 'Description',
+                    label: Strings.collectionEditDescription,
                     initialValue: collection.description,
                     onChanged: (String value) {
                       collectionInfosModel.description = value;
@@ -108,7 +107,8 @@ class EditCollectionScreen extends StatelessWidget {
                         onPressed: () {
                           validate(context, collectionInfosModel);
                         },
-                        text: Strings.createLabel,
+                        width: 110,
+                        text: Strings.editLabel,
                         icon: Icons.check_circle_outline_rounded,
                       ),
                     ],
