@@ -154,49 +154,55 @@ class ItemTile extends StatelessWidget {
                       ),
                     );
                   },
-                  child: Padding(
-                    padding:
-                    const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      (item.image == null) ?
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
+                        child: Icon(
                           Icons.photo,
                           size: 55,
-                          color: Theme.of(context).backgroundColor,
+                          color: Theme.of(context).primaryColor,
                         ),
-                        const Padding(padding: EdgeInsets.only(left: 20)),
-                        Expanded(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                item.label,
-                                style: Styles.getTextStyle(context, weight: FontWeight.bold, color: Theme.of(context).backgroundColor),
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                              Text(
-                                Utils.convertUTCToLocalString(item.obtentionDate),
-                                style: Styles.getTextStyle(context, color: Theme.of(context).backgroundColor),
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ],
-                          ),
+                      ) : ClipRRect(
+                        borderRadius: BorderRadius.circular(9),
+                        child: Image(
+                          image: MemoryImage(item.image!),
+                          fit: BoxFit.fill,
                         ),
-                        Visibility(
-                          visible: snapshot.data != null && !snapshot.data!,
-                          child: IconButton(
-                              onPressed: () => isEdition.setBool(snapshot.data != null && !snapshot.data!),
-                              icon: Icon(
-                                Icons.more_vert_rounded,
-                                color: Theme.of(context).backgroundColor,
-                              )
-                          ),
-                        )
-                      ],
-                    ),
+                      ),
+                      const Padding(padding: EdgeInsets.only(left: 20)),
+                      Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              item.label,
+                              style: Styles.getTextStyle(context, weight: FontWeight.bold, color: Theme.of(context).backgroundColor),
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            Text(
+                              Utils.convertUTCToLocalString(item.obtentionDate),
+                              style: Styles.getTextStyle(context, color: Theme.of(context).backgroundColor),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ],
+                        ),
+                      ),
+                      Visibility(
+                        visible: snapshot.data != null && !snapshot.data!,
+                        child: IconButton(
+                            onPressed: () => isEdition.setBool(snapshot.data != null && !snapshot.data!),
+                            icon: Icon(
+                              Icons.more_vert_rounded,
+                              color: Theme.of(context).backgroundColor,
+                            )
+                        ),
+                      )
+                    ],
                   ),
                 ),
               ),
