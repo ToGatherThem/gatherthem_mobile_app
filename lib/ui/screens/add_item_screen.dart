@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/globals.dart';
 import 'package:gatherthem_mobile_app/models/collection_model.dart';
@@ -49,7 +51,9 @@ class AddItemScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     InkWell(
-                      onTap: () => selectImageModal.show(context),
+                      onTap: () => selectImageModal.show(context, (image) {
+                        itemInfosModel.image = image;
+                      }),
                       child: Container(
                         height: 115,
                         width: 115,
@@ -162,6 +166,4 @@ class AddItemScreen extends StatelessWidget {
       blocItems.fetchItems(collection.id);
     });
   }
-
-
 }

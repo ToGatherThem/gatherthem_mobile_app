@@ -41,7 +41,9 @@ class EditCollectionScreen extends StatelessWidget {
                   Row(
                     children: [
                       InkWell(
-                        onTap: () => selectImageModal.show(context),
+                        onTap: () => selectImageModal.show(context, (image) {
+                          // todo
+                        }),
                         child: Container(
                             height: 115,
                             width: 115,
