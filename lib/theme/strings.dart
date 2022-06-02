@@ -48,5 +48,16 @@ class Strings{
   static const String itemLabelRequired = "Le libellé de l'objet n'a pas été renseigné";
   static const String itemObtentionDateRequired = "La date d'obtention n'est pas renseignée";
 
+  // Search strings
+  static const String searchLabel = "Rechercher";
+  static const String searchClear = "Effacer";
+  static const String searchResultsCollections = "Collections";
+  static const String searchResultsItems = "Objets";
+  static const String searchResultsUsers = "Utilisateurs";
+  static const String searchResultsNoResults = "Aucun résultat trouvé";
+  static const String searchRecent = "Recherches récentes";
+  static const String searchRecentClear = "Effacer";
+  static const String searchRecentClearAll = "Effacer les recherches récentes";
+
   static const String dayFormat = "dd/MM/yyyy";
 }
