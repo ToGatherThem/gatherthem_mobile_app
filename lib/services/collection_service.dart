@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gatherthem_mobile_app/globals.dart';
 import 'package:gatherthem_mobile_app/models/collection_infos_model.dart';
 import 'package:gatherthem_mobile_app/models/collection_model.dart';
@@ -10,7 +11,14 @@ import 'package:gatherthem_mobile_app/services/service.dart';
 class CollectionService extends Service {
 
   Future<dynamic> createCollection(CollectionInfosModel collectionInfosModel, BuildContext context){
-    return post(apiHost + "/collections", collectionInfosModel.toJson(), context);
+    return post(apiHost + "/collections", collectionInfosModel.toJson(), context)
+    .catchError((e) {
+      if(e.response.statusCode == 404){
+        FToast fToast = FToast();
+        fToast.init(context);
+        fToast.showToast(child: const Text("Le template ne semble pas exister"),);
+      }
+    });
   }
 
   Future<List<CollectionModel>> fetchCollections(BuildContext context) async {
