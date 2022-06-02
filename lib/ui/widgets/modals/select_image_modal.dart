@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
@@ -12,11 +11,17 @@ class SelectImageModal {
 
       imageCropper.cropImage(
           sourcePath: file.path,
-          aspectRatioPresets: [CropAspectRatioPreset.square],
+          aspectRatio: const CropAspectRatio(ratioX: 1, ratioY: 1),
+          androidUiSettings: AndroidUiSettings(
+              toolbarTitle: 'Redimensionner',
+              toolbarColor: Theme.of(context).bottomAppBarColor,
+              toolbarWidgetColor: Theme.of(context).primaryColor,
+              initAspectRatio: CropAspectRatioPreset.original,
+              lockAspectRatio: true
+          ),
       ).then((cropFile) => {
         if(cropFile != null) {
           cropFile.readAsBytes().then((bytes) => {
-            log('Image selected: ${bytes.length} bytes'),
             onImageSelected(bytes),
             Navigator.of(context).pop(),
           })
@@ -25,7 +30,8 @@ class SelectImageModal {
     }
   }
 
-  void show(BuildContext context, Function(Uint8List? image) onImageSelected) {
+  void show({required BuildContext context, required Function(Uint8List? image) onImageSelected, Function? onImageRemove
+  }) {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext context) {
@@ -57,6 +63,17 @@ class SelectImageModal {
                 );
               },
             ),
+            Visibility(
+                visible: onImageRemove != null,
+                child: ListTile(
+                  leading: const Icon(Icons.delete_rounded),
+                  title: const Text("Supprimer l'image"),
+                  onTap: () {
+                    onImageRemove!();
+                    Navigator.of(context).pop();
+                  },
+                ),
+            )
           ]
         );
       },

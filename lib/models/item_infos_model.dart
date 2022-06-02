@@ -5,7 +5,7 @@ import 'package:gatherthem_mobile_app/models/item_property_creation_model.dart';
 class ItemInfosModel {
   late String label = "";
   late String obtentionDate = "";
-  late Uint8List? image;
+  Uint8List? image;
   List<ItemPropertyCreationModel> properties = [];
 
 

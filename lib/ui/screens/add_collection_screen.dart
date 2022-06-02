@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'dart:core';
 import 'package:gatherthem_mobile_app/blocs/bloc_templates.dart';
@@ -40,9 +42,12 @@ class AddCollectionScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     InkWell(
-                      onTap: () => selectImageModal.show(context, (image) {
-                        // todo
-                      }),
+                      onTap: () => selectImageModal.show(
+                          context: context,
+                          onImageSelected: (Uint8List? image) {
+                            // todo
+                          }
+                      ),
                       child: Container(
                           height: 115,
                           width: 115,
