@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
@@ -15,10 +16,16 @@ import 'package:gatherthem_mobile_app/ui/widgets/inputs/autocomplete_input.dart'
 import 'package:gatherthem_mobile_app/ui/widgets/inputs/text_input.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/modals/select_image_modal.dart';
 
-class AddCollectionScreen extends StatelessWidget {
-  final CollectionInfosModel collectionInfosModel = CollectionInfosModel();
+class AddCollectionScreen extends StatefulWidget {
   final String? templateFullName;
-  AddCollectionScreen({Key? key, this.templateFullName}) : super(key: key);
+  const AddCollectionScreen({Key? key, this.templateFullName}) : super(key: key);
+
+  @override
+  State<AddCollectionScreen> createState() => _AddCollectionScreenState();
+}
+
+class _AddCollectionScreenState extends State<AddCollectionScreen> {
+  final CollectionInfosModel collectionInfosModel = CollectionInfosModel();
 
   @override
   Widget build(BuildContext context) {
@@ -45,8 +52,13 @@ class AddCollectionScreen extends StatelessWidget {
                       onTap: () => selectImageModal.show(
                           context: context,
                           onImageSelected: (Uint8List? image) {
-                            // todo
-                          }
+                            collectionInfosModel.image = image;
+                            setState(() {});
+                          },
+                          onImageRemove: (collectionInfosModel.image != null) ? () {
+                            collectionInfosModel.image = null;
+                            setState(() {});
+                          } : null
                       ),
                       child: Container(
                           height: 115,
@@ -61,7 +73,7 @@ class AddCollectionScreen extends StatelessWidget {
                           ),
                           child: ClipRRect(
                               borderRadius: BorderRadius.circular(6),
-                              child: Stack(
+                              child: (collectionInfosModel.image == null) ? Stack(
                                   children: [
                                     Container(
                                       color: Colors.grey,
@@ -70,6 +82,9 @@ class AddCollectionScreen extends StatelessWidget {
                                       child: Icon(Icons.image_rounded, color: Colors.white, size: 50),
                                     )
                                   ]
+                              ) : Image(
+                                image: MemoryImage(collectionInfosModel.image!),
+                                fit: BoxFit.cover,
                               )
                           )
                       ),
@@ -89,12 +104,12 @@ class AddCollectionScreen extends StatelessWidget {
                               stream: blocTemplates.stream,
                               builder: (context, snapshot) {
                                 if(snapshot.hasData) {
-                                  if(templateFullName != null) {
-                                    collectionInfosModel.templateId = snapshot.data!.firstWhere((template) => template.fullName == templateFullName).id;
+                                  if(widget.templateFullName != null) {
+                                    collectionInfosModel.templateId = snapshot.data!.firstWhere((template) => template.fullName == widget.templateFullName).id;
                                   }
                                   return Autocomplete<TemplateModel>(
                                     displayStringForOption: (TemplateModel option) => option.fullName,
-                                    initialValue: templateFullName != null ? TextEditingValue(text: snapshot.data!.firstWhere((TemplateModel template) => template.fullName == templateFullName).fullName) : null,
+                                    initialValue: widget.templateFullName != null ? TextEditingValue(text: snapshot.data!.firstWhere((TemplateModel template) => template.fullName == widget.templateFullName).fullName) : null,
                                     optionsBuilder: (TextEditingValue textEditingValue) {
                                       if (textEditingValue.text.isEmpty) {
                                         return <TemplateModel>[];
@@ -227,5 +242,4 @@ class AddCollectionScreen extends StatelessWidget {
       blocCollection.fetchCollections();
     });
   }
-
 }
