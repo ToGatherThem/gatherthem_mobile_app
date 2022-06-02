@@ -1,5 +1,3 @@
-//import 'dart:html';
-
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -7,7 +5,6 @@ import 'package:gatherthem_mobile_app/blocs/bloc_bool.dart';
 import 'package:gatherthem_mobile_app/blocs/bloc_items.dart';
 import 'package:gatherthem_mobile_app/models/item_model.dart';
 import 'package:gatherthem_mobile_app/services/collection_service.dart';
-import 'package:gatherthem_mobile_app/services/item_service.dart';
 import 'package:gatherthem_mobile_app/theme/styles.dart';
 import 'package:gatherthem_mobile_app/ui/screens/edit_item_screen.dart';
 import 'package:gatherthem_mobile_app/ui/screens/item_detail_screen.dart';
@@ -157,17 +154,23 @@ class ItemTile extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      (item.image == null) ?
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
-                        child: Icon(
-                          Icons.photo,
-                          size: 55,
-                          color: Theme.of(context).primaryColor,
+                      ClipRRect(
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(10),
+                          bottomLeft: Radius.circular(10),
                         ),
-                      ) : ClipRRect(
-                        borderRadius: BorderRadius.circular(9),
-                        child: Image(
+                        child: (item.image == null) ?
+                        Container(
+                          color: Colors.grey,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                            child: Icon(
+                              Icons.photo,
+                              size: 55,
+                              color: Theme.of(context).primaryColor,
+                            ),
+                          ),
+                        ) : Image(
                           image: MemoryImage(item.image!),
                           fit: BoxFit.fill,
                         ),
