@@ -13,7 +13,11 @@ class BlocRecentSearches extends Bloc {
   fetchRecentSearches() async {
     var resultRequest = await SharedPreferences.getInstance();
     var recentSearches = resultRequest.getStringList("recent_searches");
-    setRecentSearches(recentSearches!);
+    if (recentSearches == null) {
+      resultRequest.setStringList("recent_searches", []);
+      recentSearches = [];
+    }
+    setRecentSearches(recentSearches);
   }
 
   setRecentSearches(List<String> recentSearches) async {
