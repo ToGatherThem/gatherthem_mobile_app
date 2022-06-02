@@ -39,6 +39,8 @@ class Strings{
 
   // Collection strings
   static const String collectionEdit = "Modifier une collection";
+  static const String collectionEditName = "Nom de la collection";
+  static const String collectionEditDescription = "Description";
 
   // Item strings
   static const String itemAdd = "Ajouter un objet";
