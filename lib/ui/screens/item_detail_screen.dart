@@ -124,7 +124,6 @@ class ItemDetailScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

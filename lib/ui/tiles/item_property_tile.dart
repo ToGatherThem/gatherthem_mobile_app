@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/models/item_property_model.dart';
+import 'package:gatherthem_mobile_app/utils.dart';
 
 class ItemPropertyTile extends StatelessWidget{
 
@@ -11,10 +12,13 @@ class ItemPropertyTile extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    print(itemProperty.property.type);
     String value = itemProperty.value;
+    if(itemProperty.property.type == 'DATE'){
+      value = Utils.formatStringDate(value);
+    }
+
     return Padding(
-      padding: const EdgeInsets.only(bottom: 25),
+      padding: const EdgeInsets.only(bottom: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -24,5 +28,4 @@ class ItemPropertyTile extends StatelessWidget{
       ),
     );
   }
-
 }
