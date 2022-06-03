@@ -55,7 +55,7 @@ class HomeScreen extends StatelessWidget {
                                             Column(
                                               children: [
                                                 Text(
-                                                  '0',
+                                                  profile.nbConnections.toString(),
                                                   style: Styles.getFigureStyle(context, weight: FontWeight.w600),
                                                 ),
                                                 Text(
@@ -68,7 +68,7 @@ class HomeScreen extends StatelessWidget {
                                             Column(
                                               children: [
                                                 Text(
-                                                  '0',
+                                                  profile.nbItems.toString(),
                                                   style: Styles.getFigureStyle(context, weight: FontWeight.w600),
                                                 ),
                                                 Text(
