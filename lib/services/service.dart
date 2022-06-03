@@ -4,6 +4,7 @@ import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/ui/screens/login_screen.dart';
 import 'package:gatherthem_mobile_app/utils.dart';
 
@@ -87,7 +88,7 @@ abstract class Service{
           MaterialPageRoute(builder: (context) => const LoginScreen()),
               (Route<dynamic> route) => true
       );
-      Utils.openDialog(context, "Une erreur inattendu est survenue, veuillez réessayer plus tard");
+      Utils.openDialog(context, Strings.unexpectedError);
       return Future.error(e);
     }
     else if (e.response != null && e.response!.statusCode == 403) {

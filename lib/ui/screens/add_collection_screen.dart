@@ -93,7 +93,7 @@ class _AddCollectionScreenState extends State<AddCollectionScreen> {
                         child: Column(
                           children: [
                             TextInput(
-                              label: "Nom de la collection",
+                              label: Strings.collectionEditName,
                               onChanged: (String value) {
                                 collectionInfosModel.name = value;
                               },
@@ -159,7 +159,7 @@ class _AddCollectionScreenState extends State<AddCollectionScreen> {
                                       return AutoCompleteInput(
                                           focusNode: focusNode,
                                           controller: controller,
-                                          label: 'Template',
+                                          label: Strings.template,
                                       );
                                     },
                                     onSelected: (TemplateModel selected) {
@@ -178,7 +178,7 @@ class _AddCollectionScreenState extends State<AddCollectionScreen> {
                 ),
                 const SizedBox(height: 30),
                 TextInput(
-                  label: 'Description',
+                  label: Strings.collectionEditDescription,
                   onChanged: (String value) {
                     collectionInfosModel.description = value;
                   },

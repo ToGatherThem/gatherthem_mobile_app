@@ -6,6 +6,7 @@ import 'package:gatherthem_mobile_app/globals.dart';
 import 'package:gatherthem_mobile_app/models/item_infos_model.dart';
 import 'package:gatherthem_mobile_app/models/item_model.dart';
 import 'package:gatherthem_mobile_app/services/service.dart';
+import 'package:gatherthem_mobile_app/theme/strings.dart';
 
 class ItemService extends Service {
 
@@ -15,7 +16,7 @@ class ItemService extends Service {
       if(e. response != null && e.response.statusCode == 404){
         FToast fToast = FToast();
         fToast.init(context);
-        fToast.showToast(child: const Text("L'objet ne semble pas exister"),);
+        fToast.showToast(child: const Text(Strings.itemDoesntExist),);
       }
     });
   }
@@ -26,7 +27,7 @@ class ItemService extends Service {
       if(e. response != null && e.response.statusCode == 404){
         FToast fToast = FToast();
         fToast.init(context);
-        fToast.showToast(child: const Text("L'objet ne semble pas exister"));
+        fToast.showToast(child: const Text(Strings.itemDoesntExist));
       }
     });
   }
@@ -37,7 +38,7 @@ class ItemService extends Service {
       if(e. response != null && e.response.statusCode == 404){
         FToast fToast = FToast();
         fToast.init(context);
-        fToast.showToast(child: const Text("L'objet ne semble pas exister"));
+        fToast.showToast(child: const Text(Strings.itemDoesntExist));
       }
     });
     return ItemModel.fromJson(data);

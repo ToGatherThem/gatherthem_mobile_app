@@ -6,6 +6,7 @@ import 'package:gatherthem_mobile_app/models/collection_model.dart';
 import 'package:gatherthem_mobile_app/models/item_infos_model.dart';
 import 'package:gatherthem_mobile_app/models/item_model.dart';
 import 'package:gatherthem_mobile_app/services/service.dart';
+import 'package:gatherthem_mobile_app/theme/strings.dart';
 
 
 class CollectionService extends Service {
@@ -16,7 +17,7 @@ class CollectionService extends Service {
       if(e. response != null && e.response.statusCode == 404){
         FToast fToast = FToast();
         fToast.init(context);
-        fToast.showToast(child: const Text("Le template ne semble pas exister"),);
+        fToast.showToast(child: const Text(Strings.templateDoesntExist),);
       }
     });
   }
@@ -32,7 +33,7 @@ class CollectionService extends Service {
         if(e. response != null && e.response.statusCode == 404){
           FToast fToast = FToast();
           fToast.init(context);
-          fToast.showToast(child: const Text("La collection ne semble pas exister"),);
+          fToast.showToast(child: const Text(Strings.collectionDoesntExist),);
         }
       });
     return resultRequest.map((json) => ItemModel.fromJson(json)).toList();
@@ -44,7 +45,7 @@ class CollectionService extends Service {
         if(e. response != null && e.response.statusCode == 404){
           FToast fToast = FToast();
           fToast.init(context);
-          fToast.showToast(child: const Text("La collection ne semble pas exister"),);
+          fToast.showToast(child: const Text(Strings.collectionDoesntExist),);
         }
       });
   }
@@ -55,7 +56,7 @@ class CollectionService extends Service {
       if(e. response != null && e.response.statusCode == 404){
         FToast fToast = FToast();
         fToast.init(context);
-        fToast.showToast(child: const Text("La collection ne semble pas exister"),);
+        fToast.showToast(child: const Text(Strings.collectionDoesntExist),);
       }
     });
   }
@@ -67,7 +68,7 @@ class CollectionService extends Service {
       if(e. response != null && e.response.statusCode == 404){
         FToast fToast = FToast();
         fToast.init(context);
-        fToast.showToast(child: const Text("La collection ne semble pas exister"),);
+        fToast.showToast(child: const Text(Strings.collectionDoesntExist),);
       }
     });
   }
