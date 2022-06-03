@@ -135,7 +135,7 @@ class ItemDetailScreen extends StatelessWidget {
                                 )));
                       },
                       text: Strings.editLabel,
-                      backgroundColor: Colors.grey,
+                      backgroundColor: Colors.orangeAccent,
                       icon: Icons.edit,
                       width: MediaQuery.of(context).size.width / 3,
                     ),
@@ -150,6 +150,7 @@ class ItemDetailScreen extends StatelessWidget {
                       },
                       text: Strings.deleteLabel,
                       icon: Icons.delete,
+                      backgroundColor: Colors.redAccent,
                       width: MediaQuery.of(context).size.width / 3,
                     ),
                   ],
