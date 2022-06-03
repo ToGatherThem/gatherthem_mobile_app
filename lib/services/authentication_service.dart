@@ -26,7 +26,7 @@ class AuthenticationService extends Service {
     String url = apiHost + "/user/register";
     post(url, { "email": email, "username": username, "password": password }, context)
         .catchError((e) {
-          if (e.response.statusCode == 409) {
+          if (e. response != null && e.response.statusCode == 409) {
             Utils.openDialog(context, "Inscription échouée : les identifiants sont déjà pris");
           }
         })
