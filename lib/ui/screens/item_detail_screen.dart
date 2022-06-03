@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/blocs/bloc_item.dart';
 import 'package:gatherthem_mobile_app/globals.dart';
+import 'package:gatherthem_mobile_app/models/collection_model.dart';
 import 'package:gatherthem_mobile_app/models/item_model.dart';
 import 'package:gatherthem_mobile_app/models/item_property_model.dart';
 import 'package:gatherthem_mobile_app/services/item_service.dart';
@@ -12,10 +13,10 @@ import 'package:gatherthem_mobile_app/ui/widgets/navigation_scaffold_widget.dart
 import 'package:gatherthem_mobile_app/utils.dart';
 
 class ItemDetailScreen extends StatelessWidget {
-  final String collectionId;
+  final CollectionModel? collection;
   final ItemModel collectionItem;
 
-  const ItemDetailScreen({Key? key, required this.collectionItem, required this.collectionId})
+  const ItemDetailScreen({Key? key, required this.collectionItem, this.collection})
       : super(key: key);
 
 
@@ -129,7 +130,7 @@ class ItemDetailScreen extends StatelessWidget {
                             MaterialPageRoute(
                                 builder: (context) => EditItemScreen(
                                   item: item,
-                                  collectionId: collectionId,
+                                  collection: collection!,
                                   blocSingleItem: blocSingleItem,
                                 )));
                       },
@@ -143,7 +144,7 @@ class ItemDetailScreen extends StatelessWidget {
                       onPressed: () async {
                         bool res = await ItemService().deleteItem(item.id, context);
                         if (res) {
-                          blocItems.fetchItems(collectionId, context);
+                          blocItems.fetchItems(collection!.id, context);
                           Navigator.pop(context);
                         }
                       },
