@@ -13,4 +13,13 @@ class ItemModel {
     creationDate = json["creationDate"],
     obtentionDate = json["obtentionDate"],
     properties = (json["properties"] as List).map((e) => ItemPropertyModel.fromJson(e)).toList();
+
+  getPropertyValue(String propertyId) {
+    int index = properties.indexWhere((element) => element.property.id == propertyId);
+    if (index != -1) {
+      return properties[index].value;
+    } else {
+      return "";
+    }
+  }
 }

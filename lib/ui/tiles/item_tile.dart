@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/blocs/bloc_bool.dart';
 import 'package:gatherthem_mobile_app/blocs/bloc_items.dart';
+import 'package:gatherthem_mobile_app/models/collection_model.dart';
 import 'package:gatherthem_mobile_app/models/item_model.dart';
 import 'package:gatherthem_mobile_app/services/collection_service.dart';
 import 'package:gatherthem_mobile_app/theme/styles.dart';
@@ -13,13 +14,13 @@ import 'package:gatherthem_mobile_app/utils.dart';
 class ItemTile extends StatelessWidget {
   final ItemModel item;
   final BlocItems blocItem;
-  final String collectionId;
+  final CollectionModel collection;
   final BlocBool isEdition = BlocBool(initValue: false);
 
   ItemTile({Key? key,
     required this.item,
     required this.blocItem,
-    required this.collectionId})
+    required this.collection})
       : super(key: key);
 
 
@@ -96,7 +97,7 @@ class ItemTile extends StatelessWidget {
                           onPressed: () async{
                             Navigator.push(context, MaterialPageRoute(
                                 builder: (context) =>  EditItemScreen(
-                                    item: item, collectionId: item.id,)));
+                                    item: item, collection: collection)));
                           },
                           mini: true,
                           backgroundColor: Colors.orangeAccent,
@@ -147,7 +148,7 @@ class ItemTile extends StatelessWidget {
                       context,
                       MaterialPageRoute(builder: (context) =>
                           ItemDetailScreen(
-                              collectionItem: item, collectionId: collectionId,
+                              collectionItem: item, collection: collection,
                           )
                       ),
                     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gatherthem_mobile_app/models/collection_model.dart';
 import 'package:gatherthem_mobile_app/models/item_model.dart';
 import 'package:gatherthem_mobile_app/theme/styles.dart';
 import 'package:gatherthem_mobile_app/ui/screens/item_detail_screen.dart';
@@ -25,7 +26,7 @@ class SearchResultItemTile extends StatelessWidget {
               context,
               MaterialPageRoute(builder: (context) =>
                   ItemDetailScreen(
-                    collectionItem: item, collectionId: "",
+                    collectionItem: item,
                   )
               ),
             );
