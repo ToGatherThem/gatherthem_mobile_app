@@ -19,7 +19,13 @@ class EditItemScreen extends StatefulWidget {
   final ItemModel item;
   final CollectionModel collection;
   final BlocItem? blocSingleItem;
-  const EditItemScreen({Key? key, required this.item, required this.collection, this.blocSingleItem}) : super(key: key);
+
+  const EditItemScreen(
+      {Key? key,
+      required this.item,
+      required this.collection,
+      this.blocSingleItem})
+      : super(key: key);
 
   @override
   State<EditItemScreen> createState() => _EditItemScreenState();
@@ -41,120 +47,117 @@ class _EditItemScreenState extends State<EditItemScreen> {
     SelectImageModal selectImageModal = SelectImageModal();
 
     return Scaffold(
-        backgroundColor: Theme.of(context).backgroundColor,
-        body: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 50),
-          child: Column(
-            children: [
-              Text(
-                  Strings.itemEdit,
-                  style: Styles.getTitleStyle(context)
-              ),
-              SafeArea(
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    InkWell(
-                      onTap: () => selectImageModal.show(
-                        context: context,
-                        onImageSelected: (image) {
-                          itemInfosModel.image = image;
-                          setState(() {});
-                        },
-                        onImageRemove: (itemInfosModel.image != null) ? () {
-                          itemInfosModel.image = null;
-                          setState(() {});
-                        } : null,
-                      ),
-                      child: Container(
-                          height: 115,
-                          width: 115,
-                          padding: const EdgeInsets.all(2),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border.all(
-                                  color: Theme.of(context).primaryColor,
-                                  width: 1
-                              )
-                          ),
-                          child: ClipRRect(
-                              borderRadius: BorderRadius.circular(6),
-                              child: (itemInfosModel.image == null) ? Stack(
-                                  children: [
+      backgroundColor: Theme.of(context).backgroundColor,
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 50),
+        child: Column(
+          children: [
+            Text(Strings.itemEdit, style: Styles.getTitleStyle(context)),
+            SafeArea(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  InkWell(
+                    onTap: () => selectImageModal.show(
+                      context: context,
+                      onImageSelected: (image) {
+                        itemInfosModel.image = image;
+                        setState(() {});
+                      },
+                      onImageRemove: (itemInfosModel.image != null)
+                          ? () {
+                              itemInfosModel.image = null;
+                              setState(() {});
+                            }
+                          : null,
+                    ),
+                    child: Container(
+                        height: 115,
+                        width: 115,
+                        padding: const EdgeInsets.all(2),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(
+                                color: Theme.of(context).primaryColor,
+                                width: 1)),
+                        child: ClipRRect(
+                            borderRadius: BorderRadius.circular(6),
+                            child: (itemInfosModel.image == null)
+                                ? Stack(children: [
                                     Container(
                                       color: Colors.grey,
                                     ),
                                     const Center(
-                                      child: Icon(Icons.image_rounded, color: Colors.white, size: 50),
+                                      child: Icon(Icons.image_rounded,
+                                          color: Colors.white, size: 50),
                                     )
-                                  ]
-                              ) : Image(
-                                image: MemoryImage(itemInfosModel.image!),
-                                fit: BoxFit.cover,
-                              )
-                          )
-                      ),
-                    ),
-                    const SizedBox(width: 20),
-                    Expanded(
+                                  ])
+                                : Image(
+                                    image: MemoryImage(itemInfosModel.image!),
+                                    fit: BoxFit.cover,
+                                  ))),
+                  ),
+                  const SizedBox(width: 20),
+                  Expanded(
                       child: Column(
-                        children: [
-                          TextInput(
-                            label: widget.collection.template.itemLabelName,
-                            initialValue: itemInfosModel.label,
-                            onChanged: (String value) {
-                              itemInfosModel.label = value;
-                            },
-                          ),
-                          const SizedBox(height: 10),
-                          DateInput(
-                            label: Strings.itemObtentionDate,
-                            firstDate: DateTime(1700),
-                            lastDate: DateTime.now().add(const Duration(days: 60)),
-                            defaultValue: itemInfosModel.obtentionDate,
-                            onChanged: (String value) {
-                              itemInfosModel.obtentionDate = value;
-                            },
-                          ),
-                        ],
-                      )
-                    ),
-                  ],
-                ),
+                    children: [
+                      TextInput(
+                        label: widget.collection.template.itemLabelName,
+                        initialValue: itemInfosModel.label,
+                        onChanged: (String value) {
+                          itemInfosModel.label = value;
+                        },
+                      ),
+                      const SizedBox(height: 10),
+                      DateInput(
+                        label: Strings.itemObtentionDate,
+                        firstDate: DateTime(1700),
+                        lastDate:
+                            DateTime.now().add(const Duration(days: 60)),
+                        defaultValue: itemInfosModel.obtentionDate,
+                        onChanged: (String value) {
+                          itemInfosModel.obtentionDate = value;
+                        },
+                      ),
+                    ],
+                  )),
+                ],
               ),
-              for(PropertyModel property in widget.collection.template.allProperties) PropertyInput(
+            ),
+            for (PropertyModel property
+                in widget.collection.template.allProperties)
+              PropertyInput(
                   property: property,
                   defaultValue: widget.item.getPropertyValue(property.id),
                   onChanged: (String value) {
                     itemInfosModel.setProperty(property.id, value);
-                  }
-              ),
-              const SizedBox(height: 40),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ActionButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    text: Strings.cancelLabel,
-                    backgroundColor: Colors.grey,
-                    icon: Icons.close_rounded,
-                  ),
-                  const SizedBox(width: 10),
-                  ActionButton(
-                    onPressed: () {
-                      validate(context, itemInfosModel);
-                    },
-                    width: 110,
-                    text: Strings.editLabel,
-                    icon: Icons.check_circle_outline_rounded,
-                  ),
-                ],
-              ),
-            ],
-          ),
+                  }),
+            const SizedBox(height: 40),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ActionButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  text: Strings.cancelLabel,
+                  backgroundColor: Colors.grey,
+                  icon: Icons.close_rounded,
+                ),
+                const SizedBox(width: 10),
+                ActionButton(
+                  onPressed: () {
+                    validate(context, itemInfosModel);
+                  },
+                  width: 110,
+                  text: Strings.editLabel,
+                  icon: Icons.check_circle_outline_rounded,
+                ),
+              ],
+            ),
+          ],
         ),
+      ),
     );
   }
 
@@ -172,24 +175,17 @@ class _EditItemScreenState extends State<EditItemScreen> {
           context: context,
           builder: (BuildContext context) {
             return ErrorDialog(message: errorText);
-          }
-      );
+          });
     }
 
-    ItemService().editItem(
-        widget.item.id,
-        itemInfosModel,
-        context
-    ).then((value) {
+    ItemService()
+        .editItem(widget.item.id, itemInfosModel, context)
+        .then((value) {
       Navigator.pop(context);
-      if(widget.blocSingleItem == null) {
-        blocItems.fetchItems(widget.collection.id, context);
-      }
-      else{
+      blocItems.fetchItems(widget.collection.id, context);
+      if (widget.blocSingleItem != null) {
         widget.blocSingleItem!.fetchItem(widget.item.id, context);
       }
     });
   }
-
-
 }

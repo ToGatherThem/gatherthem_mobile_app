@@ -73,7 +73,7 @@ class HomeScreen extends StatelessWidget {
                                                   style: Styles.getFigureStyle(context, weight: FontWeight.w600),
                                                 ),
                                                 Text(
-                                                  Strings.itemLabel,
+                                                  Strings.itemsLabel,
                                                   style: Styles.getTextStyle(context),
                                                 ),
                                               ],
