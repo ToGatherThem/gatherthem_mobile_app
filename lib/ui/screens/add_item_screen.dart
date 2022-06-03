@@ -102,11 +102,11 @@ class _AddItemScreenState extends State<AddItemScreen> {
                         children: [
                           TextInput(
                             label: widget.collection.template.itemLabelName,
+                            maxLength: 50,
                             onChanged: (String value) {
                               itemInfosModel.label = value;
                             },
                           ),
-                          const SizedBox(height: 10),
                           DateInput(
                             label: Strings.itemObtentionDate,
                             firstDate: DateTime(1700),

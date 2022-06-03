@@ -94,11 +94,11 @@ class _AddCollectionScreenState extends State<AddCollectionScreen> {
                           children: [
                             TextInput(
                               label: Strings.collectionEditName,
+                              maxLength: 50,
                               onChanged: (String value) {
                                 collectionInfosModel.name = value;
                               },
                             ),
-                            const SizedBox(height: 10),
                             StreamBuilder<List<TemplateModel>>(
                               stream: blocTemplates.stream,
                               builder: (context, snapshot) {

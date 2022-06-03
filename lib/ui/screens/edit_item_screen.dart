@@ -100,28 +100,28 @@ class _EditItemScreenState extends State<EditItemScreen> {
                   const SizedBox(width: 20),
                   Expanded(
                       child: Column(
-                    children: [
-                      TextInput(
-                        label: widget.collection.template.itemLabelName,
-                        initialValue: itemInfosModel.label,
-                        onChanged: (String value) {
-                          itemInfosModel.label = value;
-                        },
-                      ),
-                      const SizedBox(height: 10),
-                      DateInput(
-                        label: Strings.itemObtentionDate,
-                        firstDate: DateTime(1700),
-                        lastDate:
-                            DateTime.now().add(const Duration(days: 60)),
-                        defaultValue: itemInfosModel.obtentionDate,
-                        onChanged: (String value) {
-                          itemInfosModel.obtentionDate = value;
-                        },
-                      ),
-                    ],
-                  )),
-                ],
+                        children: [
+                          TextInput(
+                            label: widget.collection.template.itemLabelName,
+                            initialValue: itemInfosModel.label,
+                            maxLength: 50,
+                            onChanged: (String value) {
+                              itemInfosModel.label = value;
+                            },
+                          ),
+                          DateInput(
+                            label: Strings.itemObtentionDate,
+                            firstDate: DateTime(1700),
+                            lastDate: DateTime.now().add(const Duration(days: 60)),
+                            defaultValue: itemInfosModel.obtentionDate,
+                            onChanged: (String value) {
+                              itemInfosModel.obtentionDate = value;
+                            },
+                          ),
+                        ],
+                      )
+                    ),
+                  ],
               ),
             ),
             for (PropertyModel property

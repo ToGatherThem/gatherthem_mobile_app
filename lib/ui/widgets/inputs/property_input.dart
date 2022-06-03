@@ -44,12 +44,25 @@ class PropertyInput extends StatelessWidget{
         );
       }
 
+      case "LONGTEXT": {
+        return TextInput(
+          label: property.name,
+          initialValue: defaultValue,
+          icon: Icons.text_fields,
+          onChanged: onChanged,
+          maxLength: 1000,
+          maxLines: 5,
+          minLines: 1,
+        );
+      }
+
       default: {
         return TextInput(
           label: property.name,
           initialValue: defaultValue,
           icon: Icons.text_fields,
           onChanged: onChanged,
+          maxLength: 50,
         );
       }
     }
