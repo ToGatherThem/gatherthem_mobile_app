@@ -90,12 +90,9 @@ class ItemDetailScreen extends StatelessWidget {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    SizedBox(
-                                      height: 65,
-                                        child: Text(
-                                            item.label,
-                                            style: titleStyle
-                                        )
+                                    Text(
+                                        item.label,
+                                        style: titleStyle
                                     ),
                                     Text(
                                         Strings.obtentionLabel,
