@@ -1,5 +1,6 @@
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:gatherthem_mobile_app/theme/strings.dart';
 
 class DateInput extends StatelessWidget {
   final String label;
@@ -15,7 +16,7 @@ class DateInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return DateTimePicker(
       type: DateTimePickerType.date,
-      dateMask: "d MMMM yyyy",
+      dateMask: Strings.dateMask,
       locale: const Locale("fr", "FR"),
       firstDate: firstDate,
       lastDate: lastDate,

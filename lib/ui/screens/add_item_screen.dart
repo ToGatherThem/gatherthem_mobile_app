@@ -41,7 +41,7 @@ class _AddItemScreenState extends State<AddItemScreen> {
                 style: Styles.getTitleStyle(context),
                 children: <TextSpan>[
                   const TextSpan(
-                    text: "Ajouter un objet à "
+                    text: Strings.addItemToCollection
                   ),
                   TextSpan(
                     text: widget.collection.name,

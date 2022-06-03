@@ -1,8 +1,8 @@
 import 'dart:io';
 import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -44,7 +44,7 @@ class SelectImageModal {
               children: [
                 ListTile(
                   leading: const Icon(Icons.camera_alt_rounded),
-                  title: const Text('Appareil photo'),
+                  title:  const Text(Strings.camera),
                   onTap: () {
                     picker
                         .pickImage(source: ImageSource.camera)
@@ -56,7 +56,7 @@ class SelectImageModal {
                 ),
                 ListTile(
                   leading: const Icon(Icons.photo_library_rounded),
-                  title: const Text('Galerie'),
+                  title: const Text(Strings.gallery),
                   onTap: () {
                     picker
                         .pickImage(source: ImageSource.gallery)
@@ -70,7 +70,7 @@ class SelectImageModal {
                   visible: onImageRemove != null,
                   child: ListTile(
                     leading: const Icon(Icons.delete_rounded),
-                    title: const Text("Supprimer l'image"),
+                    title: const Text(Strings.deletePicture),
                     onTap: () {
                       onImageRemove!();
                       Navigator.of(context).pop();
@@ -84,7 +84,7 @@ class SelectImageModal {
     } else {
       FToast fToast = FToast();
       fToast.init(context);
-      fToast.showToast(child: Text("Impossible d'ajouter une image depuis ${Platform.operatingSystem}"),);
+      fToast.showToast(child: Text(Strings.cannotAddPictureFrom + Platform.operatingSystem),);
     }
   }
 }
