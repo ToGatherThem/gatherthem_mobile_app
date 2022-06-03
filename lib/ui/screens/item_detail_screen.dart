@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/blocs/bloc_item.dart';
 import 'package:gatherthem_mobile_app/globals.dart';
@@ -9,7 +8,6 @@ import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/ui/screens/edit_item_screen.dart';
 import 'package:gatherthem_mobile_app/ui/tiles/item_property_tile.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/buttons/action_button.dart';
-import 'package:gatherthem_mobile_app/ui/widgets/modals/select_image_modal.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/navigation_scaffold_widget.dart';
 import 'package:gatherthem_mobile_app/utils.dart';
 
@@ -34,9 +32,7 @@ class ItemDetailScreen extends StatelessWidget {
       BuildContext context, TextStyle titleStyle, TextStyle descriptionStyle) {
     BlocItem blocSingleItem = BlocItem();
     ItemModel item;
-    SelectImageModal selectImageModal = SelectImageModal();
-    TextStyle labelStyle =
-    const TextStyle(fontSize: 20, fontWeight: FontWeight.bold);
+    TextStyle labelStyle = const TextStyle(fontSize: 20, fontWeight: FontWeight.bold);
     TextStyle valueStyle = const TextStyle(fontSize: 20, fontWeight: FontWeight.normal);
     return StreamBuilder<ItemModel>(
       stream: blocSingleItem.stream,
@@ -60,33 +56,33 @@ class ItemDetailScreen extends StatelessWidget {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            InkWell(
-                              onTap: () => selectImageModal.show(context),
-                              child: Container(
-                                  height: 115,
-                                  width: 115,
-                                  padding: const EdgeInsets.all(2),
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      border: Border.all(
-                                          color: Theme.of(context).primaryColor,
-                                          width: 1
-                                      )
-                                  ),
-                                  child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(6),
-                                      child: Stack(
-                                          children: [
-                                            Container(
-                                              color: Colors.grey,
-                                            ),
-                                            const Center(
-                                              child: Icon(Icons.image_rounded, color: Colors.white, size: 50),
-                                            )
-                                          ]
-                                      )
-                                  )
-                              ),
+                            Container(
+                                height: 115,
+                                width: 115,
+                                padding: const EdgeInsets.all(2),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    border: Border.all(
+                                        color: Theme.of(context).primaryColor,
+                                        width: 1
+                                    )
+                                ),
+                                child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(6),
+                                    child: (item.image == null) ? Stack(
+                                        children: [
+                                          Container(
+                                            color: Colors.grey,
+                                          ),
+                                          const Center(
+                                            child: Icon(Icons.image_rounded, color: Colors.white, size: 50),
+                                          )
+                                        ]
+                                    ) : Image(
+                                      image: MemoryImage(item.image!),
+                                      fit: BoxFit.cover,
+                                    )
+                                )
                             ),
                             const SizedBox(width: 20),
                             Expanded(
@@ -97,7 +93,6 @@ class ItemDetailScreen extends StatelessWidget {
                                       height: 65,
                                         child: Text(
                                             item.label,
-                                            overflow: TextOverflow.ellipsis,
                                             style: titleStyle
                                         )
                                     ),
@@ -124,7 +119,6 @@ class ItemDetailScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(height: 40),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -147,9 +141,9 @@ class ItemDetailScreen extends StatelessWidget {
                     const SizedBox(width: 10),
                     ActionButton(
                       onPressed: () async {
-                        bool res = await ItemService().deleteItem(item.id);
+                        bool res = await ItemService().deleteItem(item.id, context);
                         if (res) {
-                          blocItems.fetchItems(collectionId);
+                          blocItems.fetchItems(collectionId, context);
                           Navigator.pop(context);
                         }
                       },

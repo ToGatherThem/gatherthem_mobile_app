@@ -9,18 +9,17 @@ import 'package:gatherthem_mobile_app/ui/tiles/recentsearch_tile.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/navigation_scaffold_widget.dart';
 
 class SearchScreen extends StatelessWidget {
-  SearchScreen({Key? key}) : super(key: key);
-  late BlocRecentSearches blocRecentSearches;
+  const SearchScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    blocRecentSearches = BlocRecentSearches();
+    BlocRecentSearches blocRecentSearches = BlocRecentSearches();
     blocRecentSearches.fetchRecentSearches();
-    Widget body = bodyConfig(context);
+    Widget body = bodyConfig(context, blocRecentSearches);
     return NavigationScaffoldWidget(body: body);
   }
 
-  Widget bodyConfig(BuildContext context) {
+  Widget bodyConfig(BuildContext context, BlocRecentSearches blocRecentSearches) {
     TextEditingController controller = TextEditingController();
     int maxResultsShown = 10;
     return Padding(
@@ -64,7 +63,7 @@ class SearchScreen extends StatelessWidget {
                     ),
                   ),
                   onFieldSubmitted: (value) {
-                    search(context, value);
+                    search(context, value, blocRecentSearches);
                   },
                 ),
               ),
@@ -104,7 +103,7 @@ class SearchScreen extends StatelessWidget {
     );
   }
 
-  void search(BuildContext context, String searchText) {
+  void search(BuildContext context, String searchText, BlocRecentSearches blocRecentSearches) {
     if (searchText.trim().isNotEmpty) {
       List<String> recentSearches = sharedPreferences.getStringList("recent_searches")!;
       if (recentSearches.contains(searchText)) {

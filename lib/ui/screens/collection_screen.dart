@@ -17,7 +17,7 @@ class CollectionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     blocItems = BlocItems();
-    blocItems.fetchItems(collection.id);
+    blocItems.fetchItems(collection.id, context);
     Widget body = bodyConfig(
         collection: collection, context: context, blocItem: blocItems);
     return NavigationScaffoldWidget(
@@ -37,19 +37,42 @@ class CollectionScreen extends StatelessWidget {
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
+            padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Expanded(
-                      child: Icon(
-                        Icons.photo,
-                        color: Theme.of(context).primaryColor,
-                        size: 120,
-                      ),
+                    Container(
+                        height: 115,
+                        width: 115,
+                        padding: const EdgeInsets.all(2),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(
+                                color: Theme.of(context).primaryColor,
+                                width: 1
+                            )
+                        ),
+                        child: ClipRRect(
+                            borderRadius: BorderRadius.circular(6),
+                            child: (collection.image == null) ? Stack(
+                                children: [
+                                  Container(
+                                    color: Colors.grey,
+                                  ),
+                                  const Center(
+                                    child: Icon(Icons.image_rounded, color: Colors.white, size: 50),
+                                  )
+                                ]
+                            ) : Image(
+                              image: MemoryImage(collection.image!),
+                              fit: BoxFit.cover,
+                            )
+                        )
                     ),
+                    const SizedBox(width: 20),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -66,49 +89,37 @@ class CollectionScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                const Padding(padding: EdgeInsets.only(top: 10)),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width / 1.2,
-                  child: Padding(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    child: Card(
-                      color: Theme.of(context).backgroundColor,
-                      elevation: 0,
-                      margin: EdgeInsets.zero,
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                            left: 20, right: 20),
-                        child: Text(
-                          collection.description,
-                          style: descriptionStyle,
-
-                        ),
-                      ),
-                    ),
+                const Padding(padding: EdgeInsets.only(top: 15)),
+                Padding(
+                  padding: const EdgeInsets.only(
+                      left: 20, right: 20),
+                  child: Text(
+                    collection.description,
+                    style: descriptionStyle,
                   ),
                 ),
-                Padding(padding: const EdgeInsets.only(bottom: 10),
-                  child:Container(
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Theme.of(context).cardColor),
-                        borderRadius: BorderRadius.circular(20)),
-                    child: const TextField(
-                      textAlign: TextAlign.center,
-                      decoration: InputDecoration(
-                        hintText: Strings.typeItemName,
-                        hintStyle: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontStyle: FontStyle.italic,
-                        ),
-                        border: InputBorder.none,
-                      ),
-                      style: TextStyle(
+                const Padding(padding: EdgeInsets.only(top: 15)),
+                Container(
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Theme.of(context).cardColor),
+                      borderRadius: BorderRadius.circular(20)),
+                  child: const TextField(
+                    textAlign: TextAlign.center,
+                    decoration: InputDecoration(
+                      hintText: Strings.typeItemName,
+                      hintStyle: TextStyle(
                         color: Colors.white,
+                        fontSize: 18,
+                        fontStyle: FontStyle.italic,
                       ),
+                      border: InputBorder.none,
+                    ),
+                    style: TextStyle(
+                      color: Colors.white,
                     ),
                   ),
                 ),
+                const Padding(padding: EdgeInsets.only(top: 15)),
               ],
             ),
           ),

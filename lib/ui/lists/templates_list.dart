@@ -36,7 +36,7 @@ class TemplateList extends StatelessWidget {
           onTap: (){
             Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => AddCollectionScreen())
+                MaterialPageRoute(builder: (context) => const AddCollectionScreen())
             );
           },
           child: Container(

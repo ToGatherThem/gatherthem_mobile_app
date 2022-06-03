@@ -14,10 +14,17 @@ import 'package:gatherthem_mobile_app/ui/widgets/modals/select_image_modal.dart'
 
 import '../widgets/inputs/text_input.dart';
 
-class AddItemScreen extends StatelessWidget {
+class AddItemScreen extends StatefulWidget {
   final CollectionModel collection;
+
+  const AddItemScreen({Key? key, required this.collection}) : super(key: key);
+
+  @override
+  State<AddItemScreen> createState() => _AddItemScreenState();
+}
+
+class _AddItemScreenState extends State<AddItemScreen> {
   final ItemInfosModel itemInfosModel = ItemInfosModel();
-  AddItemScreen({Key? key, required this.collection}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +44,7 @@ class AddItemScreen extends StatelessWidget {
                     text: Strings.addItemToCollection
                   ),
                   TextSpan(
-                    text: collection.name,
+                    text: widget.collection.name,
                     style: TextStyle(
                       color: Theme.of(context).highlightColor
                     )
@@ -49,7 +56,17 @@ class AddItemScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     InkWell(
-                      onTap: () => selectImageModal.show(context),
+                      onTap: () => selectImageModal.show(
+                          context: context,
+                          onImageSelected: (image) {
+                            itemInfosModel.image = image;
+                            setState(() {});
+                          },
+                          onImageRemove: (itemInfosModel.image != null) ? () {
+                            itemInfosModel.image = null;
+                            setState(() {});
+                          } : null,
+                      ),
                       child: Container(
                         height: 115,
                         width: 115,
@@ -63,7 +80,7 @@ class AddItemScreen extends StatelessWidget {
                         ),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(6),
-                          child: Stack(
+                          child: (itemInfosModel.image == null) ? Stack(
                             children: [
                               Container(
                                 color: Colors.grey,
@@ -72,6 +89,9 @@ class AddItemScreen extends StatelessWidget {
                                 child: Icon(Icons.image_rounded, color: Colors.white, size: 50),
                               )
                             ]
+                          ) : Image(
+                            image: MemoryImage(itemInfosModel.image!),
+                            fit: BoxFit.cover,
                           )
                         )
                       ),
@@ -81,7 +101,7 @@ class AddItemScreen extends StatelessWidget {
                       child: Column(
                         children: [
                           TextInput(
-                            label: collection.template.itemLabelName,
+                            label: widget.collection.template.itemLabelName,
                             onChanged: (String value) {
                               itemInfosModel.label = value;
                             },
@@ -102,7 +122,7 @@ class AddItemScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              for(PropertyModel property in collection.template.allProperties) PropertyInput(
+              for(PropertyModel property in widget.collection.template.allProperties) PropertyInput(
                   property: property,
                   onChanged: (String value) {
                     itemInfosModel.setProperty(property.id, value);
@@ -155,13 +175,12 @@ class AddItemScreen extends StatelessWidget {
     }
 
     CollectionService().addItem(
-        collection,
-        itemInfosModel
+        widget.collection,
+        itemInfosModel,
+        context
     ).then((value) {
       Navigator.pop(context);
-      blocItems.fetchItems(collection.id);
+      blocItems.fetchItems(widget.collection.id, context);
     });
   }
-
-
 }

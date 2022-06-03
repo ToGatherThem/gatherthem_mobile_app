@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/models/item_model.dart';
 import 'package:gatherthem_mobile_app/services/collection_service.dart';
 import 'package:rxdart/rxdart.dart';
@@ -10,8 +11,8 @@ class BlocItems extends Bloc {
 
   Sink<List<ItemModel>> get sink => _streamController.sink;
 
-  fetchItems(String id) async {
-    var resultRequest = await CollectionService().fetchCollectionItems(id);
+  fetchItems(String id, BuildContext context) async {
+    var resultRequest = await CollectionService().fetchCollectionItems(id, context);
     setItems(resultRequest);
   }
 
