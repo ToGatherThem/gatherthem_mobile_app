@@ -138,10 +138,11 @@ class EditCollectionScreen extends StatelessWidget {
 
     CollectionService().editCollection(
         collectionInfosModel,
-        collection.id
+        collection.id,
+        context
     ).then((value) {
       Navigator.pop(context);
-      blocCollection.fetchCollections();
+      blocCollection.fetchCollections(context);
     });
   }
 }

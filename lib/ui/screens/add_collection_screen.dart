@@ -21,7 +21,7 @@ class AddCollectionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     BlocTemplates blocTemplates = BlocTemplates();
-    blocTemplates.fetchTemplates();
+    blocTemplates.fetchTemplates(context);
     SelectImageModal selectImageModal = SelectImageModal();
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
@@ -213,11 +213,9 @@ class AddCollectionScreen extends StatelessWidget {
       );
     }
 
-    CollectionService().createCollection(
-        collectionInfosModel
-    ).then((value) {
+    CollectionService().createCollection(collectionInfosModel, context).then((value) {
       Navigator.pop(context);
-      blocCollection.fetchCollections();
+      blocCollection.fetchCollections(context);
     });
   }
 

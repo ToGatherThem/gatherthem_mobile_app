@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/blocs/bloc_item.dart';
 import 'package:gatherthem_mobile_app/globals.dart';
@@ -147,9 +146,9 @@ class ItemDetailScreen extends StatelessWidget {
                     const SizedBox(width: 10),
                     ActionButton(
                       onPressed: () async {
-                        bool res = await ItemService().deleteItem(item.id);
+                        bool res = await ItemService().deleteItem(item.id, context);
                         if (res) {
-                          blocItems.fetchItems(collectionId);
+                          blocItems.fetchItems(collectionId, context);
                           Navigator.pop(context);
                         }
                       },

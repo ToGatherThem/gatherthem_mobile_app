@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/blocs/bloc.dart';
 import 'package:gatherthem_mobile_app/models/collection_model.dart';
 import 'package:gatherthem_mobile_app/services/collection_service.dart';
@@ -10,8 +11,8 @@ class BlocPublicCollections extends Bloc {
 
   Sink<List<CollectionModel>> get sink => _streamController.sink;
 
-  fetchCollections() async {
-    var resultRequest = await CollectionService().fetchPublicCollections();
+  fetchCollections(BuildContext context) async {
+    var resultRequest = await CollectionService().fetchPublicCollections(context);
     setCollections(resultRequest);
   }
 
