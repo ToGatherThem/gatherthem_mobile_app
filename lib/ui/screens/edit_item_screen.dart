@@ -19,7 +19,7 @@ class EditItemScreen extends StatefulWidget {
   final ItemModel item;
   final CollectionModel collection;
   final BlocItem? blocSingleItem;
-  EditItemScreen({Key? key, required this.item, required this.collection, this.blocSingleItem}) : super(key: key);
+  const EditItemScreen({Key? key, required this.item, required this.collection, this.blocSingleItem}) : super(key: key);
 
   @override
   State<EditItemScreen> createState() => _EditItemScreenState();
@@ -29,10 +29,17 @@ class _EditItemScreenState extends State<EditItemScreen> {
   final ItemInfosModel itemInfosModel = ItemInfosModel();
 
   @override
-  Widget build(BuildContext context) {
-    SelectImageModal selectImageModal = SelectImageModal();
+  void initState() {
     itemInfosModel.label = widget.item.label;
     itemInfosModel.obtentionDate = widget.item.obtentionDate;
+    itemInfosModel.image = widget.item.image;
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    SelectImageModal selectImageModal = SelectImageModal();
+
     return Scaffold(
         backgroundColor: Theme.of(context).backgroundColor,
         body: SingleChildScrollView(

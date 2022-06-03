@@ -5,7 +5,7 @@ import 'package:gatherthem_mobile_app/blocs/bloc_bool.dart';
 import 'package:gatherthem_mobile_app/blocs/bloc_items.dart';
 import 'package:gatherthem_mobile_app/models/collection_model.dart';
 import 'package:gatherthem_mobile_app/models/item_model.dart';
-import 'package:gatherthem_mobile_app/services/collection_service.dart';
+import 'package:gatherthem_mobile_app/services/item_service.dart';
 import 'package:gatherthem_mobile_app/theme/styles.dart';
 import 'package:gatherthem_mobile_app/ui/screens/edit_item_screen.dart';
 import 'package:gatherthem_mobile_app/ui/screens/item_detail_screen.dart';
@@ -107,7 +107,7 @@ class ItemTile extends StatelessWidget {
                         FloatingActionButton(
                             heroTag: 'delete ${item.id}',
                             onPressed: () async {
-                              bool res = await CollectionService().deleteCollection(item.id, context);
+                              bool res = await ItemService().deleteItem(item.id, context);
                               if(res){
                                 blocItem.fetchItems(item.id, context);
                               }
