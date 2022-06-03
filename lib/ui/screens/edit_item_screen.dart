@@ -95,7 +95,7 @@ class EditItemScreen extends StatelessWidget {
                       Container(
                           child: DateTimePicker(
                             type: DateTimePickerType.date,
-                            dateMask: "d MMMM yyyy",
+                            dateMask: Strings.dateMask,
                             locale: const Locale("fr", "FR"),
                             firstDate: DateTime(1970),
                             lastDate: DateTime.now(),

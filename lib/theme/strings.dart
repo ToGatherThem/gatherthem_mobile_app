@@ -41,6 +41,7 @@ class Strings{
   static const String collectionEdit = "Modifier une collection";
   static const String collectionEditName = "Nom de la collection";
   static const String collectionEditDescription = "Description";
+  static const String template = "Template";
 
   // Item strings
   static const String itemAdd = "Ajouter un objet";
@@ -49,6 +50,8 @@ class Strings{
   static const String itemObtentionDate = "Date d'obtention";
   static const String itemLabelRequired = "Le libellé de l'objet n'a pas été renseigné";
   static const String itemObtentionDateRequired = "La date d'obtention n'est pas renseignée";
+  static const String addItemToCollection = "Ajouter un objet à ";
+  static const String obtentionLabel = "Obtenu le";
 
   // Search strings
   static const String searchLabel = "Rechercher";
@@ -60,9 +63,40 @@ class Strings{
   static const String searchRecent = "Recherches récentes";
   static const String searchRecentClear = "Effacer";
   static const String searchRecentClearAll = "Effacer les recherches récentes";
+  static const String typeItemName = "Taper le nom de l'objet...";
 
+
+  // Date format
   static const String dayFormat = "dd/MM/yyyy";
+  static const String dateMask = "d MMMM yyyy";
 
-  static const String obtentionLabel = "Obtenu le";
+  // Home screen
+  static const String collectionsLabel = "Collections";
+  static const String itemsLabel = "Objets";
+  static const String editProfileLabel = "Modifier le profil";
+  static const String yourCollectionsLabel = "Vos collections";
 
+  // Templates strings
+  static const String books = "Livres";
+  static const String booksTemplateName = "Livre";
+  static const String dvds = "DVDs";
+  static const String dvdsTemplateName = "Film/DVD";
+  static const String pins = "Pin's";
+  static const String pinsTemplateName = "Pins";
+  static const String other = "Autres";
+  static const String addForTemplate = "Ajouter des ";
+
+  // Pictures modals
+  static const String camera = "Appareil photo";
+  static const String gallery = "Galerie";
+  static const String deletePicture = "Supprimer l'image";
+  static const String cannotAddPictureFrom = "Impossible d'ajouter une image depuis ";
+
+  // Error messages
+  static const String error401 = "Connexion échouée : les identifiants sont incorrects";
+  static const String error409 = "Inscription échouée : les identifiants sont déjà pris";
+  static const String templateDoesntExist = "Le template n'existe pas";
+  static const String collectionDoesntExist = "La collection n'existe pas";
+  static const String itemDoesntExist = "L'objet n'existe pas";
+  static const String unexpectedError = "Une erreur inattendu est survenue, veuillez réessayer plus tard";
 }
