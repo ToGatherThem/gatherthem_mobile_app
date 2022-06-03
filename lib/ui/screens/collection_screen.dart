@@ -19,8 +19,14 @@ class CollectionScreen extends StatelessWidget {
     blocItems.fetchItems(collection.id, context);
     Widget body = bodyConfig(
         collection: collection, context: context, blocItem: blocItems);
-    return NavigationScaffoldWidget(
-        body: body, leading: true, collectionModel: collection);
+    return WillPopScope(
+      onWillPop: () {
+        blocProfile.fetchProfile(context);
+        return Future.value(true);
+      },
+      child: NavigationScaffoldWidget(
+          body: body, leading: true, collectionModel: collection),
+    );
   }
 
   Widget bodyConfig(
