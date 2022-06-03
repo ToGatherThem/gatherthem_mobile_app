@@ -25,22 +25,51 @@ class CollectionService extends Service {
     List<dynamic> resultRequest = await getList(apiHost + "/collections", context);
     return resultRequest.map((json) => CollectionModel.fromJson(json)).toList();
   }
+
   Future<List<ItemModel>> fetchCollectionItems(String id, BuildContext context) async {
-    List<dynamic> resultRequest = await getList(apiHost + "/collections/"+id+"/items", context);
+    List<dynamic> resultRequest = await getList(apiHost + "/collections/"+id+"/items", context)
+      .catchError((e){
+        if(e.response.statusCode == 404){
+          FToast fToast = FToast();
+          fToast.init(context);
+          fToast.showToast(child: const Text("La collection ne semble pas exister"),);
+        }
+      });
     return resultRequest.map((json) => ItemModel.fromJson(json)).toList();
   }
 
   Future<bool> deleteCollection(String id, BuildContext context) async{
-    return await delete(apiHost + "/collections?id=" + id, context);
+    return await delete(apiHost + "/collections?id=" + id, context)
+      .catchError((e){
+        if(e.response.statusCode == 404){
+          FToast fToast = FToast();
+          fToast.init(context);
+          fToast.showToast(child: const Text("La collection ne semble pas exister"),);
+        }
+      });
   }
 
   Future<dynamic> editCollection(CollectionInfosModel collectionInfosModel, String id, BuildContext context) {
-    return put(apiHost + "/collections?id="+id, collectionInfosModel.toJson(), context);
+    return put(apiHost + "/collections?id="+id, collectionInfosModel.toJson(), context)
+        .catchError((e){
+      if(e.response.statusCode == 404){
+        FToast fToast = FToast();
+        fToast.init(context);
+        fToast.showToast(child: const Text("La collection ne semble pas exister"),);
+      }
+    });
   }
 
   Future<dynamic> addItem( CollectionModel collectionModel, ItemInfosModel itemInfosModel, BuildContext context) {
     String url = apiHost + "/collections/" + collectionModel.id + "/items";
-    return post(url, itemInfosModel.toJson(), context);
+    return post(url, itemInfosModel.toJson(), context)
+        .catchError((e){
+      if(e.response.statusCode == 404){
+        FToast fToast = FToast();
+        fToast.init(context);
+        fToast.showToast(child: const Text("La collection ne semble pas exister"),);
+      }
+    });
   }
 
   Future<List<CollectionModel>> fetchPublicCollections(BuildContext context) async {

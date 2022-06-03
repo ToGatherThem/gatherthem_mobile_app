@@ -81,7 +81,7 @@ abstract class Service{
 
 
   FutureOr<Response<dynamic>> handleError(DioError e, BuildContext context) {
-    if(e.type == DioErrorType.other || e.response != null && e.response!.statusCode == 500 ) {
+    if(e.type == DioErrorType.other || e.response != null && (e.response!.statusCode == 500 || e.response!.statusCode == 400)) {
       Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(builder: (context) => const LoginScreen()),
