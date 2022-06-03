@@ -8,6 +8,7 @@ import 'package:gatherthem_mobile_app/ui/screens/login_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   sharedPreferences = await SharedPreferences.getInstance();
   runApp(const MyApp());
 }

@@ -152,49 +152,61 @@ class ItemTile extends StatelessWidget {
                       ),
                     );
                   },
-                  child: Padding(
-                    padding:
-                    const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.photo,
-                          size: 55,
-                          color: Theme.of(context).backgroundColor,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ClipRRect(
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(10),
+                          bottomLeft: Radius.circular(10),
                         ),
-                        const Padding(padding: EdgeInsets.only(left: 20)),
-                        Expanded(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                item.label,
-                                style: Styles.getTextStyle(context, weight: FontWeight.bold, color: Theme.of(context).backgroundColor),
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                              Text(
-                                Utils.convertUTCToLocalString(item.obtentionDate),
-                                style: Styles.getTextStyle(context, color: Theme.of(context).backgroundColor),
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ],
+                        child: (item.image == null) ?
+                        Container(
+                          color: Colors.grey,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                            child: Icon(
+                              Icons.photo,
+                              size: 55,
+                              color: Theme.of(context).primaryColor,
+                            ),
                           ),
+                        ) : Image(
+                          image: MemoryImage(item.image!),
+                          fit: BoxFit.fill,
                         ),
-                        Visibility(
-                          visible: snapshot.data != null && !snapshot.data!,
-                          child: IconButton(
-                              onPressed: () => isEdition.setBool(snapshot.data != null && !snapshot.data!),
-                              icon: Icon(
-                                Icons.more_vert_rounded,
-                                color: Theme.of(context).backgroundColor,
-                              )
-                          ),
-                        )
-                      ],
-                    ),
+                      ),
+                      const Padding(padding: EdgeInsets.only(left: 20)),
+                      Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              item.label,
+                              style: Styles.getTextStyle(context, weight: FontWeight.bold, color: Theme.of(context).backgroundColor),
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            Text(
+                              Utils.convertUTCToLocalString(item.obtentionDate),
+                              style: Styles.getTextStyle(context, color: Theme.of(context).backgroundColor),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ],
+                        ),
+                      ),
+                      Visibility(
+                        visible: snapshot.data != null && !snapshot.data!,
+                        child: IconButton(
+                            onPressed: () => isEdition.setBool(snapshot.data != null && !snapshot.data!),
+                            icon: Icon(
+                              Icons.more_vert_rounded,
+                              color: Theme.of(context).backgroundColor,
+                            )
+                        ),
+                      )
+                    ],
                   ),
                 ),
               ),

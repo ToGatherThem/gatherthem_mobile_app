@@ -1,4 +1,3 @@
-
 import 'package:gatherthem_mobile_app/models/property_model.dart';
 
 class ItemPropertyModel{
