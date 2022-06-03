@@ -70,7 +70,7 @@ class SelectImageModal {
                   visible: onImageRemove != null,
                   child: ListTile(
                     leading: const Icon(Icons.delete_rounded),
-                    title: const Text("Supprimer l'image"),
+                    title: const Text(Strings.deletePicture),
                     onTap: () {
                       onImageRemove!();
                       Navigator.of(context).pop();
@@ -84,7 +84,7 @@ class SelectImageModal {
     } else {
       FToast fToast = FToast();
       fToast.init(context);
-      fToast.showToast(child: Text("Impossible d'ajouter une image depuis ${Platform.operatingSystem}"),);
+      fToast.showToast(child: Text(Strings.cannotAddPictureFrom + Platform.operatingSystem),);
     }
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/globals.dart';
 import 'package:gatherthem_mobile_app/services/service.dart';
+import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/ui/screens/home_screen.dart';
 import 'package:gatherthem_mobile_app/ui/screens/login_screen.dart';
 import 'package:gatherthem_mobile_app/utils.dart';
@@ -12,7 +13,7 @@ class AuthenticationService extends Service {
     post(url, { "username": username, "password": password }, context)
         .catchError((e) {
           if (e.response != null && e.response.statusCode == 401) {
-            Utils.openDialog(context, "Connexion échouée : les identifiants sont incorrects");
+            Utils.openDialog(context, Strings.error401);
           }
         })
         .then((value) {
@@ -27,7 +28,7 @@ class AuthenticationService extends Service {
     post(url, { "email": email, "username": username, "password": password }, context)
         .catchError((e) {
           if (e.response.statusCode == 409) {
-            Utils.openDialog(context, "Inscription échouée : les identifiants sont déjà pris");
+            Utils.openDialog(context, Strings.error409);
           }
         })
         .then((value) {

@@ -89,8 +89,14 @@ class Strings{
   // Pictures modals
   static const String camera = "Appareil photo";
   static const String gallery = "Galerie";
+  static const String deletePicture = "Supprimer l'image";
+  static const String cannotAddPictureFrom = "Impossible d'ajouter une image depuis ";
 
   // Error messages
   static const String error401 = "Connexion échouée : les identifiants sont incorrects";
-
+  static const String error409 = "Inscription échouée : les identifiants sont déjà pris";
+  static const String templateDoesntExist = "Le template n'existe pas";
+  static const String collectionDoesntExist = "La collection n'existe pas";
+  static const String itemDoesntExist = "L'objet n'existe pas";
+  static const String unexpectedError = "Une erreur inattendu est survenue, veuillez réessayer plus tard";
 }
