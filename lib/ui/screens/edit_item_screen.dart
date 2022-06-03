@@ -182,9 +182,8 @@ class _EditItemScreenState extends State<EditItemScreen> {
         .editItem(widget.item.id, itemInfosModel, context)
         .then((value) {
       Navigator.pop(context);
-      if (widget.blocSingleItem == null) {
-        blocItems.fetchItems(widget.collection.id, context);
-      } else {
+      blocItems.fetchItems(widget.collection.id, context);
+      if (widget.blocSingleItem != null) {
         widget.blocSingleItem!.fetchItem(widget.item.id, context);
       }
     });
