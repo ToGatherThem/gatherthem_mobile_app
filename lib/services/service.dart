@@ -89,7 +89,7 @@ abstract class Service{
               (Route<dynamic> route) => true
       );
       Utils.openDialog(context, Strings.unexpectedError);
-      return Future.error(e);
+      throw e;
     }
     else if (e.response != null && e.response!.statusCode == 403) {
       Navigator.pushAndRemoveUntil(
@@ -97,9 +97,9 @@ abstract class Service{
           MaterialPageRoute(builder: (context) => const LoginScreen()),
               (Route<dynamic> route) => true
       );
-      return Future.error(e);
+      throw e;
     }
-    return Future.error(e);
+    throw e;
 
   }
 }
