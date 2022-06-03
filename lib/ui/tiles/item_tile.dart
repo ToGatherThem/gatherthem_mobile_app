@@ -68,7 +68,7 @@ class ItemTile extends StatelessWidget {
                             onPressed: () async {
                               bool res = await ItemService().deleteItem(item.id, context);
                               if(res){
-                                blocItem.fetchItems(item.id, context);
+                                blocItem.fetchItems(collection.id, context);
                               }
                             },
                             mini: true,
