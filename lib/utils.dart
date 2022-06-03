@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:intl/intl.dart';
 
@@ -13,5 +14,26 @@ class Utils {
     var month = dateParts[1];
     var day = dateParts[2];
     return '$day/$month/$year';
+  }
+
+   static openDialog(context, errorText) {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            content: SingleChildScrollView(
+              child: Text(errorText),
+            ),
+            actions: [
+              Center(
+                child: TextButton(
+                    child: const Text("OK"),
+                    onPressed: () { Navigator.of(context).pop(); }
+                ),
+              ),
+            ],
+          );
+        }
+    );
   }
 }

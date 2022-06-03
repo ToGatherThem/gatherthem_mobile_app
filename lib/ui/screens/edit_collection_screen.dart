@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
@@ -164,10 +163,11 @@ class _EditCollectionScreenState extends State<EditCollectionScreen> {
 
     CollectionService().editCollection(
         collectionInfosModel,
-        widget.collection.id
+        widget.collection.id,
+        context
     ).then((value) {
       Navigator.pop(context);
-      blocCollection.fetchCollections();
+      blocCollection.fetchCollections(context);
     });
   }
 }

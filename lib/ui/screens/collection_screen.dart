@@ -16,7 +16,7 @@ class CollectionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     blocItems = BlocItems();
-    blocItems.fetchItems(collection.id);
+    blocItems.fetchItems(collection.id, context);
     Widget body = bodyConfig(
         collection: collection, context: context, blocItem: blocItems);
     return NavigationScaffoldWidget(

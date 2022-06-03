@@ -176,10 +176,11 @@ class _AddItemScreenState extends State<AddItemScreen> {
 
     CollectionService().addItem(
         widget.collection,
-        itemInfosModel
+        itemInfosModel,
+        context
     ).then((value) {
       Navigator.pop(context);
-      blocItems.fetchItems(widget.collection.id);
+      blocItems.fetchItems(widget.collection.id, context);
     });
   }
 }

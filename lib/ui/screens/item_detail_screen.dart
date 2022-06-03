@@ -141,9 +141,9 @@ class ItemDetailScreen extends StatelessWidget {
                     const SizedBox(width: 10),
                     ActionButton(
                       onPressed: () async {
-                        bool res = await ItemService().deleteItem(item.id);
+                        bool res = await ItemService().deleteItem(item.id, context);
                         if (res) {
-                          blocItems.fetchItems(collectionId);
+                          blocItems.fetchItems(collectionId, context);
                           Navigator.pop(context);
                         }
                       },

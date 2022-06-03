@@ -99,9 +99,9 @@ class CollectionTile extends StatelessWidget {
                       FloatingActionButton(
                           heroTag: 'delete ${collection.id}',
                           onPressed: () async {
-                            bool res = await CollectionService().deleteCollection(collection.id);
+                            bool res = await CollectionService().deleteCollection(collection.id, context);
                             if(res){
-                              blocCollection.fetchCollections();
+                              blocCollection.fetchCollections(context);
                             }
                           },
                           mini: true,

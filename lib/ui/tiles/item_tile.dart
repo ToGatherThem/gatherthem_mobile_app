@@ -24,6 +24,7 @@ class ItemTile extends StatelessWidget {
 
 
 
+  @override
   Widget build(BuildContext context) {
     return StreamBuilder<bool>(
         stream: isEdition.stream,
@@ -105,9 +106,9 @@ class ItemTile extends StatelessWidget {
                         FloatingActionButton(
                             heroTag: 'delete ${item.id}',
                             onPressed: () async {
-                              bool res = await CollectionService().deleteCollection(item.id);
+                              bool res = await CollectionService().deleteCollection(item.id, context);
                               if(res){
-                                blocItem.fetchItems(item.id);
+                                blocItem.fetchItems(item.id, context);
                               }
                             },
                             mini: true,

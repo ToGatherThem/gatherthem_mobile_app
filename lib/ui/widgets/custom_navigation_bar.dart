@@ -40,7 +40,7 @@ class CustomNavigationBar extends StatelessWidget {
                     onPressed: (context.findAncestorWidgetOfExactType<SearchScreen>() != null) ? null :() {
                         Navigator.pushAndRemoveUntil(
                           context,
-                          MaterialPageRoute(builder: (context) => SearchScreen()),
+                          MaterialPageRoute(builder: (context) => const SearchScreen()),
                           ModalRoute.withName('/'),
                         );
                     },
