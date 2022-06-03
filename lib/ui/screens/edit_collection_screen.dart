@@ -97,6 +97,7 @@ class _EditCollectionScreenState extends State<EditCollectionScreen> {
                         child: TextInput(
                           label: Strings.collectionEditName,
                           initialValue: widget.collection.name,
+                          maxLength: 50,
                           onChanged: (String value) {
                             collectionInfosModel.name = value;
                           },

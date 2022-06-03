@@ -102,11 +102,11 @@ class _EditItemScreenState extends State<EditItemScreen> {
                           TextInput(
                             label: widget.collection.template.itemLabelName,
                             initialValue: itemInfosModel.label,
+                            maxLength: 50,
                             onChanged: (String value) {
                               itemInfosModel.label = value;
                             },
                           ),
-                          const SizedBox(height: 10),
                           DateInput(
                             label: Strings.itemObtentionDate,
                             firstDate: DateTime(1700),
