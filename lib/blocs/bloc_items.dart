@@ -5,6 +5,7 @@ import 'package:rxdart/rxdart.dart';
 import 'bloc.dart';
 
 class BlocItems extends Bloc {
+  List<ItemModel> _items = [];
   final _streamController = BehaviorSubject<List<ItemModel>>();
 
   Stream<List<ItemModel>> get stream => _streamController.stream;
@@ -13,7 +14,13 @@ class BlocItems extends Bloc {
 
   fetchItems(String id, BuildContext context) async {
     var resultRequest = await CollectionService().fetchCollectionItems(id, context);
-    setItems(resultRequest);
+    _items = resultRequest;
+    filter("");
+  }
+
+  filter(String filter) {
+    var filteredItems = _items.where((item) => item.label.toLowerCase().contains(filter.toLowerCase())).toList();
+    setItems(filteredItems);
   }
 
   setItems(List<ItemModel> items) async {

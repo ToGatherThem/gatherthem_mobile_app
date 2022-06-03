@@ -33,6 +33,8 @@ class CollectionScreen extends StatelessWidget {
       {required CollectionModel collection,
       required BuildContext context,
       required BlocItems blocItem}) {
+    TextEditingController controller = TextEditingController();
+
     TextStyle titleStyle =
         const TextStyle(fontSize: 24, fontWeight: FontWeight.bold);
     TextStyle subtitleStyle =
@@ -108,22 +110,46 @@ class CollectionScreen extends StatelessWidget {
                   decoration: BoxDecoration(
                       border: Border.all(color: Theme.of(context).cardColor),
                       borderRadius: BorderRadius.circular(20)),
-                  child: const TextField(
-                    textAlign: TextAlign.center,
+                  child:  TextFormField(
+                    controller: controller,
+                    cursorColor: Theme.of(context).primaryColor,
                     decoration: InputDecoration(
-                      hintText: Strings.typeItemName,
-                      hintStyle: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontStyle: FontStyle.italic,
+                      prefixIcon: Icon(Icons.search, color: Theme.of(context).primaryColor),
+                      suffixIcon: IconButton(
+                        icon: Icon(Icons.close, color: Theme.of(context).primaryColor),
+                        splashRadius: 20,
+                        tooltip: Strings.searchClear,
+                        onPressed: () {
+                          controller.clear();
+                          blocItems.filter("");
+                        },
                       ),
-                      border: InputBorder.none,
+                      labelText: Strings.searchLabel,
+                      labelStyle: TextStyle(
+                        color: Theme.of(context).primaryColor,
+                      ),
+                      focusColor: Theme.of(context).primaryColor,
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(
+                          color: Theme.of(context).primaryColor,
+                          width: 2,
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(
+                          color: Theme.of(context).primaryColor,
+                          width: 2,
+                        ),
+                      ),
                     ),
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
+                    onChanged: (value) {
+                      blocItems.filter(value);
+                    },
                   ),
-                ),
+                  ),
+
                 const Padding(padding: EdgeInsets.only(top: 15)),
               ],
             ),
