@@ -237,6 +237,7 @@ class _AddCollectionScreenState extends State<AddCollectionScreen> {
     CollectionService().createCollection(collectionInfosModel, context).then((value) {
       Navigator.pop(context);
       blocCollection.fetchCollections(context);
+      blocProfile.fetchProfile(context);
     });
   }
 }

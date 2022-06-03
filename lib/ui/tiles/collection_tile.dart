@@ -62,6 +62,7 @@ class CollectionTile extends StatelessWidget {
                             bool res = await CollectionService().deleteCollection(collection.id, context);
                             if(res){
                               blocCollection.fetchCollections(context);
+                              blocProfile.fetchProfile(context);
                             }
                           },
                           mini: true,
