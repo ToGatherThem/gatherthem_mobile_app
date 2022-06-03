@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/blocs/bloc.dart';
 import 'package:gatherthem_mobile_app/models/template_model.dart';
 import 'package:gatherthem_mobile_app/services/template_service.dart';
@@ -10,8 +11,8 @@ class BlocTemplates extends Bloc {
 
   Sink<List<TemplateModel>> get sink => _streamController.sink;
 
-  fetchTemplates() async {
-    var resultRequest = await TemplateService().fetchTemplates();
+  fetchTemplates(BuildContext context) async {
+    var resultRequest = await TemplateService().fetchTemplates(context);
     setTemplates(resultRequest);
   }
 

@@ -3,6 +3,7 @@ import 'package:gatherthem_mobile_app/theme/custom_colors.dart';
 
 ThemeData buildLightTheme(){
   return ThemeData(
+    scaffoldBackgroundColor: CustomColors.lightBackground,
     brightness: Brightness.light,
     backgroundColor: CustomColors.lightBackground,
     cardColor: CustomColors.lightCard,
@@ -15,6 +16,7 @@ ThemeData buildLightTheme(){
 
 ThemeData buildDarkTheme(){
   return ThemeData(
+    scaffoldBackgroundColor: CustomColors.darkBackground,
     brightness: Brightness.dark,
     backgroundColor: CustomColors.darkBackground,
     cardColor: CustomColors.darkCard,

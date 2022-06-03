@@ -4,7 +4,7 @@ import 'package:gatherthem_mobile_app/models/collection_model.dart';
 import 'package:gatherthem_mobile_app/services/collection_service.dart';
 import 'package:rxdart/rxdart.dart';
 
-class BlocCollection extends Bloc {
+class BlocPublicCollections extends Bloc {
   final _streamController = BehaviorSubject<List<CollectionModel>>();
 
   Stream<List<CollectionModel>> get stream => _streamController.stream;
@@ -12,7 +12,7 @@ class BlocCollection extends Bloc {
   Sink<List<CollectionModel>> get sink => _streamController.sink;
 
   fetchCollections(BuildContext context) async {
-    var resultRequest = await CollectionService().fetchCollections(context);
+    var resultRequest = await CollectionService().fetchPublicCollections(context);
     setCollections(resultRequest);
   }
 

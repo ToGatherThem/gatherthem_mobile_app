@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/globals.dart';
 import 'package:gatherthem_mobile_app/models/collection_infos_model.dart';
@@ -6,21 +8,30 @@ import 'package:gatherthem_mobile_app/services/collection_service.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/theme/styles.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/buttons/action_button.dart';
-import 'package:gatherthem_mobile_app/ui/widgets/buttons/filled_rect_button.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/dialogs/error_dialog.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/inputs/text_input.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/modals/select_image_modal.dart';
 
-class EditCollectionScreen extends StatelessWidget {
-  EditCollectionScreen({Key? key, required this.collection}) : super(key: key);
+class EditCollectionScreen extends StatefulWidget {
+  const EditCollectionScreen({Key? key, required this.collection}) : super(key: key);
   final CollectionModel collection;
+
+  @override
+  State<EditCollectionScreen> createState() => _EditCollectionScreenState();
+}
+
+class _EditCollectionScreenState extends State<EditCollectionScreen> {
   final CollectionInfosModel collectionInfosModel = CollectionInfosModel();
+  @override
+  void initState() {
+    collectionInfosModel.name = widget.collection.name;
+    collectionInfosModel.description = widget.collection.description;
+    collectionInfosModel.image = widget.collection.image;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    collectionInfosModel.name = collection.name;
-    collectionInfosModel.description = collection.description;
-
     SelectImageModal selectImageModal = SelectImageModal();
     return Scaffold(
         backgroundColor: Theme.of(context).backgroundColor,
@@ -41,7 +52,17 @@ class EditCollectionScreen extends StatelessWidget {
                   Row(
                     children: [
                       InkWell(
-                        onTap: () => selectImageModal.show(context),
+                        onTap: () => selectImageModal.show(
+                            context: context,
+                            onImageSelected: (Uint8List? image) {
+                              collectionInfosModel.image = image;
+                              setState(() {});
+                            },
+                            onImageRemove: (collectionInfosModel.image != null) ? () {
+                              collectionInfosModel.image = null;
+                              setState(() {});
+                            } : null
+                        ),
                         child: Container(
                             height: 115,
                             width: 115,
@@ -55,7 +76,7 @@ class EditCollectionScreen extends StatelessWidget {
                             ),
                             child: ClipRRect(
                                 borderRadius: BorderRadius.circular(6),
-                                child: Stack(
+                                child: (collectionInfosModel.image == null) ? Stack(
                                     children: [
                                       Container(
                                         color: Colors.grey,
@@ -64,6 +85,9 @@ class EditCollectionScreen extends StatelessWidget {
                                         child: Icon(Icons.image_rounded, color: Colors.white, size: 50),
                                       )
                                     ]
+                                ) : Image(
+                                  image: MemoryImage(collectionInfosModel.image!),
+                                  fit: BoxFit.cover,
                                 )
                             )
                         ),
@@ -71,8 +95,9 @@ class EditCollectionScreen extends StatelessWidget {
                       const SizedBox(width: 20),
                       Expanded(
                         child: TextInput(
-                          label: "Nom de la collection",
-                          initialValue: collection.name,
+                          label: Strings.collectionEditName,
+                          initialValue: widget.collection.name,
+                          maxLength: 50,
                           onChanged: (String value) {
                             collectionInfosModel.name = value;
                           },
@@ -82,8 +107,8 @@ class EditCollectionScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 30),
                   TextInput(
-                    label: 'Description',
-                    initialValue: collection.description,
+                    label: Strings.collectionEditDescription,
+                    initialValue: widget.collection.description,
                     onChanged: (String value) {
                       collectionInfosModel.description = value;
                     },
@@ -108,7 +133,8 @@ class EditCollectionScreen extends StatelessWidget {
                         onPressed: () {
                           validate(context, collectionInfosModel);
                         },
-                        text: Strings.createLabel,
+                        width: 110,
+                        text: Strings.editLabel,
                         icon: Icons.check_circle_outline_rounded,
                       ),
                     ],
@@ -138,10 +164,11 @@ class EditCollectionScreen extends StatelessWidget {
 
     CollectionService().editCollection(
         collectionInfosModel,
-        collection.id
+        widget.collection.id,
+        context
     ).then((value) {
       Navigator.pop(context);
-      blocCollection.fetchCollections();
+      blocCollection.fetchCollections(context);
     });
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/ui/screens/home_screen.dart';
-import 'package:gatherthem_mobile_app/ui/screens/profile_screen.dart';
+import 'package:gatherthem_mobile_app/ui/screens/search_screen.dart';
 
 class CustomNavigationBar extends StatelessWidget {
   const CustomNavigationBar({Key? key}) : super(key: key);
@@ -8,7 +8,7 @@ class CustomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isHomeScreen = context.findAncestorWidgetOfExactType<HomeScreen>() != null;
-    bool isProfileScreen = context.findAncestorWidgetOfExactType<ProfileScreen>() != null;
+    bool isSearchScreen = context.findAncestorWidgetOfExactType<SearchScreen>() != null;
     double iconSize = 30;
     return BottomAppBar(
         shape: const CircularNotchedRectangle(),
@@ -34,13 +34,13 @@ class CustomNavigationBar extends StatelessWidget {
               ),
               const Spacer(),
               IconButton(
-                    iconSize: (isProfileScreen) ? iconSize + 5 : iconSize,
-                    icon: Icon(Icons.person_rounded, color: (!isProfileScreen) ? Colors.grey[500] : Colors.white),
+                    iconSize: (isSearchScreen) ? iconSize + 5 : iconSize,
+                    icon: Icon(Icons.search_rounded, color: (!isSearchScreen) ? Colors.grey[500] : Colors.white),
                     disabledColor: Theme.of(context).primaryColor,
-                    onPressed: (context.findAncestorWidgetOfExactType<ProfileScreen>() != null) ? null :() {
+                    onPressed: (context.findAncestorWidgetOfExactType<SearchScreen>() != null) ? null :() {
                         Navigator.pushAndRemoveUntil(
                           context,
-                          MaterialPageRoute(builder: (context) => const ProfileScreen()),
+                          MaterialPageRoute(builder: (context) => const SearchScreen()),
                           ModalRoute.withName('/'),
                         );
                     },
