@@ -13,7 +13,7 @@ class ItemService extends Service {
   Future<dynamic> editItem(String id, ItemInfosModel itemInfos, BuildContext context) {
     return put('$apiHost/items/$id', itemInfos.toJson(), context)
         .catchError((e){
-      if(e.response.statusCode == 404){
+      if(e. response != null && e.response.statusCode == 404){
         FToast fToast = FToast();
         fToast.init(context);
         fToast.showToast(child: const Text(Strings.itemDoesntExist),);
@@ -24,7 +24,7 @@ class ItemService extends Service {
   Future<bool> deleteItem(String id, BuildContext context) async{
     return await delete(apiHost+"/items/"+id, context)
         .catchError((e){
-      if(e.response.statusCode == 404){
+      if(e. response != null && e.response.statusCode == 404){
         FToast fToast = FToast();
         fToast.init(context);
         fToast.showToast(child: const Text(Strings.itemDoesntExist));
@@ -35,7 +35,7 @@ class ItemService extends Service {
   Future<ItemModel> fetchItem(String id, BuildContext context) async {
     Map<String, dynamic> data = await json.decode(await get(apiHost+"/items/"+id, context))
         .catchError((e){
-      if(e.response.statusCode == 404){
+      if(e. response != null && e.response.statusCode == 404){
         FToast fToast = FToast();
         fToast.init(context);
         fToast.showToast(child: const Text(Strings.itemDoesntExist));
