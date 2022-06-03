@@ -15,18 +15,24 @@ import 'package:gatherthem_mobile_app/ui/widgets/inputs/property_input.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/inputs/text_input.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/modals/select_image_modal.dart';
 
-class EditItemScreen extends StatelessWidget {
+class EditItemScreen extends StatefulWidget {
   final ItemModel item;
   final CollectionModel collection;
   final BlocItem? blocSingleItem;
-  final ItemInfosModel itemInfosModel = ItemInfosModel();
   EditItemScreen({Key? key, required this.item, required this.collection, this.blocSingleItem}) : super(key: key);
+
+  @override
+  State<EditItemScreen> createState() => _EditItemScreenState();
+}
+
+class _EditItemScreenState extends State<EditItemScreen> {
+  final ItemInfosModel itemInfosModel = ItemInfosModel();
 
   @override
   Widget build(BuildContext context) {
     SelectImageModal selectImageModal = SelectImageModal();
-    itemInfosModel.label = item.label;
-    itemInfosModel.obtentionDate = item.obtentionDate;
+    itemInfosModel.label = widget.item.label;
+    itemInfosModel.obtentionDate = widget.item.obtentionDate;
     return Scaffold(
         backgroundColor: Theme.of(context).backgroundColor,
         body: SingleChildScrollView(
@@ -42,31 +48,44 @@ class EditItemScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     InkWell(
-                      onTap: () => selectImageModal.show(context),
+                      onTap: () => selectImageModal.show(
+                        context: context,
+                        onImageSelected: (image) {
+                          itemInfosModel.image = image;
+                          setState(() {});
+                        },
+                        onImageRemove: (itemInfosModel.image != null) ? () {
+                          itemInfosModel.image = null;
+                          setState(() {});
+                        } : null,
+                      ),
                       child: Container(
-                        height: 115,
-                        width: 115,
-                        padding: const EdgeInsets.all(2),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(
-                            color: Theme.of(context).primaryColor,
-                            width: 1
-                          )
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(6),
-                          child: Stack(
-                            children: [
-                              Container(
-                                color: Colors.grey,
-                              ),
-                              const Center(
-                                child: Icon(Icons.image_rounded, color: Colors.white, size: 50),
+                          height: 115,
+                          width: 115,
+                          padding: const EdgeInsets.all(2),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(
+                                  color: Theme.of(context).primaryColor,
+                                  width: 1
                               )
-                            ]
+                          ),
+                          child: ClipRRect(
+                              borderRadius: BorderRadius.circular(6),
+                              child: (itemInfosModel.image == null) ? Stack(
+                                  children: [
+                                    Container(
+                                      color: Colors.grey,
+                                    ),
+                                    const Center(
+                                      child: Icon(Icons.image_rounded, color: Colors.white, size: 50),
+                                    )
+                                  ]
+                              ) : Image(
+                                image: MemoryImage(itemInfosModel.image!),
+                                fit: BoxFit.cover,
+                              )
                           )
-                        )
                       ),
                     ),
                     const SizedBox(width: 20),
@@ -74,7 +93,7 @@ class EditItemScreen extends StatelessWidget {
                       child: Column(
                         children: [
                           TextInput(
-                            label: collection.template.itemLabelName,
+                            label: widget.collection.template.itemLabelName,
                             initialValue: itemInfosModel.label,
                             onChanged: (String value) {
                               itemInfosModel.label = value;
@@ -96,9 +115,9 @@ class EditItemScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              for(PropertyModel property in collection.template.allProperties) PropertyInput(
+              for(PropertyModel property in widget.collection.template.allProperties) PropertyInput(
                   property: property,
-                  defaultValue: item.getPropertyValue(property.id),
+                  defaultValue: widget.item.getPropertyValue(property.id),
                   onChanged: (String value) {
                     itemInfosModel.setProperty(property.id, value);
                   }
@@ -151,16 +170,16 @@ class EditItemScreen extends StatelessWidget {
     }
 
     ItemService().editItem(
-        item.id,
+        widget.item.id,
         itemInfosModel,
         context
     ).then((value) {
       Navigator.pop(context);
-      if(blocSingleItem == null) {
-        blocItems.fetchItems(collection.id, context);
+      if(widget.blocSingleItem == null) {
+        blocItems.fetchItems(widget.collection.id, context);
       }
       else{
-        blocSingleItem!.fetchItem(item.id, context);
+        widget.blocSingleItem!.fetchItem(widget.item.id, context);
       }
     });
   }
