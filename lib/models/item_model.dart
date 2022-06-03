@@ -17,4 +17,13 @@ class ItemModel {
     obtentionDate = json["obtentionDate"],
     image = (json["image"] != null) ? const Base64Decoder().convert(json["image"]).buffer.asUint8List() : null,
     properties = (json["properties"] as List).map((e) => ItemPropertyModel.fromJson(e)).toList();
+
+  getPropertyValue(String propertyId) {
+    int index = properties.indexWhere((element) => element.property.id == propertyId);
+    if (index != -1) {
+      return properties[index].value;
+    } else {
+      return "";
+    }
+  }
 }
