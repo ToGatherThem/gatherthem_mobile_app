@@ -72,7 +72,7 @@ class AddCollectionScreen extends StatelessWidget {
                         child: Column(
                           children: [
                             TextInput(
-                              label: "Nom de la collection",
+                              label: Strings.collectionEditName,
                               onChanged: (String value) {
                                 collectionInfosModel.name = value;
                               },
@@ -138,7 +138,7 @@ class AddCollectionScreen extends StatelessWidget {
                                       return AutoCompleteInput(
                                           focusNode: focusNode,
                                           controller: controller,
-                                          label: 'Template',
+                                          label: Strings.template,
                                       );
                                     },
                                     onSelected: (TemplateModel selected) {
@@ -157,7 +157,7 @@ class AddCollectionScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 30),
                 TextInput(
-                  label: 'Description',
+                  label: Strings.collectionEditDescription,
                   onChanged: (String value) {
                     collectionInfosModel.description = value;
                   },

@@ -3,6 +3,7 @@ import 'package:gatherthem_mobile_app/blocs/bloc_items.dart';
 import 'package:gatherthem_mobile_app/globals.dart';
 import 'package:gatherthem_mobile_app/models/collection_model.dart';
 import 'package:gatherthem_mobile_app/models/item_model.dart';
+import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/ui/tiles/item_tile.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/navigation_scaffold_widget.dart';
 
@@ -94,7 +95,7 @@ class CollectionScreen extends StatelessWidget {
                     child: const TextField(
                       textAlign: TextAlign.center,
                       decoration: InputDecoration(
-                        hintText: 'type the item name...',
+                        hintText: Strings.typeItemName,
                         hintStyle: TextStyle(
                           color: Colors.white,
                           fontSize: 18,

@@ -34,7 +34,7 @@ class AddItemScreen extends StatelessWidget {
                 style: Styles.getTitleStyle(context),
                 children: <TextSpan>[
                   const TextSpan(
-                    text: "Ajouter un objet à "
+                    text: Strings.addItemToCollection
                   ),
                   TextSpan(
                     text: collection.name,

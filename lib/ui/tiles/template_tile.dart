@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/theme/styles.dart';
 import 'package:gatherthem_mobile_app/ui/screens/add_collection_screen.dart';
 
@@ -55,7 +56,7 @@ class TemplateTile extends StatelessWidget{
               ],
             ),
             Text(
-                'Ajouter des $templateName',
+              (Strings.addForTemplate + templateName),
               style: Styles.getTextStyle(context, color: Theme.of(context).backgroundColor),
             ),
           ],

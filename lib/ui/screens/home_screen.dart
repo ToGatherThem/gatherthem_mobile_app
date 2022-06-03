@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/blocs/bloc_profile.dart';
 import 'package:gatherthem_mobile_app/models/profile_model.dart';
+import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/theme/styles.dart';
 import 'package:gatherthem_mobile_app/ui/lists/collections_list.dart';
 import 'package:gatherthem_mobile_app/ui/lists/templates_list.dart';
@@ -59,7 +60,7 @@ class HomeScreen extends StatelessWidget {
                                                   style: Styles.getFigureStyle(context, weight: FontWeight.w600),
                                                 ),
                                                 Text(
-                                                  'Collections',
+                                                  Strings.collectionsLabel,
                                                   style: Styles.getTextStyle(context),
                                                 ),
                                               ],
@@ -72,7 +73,7 @@ class HomeScreen extends StatelessWidget {
                                                   style: Styles.getFigureStyle(context, weight: FontWeight.w600),
                                                 ),
                                                 Text(
-                                                  'Objets',
+                                                  Strings.itemLabel,
                                                   style: Styles.getTextStyle(context),
                                                 ),
                                               ],
@@ -89,7 +90,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                         const Padding(padding: EdgeInsets.only(top: 10),),
                         ActionButton(
-                          text: 'Modifier mon profil',
+                          text: Strings.editProfileLabel,
                           onPressed: () {  },///TODO
                           width: 180,
                           backgroundColor: Theme.of(context).highlightColor,
@@ -142,10 +143,10 @@ class CustomSliverDelegate extends SliverPersistentHeaderDelegate{
               unselectedLabelStyle: Styles.getTextStyle(context),
               tabs: const [
                 Tab(
-                  text: 'Vos Collections',
+                  text: Strings.yourCollectionsLabel,
                 ),
                 Tab(
-                  text: 'Ajouter une collection',
+                  text: Strings.createColl,
                 ),
               ]),
           Container(
