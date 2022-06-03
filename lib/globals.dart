@@ -1,4 +1,5 @@
 import 'package:gatherthem_mobile_app/blocs/bloc_collections.dart';
+import 'package:gatherthem_mobile_app/blocs/bloc_profile.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'blocs/bloc_items.dart';
@@ -15,3 +16,5 @@ BlocCollection blocCollection = BlocCollection();
 late BlocItems blocItems;
 
 late SharedPreferences sharedPreferences;
+
+late BlocProfile blocProfile;

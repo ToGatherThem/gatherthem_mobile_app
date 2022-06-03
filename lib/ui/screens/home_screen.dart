@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/blocs/bloc_profile.dart';
+import 'package:gatherthem_mobile_app/globals.dart';
 import 'package:gatherthem_mobile_app/models/profile_model.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/theme/styles.dart';
@@ -13,7 +14,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    BlocProfile blocProfile = BlocProfile();
+    blocProfile = BlocProfile();
     blocProfile.fetchProfile(context);
 
     return NavigationScaffoldWidget(
