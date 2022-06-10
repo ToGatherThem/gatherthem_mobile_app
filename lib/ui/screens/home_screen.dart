@@ -4,6 +4,7 @@ import 'package:gatherthem_mobile_app/globals.dart';
 import 'package:gatherthem_mobile_app/models/profile_model.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/theme/styles.dart';
+import 'package:gatherthem_mobile_app/ui/custom_loading.dart';
 import 'package:gatherthem_mobile_app/ui/lists/collections_list.dart';
 import 'package:gatherthem_mobile_app/ui/lists/templates_list.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/buttons/action_button.dart';
@@ -41,8 +42,10 @@ class HomeScreen extends StatelessWidget {
                                   stream: blocProfile.stream,
                                   builder: (context, snapshotProfile) {
                                     if(!snapshotProfile.hasData) {
+                                      CustomLoading.customLoadingStyleAndShow(context: context);
                                       return Container();
                                     }
+                                    CustomLoading.dismiss();
                                     ProfileModel profile = snapshotProfile.data!;
                                     return Column(
                                       children: [

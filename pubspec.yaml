@@ -44,6 +44,7 @@ dependencies:
     sdk: flutter
   shared_preferences: ^2.0.15
   fluttertoast: ^8.0.9
+  flutter_easyloading: ^3.0.5
 
 
 dev_dependencies:
