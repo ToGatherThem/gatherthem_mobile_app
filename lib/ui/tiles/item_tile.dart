@@ -6,6 +6,7 @@ import 'package:gatherthem_mobile_app/blocs/bloc_items.dart';
 import 'package:gatherthem_mobile_app/models/collection_model.dart';
 import 'package:gatherthem_mobile_app/models/item_model.dart';
 import 'package:gatherthem_mobile_app/services/item_service.dart';
+import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/theme/styles.dart';
 import 'package:gatherthem_mobile_app/ui/screens/edit_item_screen.dart';
 import 'package:gatherthem_mobile_app/ui/screens/item_detail_screen.dart';
@@ -61,6 +62,7 @@ class ItemTile extends StatelessWidget {
                           mini: true,
                           backgroundColor: Colors.orangeAccent,
                           child: const Icon(Icons.edit_outlined),
+                          tooltip: Strings.editLabel,
                         ),
                         const Padding(padding: EdgeInsets.only(right: 10)),
                         FloatingActionButton(
@@ -73,7 +75,8 @@ class ItemTile extends StatelessWidget {
                             },
                             mini: true,
                             backgroundColor: Colors.redAccent,
-                            child: const Icon(Icons.delete_outline_rounded)
+                            child: const Icon(Icons.delete_outline_rounded),
+                            tooltip: Strings.deleteLabel,
                         ),
                         const Padding(padding: EdgeInsets.only(right: 10)),
                         IconButton(
@@ -81,7 +84,8 @@ class ItemTile extends StatelessWidget {
                             icon: Icon(
                                 Icons.close,
                                 color: Theme.of(context).backgroundColor
-                            )
+                            ),
+                            tooltip: Strings.menuClose
                         ),
                       ],
                     ),
@@ -173,7 +177,8 @@ class ItemTile extends StatelessWidget {
                       icon: Icon(
                         Icons.more_vert_rounded,
                         color: Theme.of(context).backgroundColor,
-                      )
+                      ),
+                      tooltip: Strings.menuOpen
                   ),
                 ),
               )

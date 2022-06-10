@@ -1,6 +1,8 @@
 class Strings{
 
   static const String appTitle = "Gather Them";
+  static const String home = "Home";
+  static const String search = "Search";
   static const String createColl = "Ajouter une collection";
   static const String createCollItem = "Ajouter un objet dans cette collection";
   static const String labelName = "Nom";
@@ -31,6 +33,8 @@ class Strings{
   static const String confirmPasswordRequired = "La confirmation du mot de passe n'est pas renseignée";
   static const String collectionNameRequired = "Le nom de la collection n'a pas été renseigné";
   static const String templateRequired = "Le template n'a pas été renseigné";
+  static const String menuOpen = "Ouvrir le menu";
+  static const String menuClose = "Fermer le menu";
 
   static const String notRegistered = "Pas encore inscrit ?";
   static const String alreadyRegistered = "Déjà inscrit ?";

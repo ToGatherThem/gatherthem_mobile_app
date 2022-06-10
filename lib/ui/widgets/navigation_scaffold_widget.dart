@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/models/collection_model.dart';
+import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/ui/screens/add_item_screen.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/app_brand.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/custom_navigation_bar.dart';
@@ -38,6 +39,7 @@ class NavigationScaffoldWidget extends StatelessWidget {
           elevation: 2,
           foregroundColor: Theme.of(context).primaryColor,
           backgroundColor: Theme.of(context).highlightColor,
+          tooltip: Strings.itemAdd,
         ),
       ),
     );
