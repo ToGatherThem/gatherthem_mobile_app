@@ -9,8 +9,9 @@ class NavigationScaffoldWidget extends StatelessWidget {
   final Widget body;
   final bool leading;
   final CollectionModel? collectionModel;
+  final Widget? trailingWidget;
 
-  const NavigationScaffoldWidget({Key? key, required this.body, this.leading = false, this.collectionModel})
+  const NavigationScaffoldWidget({Key? key, required this.body, this.leading = false, this.collectionModel, this.trailingWidget})
       : super(key: key);
 
   @override
@@ -20,7 +21,7 @@ class NavigationScaffoldWidget extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Theme.of(context).bottomAppBarColor,
-        title: const AppBrand(),
+        title: AppBrand(trailingWidget: trailingWidget),
         automaticallyImplyLeading: leading,
       ),
       body: body,

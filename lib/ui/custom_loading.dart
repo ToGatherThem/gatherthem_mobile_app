@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:gatherthem_mobile_app/theme/strings.dart';
 
 class CustomLoading {
   static customLoadingStyleAndShow(
@@ -34,7 +35,7 @@ class CustomLoading {
       ..userInteractions = false
       ..dismissOnTap = false;
 
-    String statusVal = status ?? 'Veuillez patienter...';
+    String statusVal = status ?? Strings.loadingLabel;
     EasyLoading.show(status: statusVal);
   }
 
@@ -43,7 +44,7 @@ class CustomLoading {
   }
 
   static success({String? message}) {
-    String messageVal = message ?? 'Terminé';
+    String messageVal = message ?? Strings.loadingSuccess;
     EasyLoading.showSuccess(messageVal,
         duration: const Duration(milliseconds: 100));
   }

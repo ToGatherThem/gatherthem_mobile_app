@@ -24,10 +24,22 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown
     ]);
+    AdaptiveThemeMode themeMode = AdaptiveThemeMode.system;
+    switch (sharedPreferences.getInt("theme_mode") ?? 0) {
+      case 0:
+        themeMode = AdaptiveThemeMode.system;
+        break;
+      case 1:
+        themeMode = AdaptiveThemeMode.light;
+        break;
+      case 2:
+        themeMode = AdaptiveThemeMode.dark;
+        break;
+    }
     return AdaptiveTheme(
       light: buildLightTheme(),
       dark: buildDarkTheme(),
-      initial: AdaptiveThemeMode.system,
+      initial: themeMode,
       builder: (theme, darkTheme) =>  MaterialApp(
         title: 'GatherThem',
         debugShowCheckedModeBanner: false,
