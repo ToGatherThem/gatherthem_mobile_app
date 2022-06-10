@@ -86,11 +86,11 @@ class Strings{
 
   // Preferences screen
   static const String preferences = "Préférences";
-  static const String preferencesAppearance = "Apparence";
   static const String preferencesPremium = "Gérer le premium";
   static const String preferencesRequestData = "Demander des données";
   static const String preferencesDeleteAccount = "Supprimer le compte";
   static const String preferencesHelp = "Aide";
+  static const String preferencesLogout = "Se déconnecter";
   static const String theme = "Thème";
   static const String themeSystem = "Système";
   static const String themeLight = "Clair";
