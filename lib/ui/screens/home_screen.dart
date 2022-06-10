@@ -7,6 +7,7 @@ import 'package:gatherthem_mobile_app/theme/styles.dart';
 import 'package:gatherthem_mobile_app/ui/custom_loading.dart';
 import 'package:gatherthem_mobile_app/ui/lists/collections_list.dart';
 import 'package:gatherthem_mobile_app/ui/lists/templates_list.dart';
+import 'package:gatherthem_mobile_app/ui/screens/preferences_screen.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/buttons/action_button.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/navigation_scaffold_widget.dart';
 
@@ -122,7 +123,23 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
           ),
-        )
+        ),
+        trailingWidget: Expanded(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              IconButton(
+                // alignment: Alignment.centerRight,
+                icon: Icon(Icons.settings, color: Theme.of(context).primaryColor),
+                splashRadius: 20,
+                tooltip: Strings.preferences,
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const PreferencesScreen()));
+                },
+              ),
+            ],
+          ),
+        ),
     );
   }
 }
