@@ -87,7 +87,7 @@ class Strings{
   // Preferences screen
   static const String preferences = "Préférences";
   static const String preferencesAppearance = "Apparence";
-  static const String preferencesPremium = "Gérer le premium";
+  static const String preferencesPremium = "Premium";
   static const String preferencesRequestData = "Demander des données";
   static const String preferencesDeleteAccount = "Supprimer le compte";
   static const String preferencesHelp = "Aide";

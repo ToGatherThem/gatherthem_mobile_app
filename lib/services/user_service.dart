@@ -12,4 +12,10 @@ class UserService extends Service {
     Map<String, dynamic> user = await json.decode(await get(url, context));
     return ProfileModel.fromJson(user);
   }
+
+  Future<ProfileModel> buyPremium(BuildContext context) async {
+    var url = apiHost + "/user/premium";
+    Map<String, dynamic> user = await json.decode(await put(url, {}, context));
+    return ProfileModel.fromJson(user);
+  }
 }

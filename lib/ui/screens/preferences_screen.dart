@@ -4,6 +4,7 @@ import 'package:gatherthem_mobile_app/globals.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/theme/styles.dart';
 import 'package:gatherthem_mobile_app/ui/screens/appearance_screen.dart';
+import 'package:gatherthem_mobile_app/ui/screens/premium_screen.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/navigation_scaffold_widget.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
@@ -22,7 +23,7 @@ class PreferencesScreen extends StatelessWidget {
       child: Column(
         children: [
           createPreferencesMenu(context, const AppearanceScreen(), Icons.settings_display, Strings.preferencesAppearance),
-          createPreferencesMenu(context, null, Icons.diamond, Strings.preferencesPremium),
+          createPreferencesMenu(context, const PremiumScreen(), Icons.diamond, Strings.preferencesPremium),
           createPreferencesMenu(context, null, Icons.file_download, Strings.preferencesRequestData),
           createPreferencesMenu(context, null, Icons.delete, Strings.preferencesDeleteAccount),
           createPreferencesMenu(context, null, Icons.help, Strings.preferencesHelp),
