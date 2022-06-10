@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:gatherthem_mobile_app/blocs/bloc_items.dart';
 import 'package:gatherthem_mobile_app/globals.dart';
 import 'package:gatherthem_mobile_app/models/collection_model.dart';
 import 'package:gatherthem_mobile_app/models/item_model.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
+import 'package:gatherthem_mobile_app/ui/custom_loading.dart';
 import 'package:gatherthem_mobile_app/ui/tiles/item_tile.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/navigation_scaffold_widget.dart';
 import 'package:gatherthem_mobile_app/utils.dart';
@@ -158,8 +160,10 @@ class CollectionScreen extends StatelessWidget {
               stream: blocItem.stream,
               builder: (context, snapshot) {
                 if (!snapshot.hasData) {
-                  return Container(); //TODO loading
+                  CustomLoading.customLoadingStyleAndShow(context: context);
+                  return Container();
                 }
+                CustomLoading.dismiss();
                 return ListView(
                   shrinkWrap: true,
                   physics: const BouncingScrollPhysics(),
