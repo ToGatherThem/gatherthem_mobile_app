@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/ui/screens/home_screen.dart';
 import 'package:gatherthem_mobile_app/ui/screens/search_screen.dart';
 
@@ -31,6 +32,7 @@ class CustomNavigationBar extends StatelessWidget {
                     ModalRoute.withName('/'),
                   );
                 },
+                tooltip: Strings.home,
               ),
               const Spacer(),
               IconButton(
@@ -44,6 +46,7 @@ class CustomNavigationBar extends StatelessWidget {
                           ModalRoute.withName('/'),
                         );
                     },
+                    tooltip: Strings.search,
               ),
               const Spacer(),
             ],
