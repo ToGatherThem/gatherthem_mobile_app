@@ -76,6 +76,22 @@ class Strings{
   static const String editProfileLabel = "Modifier le profil";
   static const String yourCollectionsLabel = "Vos collections";
 
+  // Loading
+  static const String loadingLabel = "Veuillez patienter...";
+  static const String loadingSuccess = "Terminé";
+
+  // Preferences screen
+  static const String preferences = "Préférences";
+  static const String preferencesAppearance = "Apparence";
+  static const String preferencesPremium = "Gérer le premium";
+  static const String preferencesRequestData = "Demander des données";
+  static const String preferencesDeleteAccount = "Supprimer le compte";
+  static const String preferencesHelp = "Aide";
+  static const String theme = "Thème";
+  static const String themeSystem = "Système";
+  static const String themeLight = "Clair";
+  static const String themeDark = "Sombre";
+
   // Templates strings
   static const String books = "Livres";
   static const String booksTemplateName = "Livre";
