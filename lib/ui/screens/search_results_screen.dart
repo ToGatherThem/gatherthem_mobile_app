@@ -26,6 +26,7 @@ class SearchResultsScreen extends StatelessWidget {
           labelStyle: Styles.getTextStyle(context, weight: FontWeight.bold),
           unselectedLabelStyle: Styles.getTextStyle(context),
           tabs: const [
+            /*Chaque tab correspond à un onglet, à une catégorie de la recherche*/
             Tab(
               text: Strings.searchResultsCollections,
               icon: Icon(Icons.collections),

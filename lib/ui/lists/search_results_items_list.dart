@@ -13,6 +13,7 @@ class SearchResultsItemsList extends StatelessWidget {
     BlocPublicItems items = BlocPublicItems();
     items.fetchItems(context);
     return StreamBuilder<List<ItemModel>>(
+
         stream: items.stream,
         builder: (context, snapshotCollections) {
           if (snapshotCollections.hasData) {

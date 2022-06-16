@@ -18,6 +18,7 @@ class ItemTile extends StatelessWidget {
   final CollectionModel collection;
   final BlocBool isEditionBloc = BlocBool(initValue: false);
 
+  /*classe chargée de l'affichage des items, séparé du screen par soucis de clarté*/
   ItemTile({Key? key,
     required this.item,
     required this.blocItem,

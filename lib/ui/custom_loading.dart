@@ -3,6 +3,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class CustomLoading {
   static customLoadingStyleAndShow(
+      /*alerte affichée lors des temps de chargement*/
       {required BuildContext context,
         String? status,
       Color? progressColor,
