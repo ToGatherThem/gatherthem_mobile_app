@@ -22,6 +22,11 @@ class BlocProfile extends Bloc{
   setProfile(ProfileModel profileModel) async {
     sink.add(profileModel);
   }
+
+  buyPremium(BuildContext context) async{
+    var resultRequest = await UserService().buyPremium(context);
+    setProfile(resultRequest);
+  }
   @override
   void dispose() {
     _streamController.close();

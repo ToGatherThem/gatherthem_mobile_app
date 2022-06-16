@@ -119,4 +119,18 @@ class Strings{
   static const String collectionDoesntExist = "La collection n'existe pas";
   static const String itemDoesntExist = "L'objet n'existe pas";
   static const String unexpectedError = "Une erreur inattendu est survenue, veuillez réessayer plus tard";
+
+
+  //Premium strings
+  static const String premiumTitle = "Premium";
+  static const String premiumBody = "En prennant l'abonnement premium vous pouvez beneficier des avantages suivants:\n\n"
+      "- Un nombre illimité de collections\n"
+      "- Un nombre illimité d'objets par collection\n"
+      "- La possibilité d'être mis en relation avec d'autres collectionneurs\n"
+      "- Fonctionnalité de message privé entre utilisateurs\n"
+      "- Pas de publicité";
+
+  static const String premiumButton = "Profitez-en !";
+  static const String alreadyGotPremium = "Merci d'avoir pris notre abonnement premium! Vous pouvez désomais profiter de tous les avantages!";
+
 }
