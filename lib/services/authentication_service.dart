@@ -18,7 +18,7 @@ class AuthenticationService extends Service {
         })
         .then((value) {
           if (value != null) {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+            Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const HomeScreen()), ModalRoute.withName('/'));
           }
         });
   }
