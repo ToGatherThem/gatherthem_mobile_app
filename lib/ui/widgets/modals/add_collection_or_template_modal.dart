@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/ui/screens/add_collection_screen.dart';
+import 'package:gatherthem_mobile_app/ui/screens/add_template_screen.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -30,7 +31,11 @@ class AddCollectionOrTemplateModal {
                 leading: const Icon(Icons.wysiwyg_rounded),
                 title: const Text(Strings.createTemplateLabel),
                 onTap: () {
-                  // todo
+                  Navigator.pop(context);
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const AddTemplateScreen())
+                  );
                 },
               ),
             ]

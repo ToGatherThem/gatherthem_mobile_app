@@ -80,7 +80,7 @@ class Strings{
   static const String editProfileLabel = "Modifier le profil";
   static const String yourCollectionsLabel = "Vos collections";
   static const String addCollectionLabel = "Ajouter une collection";
-  static const String createTemplateLabel = "Créer un template";
+  static const String createTemplateLabel = "Ajouter un template";
 
   // Loading
   static const String loadingLabel = "Veuillez patienter...";
@@ -121,4 +121,9 @@ class Strings{
   static const String collectionDoesntExist = "La collection n'existe pas";
   static const String itemDoesntExist = "L'objet n'existe pas";
   static const String unexpectedError = "Une erreur inattendu est survenue, veuillez réessayer plus tard";
+
+  // Create Template
+  static const String createTemplateInputName = "Nom du template";
+  static const String createTemplateInputTemplateParent = "Template parent";
+  static const String itemLabelNameRequired = "Intitulé des items manquant";
 }
