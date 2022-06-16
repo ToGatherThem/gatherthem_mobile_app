@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/blocs/bloc_profile.dart';
 import 'package:gatherthem_mobile_app/globals.dart';
 import 'package:gatherthem_mobile_app/models/profile_model.dart';
+import 'package:gatherthem_mobile_app/theme/custom_colors.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/theme/styles.dart';
 import 'package:gatherthem_mobile_app/ui/custom_loading.dart';
@@ -16,9 +17,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    blocProfile = BlocProfile();
     blocProfile.fetchProfile(context);
-
     return NavigationScaffoldWidget(
         body: DefaultTabController(
           length: 2,
@@ -37,7 +36,31 @@ class HomeScreen extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              const Icon(Icons.account_circle_rounded, size: 90),
+                              StreamBuilder<ProfileModel>(
+                                  stream: blocProfile.stream,
+                                  builder: (context, snapshotProfile) {
+                                    if(!snapshotProfile.hasData) {
+                                      CustomLoading.customLoadingStyleAndShow(context: context);
+                                      return Container();
+                                    }
+                                    CustomLoading.dismiss();
+                                    ProfileModel profile = snapshotProfile.data!;
+                                    bool isPremium = profile.authorities.where((element) => element.code == "PREMIUM").isNotEmpty;
+                                    Color color = isPremium ? CustomColors.premiumGreen : Colors.transparent;
+                                    return Container(
+                                        width: 96,
+                                        height: 96,
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(100),
+                                            border: Border.all(
+                                                color: color,
+                                                width: 3
+                                            )
+                                        ),
+                                        child: const Icon(Icons.account_circle_rounded, size: 90)
+                                    );
+                                }
+                              ),
                               Expanded(
                                 child: StreamBuilder<ProfileModel>(
                                   stream: blocProfile.stream,

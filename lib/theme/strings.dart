@@ -123,14 +123,16 @@ class Strings{
 
   //Premium strings
   static const String premiumTitle = "Premium";
-  static const String premiumBody = "En prennant l'abonnement premium vous pouvez beneficier des avantages suivants:\n\n"
-      "- Un nombre illimité de collections\n"
-      "- Un nombre illimité d'objets par collection\n"
-      "- La possibilité d'être mis en relation avec d'autres collectionneurs\n"
-      "- Fonctionnalité de message privé entre utilisateurs\n"
-      "- Pas de publicité";
+  static const String premiumBody = "En prennant l'abonnement premium vous pouvez beneficier des avantages suivants:";
+  static const String unlimitedColls = "Un nombre illimité de collections (au lieu de 2)";
+  static const String unlimitedItems = "Un nombre illimité d'objets par collection (au lieu de 50)";
+  static const String noPub = "Pas de publicité";
+  static const String chatFeature = "Fonctionnalité de message privé entre utilisateurs";
+  static const String exchangeFeature = "La possibilité d'être mis en relation avec d'autres collectionneurs";
 
   static const String premiumButton = "Profitez-en !";
-  static const String alreadyGotPremium = "Merci d'avoir pris notre abonnement premium! Vous pouvez désomais profiter de tous les avantages!";
+  static const String alreadyGotPremium = "Merci d'avoir pris notre abonnement premium!\nVous pouvez désomais profiter de tous les avantages!";
+  static const String validUntil = "Votre premium est valide jusqu'au ";
+  static const String loginToContinue = "Pour continuer, veuillez entrez votre mot de passe:";
 
 }

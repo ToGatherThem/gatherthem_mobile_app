@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:gatherthem_mobile_app/blocs/bloc_profile.dart';
 import 'package:gatherthem_mobile_app/globals.dart';
 import 'package:gatherthem_mobile_app/theme/app_theme_data.dart';
 import 'package:gatherthem_mobile_app/ui/screens/login_screen.dart';
@@ -24,6 +25,9 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown
     ]);
+
+
+    blocProfile = BlocProfile();
     AdaptiveThemeMode themeMode = AdaptiveThemeMode.system;
     switch (sharedPreferences.getInt("theme_mode") ?? 0) {
       case 0:
