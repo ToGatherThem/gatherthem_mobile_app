@@ -79,6 +79,8 @@ class Strings{
   static const String itemsLabel = "Objets";
   static const String editProfileLabel = "Modifier le profil";
   static const String yourCollectionsLabel = "Vos collections";
+  static const String addCollectionLabel = "Ajouter une collection";
+  static const String createTemplateLabel = "Créer un template";
 
   // Loading
   static const String loadingLabel = "Veuillez patienter...";
