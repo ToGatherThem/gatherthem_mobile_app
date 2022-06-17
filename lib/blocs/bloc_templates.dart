@@ -20,6 +20,10 @@ class BlocTemplates extends Bloc {
     sink.add(templates);
   }
 
+  List<TemplateModel> getTemplates() {
+    return _streamController.value;
+  }
+
   @override
   dispose() {
     _streamController.close();

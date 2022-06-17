@@ -126,8 +126,17 @@ class Strings{
   // Create Template
   static const String createTemplateInputName = "Nom du template";
   static const String createTemplateInputTemplateParent = "Template parent";
+  static const String createTemplateInputItemLabelName = "Libéllé des items (Titre, Nom, etc.)";
   static const String itemLabelNameRequired = "Intitulé des items manquant";
+  static const String parentProperties = "Propriétés du parent :";
 
   static const String publicLabel = "Publique";
   static const String privateLabel = "Privée";
+
+  static const String propertyTypeText = "Texte";
+  static const String propertyTypeDate = "Date";
+  static const String propertyTypeLongText = "Texte long";
+  static const String propertyTypeInteger = "Nombre";
+  static const String propertyTypeDuration = "Durée";
+  static const String propertyTypeUnknown= "Inconnue";
 }

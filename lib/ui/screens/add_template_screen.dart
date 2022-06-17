@@ -16,6 +16,7 @@ import 'package:gatherthem_mobile_app/ui/widgets/dialogs/error_dialog.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/inputs/autocomplete_input.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/inputs/text_input.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/modals/select_image_modal.dart';
+import 'package:gatherthem_mobile_app/utils.dart';
 
 class AddTemplateScreen extends StatefulWidget {
   final String? templateFullName;
@@ -30,7 +31,6 @@ class _AddTemplateScreenState extends State<AddTemplateScreen> {
 
   @override
   Widget build(BuildContext context) {
-    BlocTemplates blocTemplates = BlocTemplates();
     blocTemplates.fetchTemplates(context);
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
@@ -40,6 +40,7 @@ class _AddTemplateScreenState extends State<AddTemplateScreen> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 50),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(Strings.createTemplateLabel,
                     style: Styles.getTitleStyle(context)
@@ -126,6 +127,9 @@ class _AddTemplateScreenState extends State<AddTemplateScreen> {
                         },
                         onSelected: (TemplateModel selected) {
                           templateInfosModel.parentId = selected.id;
+                          setState(() {
+
+                          });
                         },
                       );
                     } else {
@@ -135,12 +139,24 @@ class _AddTemplateScreenState extends State<AddTemplateScreen> {
                 ),
                 const SizedBox(height: 30),
                 TextInput(
-                  label: "Libéllé des items (Titre, Nom, etc.)",
+                  label: Strings.createTemplateInputItemLabelName,
                   onChanged: (String value) {
                     templateInfosModel.itemLabelName = value;
                   },
                   initialValue: templateInfosModel.itemLabelName,
                   maxLength: 20,
+                ),
+                const SizedBox(height: 10),
+                if(templateInfosModel.parentId.isNotEmpty) const Padding(
+                  padding: EdgeInsets.only(bottom: 8.0),
+                  child: Text(Strings.parentProperties, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                ),
+                if(templateInfosModel.parentId.isNotEmpty) for(var property in blocTemplates.getTemplates().where((element) => element.id == templateInfosModel.parentId).first.allProperties) Row(
+                  children: [
+                    Text(property.name),
+                    const Spacer(),
+                    Text(Utils.propertyTypeToHumanText(property.type)),
+                  ]
                 ),
                 const SizedBox(height: 30),
                 Row(

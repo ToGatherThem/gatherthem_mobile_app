@@ -36,4 +36,21 @@ class Utils {
         }
     );
   }
+
+  static String propertyTypeToHumanText(String propertyType) {
+    switch (propertyType) {
+      case 'TEXT':
+        return Strings.propertyTypeText;
+      case 'LONGTEXT':
+        return Strings.propertyTypeLongText;
+      case 'DATE':
+        return Strings.propertyTypeDate;
+      case 'INTEGER':
+        return Strings.propertyTypeInteger;
+      case 'DURATION':
+        return Strings.propertyTypeDuration;
+      default:
+        return Strings.propertyTypeUnknown;
+    }
+  }
 }
