@@ -4,6 +4,7 @@ import 'package:gatherthem_mobile_app/theme/strings.dart';
 
 class CustomLoading {
   static customLoadingStyleAndShow(
+      /*alerte affichée lors des temps de chargement*/
       {required BuildContext context,
         String? status,
       Color? progressColor,

@@ -34,7 +34,7 @@ class SearchScreen extends StatelessWidget {
                   cursorColor: Theme.of(context).primaryColor,
                   decoration: InputDecoration(
                     prefixIcon: Icon(Icons.search, color: Theme.of(context).primaryColor),
-                    suffixIcon: IconButton(
+                       suffixIcon: IconButton(
                       icon: Icon(Icons.close, color: Theme.of(context).primaryColor),
                       splashRadius: 20,
                       tooltip: Strings.searchClear,
