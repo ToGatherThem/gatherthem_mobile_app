@@ -63,12 +63,7 @@ class PremiumScreen extends StatelessWidget{
                       text : Strings.premiumButton,
                       onPressed: () async {
                         if(password != ""){
-                          AuthenticationService().login(
-                              context,
-                              snapshotProfile.data!.username,
-                              password
-                          );
-                          await blocProfile.buyPremium(context);
+                          blocProfile.buyPremium(context, snapshotProfile.data!.username, password);
                         }
                       },
                     ),
