@@ -5,6 +5,7 @@ import 'dart:core';
 import 'package:gatherthem_mobile_app/blocs/bloc_templates.dart';
 import 'package:gatherthem_mobile_app/globals.dart';
 import 'package:gatherthem_mobile_app/models/collection_infos_model.dart';
+import 'package:gatherthem_mobile_app/models/property_creation_model.dart';
 import 'package:gatherthem_mobile_app/models/template_infos_model.dart';
 import 'package:gatherthem_mobile_app/models/template_model.dart';
 import 'package:gatherthem_mobile_app/services/collection_service.dart';
@@ -28,6 +29,7 @@ class AddTemplateScreen extends StatefulWidget {
 
 class _AddTemplateScreenState extends State<AddTemplateScreen> {
   final TemplateInfosModel templateInfosModel = TemplateInfosModel();
+  PropertyCreationModel propertyCreationModel = PropertyCreationModel();
 
   @override
   Widget build(BuildContext context) {
@@ -119,6 +121,13 @@ class _AddTemplateScreenState extends State<AddTemplateScreen> {
                             FocusNode focusNode,
                             VoidCallback onFieldSubmitted
                             ) {
+                          controller.addListener(() {
+                            if(blocTemplates.getTemplates().where((element) => element.fullName == controller.text).isEmpty) {
+                              setState(() {
+                                templateInfosModel.parentId = "";
+                              });
+                            }
+                          });
                           return AutoCompleteInput(
                             focusNode: focusNode,
                             controller: controller,
@@ -147,16 +156,100 @@ class _AddTemplateScreenState extends State<AddTemplateScreen> {
                   maxLength: 20,
                 ),
                 const SizedBox(height: 10),
-                if(templateInfosModel.parentId.isNotEmpty) const Padding(
-                  padding: EdgeInsets.only(bottom: 8.0),
-                  child: Text(Strings.parentProperties, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                const Text("Ajouter une propriété", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                TextInput(
+                    label: "Nom",
+                    onChanged: (String value) {
+                      setState(() {
+                        propertyCreationModel.name = value;
+                      });
+                    }
                 ),
-                if(templateInfosModel.parentId.isNotEmpty) for(var property in blocTemplates.getTemplates().where((element) => element.id == templateInfosModel.parentId).first.allProperties) Row(
-                  children: [
-                    Text(property.name),
-                    const Spacer(),
-                    Text(Utils.propertyTypeToHumanText(property.type)),
-                  ]
+                Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      DropdownButton<String>(
+                        value: (propertyCreationModel.type.isNotEmpty) ? propertyCreationModel.type : "TEXT",
+                        onChanged: (value) {
+                          setState(() {
+                            propertyCreationModel.type = value!;
+                          });
+                        },
+                        items: const [
+                          DropdownMenuItem<String>(
+                            value: "TEXT",
+                            child: Text("Texte"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "LONGTEXT",
+                            child: Text("Texte long"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "INTEGER",
+                            child: Text("Nombre"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "DATE",
+                            child: Text("Date"),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: "DURATION",
+                            child: Text("Durée"),
+                          ),
+                        ],
+                      ),
+                      const Spacer(),
+                      ActionButton(
+                        onPressed: () {
+                          setState(() {
+                            if(propertyCreationModel.name.isNotEmpty && propertyCreationModel.type.isNotEmpty) {
+                              PropertyCreationModel property = PropertyCreationModel();
+                              property.name = propertyCreationModel.name;
+                              property.type = propertyCreationModel.type;
+                              templateInfosModel.properties.add(property);
+                            }
+                          });
+                        },
+                        width: 25,
+                        icon: Icons.add,
+                        backgroundColor: (propertyCreationModel.name.isNotEmpty && propertyCreationModel.type.isNotEmpty) ? Theme.of(context).highlightColor : Colors.grey,
+                        color: (propertyCreationModel.name.isNotEmpty && propertyCreationModel.type.isNotEmpty) ? Colors.white : Colors.grey[400],
+                      )
+                    ]
+                ),
+                const SizedBox(height: 20),
+                const Text(Strings.properties, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                const SizedBox(height: 10),
+                for(var property in templateInfosModel.properties) Padding(
+                  padding: const EdgeInsets.only(bottom: 5),
+                  child: Row(
+                      children: [
+                        Text(property.name),
+                        const Spacer(),
+                        Text(Utils.propertyTypeToHumanText(property.type)),
+                        const SizedBox(width: 10),
+                        InkWell(
+                          child: const Icon(Icons.highlight_remove_rounded, color: Colors.red, size: 20),
+                          onTap: () {
+                            setState(() {
+                              templateInfosModel.properties.remove(property);
+                            });
+                          },
+                        ),
+                      ]
+                  ),
+                ),
+                const SizedBox(height: 20),
+                if(templateInfosModel.parentId.isNotEmpty) for(var property in blocTemplates.getTemplates().where((element) => element.id == templateInfosModel.parentId).first.allProperties) Padding(
+                  padding: const EdgeInsets.only(bottom: 12),
+                  child: Row(
+                    children: [
+                      Text(property.name),
+                      const Spacer(),
+                      Text(Utils.propertyTypeToHumanText(property.type)),
+                      const SizedBox(width: 30),
+                    ]
+                  ),
                 ),
                 const SizedBox(height: 30),
                 Row(
@@ -208,6 +301,7 @@ class _AddTemplateScreenState extends State<AddTemplateScreen> {
 
     TemplateService().addTemplate(templateInfosModel, context).then((value) {
       Navigator.pop(context);
+      blocTemplates.fetchTemplates(context);
     });
   }
 }

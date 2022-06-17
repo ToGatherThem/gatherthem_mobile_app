@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class ActionButton extends StatelessWidget {
   final void Function() onPressed;
-  final String text;
+  final String? text;
   final Color? backgroundColor;
   final Color? color;
   final IconData? icon;
@@ -12,7 +12,7 @@ class ActionButton extends StatelessWidget {
   final double? width;
 
 
-  const ActionButton({Key? key, required this.onPressed, required this.text, this.backgroundColor,
+  const ActionButton({Key? key, required this.onPressed, this.text, this.backgroundColor,
       this.color, this.icon, this.iconSize, this.textSize, this.height, this.width}) : super(key: key);
 
   @override
@@ -26,8 +26,8 @@ class ActionButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             if (icon != null) Icon(icon, color: color ?? Theme.of(context).primaryColor, size: iconSize),
-            if (icon != null) const SizedBox(width: 10),
-            Text(text, style: TextStyle(color: color ?? Theme.of(context).primaryColor, fontSize: textSize ?? 18)),
+            if (icon != null && text != null) const SizedBox(width: 10),
+            if (text != null) Text(text!, style: TextStyle(color: color ?? Theme.of(context).primaryColor, fontSize: textSize ?? 18)),
           ],
         ),
       ),

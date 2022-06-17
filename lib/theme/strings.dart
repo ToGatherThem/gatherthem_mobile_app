@@ -126,9 +126,10 @@ class Strings{
   // Create Template
   static const String createTemplateInputName = "Nom du template";
   static const String createTemplateInputTemplateParent = "Template parent";
-  static const String createTemplateInputItemLabelName = "Libéllé des items (Titre, Nom, etc.)";
+  static const String createTemplateInputItemLabelName = "Libéllé des objets (Titre, Nom, etc.)";
   static const String itemLabelNameRequired = "Intitulé des items manquant";
   static const String parentProperties = "Propriétés du parent :";
+  static const String properties = "Propriétés";
 
   static const String publicLabel = "Publique";
   static const String privateLabel = "Privée";
