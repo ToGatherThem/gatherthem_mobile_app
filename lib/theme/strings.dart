@@ -4,6 +4,7 @@ class Strings{
   static const String home = "Home";
   static const String search = "Search";
   static const String createColl = "Ajouter une collection";
+  static const String templates = "Templates";
   static const String createCollItem = "Ajouter un objet dans cette collection";
   static const String labelName = "Nom";
   static const String labelDesc = "Description";
@@ -126,4 +127,7 @@ class Strings{
   static const String createTemplateInputName = "Nom du template";
   static const String createTemplateInputTemplateParent = "Template parent";
   static const String itemLabelNameRequired = "Intitulé des items manquant";
+
+  static const String publicLabel = "Publique";
+  static const String privateLabel = "Privée";
 }
