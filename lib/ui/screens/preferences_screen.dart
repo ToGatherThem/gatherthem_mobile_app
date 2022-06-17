@@ -1,6 +1,7 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/globals.dart';
+import 'package:gatherthem_mobile_app/services/authentication_service.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/theme/styles.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/navigation_scaffold_widget.dart';
@@ -66,17 +67,17 @@ class PreferencesScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 20),
             child: Divider(color: Theme.of(context).primaryColor),
           ),
-          createPreferencesMenu(context, null, Icons.diamond, Strings.preferencesPremium),
-          createPreferencesMenu(context, null, Icons.file_download, Strings.preferencesRequestData),
-          createPreferencesMenu(context, null, Icons.delete, Strings.preferencesDeleteAccount),
-          createPreferencesMenu(context, null, Icons.help, Strings.preferencesHelp),
-          createPreferencesMenu(context, null, Icons.logout, Strings.preferencesLogout),
+          createPreferencesMenu(context, Icons.diamond, Strings.preferencesPremium, null),
+          createPreferencesMenu(context, Icons.file_download, Strings.preferencesRequestData, null),
+          createPreferencesMenu(context, Icons.delete, Strings.preferencesDeleteAccount, null),
+          createPreferencesMenu(context, Icons.help, Strings.preferencesHelp, null),
+          createPreferencesMenu(context, Icons.logout, Strings.preferencesLogout, () => AuthenticationService().logout(context)),
         ],
       ),
     );
   }
 
-  Widget createPreferencesMenu(BuildContext context, Widget? targetScreen, IconData icon, String text) {
+  Widget createPreferencesMenu(BuildContext context, IconData icon, String text, dynamic onTap) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 20),
       child: Container(
@@ -88,9 +89,12 @@ class PreferencesScreen extends StatelessWidget {
         child: InkWell(
           borderRadius: BorderRadius.circular(10),
           onTap: () {
-            if (targetScreen != null) {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => targetScreen));
+            if (onTap != null) {
+              onTap();
             }
+            // if (targetScreen != null) {
+            //   Navigator.push(context, MaterialPageRoute(builder: (context) => targetScreen));
+            // }
           },
           child: Padding(
             padding: const EdgeInsets.all(20),
