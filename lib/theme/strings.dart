@@ -143,7 +143,7 @@ class Strings{
   static const String exchangeFeature = "La possibilité d'être mis en relation avec d'autres collectionneurs";
 
   static const String premiumButton = "Profitez-en !";
-  static const String alreadyGotPremium = "Merci d'avoir pris notre abonnement premium!\nVous pouvez désomais profiter de tous les avantages!";
+  static const String alreadyGotPremium = "Merci d'avoir pris notre abonnement premium!\nVous pouvez désormais profiter de tous les avantages!";
   static const String validUntil = "Votre premium est valide jusqu'au ";
   static const String loginToContinue = "Pour continuer, veuillez entrez votre mot de passe:";
 
