@@ -13,8 +13,11 @@ String apiHost = "http://localhost:8080";
 ///Bloc for collection list
 BlocCollection blocCollection = BlocCollection();
 
+///Bloc to manage the collection items
 late BlocItems blocItems;
 
+///Variable to store information in the device storage
 late SharedPreferences sharedPreferences;
 
+///Bloc to manage information about the user
 late BlocProfile blocProfile;

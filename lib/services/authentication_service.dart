@@ -6,6 +6,8 @@ import 'package:gatherthem_mobile_app/ui/screens/home_screen.dart';
 import 'package:gatherthem_mobile_app/ui/screens/login_screen.dart';
 import 'package:gatherthem_mobile_app/utils.dart';
 
+
+/// Specialized service for authentication
 class AuthenticationService extends Service {
 
   login(BuildContext context, String username, String password) {

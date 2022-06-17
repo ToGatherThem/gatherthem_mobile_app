@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/models/item_property_model.dart';
 import 'package:gatherthem_mobile_app/utils.dart';
 
+/// Class that represents a property of an item, usually used in a list of properties
 class ItemPropertyTile extends StatelessWidget{
 
   final ItemPropertyModel itemProperty;

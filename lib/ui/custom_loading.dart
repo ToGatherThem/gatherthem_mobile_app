@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
 
+
+/// Class to manage the loading dialog of the app
 class CustomLoading {
+
+  /// Used to display a loading dialog
   static customLoadingStyleAndShow(
-      /*alerte affichée lors des temps de chargement*/
       {required BuildContext context,
         String? status,
       Color? progressColor,
@@ -40,6 +43,7 @@ class CustomLoading {
     EasyLoading.show(status: statusVal);
   }
 
+  /// Used to dismiss the loading dialog
   static dismiss() {
     EasyLoading.dismiss();
   }

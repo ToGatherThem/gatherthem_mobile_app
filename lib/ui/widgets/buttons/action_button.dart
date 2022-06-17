@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Classic button for the app to help having the same style across the app
 class ActionButton extends StatelessWidget {
   final void Function() onPressed;
   final String text;

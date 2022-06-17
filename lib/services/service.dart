@@ -8,6 +8,7 @@ import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/ui/screens/login_screen.dart';
 import 'package:gatherthem_mobile_app/utils.dart';
 
+/// abstract class for all services, implements basic request methods
 abstract class Service{
   late Dio dio;
   late Options options;

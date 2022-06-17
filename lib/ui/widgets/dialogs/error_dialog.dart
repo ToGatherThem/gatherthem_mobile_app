@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
 
+/// Custom dialog used to display an error message
 class ErrorDialog extends StatelessWidget {
   final String message;
   const ErrorDialog({Key? key, required this.message}) : super(key: key);

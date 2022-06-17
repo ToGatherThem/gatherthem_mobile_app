@@ -26,9 +26,10 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitDown
     ]);
 
-
+    /// Initialisation of the bloc profile
     blocProfile = BlocProfile();
     AdaptiveThemeMode themeMode = AdaptiveThemeMode.system;
+    /// Switch to load user preference for app theme
     switch (sharedPreferences.getInt("theme_mode") ?? 0) {
       case 0:
         themeMode = AdaptiveThemeMode.system;

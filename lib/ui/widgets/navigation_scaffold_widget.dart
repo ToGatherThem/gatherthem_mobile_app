@@ -5,6 +5,8 @@ import 'package:gatherthem_mobile_app/ui/screens/add_item_screen.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/app_brand.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/custom_navigation_bar.dart';
 
+
+/// Class used as the skeleton of our pages, it contains the basic scaffold, navigation bar and bottom bar and also the floating action button
 class NavigationScaffoldWidget extends StatelessWidget {
   final Widget body;
   final bool leading;

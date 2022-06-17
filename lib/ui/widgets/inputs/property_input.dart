@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/models/property_model.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/inputs/text_input.dart';
-
 import 'date_input.dart';
 import 'number_input.dart';
 
+/// Input for an item property, return a different widget depending on the property type
 class PropertyInput extends StatelessWidget{
   final PropertyModel property;
   final String? defaultValue;

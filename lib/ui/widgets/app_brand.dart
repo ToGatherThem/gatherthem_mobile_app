@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
-import 'package:gatherthem_mobile_app/ui/screens/preferences_screen.dart';
 
 class AppBrand extends StatelessWidget{
   final Widget? trailingWidget;

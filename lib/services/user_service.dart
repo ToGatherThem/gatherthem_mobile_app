@@ -7,7 +7,9 @@ import 'package:gatherthem_mobile_app/models/profile_model.dart';
 import 'package:gatherthem_mobile_app/models/user_update_model.dart';
 import 'package:gatherthem_mobile_app/services/service.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
+import 'package:gatherthem_mobile_app/ui/widgets/toast_body.dart';
 
+/// Specific service for requests to the user API
 class UserService extends Service {
 
   Future<ProfileModel?> getProfile(BuildContext context) async{
@@ -29,13 +31,13 @@ class UserService extends Service {
           FToast fToast = FToast();
           fToast.init(context);
           fToast.showToast(
-            child: const Text(Strings.error401UserUpdate),
+            child: const ToastBody(text: Strings.error401UserUpdate),
           );
         } else if (e.response != null && e.response.statusCode == 404) {
           FToast fToast = FToast();
           fToast.init(context);
           fToast.showToast(
-            child: const Text(Strings.userDoesntExist),
+            child: const ToastBody(text: Strings.userDoesntExist),
           );
         }
       }
