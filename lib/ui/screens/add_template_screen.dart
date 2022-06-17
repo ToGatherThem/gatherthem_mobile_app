@@ -139,6 +139,7 @@ class _AddTemplateScreenState extends State<AddTemplateScreen> {
                   onChanged: (String value) {
                     templateInfosModel.itemLabelName = value;
                   },
+                  initialValue: templateInfosModel.itemLabelName,
                   maxLength: 20,
                 ),
                 const SizedBox(height: 30),
