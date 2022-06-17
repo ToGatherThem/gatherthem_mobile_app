@@ -37,34 +37,33 @@ class HomeScreen extends StatelessWidget {
                   handle:
                       NestedScrollView.sliverOverlapAbsorberHandleFor(context),
                   sliver: SliverToBoxAdapter(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 20, horizontal: 20),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    child: StreamBuilder<ProfileModel>(
+                        stream: blocProfile.stream,
+                        builder: (context, snapshotProfile) {
+                          if (!snapshotProfile.hasData) {
+                            CustomLoading.customLoadingStyleAndShow(
+                                context: context);
+                            return Container();
+                          }
+                          CustomLoading.dismiss();
+                          ProfileModel profile = snapshotProfile.data!;
+                          bool isPremium = profile.authorities
+                              .where((element) => element.code == "PREMIUM")
+                              .isNotEmpty;
+                          Color color = isPremium
+                              ? CustomColors.premiumGreen
+                              : Colors.transparent;
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              StreamBuilder<ProfileModel>(
-                                  stream: blocProfile.stream,
-                                  builder: (context, snapshotProfile) {
-                                    if (!snapshotProfile.hasData) {
-                                      CustomLoading.customLoadingStyleAndShow(
-                                          context: context);
-                                      return Container();
-                                    }
-                                    CustomLoading.dismiss();
-                                    ProfileModel profile =
-                                        snapshotProfile.data!;
-                                    bool isPremium = profile.authorities
-                                        .where((element) =>
-                                            element.code == "PREMIUM")
-                                        .isNotEmpty;
-                                    Color color = isPremium
-                                        ? CustomColors.premiumGreen
-                                        : Colors.transparent;
-                                    return Container(
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 20, horizontal: 20),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Container(
                                         width: 96,
                                         height: 96,
                                         decoration: BoxDecoration(
@@ -74,21 +73,9 @@ class HomeScreen extends StatelessWidget {
                                                 color: color, width: 3)),
                                         child: const Icon(
                                             Icons.account_circle_rounded,
-                                            size: 90));
-                                  }),
-                              Expanded(
-                                child: StreamBuilder<ProfileModel>(
-                                    stream: blocProfile.stream,
-                                    builder: (context, snapshotProfile) {
-                                      if (!snapshotProfile.hasData) {
-                                        CustomLoading.customLoadingStyleAndShow(
-                                            context: context);
-                                        return Container();
-                                      }
-                                      CustomLoading.dismiss();
-                                      ProfileModel profile =
-                                          snapshotProfile.data!;
-                                      return Column(
+                                            size: 90)),
+                                    Expanded(
+                                      child: Column(
                                         children: [
                                           Text(
                                             profile.username,
@@ -144,24 +131,13 @@ class HomeScreen extends StatelessWidget {
                                             ],
                                           ),
                                         ],
-                                      );
-                                    }),
-                              )
-                            ],
-                          ),
-                        ),
-                        const Padding(padding: EdgeInsets.only(top: 10)),
-                        StreamBuilder<ProfileModel>(
-                            stream: blocProfile.stream,
-                            builder: (context, snapshotProfile) {
-                              if (!snapshotProfile.hasData) {
-                                CustomLoading.customLoadingStyleAndShow(
-                                    context: context);
-                                return Container();
-                              }
-                              CustomLoading.dismiss();
-                              ProfileModel profile = snapshotProfile.data!;
-                              return ActionButton(
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              const Padding(padding: EdgeInsets.only(top: 10)),
+                              ActionButton(
                                 text: Strings.editProfileLabel,
                                 onPressed: () {
                                   Navigator.push(
@@ -175,11 +151,11 @@ class HomeScreen extends StatelessWidget {
                                 backgroundColor:
                                     Theme.of(context).highlightColor,
                                 color: Theme.of(context).primaryColor,
-                              );
-                            }),
-                        const Padding(padding: EdgeInsets.only(top: 40))
-                      ],
-                    ),
+                              ),
+                              const Padding(padding: EdgeInsets.only(top: 40))
+                            ],
+                          );
+                        }),
                   ),
                 ),
                 SliverPersistentHeader(
