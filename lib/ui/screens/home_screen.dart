@@ -177,7 +177,7 @@ class HomeScreen extends StatelessWidget {
               IconButton(
                 // alignment: Alignment.centerRight,
                 icon:
-                    Icon(Icons.settings, color: Theme.of(context).primaryColor),
+                const Icon(Icons.settings, color: CustomColors.lightBackground),
                 splashRadius: 20,
                 tooltip: Strings.preferences,
                 onPressed: () {
