@@ -130,7 +130,7 @@ class Strings{
   static const String error401UserUpdate = "Le mot de passe actuel n'est pas correct";
   static const String unexpectedError = "Une erreur inattendu est survenue, veuillez réessayer plus tard";
   static const String limitForCollections = "Vous avez atteint la limite de collections gratuites";
-  static const String limitForItems = "Vous avez atteint la limite de nombre d'objet pour cette collection";
+  static const String limitForItems = "Vous avez atteint la limite de nombre d'objets pour cette collection";
 
 
   //Premium strings
