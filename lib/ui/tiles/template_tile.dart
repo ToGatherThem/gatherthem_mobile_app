@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/models/template_model.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/theme/styles.dart';
+import 'package:gatherthem_mobile_app/ui/screens/template_detail_screen.dart';
 
 class TemplateTile extends StatelessWidget{
   final TemplateModel template;
@@ -25,14 +26,14 @@ class TemplateTile extends StatelessWidget{
         child: InkWell(
           borderRadius: BorderRadius.circular(10),
           onTap: () {
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(builder: (context) =>
-            //       TemplateDetailScreen(
-            //           template: template,
-            //       )
-            //   ),
-            // );
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) =>
+                  TemplateDetailScreen(
+                      template: template,
+                  )
+              ),
+            );
           },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,

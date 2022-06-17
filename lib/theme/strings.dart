@@ -108,6 +108,11 @@ class Strings{
   static const String pinsTemplateName = "Pins";
   static const String other = "Autres";
   static const String addForTemplate = "Ajouter des ";
+  static const String templateVisibility = "Visibilité";
+  static const String templateParent = "Template parent";
+  static const String templateParentGo = "Voir le template parent";
+  static const String templateCreateCollection = "Créer une collection";
+  static const String templateCreateTemplate = "Créer un template";
 
   // Pictures modals
   static const String camera = "Appareil photo";
