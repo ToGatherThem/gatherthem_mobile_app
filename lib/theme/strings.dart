@@ -82,7 +82,7 @@ class Strings{
 
   // Profile
   static const String profileEdit = "Modifier le profil";
-  static const String passwordCurrent = "Mot de passe actuel";
+  static const String passwordCurrent = "Mot de passe actuel (obligatoire)";
   static const String passwordNew = "Nouveau mot de passe";
   static const String passwordNewConfirm = "Confirmer le nouveau mot de passe";
   static const String passwordCurrentRequired = "Le mot de passe actuel n'est pas renseigné";

@@ -63,6 +63,14 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             ),
             const SizedBox(height: 30),
             PasswordInput(
+                label: Strings.passwordCurrent,
+                icon: Icons.lock_rounded,
+                onChanged: (value) {
+                  userInfosModel.password = value;
+                }
+            ),
+            const SizedBox(height: 30),
+            PasswordInput(
               label: Strings.passwordNew,
               icon: Icons.password,
               onChanged: (value) {
@@ -75,14 +83,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 icon: Icons.password,
                 onChanged: (value) {
                   userInfosModel.newPasswordConfirm = value;
-                }
-            ),
-            const SizedBox(height: 30),
-            PasswordInput(
-                label: Strings.passwordCurrent,
-                icon: Icons.lock_rounded,
-                onChanged: (value) {
-                  userInfosModel.password = value;
                 }
             ),
             const SizedBox(height: 30),
