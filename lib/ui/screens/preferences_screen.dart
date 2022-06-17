@@ -4,6 +4,7 @@ import 'package:gatherthem_mobile_app/globals.dart';
 import 'package:gatherthem_mobile_app/services/authentication_service.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/theme/styles.dart';
+import 'package:gatherthem_mobile_app/ui/screens/premium_screen.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/navigation_scaffold_widget.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
@@ -67,7 +68,7 @@ class PreferencesScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 20),
             child: Divider(color: Theme.of(context).primaryColor),
           ),
-          createPreferencesMenu(context, Icons.diamond, Strings.preferencesPremium, null),
+          createPreferencesMenu(context, Icons.diamond, Strings.preferencesPremium, () => Navigator.push(context, MaterialPageRoute(builder: (context) => const PremiumScreen()))),
           createPreferencesMenu(context, Icons.file_download, Strings.preferencesRequestData, null),
           createPreferencesMenu(context, Icons.delete, Strings.preferencesDeleteAccount, null),
           createPreferencesMenu(context, Icons.help, Strings.preferencesHelp, null),
@@ -92,9 +93,6 @@ class PreferencesScreen extends StatelessWidget {
             if (onTap != null) {
               onTap();
             }
-            // if (targetScreen != null) {
-            //   Navigator.push(context, MaterialPageRoute(builder: (context) => targetScreen));
-            // }
           },
           child: Padding(
             padding: const EdgeInsets.all(20),

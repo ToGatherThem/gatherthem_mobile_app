@@ -94,7 +94,7 @@ class Strings{
 
   // Preferences screen
   static const String preferences = "Préférences";
-  static const String preferencesPremium = "Gérer le premium";
+  static const String preferencesPremium = "Premium";
   static const String preferencesRequestData = "Demander des données";
   static const String preferencesDeleteAccount = "Supprimer le compte";
   static const String preferencesHelp = "Aide";
@@ -129,4 +129,22 @@ class Strings{
   static const String userDoesntExist = "L'utilisateur n'existe pas";
   static const String error401UserUpdate = "Le mot de passe actuel n'est pas correct";
   static const String unexpectedError = "Une erreur inattendu est survenue, veuillez réessayer plus tard";
+  static const String limitForCollections = "Vous avez atteint la limite de collections gratuites";
+  static const String limitForItems = "Vous avez atteint la limite de nombre d'objets pour cette collection";
+
+
+  //Premium strings
+  static const String premiumTitle = "Premium";
+  static const String premiumBody = "En prenant l'abonnement premium vous pouvez bénéficier des avantages suivants :";
+  static const String unlimitedColls = "Un nombre illimité de collections (au lieu de 2)";
+  static const String unlimitedItems = "Un nombre illimité d'objets par collection (au lieu de 50)";
+  static const String noPub = "Pas de publicité";
+  static const String chatFeature = "Fonctionnalité de message privé entre utilisateurs";
+  static const String exchangeFeature = "La possibilité d'être mis en relation avec d'autres collectionneurs";
+
+  static const String premiumButton = "Profitez-en !";
+  static const String alreadyGotPremium = "Merci d'avoir pris notre abonnement premium!\nVous pouvez désormais profiter de tous les avantages!";
+  static const String validUntil = "Votre premium est valide jusqu'au ";
+  static const String loginToContinue = "Pour continuer, veuillez entrer votre mot de passe:";
+
 }

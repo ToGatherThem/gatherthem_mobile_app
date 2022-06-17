@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/blocs/bloc_profile.dart';
 import 'package:gatherthem_mobile_app/globals.dart';
 import 'package:gatherthem_mobile_app/models/profile_model.dart';
+import 'package:gatherthem_mobile_app/theme/custom_colors.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/theme/styles.dart';
 import 'package:gatherthem_mobile_app/ui/custom_loading.dart';
@@ -17,7 +18,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    blocProfile = BlocProfile();
     blocProfile.fetchProfile(context);
 
     return WillPopScope(
@@ -26,148 +26,179 @@ class HomeScreen extends StatelessWidget {
         return Future.value(true);
       },
       child: NavigationScaffoldWidget(
-          body: DefaultTabController(
-            length: 2,
-            child: NestedScrollView(
-              physics: const BouncingScrollPhysics(),
-              headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-                return [
-                  SliverOverlapAbsorber(
-                    handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
-                    sliver: SliverToBoxAdapter(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                const Icon(Icons.account_circle_rounded, size: 90),
-                                Expanded(
-                                  child: StreamBuilder<ProfileModel>(
-                                    stream: blocProfile.stream,
-                                    builder: (context, snapshotProfile) {
-                                      if(!snapshotProfile.hasData) {
-                                        CustomLoading.customLoadingStyleAndShow(context: context);
-                                        return Container();
-                                      }
-                                      CustomLoading.dismiss();
-                                      ProfileModel profile = snapshotProfile.data!;
-                                      return Column(
+        body: DefaultTabController(
+          length: 2,
+          child: NestedScrollView(
+            physics: const BouncingScrollPhysics(),
+            headerSliverBuilder:
+                (BuildContext context, bool innerBoxIsScrolled) {
+              return [
+                SliverOverlapAbsorber(
+                  handle:
+                      NestedScrollView.sliverOverlapAbsorberHandleFor(context),
+                  sliver: SliverToBoxAdapter(
+                    child: StreamBuilder<ProfileModel>(
+                        stream: blocProfile.stream,
+                        builder: (context, snapshotProfile) {
+                          if (!snapshotProfile.hasData) {
+                            CustomLoading.customLoadingStyleAndShow(
+                                context: context);
+                            return Container();
+                          }
+                          CustomLoading.dismiss();
+                          ProfileModel profile = snapshotProfile.data!;
+                          bool isPremium = profile.authorities
+                              .where((element) => element.code == "PREMIUM")
+                              .isNotEmpty;
+                          Color color = isPremium
+                              ? CustomColors.premiumGreen
+                              : Colors.transparent;
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 20, horizontal: 20),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Container(
+                                        width: 96,
+                                        height: 96,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(100),
+                                            border: Border.all(
+                                                color: color, width: 3)),
+                                        child: const Icon(
+                                            Icons.account_circle_rounded,
+                                            size: 90)),
+                                    Expanded(
+                                      child: Column(
                                         children: [
                                           Text(
                                             profile.username,
-                                            style: Styles.getPseudoStyle(context, weight: FontWeight.w600),
+                                            style: Styles.getPseudoStyle(
+                                                context,
+                                                weight: FontWeight.w600),
                                           ),
-                                          const Padding(padding: EdgeInsets.only(bottom: 10)),
+                                          const Padding(
+                                              padding:
+                                                  EdgeInsets.only(bottom: 10)),
                                           Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
                                             children: [
                                               Column(
                                                 children: [
                                                   Text(
-                                                    profile.nbConnections.toString(),
-                                                    style: Styles.getFigureStyle(context, weight: FontWeight.w600),
+                                                    profile.nbConnections
+                                                        .toString(),
+                                                    style:
+                                                        Styles.getFigureStyle(
+                                                            context,
+                                                            weight: FontWeight
+                                                                .w600),
                                                   ),
                                                   Text(
                                                     Strings.collectionsLabel,
-                                                    style: Styles.getTextStyle(context),
+                                                    style: Styles.getTextStyle(
+                                                        context),
                                                   ),
                                                 ],
                                               ),
-                                              const Padding(padding: EdgeInsets.only(right: 10)),
+                                              const Padding(
+                                                  padding: EdgeInsets.only(
+                                                      right: 10)),
                                               Column(
                                                 children: [
                                                   Text(
                                                     profile.nbItems.toString(),
-                                                    style: Styles.getFigureStyle(context, weight: FontWeight.w600),
+                                                    style:
+                                                        Styles.getFigureStyle(
+                                                            context,
+                                                            weight: FontWeight
+                                                                .w600),
                                                   ),
                                                   Text(
                                                     Strings.itemsLabel,
-                                                    style: Styles.getTextStyle(context),
+                                                    style: Styles.getTextStyle(
+                                                        context),
                                                   ),
                                                 ],
                                               )
                                             ],
                                           ),
                                         ],
-                                      );
-                                    }
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                          const Padding(padding: EdgeInsets.only(top: 10)),
-                          StreamBuilder<ProfileModel>(
-                            stream: blocProfile.stream,
-                            builder: (context, snapshotProfile) {
-                              if(!snapshotProfile.hasData) {
-                                CustomLoading.customLoadingStyleAndShow(context: context);
-                                return Container();
-                              }
-                              CustomLoading.dismiss();
-                              ProfileModel profile = snapshotProfile.data!;
-                              return ActionButton(
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              const Padding(padding: EdgeInsets.only(top: 10)),
+                              ActionButton(
                                 text: Strings.editProfileLabel,
                                 onPressed: () {
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => EditProfileScreen(profile: profile)));
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              EditProfileScreen(
+                                                  profile: profile)));
                                 },
                                 width: 180,
-                                backgroundColor: Theme.of(context).highlightColor,
+                                backgroundColor:
+                                    Theme.of(context).highlightColor,
                                 color: Theme.of(context).primaryColor,
-                              );
-                            }
-                          ),
-                          const Padding(padding: EdgeInsets.only(top: 40))
-                        ],
-                      ),
-                    ),
+                              ),
+                              const Padding(padding: EdgeInsets.only(top: 40))
+                            ],
+                          );
+                        }),
                   ),
-                  SliverPersistentHeader(
+                ),
+                SliverPersistentHeader(
                     floating: true,
                     pinned: true,
-                    delegate: CustomSliverDelegate()
-                  )
-                ];
-              },
-              body: const Padding(
-                padding: EdgeInsets.only(top: 30),
-                child: TabBarView(
-                    children: [
-                      CollectionsList(),
-                      TemplateList()
-                    ]
-                ),
+                    delegate: CustomSliverDelegate())
+              ];
+            },
+            body: const Padding(
+              padding: EdgeInsets.only(top: 30),
+              child: TabBarView(children: [CollectionsList(), TemplateList()]),
+            ),
+          ),
+        ),
+        trailingWidget: Expanded(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              IconButton(
+                // alignment: Alignment.centerRight,
+                icon:
+                    Icon(Icons.settings, color: Theme.of(context).primaryColor),
+                splashRadius: 20,
+                tooltip: Strings.preferences,
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const PreferencesScreen()));
+                },
               ),
-            ),
+            ],
           ),
-          trailingWidget: Expanded(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                IconButton(
-                  // alignment: Alignment.centerRight,
-                  icon: Icon(Icons.settings, color: Theme.of(context).primaryColor),
-                  splashRadius: 20,
-                  tooltip: Strings.preferences,
-                  onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const PreferencesScreen()));
-                  },
-                ),
-              ],
-            ),
-          ),
+        ),
       ),
     );
   }
 }
 
-
-class CustomSliverDelegate extends SliverPersistentHeaderDelegate{
+class CustomSliverDelegate extends SliverPersistentHeaderDelegate {
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
     Color indicatorColor = Theme.of(context).primaryColor;
     return Container(
       color: Theme.of(context).scaffoldBackgroundColor,
@@ -175,7 +206,8 @@ class CustomSliverDelegate extends SliverPersistentHeaderDelegate{
         children: [
           TabBar(
               indicator: BoxDecoration(
-                borderRadius: const BorderRadius.vertical(top: Radius.circular(10)),
+                borderRadius:
+                    const BorderRadius.vertical(top: Radius.circular(10)),
                 color: Theme.of(context).dividerColor,
               ),
               unselectedLabelColor: indicatorColor,
@@ -209,5 +241,4 @@ class CustomSliverDelegate extends SliverPersistentHeaderDelegate{
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
     return false;
   }
-
 }

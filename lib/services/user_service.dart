@@ -16,6 +16,12 @@ class UserService extends Service {
     return ProfileModel.fromJson(user);
   }
 
+  Future<ProfileModel> buyPremium(BuildContext context) async {
+    var url = apiHost + "/user/premium";
+    Map<String, dynamic> user = await json.decode(await put(url, {}, context));
+    return ProfileModel.fromJson(user);
+  }
+
   Future<dynamic> updateProfile(BuildContext context, UserUpdateModel userInfos) {
     return put(apiHost + "/user/update", userInfos.toJson(), context)
       .catchError((e) {
