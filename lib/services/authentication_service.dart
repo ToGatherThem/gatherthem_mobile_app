@@ -18,7 +18,17 @@ class AuthenticationService extends Service {
         })
         .then((value) {
           if (value != null) {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+            Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const HomeScreen()), ModalRoute.withName('/'));
+          }
+        });
+  }
+
+  logout(BuildContext context) {
+    String url = apiHost + "/user/logout";
+    get(url, context)
+        .then((value) {
+          if (value != null) {
+            Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const LoginScreen()), ModalRoute.withName('/'));
           }
         });
   }

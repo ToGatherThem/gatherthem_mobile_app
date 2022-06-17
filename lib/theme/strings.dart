@@ -80,6 +80,14 @@ class Strings{
   static const String editProfileLabel = "Modifier le profil";
   static const String yourCollectionsLabel = "Vos collections";
 
+  // Profile
+  static const String profileEdit = "Modifier le profil";
+  static const String passwordCurrent = "Mot de passe actuel (obligatoire)";
+  static const String passwordNew = "Nouveau mot de passe";
+  static const String passwordNewConfirm = "Confirmer le nouveau mot de passe";
+  static const String passwordCurrentRequired = "Le mot de passe actuel n'est pas renseigné";
+  static const String passwordNewConfirmRequired = "La confirmation du nouveau mot de passe n'est pas renseignée";
+
   // Loading
   static const String loadingLabel = "Veuillez patienter...";
   static const String loadingSuccess = "Terminé";
@@ -91,6 +99,7 @@ class Strings{
   static const String preferencesRequestData = "Demander des données";
   static const String preferencesDeleteAccount = "Supprimer le compte";
   static const String preferencesHelp = "Aide";
+  static const String preferencesLogout = "Se déconnecter";
   static const String theme = "Thème";
   static const String themeSystem = "Système";
   static const String themeLight = "Clair";
@@ -118,6 +127,8 @@ class Strings{
   static const String templateDoesntExist = "Le template n'existe pas";
   static const String collectionDoesntExist = "La collection n'existe pas";
   static const String itemDoesntExist = "L'objet n'existe pas";
+  static const String userDoesntExist = "L'utilisateur n'existe pas";
+  static const String error401UserUpdate = "Le mot de passe actuel n'est pas correct";
   static const String unexpectedError = "Une erreur inattendu est survenue, veuillez réessayer plus tard";
   static const String limitForCollections = "Vous avez atteint la limite de collections gratuites";
   static const String limitForItems = "Vous avez atteint la limite de nombre d'objet pour cette collection";

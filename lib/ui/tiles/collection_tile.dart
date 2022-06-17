@@ -27,6 +27,7 @@ class CollectionTile extends StatelessWidget {
 
         var isEditionMode = snapshot.data ?? false;
         if (isEditionMode) {
+          /*passage à l'affichage "flou" si la carte est en mode edition*/
           return SizedBox(
             height: 95,
             child: Stack(
@@ -107,6 +108,7 @@ class CollectionTile extends StatelessWidget {
         child: InkWell(
           borderRadius: BorderRadius.circular(10),
           onTap: () {
+            /*passage à l'écran de la collection préssée*/
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) =>
