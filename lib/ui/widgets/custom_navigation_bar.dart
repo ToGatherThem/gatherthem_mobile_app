@@ -3,6 +3,7 @@ import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/ui/screens/home_screen.dart';
 import 'package:gatherthem_mobile_app/ui/screens/search_screen.dart';
 
+/// Our implementation of the bottom navigation bar used across the app with Navigation scaffold widget
 class CustomNavigationBar extends StatelessWidget {
   const CustomNavigationBar({Key? key}) : super(key: key);
 

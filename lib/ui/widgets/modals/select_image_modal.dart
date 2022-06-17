@@ -3,9 +3,11 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
+import 'package:gatherthem_mobile_app/ui/widgets/toast_body.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 
+/// Modal used to select an image
 class SelectImageModal {
   void sendImage(XFile? file, onImageSelected, context) {
     if(file != null) {
@@ -84,7 +86,7 @@ class SelectImageModal {
     } else {
       FToast fToast = FToast();
       fToast.init(context);
-      fToast.showToast(child: Text(Strings.cannotAddPictureFrom + Platform.operatingSystem),);
+      fToast.showToast(child: ToastBody(text: Strings.cannotAddPictureFrom + Platform.operatingSystem),);
     }
   }
 }

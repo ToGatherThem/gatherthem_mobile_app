@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/inputs/base_input.dart';
 
+
+/// Specialized input for email, implementation of our base input
 class EmailInput extends StatelessWidget {
   final String label;
   final String? defaultValue;

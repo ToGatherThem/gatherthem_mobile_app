@@ -7,7 +7,10 @@ import 'package:gatherthem_mobile_app/models/item_infos_model.dart';
 import 'package:gatherthem_mobile_app/models/item_model.dart';
 import 'package:gatherthem_mobile_app/services/service.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
+import 'package:gatherthem_mobile_app/ui/widgets/toast_body.dart';
 
+
+/// Specific service for requests to the item API
 class ItemService extends Service {
   Future<dynamic> editItem(
       String id, ItemInfosModel itemInfos, BuildContext context) {
@@ -17,7 +20,7 @@ class ItemService extends Service {
         FToast fToast = FToast();
         fToast.init(context);
         fToast.showToast(
-          child: const Text(Strings.itemDoesntExist),
+          child: const ToastBody(text: Strings.itemDoesntExist),
         );
       }
     });
@@ -28,7 +31,7 @@ class ItemService extends Service {
       if (e.response != null && e.response.statusCode == 404) {
         FToast fToast = FToast();
         fToast.init(context);
-        fToast.showToast(child: const Text(Strings.itemDoesntExist));
+        fToast.showToast(child: const ToastBody(text: Strings.itemDoesntExist));
       }
     });
   }
@@ -39,7 +42,7 @@ class ItemService extends Service {
       if (e.response != null && e.response.statusCode == 404) {
         FToast fToast = FToast();
         fToast.init(context);
-        fToast.showToast(child: const Text(Strings.itemDoesntExist));
+        fToast.showToast(child: const ToastBody(text: Strings.itemDoesntExist));
       }
     }));
     return ItemModel.fromJson(data);

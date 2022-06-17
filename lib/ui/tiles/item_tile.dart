@@ -12,13 +12,14 @@ import 'package:gatherthem_mobile_app/ui/screens/edit_item_screen.dart';
 import 'package:gatherthem_mobile_app/ui/screens/item_detail_screen.dart';
 import 'package:gatherthem_mobile_app/utils.dart';
 
+
+/// Class used to display an item, with a management of item blur and 2 buttons : edit and delete
 class ItemTile extends StatelessWidget {
   final ItemModel item;
   final BlocItems blocItem;
   final CollectionModel collection;
   final BlocBool isEditionBloc = BlocBool(initValue: false);
 
-  /*classe chargée de l'affichage des items, séparé du screen par soucis de clarté*/
   ItemTile({Key? key,
     required this.item,
     required this.blocItem,
