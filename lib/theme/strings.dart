@@ -135,7 +135,7 @@ class Strings{
 
   //Premium strings
   static const String premiumTitle = "Premium";
-  static const String premiumBody = "En prennant l'abonnement premium vous pouvez beneficier des avantages suivants:";
+  static const String premiumBody = "En prenant l'abonnement premium vous pouvez bénéficier des avantages suivants :";
   static const String unlimitedColls = "Un nombre illimité de collections (au lieu de 2)";
   static const String unlimitedItems = "Un nombre illimité d'objets par collection (au lieu de 50)";
   static const String noPub = "Pas de publicité";
