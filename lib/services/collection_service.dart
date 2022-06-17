@@ -19,6 +19,11 @@ class CollectionService extends Service {
         fToast.init(context);
         fToast.showToast(child: const Text(Strings.templateDoesntExist),);
       }
+      else if(e.response != null && e.response.statusCode == 403){
+        FToast fToast = FToast();
+        fToast.init(context);
+        fToast.showToast(child: const Text(Strings.limitForCollections),);
+      }
     });
   }
 
@@ -69,6 +74,11 @@ class CollectionService extends Service {
         FToast fToast = FToast();
         fToast.init(context);
         fToast.showToast(child: const Text(Strings.collectionDoesntExist),);
+      }
+      else if(e.response != null && e.response.statusCode == 403){
+        FToast fToast = FToast();
+        fToast.init(context);
+        fToast.showToast(child: const Text(Strings.limitForItems),);
       }
     });
   }

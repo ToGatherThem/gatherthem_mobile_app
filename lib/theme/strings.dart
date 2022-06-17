@@ -119,6 +119,8 @@ class Strings{
   static const String collectionDoesntExist = "La collection n'existe pas";
   static const String itemDoesntExist = "L'objet n'existe pas";
   static const String unexpectedError = "Une erreur inattendu est survenue, veuillez réessayer plus tard";
+  static const String limitForCollections = "Vous avez atteint la limite de collections gratuites";
+  static const String limitForItems = "Vous avez atteint la limite de nombre d'objet pour cette collection";
 
 
   //Premium strings
