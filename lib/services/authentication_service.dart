@@ -6,6 +6,8 @@ import 'package:gatherthem_mobile_app/ui/screens/home_screen.dart';
 import 'package:gatherthem_mobile_app/ui/screens/login_screen.dart';
 import 'package:gatherthem_mobile_app/utils.dart';
 
+
+/// Specialized service for authentication
 class AuthenticationService extends Service {
 
   login(BuildContext context, String username, String password) {
@@ -18,7 +20,17 @@ class AuthenticationService extends Service {
         })
         .then((value) {
           if (value != null) {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+            Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const HomeScreen()), ModalRoute.withName('/'));
+          }
+        });
+  }
+
+  logout(BuildContext context) {
+    String url = apiHost + "/user/logout";
+    get(url, context)
+        .then((value) {
+          if (value != null) {
+            Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const LoginScreen()), ModalRoute.withName('/'));
           }
         });
   }

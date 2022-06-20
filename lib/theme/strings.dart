@@ -83,13 +83,21 @@ class Strings{
   static const String addCollectionLabel = "Ajouter une collection";
   static const String createTemplateLabel = "Ajouter un template";
 
+  // Profile
+  static const String profileEdit = "Modifier le profil";
+  static const String passwordCurrent = "Mot de passe actuel (obligatoire)";
+  static const String passwordNew = "Nouveau mot de passe";
+  static const String passwordNewConfirm = "Confirmer le nouveau mot de passe";
+  static const String passwordCurrentRequired = "Le mot de passe actuel n'est pas renseigné";
+  static const String passwordNewConfirmRequired = "La confirmation du nouveau mot de passe n'est pas renseignée";
+
   // Loading
   static const String loadingLabel = "Veuillez patienter...";
   static const String loadingSuccess = "Terminé";
 
   // Preferences screen
   static const String preferences = "Préférences";
-  static const String preferencesPremium = "Gérer le premium";
+  static const String preferencesPremium = "Premium";
   static const String preferencesRequestData = "Demander des données";
   static const String preferencesDeleteAccount = "Supprimer le compte";
   static const String preferencesHelp = "Aide";
@@ -126,8 +134,12 @@ class Strings{
   static const String templateDoesntExist = "Le template n'existe pas";
   static const String collectionDoesntExist = "La collection n'existe pas";
   static const String itemDoesntExist = "L'objet n'existe pas";
+  static const String userDoesntExist = "L'utilisateur n'existe pas";
+  static const String error401UserUpdate = "Le mot de passe actuel n'est pas correct";
   static const String unexpectedError = "Une erreur inattendu est survenue, veuillez réessayer plus tard";
-
+  static const String limitForCollections = "Vous avez atteint la limite de collections gratuites";
+  static const String limitForItems = "Vous avez atteint la limite de nombre d'objets pour cette collection";
+  
   // Create Template
   static const String createTemplateInputName = "Nom du template";
   static const String createTemplateInputTemplateParent = "Template parent";
@@ -145,4 +157,19 @@ class Strings{
   static const String propertyTypeInteger = "Nombre";
   static const String propertyTypeDuration = "Durée";
   static const String propertyTypeUnknown= "Inconnue";
+
+
+  //Premium strings
+  static const String premiumTitle = "Premium";
+  static const String premiumBody = "En prenant l'abonnement premium vous pouvez bénéficier des avantages suivants :";
+  static const String unlimitedColls = "Un nombre illimité de collections (au lieu de 2)";
+  static const String unlimitedItems = "Un nombre illimité d'objets par collection (au lieu de 50)";
+  static const String noPub = "Pas de publicité";
+  static const String chatFeature = "Fonctionnalité de message privé entre utilisateurs";
+  static const String exchangeFeature = "La possibilité d'être mis en relation avec d'autres collectionneurs";
+
+  static const String premiumButton = "Profitez-en !";
+  static const String alreadyGotPremium = "Merci d'avoir pris notre abonnement premium!\nVous pouvez désormais profiter de tous les avantages!";
+  static const String validUntil = "Votre premium est valide jusqu'au ";
+  static const String loginToContinue = "Pour continuer, veuillez entrer votre mot de passe:";
 }

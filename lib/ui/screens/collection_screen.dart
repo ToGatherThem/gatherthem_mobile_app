@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:gatherthem_mobile_app/blocs/bloc_items.dart';
 import 'package:gatherthem_mobile_app/globals.dart';
 import 'package:gatherthem_mobile_app/models/collection_model.dart';
@@ -83,6 +82,7 @@ class CollectionScreen extends StatelessWidget {
                     ),
                     const SizedBox(width: 20),
                     Expanded(
+                      /*Conteneur des infos d'une collection*/
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -109,6 +109,7 @@ class CollectionScreen extends StatelessWidget {
                 ),
                 const Padding(padding: EdgeInsets.only(top: 15)),
                 Container(
+                  /*Conteneur de la barre de recherche*/
                   decoration: BoxDecoration(
                       border: Border.all(color: Theme.of(context).cardColor),
                       borderRadius: BorderRadius.circular(20)),
@@ -147,6 +148,7 @@ class CollectionScreen extends StatelessWidget {
                       ),
                     ),
                     onChanged: (value) {
+                      /*partie responsable du changement de l'affichage lors de la recherche*/
                       blocItems.filter(value);
                     },
                   ),

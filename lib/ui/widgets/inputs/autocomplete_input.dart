@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/inputs/base_input.dart';
 
+/// Specialized input for autocomplete, implementation of our base input
 class AutoCompleteInput extends StatelessWidget {
 
   final FocusNode focusNode;
