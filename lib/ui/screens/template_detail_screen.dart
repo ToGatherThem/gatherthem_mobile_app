@@ -3,6 +3,7 @@ import 'package:gatherthem_mobile_app/models/property_model.dart';
 import 'package:gatherthem_mobile_app/models/template_model.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/ui/screens/add_collection_screen.dart';
+import 'package:gatherthem_mobile_app/ui/screens/add_template_screen.dart';
 import 'package:gatherthem_mobile_app/ui/tiles/template_property_tile.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/buttons/action_button.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/navigation_scaffold_widget.dart';
@@ -27,7 +28,7 @@ class TemplateDetailScreen extends StatelessWidget {
           children: [
             Align(
               alignment: Alignment.center,
-              child: Text(template.name, style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w800))
+              child: Text(template.fullName, style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w800))
             ),
             if (template.description != "")
               Row(
@@ -60,53 +61,48 @@ class TemplateDetailScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(Strings.templateVisibility, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                    Text(template.visibility, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.normal)),
+                    Text(template.visibility == 'PUBLIC' ? Strings.publicLabel : template.visibility == 'PRIVATE' ? Strings.privateLabel : '', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.normal)),
                   ],
                 ),
               ],
             ),
             const SizedBox(height: 20),
-            if (template.parent != null)
-              Row(
+            if (template.parent != null) InkWell(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(Strings.templateParent, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                      Text(template.parent!.name, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.normal)),
+                      Text(template.parent!.fullName, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.normal)),
                     ],
                   ),
-                  IconButton(
-                    icon: const Icon(Icons.arrow_forward_ios),
-                    splashRadius: 20,
-                    tooltip: Strings.templateParentGo,
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => TemplateDetailScreen(template: template.parent!)));
-                    },
-                  )
+                  const Icon(Icons.arrow_forward_ios)
                 ],
               ),
-            if (template.parent != null)
-              const SizedBox(height: 20),
-            for (PropertyModel property in template.allProperties)
-              TemplatePropertyTile(property: property),
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => TemplateDetailScreen(template: template.parent!)));
+              }
+            ),
+            if (template.parent != null) const SizedBox(height: 20),
+            for (PropertyModel property in template.allProperties) TemplatePropertyTile(property: property),
             ActionButton(
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => AddCollectionScreen(templateFullName: template.fullName)));
+                const Icon(Icons.arrow_forward_ios);
               },
               text: Strings.templateCreateCollection,
               icon: Icons.collections_bookmark_rounded,
-              width: MediaQuery.of(context).size.width / 2,
+              width: 200,
             ),
             const SizedBox(height: 20),
             ActionButton(
               onPressed: () {
-                //TODO
+                Navigator.push(context, MaterialPageRoute(builder: (context) => AddTemplateScreen(parentName: template.fullName)));
               },
               text: Strings.templateCreateTemplate,
               icon: Icons.wysiwyg_rounded,
-              width: MediaQuery.of(context).size.width / 2,
+              width: 200,
             ),
             const SizedBox(height: 60),
           ],

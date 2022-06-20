@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/models/property_model.dart';
+import 'package:gatherthem_mobile_app/utils.dart';
 
 class TemplatePropertyTile extends StatelessWidget{
   final PropertyModel property;
@@ -14,7 +15,7 @@ class TemplatePropertyTile extends StatelessWidget{
         children: [
           Text(property.name, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
           const Spacer(),
-          Text(property.type, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.normal)),
+          Text(Utils.propertyTypeToHumanText(property.type), style: const TextStyle(fontSize: 16, fontWeight: FontWeight.normal)),
         ],
       ),
     );

@@ -20,8 +20,8 @@ import 'package:gatherthem_mobile_app/ui/widgets/modals/select_image_modal.dart'
 import 'package:gatherthem_mobile_app/utils.dart';
 
 class AddTemplateScreen extends StatefulWidget {
-  final String? templateFullName;
-  const AddTemplateScreen({Key? key, this.templateFullName}) : super(key: key);
+  final String? parentName;
+  const AddTemplateScreen({Key? key, this.parentName}) : super(key: key);
 
   @override
   State<AddTemplateScreen> createState() => _AddTemplateScreenState();
@@ -33,6 +33,8 @@ class _AddTemplateScreenState extends State<AddTemplateScreen> {
 
   @override
   Widget build(BuildContext context) {
+    templateInfosModel.parentId = blocTemplates.getTemplates().firstWhere((template) => template.fullName == widget.parentName).id;
+
     blocTemplates.fetchTemplates(context);
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
@@ -68,12 +70,9 @@ class _AddTemplateScreenState extends State<AddTemplateScreen> {
                   stream: blocTemplates.stream,
                   builder: (context, snapshot) {
                     if(snapshot.hasData) {
-                      if(widget.templateFullName != null) {
-                        templateInfosModel.parentId = snapshot.data!.firstWhere((template) => template.fullName == widget.templateFullName).id;
-                      }
                       return Autocomplete<TemplateModel>(
                         displayStringForOption: (TemplateModel option) => option.fullName,
-                        initialValue: widget.templateFullName != null ? TextEditingValue(text: snapshot.data!.firstWhere((TemplateModel template) => template.fullName == widget.templateFullName).fullName) : null,
+                        initialValue: widget.parentName != null ? TextEditingValue(text: snapshot.data!.firstWhere((TemplateModel template) => template.fullName == widget.parentName).fullName) : null,
                         optionsBuilder: (TextEditingValue textEditingValue) {
                           if (textEditingValue.text.isEmpty) {
                             return <TemplateModel>[];
