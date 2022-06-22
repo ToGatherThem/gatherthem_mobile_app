@@ -33,7 +33,9 @@ class _AddTemplateScreenState extends State<AddTemplateScreen> {
 
   @override
   Widget build(BuildContext context) {
-    templateInfosModel.parentId = blocTemplates.getTemplates().firstWhere((template) => template.fullName == widget.parentName).id;
+    if(widget.parentName != null) {
+      templateInfosModel.parentId = blocTemplates.getTemplates().firstWhere((template) => template.fullName == widget.parentName).id;
+    }
 
     blocTemplates.fetchTemplates(context);
     return Scaffold(

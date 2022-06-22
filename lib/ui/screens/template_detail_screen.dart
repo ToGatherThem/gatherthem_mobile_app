@@ -89,7 +89,7 @@ class TemplateDetailScreen extends StatelessWidget {
             for (PropertyModel property in template.allProperties) TemplatePropertyTile(property: property),
             ActionButton(
               onPressed: () {
-                const Icon(Icons.arrow_forward_ios);
+                Navigator.push(context, MaterialPageRoute(builder: (context) => AddCollectionScreen(templateFullName: template.fullName)));
               },
               text: Strings.templateCreateCollection,
               icon: Icons.collections_bookmark_rounded,
