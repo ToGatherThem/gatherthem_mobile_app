@@ -4,7 +4,9 @@ import 'package:gatherthem_mobile_app/globals.dart';
 import 'package:gatherthem_mobile_app/services/authentication_service.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/theme/styles.dart';
+import 'package:gatherthem_mobile_app/ui/screens/delete_account_screen.dart';
 import 'package:gatherthem_mobile_app/ui/screens/premium_screen.dart';
+import 'package:gatherthem_mobile_app/ui/screens/request_data_screen.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/navigation_scaffold_widget.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
@@ -69,9 +71,8 @@ class PreferencesScreen extends StatelessWidget {
             child: Divider(color: Theme.of(context).primaryColor),
           ),
           createPreferencesMenu(context, Icons.diamond, Strings.preferencesPremium, () => Navigator.push(context, MaterialPageRoute(builder: (context) => const PremiumScreen()))),
-          createPreferencesMenu(context, Icons.file_download, Strings.preferencesRequestData, null),
-          createPreferencesMenu(context, Icons.delete, Strings.preferencesDeleteAccount, null),
-          createPreferencesMenu(context, Icons.help, Strings.preferencesHelp, null),
+          createPreferencesMenu(context, Icons.file_download, Strings.preferencesRequestData, () => Navigator.push(context, MaterialPageRoute(builder: (context) => const RequestDataScreen()))),
+          createPreferencesMenu(context, Icons.delete, Strings.preferencesDeleteAccount, () => Navigator.push(context, MaterialPageRoute(builder: (context) => const DeleteAccountScreen()))),
           createPreferencesMenu(context, Icons.logout, Strings.preferencesLogout, () => AuthenticationService().logout(context)),
         ],
       ),
