@@ -18,12 +18,12 @@ class ItemInfosModel {
     };
   }
   
-  setProperty(String propertyId, String value) {
+  setProperty(String id, String propertyId, String value) {
     int index = properties.indexWhere((element) => element.propertyId == propertyId);
     if (index != -1) {
       properties[index].value = value;
     } else {
-      properties.add(ItemPropertyCreationModel(propertyId, value));
+      properties.add(ItemPropertyCreationModel(id, propertyId, value));
     }
   }
 }
