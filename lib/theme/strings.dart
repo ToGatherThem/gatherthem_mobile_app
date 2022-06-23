@@ -169,7 +169,23 @@ class Strings{
   static const String exchangeFeature = "La possibilité d'être mis en relation avec d'autres collectionneurs";
 
   static const String premiumButton = "Profitez-en !";
-  static const String alreadyGotPremium = "Merci d'avoir pris notre abonnement premium!\nVous pouvez désormais profiter de tous les avantages!";
+  static const String alreadyGotPremium = "Merci d'avoir pris notre abonnement premium !\nVous pouvez désormais profiter de tous les avantages !";
   static const String validUntil = "Votre premium est valide jusqu'au ";
-  static const String loginToContinue = "Pour continuer, veuillez entrer votre mot de passe:";
+  static const String loginToContinue = "Pour continuer, veuillez entrer votre mot de passe :";
+
+  // Request data
+  static const String requestDataTitle = "Demander des données";
+  static const String requestDataBody = "Vous pouvez demander une archive de vos données Gather Them."
+      "\nElle contiendra toutes les informations relatives à votre compte, vos collections, vos objets et vos templates."
+      "\nVous recevrez un fichier ZIP par mail lorsque votre archive sera prête.";
+  static const String requestDataButton = "Faire la demande";
+  static const String requestDataSuccess = "Votre demande a bien été effectuée";
+
+  // Delete account
+  static const String deleteAccountTitle = "Supprimer le compte";
+  static const String deleteAccountBody = "Vous pouvez demander à supprimer votre compte Gather Them."
+      "\nCette action est irréversible, toutes vos données seront effacées."
+      "\nVous recevrez un mail lorsque votre compte sera supprimé.";
+  static const String deleteAccountButton = "Supprimer le compte";
+  static const String deleteAccountSuccess = "Votre demande a bien été effectuée";
 }
