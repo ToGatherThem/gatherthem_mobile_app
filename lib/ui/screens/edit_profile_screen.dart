@@ -67,14 +67,14 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       width: 115,
                       padding: const EdgeInsets.all(2),
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(90),
                           border: Border.all(
                               color: Theme.of(context).primaryColor,
                               width: 1
                           )
                       ),
                       child: ClipRRect(
-                          borderRadius: BorderRadius.circular(6),
+                          borderRadius: BorderRadius.circular(90),
                           child: (userInfosModel.image == null) ? Stack(
                               children: [
                                 Container(
