@@ -62,17 +62,24 @@ class HomeScreen extends StatelessWidget {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
-                                    Container(
-                                        width: 96,
-                                        height: 96,
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(100),
-                                            border: Border.all(
-                                                color: color, width: 3)),
-                                        child: const Icon(
-                                            Icons.account_circle_rounded,
-                                            size: 90)),
+                                    ClipRRect(
+                                        borderRadius: BorderRadius.circular(6),
+                                        child: (profile.image == null) ? Container(
+                                          width: 96,
+                                          height: 96,
+                                          decoration: BoxDecoration(
+                                          borderRadius:
+                                          BorderRadius.circular(100),
+                                          border: Border.all(
+                                          color: color, width: 3)),
+                                          child: const Icon(
+                                          Icons.account_circle_rounded,
+                                          size: 90))
+                                        : Image(
+                                          image: MemoryImage(profile.image!),
+                                          fit: BoxFit.cover,
+                                        )
+                                    ),
                                     Expanded(
                                       child: Column(
                                         children: [

@@ -1,6 +1,9 @@
+import 'dart:typed_data';
+
 class UserUpdateModel {
   late String username;
   late String email;
+  Uint8List? image;
   late String password;
   late String newPassword;
   late String newPasswordConfirm;
@@ -9,6 +12,7 @@ class UserUpdateModel {
     return {
       "username": username,
       "email": email,
+      "image": image,
       "password": password,
       "newPassword": newPassword,
       "newPasswordConfirm": newPasswordConfirm

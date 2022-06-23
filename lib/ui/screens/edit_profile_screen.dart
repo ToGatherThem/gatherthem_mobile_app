@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/models/user_update_model.dart';
 import 'package:gatherthem_mobile_app/models/profile_model.dart';
@@ -10,6 +12,7 @@ import 'package:gatherthem_mobile_app/ui/widgets/dialogs/error_dialog.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/inputs/email_input.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/inputs/password_input.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/inputs/text_input.dart';
+import 'package:gatherthem_mobile_app/ui/widgets/modals/select_image_modal.dart';
 
 class EditProfileScreen extends StatefulWidget {
   final ProfileModel profile;
@@ -27,6 +30,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   void initState() {
     userInfosModel.username = widget.profile.username;
     userInfosModel.email = widget.profile.email;
+    userInfosModel.image = widget.profile.image;
     userInfosModel.password = "";
     userInfosModel.newPassword = "";
     userInfosModel.newPasswordConfirm = "";
@@ -35,6 +39,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    SelectImageModal selectImageModal = SelectImageModal();
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       body: SingleChildScrollView(
@@ -43,13 +48,61 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           children: [
             Text(Strings.profileEdit, style: Styles.getTitleStyle(context)),
             const SizedBox(height: 50),
-            TextInput(
-              label: Strings.userNameLabel,
-              icon: Icons.person_rounded,
-              initialValue: widget.profile.username,
-              onChanged: (String value) {
-                userInfosModel.username = value;
-              }
+            Row(
+              children: [
+                InkWell(
+                  onTap: () => selectImageModal.show(
+                      context: context,
+                      onImageSelected: (Uint8List? image) {
+                        userInfosModel.image = image;
+                        setState(() {});
+                      },
+                      onImageRemove: (userInfosModel.image != null) ? () {
+                        userInfosModel.image = null;
+                        setState(() {});
+                      } : null
+                  ),
+                  child: Container(
+                      height: 115,
+                      width: 115,
+                      padding: const EdgeInsets.all(2),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(
+                              color: Theme.of(context).primaryColor,
+                              width: 1
+                          )
+                      ),
+                      child: ClipRRect(
+                          borderRadius: BorderRadius.circular(6),
+                          child: (userInfosModel.image == null) ? Stack(
+                              children: [
+                                Container(
+                                  color: Colors.grey,
+                                ),
+                                const Center(
+                                  child: Icon(Icons.image_rounded, color: Colors.white, size: 50),
+                                )
+                              ]
+                          ) : Image(
+                            image: MemoryImage(userInfosModel.image!),
+                            fit: BoxFit.cover,
+                          )
+                      )
+                  ),
+                ),
+                const SizedBox(width: 20),
+                Expanded(
+                  child: TextInput(
+                    label: Strings.userNameLabel,
+                    icon: Icons.person_rounded,
+                    initialValue: widget.profile.username,
+                    onChanged: (String value) {
+                      userInfosModel.username = value;
+                    }
+                  ),
+                ),
+              ],
             ),
             const SizedBox(height: 30),
             EmailInput(
