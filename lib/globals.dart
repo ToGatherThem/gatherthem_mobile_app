@@ -9,7 +9,7 @@ import 'blocs/bloc_items.dart';
 late Map<String, String> credentials = { "username": "", "password": "", "confirm_password": "", "email": "" };
 
 ///String from api host
-String apiHost = "http://localhost:8080"/*"https://gatherthem.bryanprolong.fr"*/;
+String apiHost = "https://gatherthem.bryanprolong.fr";
 
 ///Bloc for collection list
 BlocCollection blocCollection = BlocCollection();
