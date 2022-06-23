@@ -26,4 +26,13 @@ class ItemModel {
       return "";
     }
   }
+
+  getPropertyValueId(String propertyId){
+    int index = properties.indexWhere((element) => element.property.id == propertyId);
+    if (index != -1) {
+      return properties[index].id;
+    } else {
+      return "";
+    }
+  }
 }

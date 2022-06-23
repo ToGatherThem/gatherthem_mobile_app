@@ -125,7 +125,7 @@ class _AddItemScreenState extends State<AddItemScreen> {
               for(PropertyModel property in widget.collection.template.allProperties) PropertyInput(
                   property: property,
                   onChanged: (String value) {
-                    itemInfosModel.setProperty(property.id, value);
+                    itemInfosModel.setProperty('', property.id, value);
                   }
               ),
               const SizedBox(height: 40),
