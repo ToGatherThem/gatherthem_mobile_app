@@ -218,7 +218,7 @@ class CustomSliverDelegate extends SliverPersistentHeaderDelegate {
                   text: Strings.yourCollectionsLabel,
                 ),
                 Tab(
-                  text: Strings.createColl,
+                  text: Strings.templates,
                 ),
               ]),
           Container(

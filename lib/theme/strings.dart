@@ -4,6 +4,7 @@ class Strings{
   static const String home = "Home";
   static const String search = "Search";
   static const String createColl = "Ajouter une collection";
+  static const String templates = "Templates";
   static const String createCollItem = "Ajouter un objet dans cette collection";
   static const String labelName = "Nom";
   static const String labelDesc = "Description";
@@ -79,6 +80,8 @@ class Strings{
   static const String itemsLabel = "Objets";
   static const String editProfileLabel = "Modifier le profil";
   static const String yourCollectionsLabel = "Vos collections";
+  static const String addCollectionLabel = "Ajouter une collection";
+  static const String createTemplateLabel = "Ajouter un template";
 
   // Profile
   static const String profileEdit = "Modifier le profil";
@@ -113,6 +116,11 @@ class Strings{
   static const String pinsTemplateName = "Pins";
   static const String other = "Autres";
   static const String addForTemplate = "Ajouter des ";
+  static const String templateVisibility = "Visibilité";
+  static const String templateParent = "Template parent";
+  static const String templateParentGo = "Voir le template parent";
+  static const String templateCreateCollection = "Créer une collection";
+  static const String templateCreateTemplate = "Créer un template";
 
   // Pictures modals
   static const String camera = "Appareil photo";
@@ -131,6 +139,24 @@ class Strings{
   static const String unexpectedError = "Une erreur inattendu est survenue, veuillez réessayer plus tard";
   static const String limitForCollections = "Vous avez atteint la limite de collections gratuites";
   static const String limitForItems = "Vous avez atteint la limite de nombre d'objets pour cette collection";
+  
+  // Create Template
+  static const String createTemplateInputName = "Nom du template";
+  static const String createTemplateInputTemplateParent = "Template parent";
+  static const String createTemplateInputItemLabelName = "Libéllé des objets (Titre, Nom, etc.)";
+  static const String itemLabelNameRequired = "Intitulé des items manquant";
+  static const String parentProperties = "Propriétés du parent :";
+  static const String properties = "Propriétés";
+
+  static const String publicLabel = "Publique";
+  static const String privateLabel = "Privée";
+
+  static const String propertyTypeText = "Texte";
+  static const String propertyTypeDate = "Date";
+  static const String propertyTypeLongText = "Texte long";
+  static const String propertyTypeInteger = "Nombre";
+  static const String propertyTypeDuration = "Durée";
+  static const String propertyTypeUnknown= "Inconnue";
 
 
   //Premium strings
@@ -146,5 +172,4 @@ class Strings{
   static const String alreadyGotPremium = "Merci d'avoir pris notre abonnement premium!\nVous pouvez désormais profiter de tous les avantages!";
   static const String validUntil = "Votre premium est valide jusqu'au ";
   static const String loginToContinue = "Pour continuer, veuillez entrer votre mot de passe:";
-
 }

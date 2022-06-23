@@ -1,69 +1,84 @@
 import 'package:flutter/material.dart';
+import 'package:gatherthem_mobile_app/models/template_model.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/theme/styles.dart';
-import 'package:gatherthem_mobile_app/ui/screens/add_collection_screen.dart';
+import 'package:gatherthem_mobile_app/ui/screens/template_detail_screen.dart';
 
 class TemplateTile extends StatelessWidget{
+  final TemplateModel template;
 
-  final String templateName;
-  final IconData templateIcon;
-  final String? templateFullName;
-
-
-  const TemplateTile({Key? key, required this.templateName, required this.templateIcon, this.templateFullName}) : super(key: key);
+  const TemplateTile({Key? key, required this.template}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: (){
-        Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => AddCollectionScreen(templateFullName: templateFullName,))
-        );
-      },
+    return tileBody(context, template);
+  }
+
+  Widget tileBody(BuildContext context, TemplateModel template) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Container(
+        height: 95,
         decoration: BoxDecoration(
-          color: Theme.of(context).cardColor,
           borderRadius: BorderRadius.circular(10),
+          color: Theme.of(context).cardColor,
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Stack(
-              children: [
-                Icon(
-                    templateIcon,
-                    size: 50,
-                    color: Theme.of(context).backgroundColor,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(10),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) =>
+                  TemplateDetailScreen(
+                      template: template,
+                  )
+              ),
+            );
+          },
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(10),
+                  bottomLeft: Radius.circular(10),
                 ),
-                Positioned(
-                  top: 25,
-                  left: 30,
-                  child: Container(
-                    width: 20,
-                    height: 20,
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).backgroundColor,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
+                child: Container(
+                  color: Colors.grey,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
                     child: Icon(
-                        Icons.add,
-                      size: 15,
+                      Icons.wysiwyg_rounded,
+                      size: 55,
                       color: Theme.of(context).primaryColor,
                     ),
                   ),
                 )
-              ],
-            ),
-            Text(
-              (Strings.addForTemplate + templateName),
-              style: Styles.getTextStyle(context, color: Theme.of(context).backgroundColor),
-            ),
-          ],
+              ),
+              const Padding(padding: EdgeInsets.only(left: 20)),
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      template.fullName,
+                      style: Styles.getTextStyle(context, weight: FontWeight.bold, color: Theme.of(context).backgroundColor),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    Text(
+                      template.visibility == 'PUBLIC' ? Strings.publicLabel : template.visibility == 'PRIVATE' ? Strings.privateLabel : '',
+                      style: Styles.getTextStyle(context, color: Theme.of(context).backgroundColor),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
-
-
 }
