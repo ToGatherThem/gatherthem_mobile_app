@@ -17,7 +17,7 @@ class SearchResultsScreen extends StatelessWidget {
 
   Widget bodyConfig(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: 2,
       child: Scaffold(
         appBar: TabBar(
           indicatorColor: Theme.of(context).primaryColor,
@@ -35,10 +35,10 @@ class SearchResultsScreen extends StatelessWidget {
               text: Strings.searchResultsItems,
               icon: Icon(Icons.list),
             ),
-            Tab(
-              text: Strings.searchResultsUsers,
-              icon: Icon(Icons.people),
-            ),
+            // Tab(
+            //   text: Strings.searchResultsUsers,
+            //   icon: Icon(Icons.people),
+            // ),
           ],
         ),
         body: TabBarView(
@@ -55,7 +55,7 @@ class SearchResultsScreen extends StatelessWidget {
                 searchText: searchText,
               ),
             ),
-            const Center(child: Text(Strings.searchResultsNoResults)),
+            // const Center(child: Text(Strings.searchResultsNoResults)),
           ]
         ),
       ),
