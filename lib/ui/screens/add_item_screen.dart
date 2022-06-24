@@ -56,6 +56,7 @@ class _AddItemScreenState extends State<AddItemScreen> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     InkWell(
+                      borderRadius: BorderRadius.circular(10),
                       onTap: () => selectImageModal.show(
                           context: context,
                           onImageSelected: (image) {
