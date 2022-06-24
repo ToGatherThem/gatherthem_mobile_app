@@ -1,6 +1,7 @@
   import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/globals.dart';
 import 'package:gatherthem_mobile_app/models/collection_model.dart';
+import 'package:gatherthem_mobile_app/ui/custom_loading.dart';
 import 'package:gatherthem_mobile_app/ui/tiles/collection_tile.dart';
 
 class CollectionsList extends StatelessWidget{
@@ -13,6 +14,7 @@ class CollectionsList extends StatelessWidget{
       stream: blocCollection.stream,
       builder: (context, snapshotCollections) {
         if(snapshotCollections.hasData){
+          CustomLoading.dismiss();
           return ListView(
             physics: const BouncingScrollPhysics(),
             children: snapshotCollections.data!.map((collection) =>
@@ -24,6 +26,7 @@ class CollectionsList extends StatelessWidget{
           );
         }
         else{
+          CustomLoading.customLoadingStyleAndShow(context: context);
           return Container();
         }
       }

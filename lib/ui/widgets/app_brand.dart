@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
 
 class AppBrand extends StatelessWidget{
-  const AppBrand({Key? key}) : super(key: key);
+  final Widget? trailingWidget;
+  const AppBrand({Key? key, this.trailingWidget}) : super(key: key);
 
 
   @override
@@ -22,7 +23,8 @@ class AppBrand extends StatelessWidget{
             color: Color(0xFFFFFFFF),
             fontSize: 16
           ),
-        )
+        ),
+        if (trailingWidget != null) trailingWidget!,
       ],
     );
   }

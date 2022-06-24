@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Base input used across the app with specialized implementation for each input type
 class BaseInput extends StatelessWidget {
   final String label;
   final TextInputType keyboardType;

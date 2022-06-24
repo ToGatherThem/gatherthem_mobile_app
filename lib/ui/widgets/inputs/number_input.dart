@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-
 import 'base_input.dart';
 
+/// Specialized input for numbers, implementation of our base input
 class NumberInput extends StatelessWidget {
   final String label;
   final String? defaultValue;

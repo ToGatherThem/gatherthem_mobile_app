@@ -2,6 +2,8 @@ import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
 
+
+/// Date input widget, implementation of our base input widget
 class DateInput extends StatelessWidget {
   final String label;
   final String? defaultValue;

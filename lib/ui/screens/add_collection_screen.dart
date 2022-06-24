@@ -48,6 +48,7 @@ class _AddCollectionScreenState extends State<AddCollectionScreen> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     InkWell(
+                      borderRadius: BorderRadius.circular(10),
                       onTap: () => selectImageModal.show(
                           context: context,
                           onImageSelected: (Uint8List? image) {

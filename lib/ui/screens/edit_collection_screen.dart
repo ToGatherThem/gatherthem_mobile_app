@@ -52,6 +52,7 @@ class _EditCollectionScreenState extends State<EditCollectionScreen> {
                   Row(
                     children: [
                       InkWell(
+                        borderRadius: BorderRadius.circular(10),
                         onTap: () => selectImageModal.show(
                             context: context,
                             onImageSelected: (Uint8List? image) {

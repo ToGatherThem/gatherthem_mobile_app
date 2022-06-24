@@ -7,8 +7,9 @@ import 'package:gatherthem_mobile_app/models/item_infos_model.dart';
 import 'package:gatherthem_mobile_app/models/item_model.dart';
 import 'package:gatherthem_mobile_app/services/service.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
+import 'package:gatherthem_mobile_app/ui/widgets/toast_body.dart';
 
-
+/// Specific service for requests to the collection API
 class CollectionService extends Service {
 
   Future<dynamic> createCollection(CollectionInfosModel collectionInfosModel, BuildContext context){
@@ -17,7 +18,12 @@ class CollectionService extends Service {
       if(e.response != null && e.response.statusCode == 404){
         FToast fToast = FToast();
         fToast.init(context);
-        fToast.showToast(child: const Text(Strings.templateDoesntExist),);
+        fToast.showToast(child: const ToastBody(text: Strings.templateDoesntExist),);
+      }
+      else if(e.response != null && e.response.statusCode == 403){
+        FToast fToast = FToast();
+        fToast.init(context);
+        fToast.showToast(child: const ToastBody(text: Strings.limitForCollections),);
       }
     });
   }
@@ -33,7 +39,7 @@ class CollectionService extends Service {
         if(e.response != null && e.response.statusCode == 404){
           FToast fToast = FToast();
           fToast.init(context);
-          fToast.showToast(child: const Text(Strings.collectionDoesntExist),);
+          fToast.showToast(child: const ToastBody(text: Strings.collectionDoesntExist),);
         }
       });
     return resultRequest.map((json) => ItemModel.fromJson(json)).toList();
@@ -45,7 +51,7 @@ class CollectionService extends Service {
         if(e.response != null && e.response.statusCode == 404){
           FToast fToast = FToast();
           fToast.init(context);
-          fToast.showToast(child: const Text(Strings.collectionDoesntExist),);
+          fToast.showToast(child: const ToastBody(text: Strings.collectionDoesntExist),);
         }
       });
   }
@@ -56,7 +62,7 @@ class CollectionService extends Service {
       if(e.response != null && e.response.statusCode == 404){
         FToast fToast = FToast();
         fToast.init(context);
-        fToast.showToast(child: const Text(Strings.collectionDoesntExist),);
+        fToast.showToast(child: const ToastBody(text: Strings.collectionDoesntExist),);
       }
     });
   }
@@ -68,7 +74,12 @@ class CollectionService extends Service {
       if(e.response != null && e.response.statusCode == 404){
         FToast fToast = FToast();
         fToast.init(context);
-        fToast.showToast(child: const Text(Strings.collectionDoesntExist),);
+        fToast.showToast(child: const ToastBody(text: Strings.collectionDoesntExist),);
+      }
+      else if(e.response != null && e.response.statusCode == 403){
+        FToast fToast = FToast();
+        fToast.init(context);
+        fToast.showToast(child: const ToastBody(text: Strings.limitForItems),);
       }
     });
   }

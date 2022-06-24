@@ -4,6 +4,7 @@ import 'package:gatherthem_mobile_app/globals.dart';
 import 'package:gatherthem_mobile_app/models/collection_model.dart';
 import 'package:gatherthem_mobile_app/models/item_infos_model.dart';
 import 'package:gatherthem_mobile_app/models/item_model.dart';
+import 'package:gatherthem_mobile_app/models/item_property_model.dart';
 import 'package:gatherthem_mobile_app/models/property_model.dart';
 import 'package:gatherthem_mobile_app/services/item_service.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
@@ -45,7 +46,6 @@ class _EditItemScreenState extends State<EditItemScreen> {
   @override
   Widget build(BuildContext context) {
     SelectImageModal selectImageModal = SelectImageModal();
-
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       body: SingleChildScrollView(
@@ -58,6 +58,7 @@ class _EditItemScreenState extends State<EditItemScreen> {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   InkWell(
+                    borderRadius: BorderRadius.circular(10),
                     onTap: () => selectImageModal.show(
                       context: context,
                       onImageSelected: (image) {
@@ -130,7 +131,8 @@ class _EditItemScreenState extends State<EditItemScreen> {
                   property: property,
                   defaultValue: widget.item.getPropertyValue(property.id),
                   onChanged: (String value) {
-                    itemInfosModel.setProperty(property.id, value);
+                    String itemId = widget.item.getPropertyValueId(property.id);
+                    itemInfosModel.setProperty(itemId, property.id, value);
                   }),
             const SizedBox(height: 40),
             Row(

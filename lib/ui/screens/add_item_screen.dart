@@ -56,6 +56,7 @@ class _AddItemScreenState extends State<AddItemScreen> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     InkWell(
+                      borderRadius: BorderRadius.circular(10),
                       onTap: () => selectImageModal.show(
                           context: context,
                           onImageSelected: (image) {
@@ -125,7 +126,7 @@ class _AddItemScreenState extends State<AddItemScreen> {
               for(PropertyModel property in widget.collection.template.allProperties) PropertyInput(
                   property: property,
                   onChanged: (String value) {
-                    itemInfosModel.setProperty(property.id, value);
+                    itemInfosModel.setProperty('', property.id, value);
                   }
               ),
               const SizedBox(height: 40),

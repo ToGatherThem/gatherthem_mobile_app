@@ -1,7 +1,10 @@
 class Strings{
 
   static const String appTitle = "Gather Them";
+  static const String home = "Home";
+  static const String search = "Search";
   static const String createColl = "Ajouter une collection";
+  static const String templates = "Templates";
   static const String createCollItem = "Ajouter un objet dans cette collection";
   static const String labelName = "Nom";
   static const String labelDesc = "Description";
@@ -31,6 +34,8 @@ class Strings{
   static const String confirmPasswordRequired = "La confirmation du mot de passe n'est pas renseignée";
   static const String collectionNameRequired = "Le nom de la collection n'a pas été renseigné";
   static const String templateRequired = "Le template n'a pas été renseigné";
+  static const String menuOpen = "Ouvrir le menu";
+  static const String menuClose = "Fermer le menu";
 
   static const String notRegistered = "Pas encore inscrit ?";
   static const String alreadyRegistered = "Déjà inscrit ?";
@@ -75,6 +80,32 @@ class Strings{
   static const String itemsLabel = "Objets";
   static const String editProfileLabel = "Modifier le profil";
   static const String yourCollectionsLabel = "Vos collections";
+  static const String addCollectionLabel = "Ajouter une collection";
+  static const String createTemplateLabel = "Ajouter un template";
+
+  // Profile
+  static const String profileEdit = "Modifier le profil";
+  static const String passwordCurrent = "Mot de passe actuel (obligatoire)";
+  static const String passwordNew = "Nouveau mot de passe";
+  static const String passwordNewConfirm = "Confirmer le nouveau mot de passe";
+  static const String passwordCurrentRequired = "Le mot de passe actuel n'est pas renseigné";
+  static const String passwordNewConfirmRequired = "La confirmation du nouveau mot de passe n'est pas renseignée";
+
+  // Loading
+  static const String loadingLabel = "Veuillez patienter...";
+  static const String loadingSuccess = "Terminé";
+
+  // Preferences screen
+  static const String preferences = "Préférences";
+  static const String preferencesPremium = "Premium";
+  static const String preferencesRequestData = "Demander des données";
+  static const String preferencesDeleteAccount = "Supprimer le compte";
+  static const String preferencesHelp = "Aide";
+  static const String preferencesLogout = "Se déconnecter";
+  static const String theme = "Thème";
+  static const String themeSystem = "Système";
+  static const String themeLight = "Clair";
+  static const String themeDark = "Sombre";
 
   // Templates strings
   static const String books = "Livres";
@@ -85,6 +116,11 @@ class Strings{
   static const String pinsTemplateName = "Pins";
   static const String other = "Autres";
   static const String addForTemplate = "Ajouter des ";
+  static const String templateVisibility = "Visibilité";
+  static const String templateParent = "Template parent";
+  static const String templateParentGo = "Voir le template parent";
+  static const String templateCreateCollection = "Créer une collection";
+  static const String templateCreateTemplate = "Créer un template";
 
   // Pictures modals
   static const String camera = "Appareil photo";
@@ -98,5 +134,58 @@ class Strings{
   static const String templateDoesntExist = "Le template n'existe pas";
   static const String collectionDoesntExist = "La collection n'existe pas";
   static const String itemDoesntExist = "L'objet n'existe pas";
+  static const String userDoesntExist = "L'utilisateur n'existe pas";
+  static const String error401UserUpdate = "Le mot de passe actuel n'est pas correct";
   static const String unexpectedError = "Une erreur inattendu est survenue, veuillez réessayer plus tard";
+  static const String limitForCollections = "Vous avez atteint la limite de collections gratuites";
+  static const String limitForItems = "Vous avez atteint la limite de nombre d'objets pour cette collection";
+  
+  // Create Template
+  static const String createTemplateInputName = "Nom du template";
+  static const String createTemplateInputTemplateParent = "Template parent";
+  static const String createTemplateInputItemLabelName = "Libéllé des objets (Titre, Nom, etc.)";
+  static const String itemLabelNameRequired = "Intitulé des items manquant";
+  static const String parentProperties = "Propriétés du parent :";
+  static const String properties = "Propriétés";
+
+  static const String publicLabel = "Publique";
+  static const String privateLabel = "Privée";
+
+  static const String propertyTypeText = "Texte";
+  static const String propertyTypeDate = "Date";
+  static const String propertyTypeLongText = "Texte long";
+  static const String propertyTypeInteger = "Nombre";
+  static const String propertyTypeDuration = "Durée";
+  static const String propertyTypeUnknown= "Inconnue";
+
+
+  //Premium strings
+  static const String premiumTitle = "Premium";
+  static const String premiumBody = "En prenant l'abonnement premium vous pouvez bénéficier des avantages suivants :";
+  static const String unlimitedColls = "Un nombre illimité de collections (au lieu de 2)";
+  static const String unlimitedItems = "Un nombre illimité d'objets par collection (au lieu de 50)";
+  static const String noPub = "Pas de publicité";
+  static const String chatFeature = "Fonctionnalité de message privé entre utilisateurs";
+  static const String exchangeFeature = "La possibilité d'être mis en relation avec d'autres collectionneurs";
+
+  static const String premiumButton = "Profitez-en !";
+  static const String alreadyGotPremium = "Merci d'avoir pris notre abonnement premium !\nVous pouvez désormais profiter de tous les avantages !";
+  static const String validUntil = "Votre premium est valide jusqu'au ";
+  static const String loginToContinue = "Pour continuer, veuillez entrer votre mot de passe :";
+
+  // Request data
+  static const String requestDataTitle = "Demander des données";
+  static const String requestDataBody = "Vous pouvez demander une archive de vos données Gather Them."
+      "\nElle contiendra toutes les informations relatives à votre compte, vos collections, vos objets et vos templates."
+      "\nVous recevrez un fichier ZIP par mail lorsque votre archive sera prête.";
+  static const String requestDataButton = "Faire la demande";
+  static const String requestDataSuccess = "Votre demande a bien été effectuée";
+
+  // Delete account
+  static const String deleteAccountTitle = "Supprimer le compte";
+  static const String deleteAccountBody = "Vous pouvez demander à supprimer votre compte Gather Them."
+      "\nCette action est irréversible, toutes vos données seront effacées."
+      "\nVous recevrez un mail lorsque votre compte sera supprimé.";
+  static const String deleteAccountButton = "Supprimer le compte";
+  static const String deleteAccountSuccess = "Votre demande a bien été effectuée";
 }

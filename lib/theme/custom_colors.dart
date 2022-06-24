@@ -17,4 +17,8 @@ class CustomColors{
   static const darkFont = Color(0xFFFAFAFA);
   static const darkHighlight = Color(0xFF304CCC);
   static const darkDivider = Color(0xFF3a3098);
+
+
+  /// Premium colors
+  static const premiumGreen = Color(0xFF14AC4C);
 }

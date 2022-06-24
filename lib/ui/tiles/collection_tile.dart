@@ -5,6 +5,7 @@ import 'package:gatherthem_mobile_app/blocs/bloc_bool.dart';
 import 'package:gatherthem_mobile_app/globals.dart';
 import 'package:gatherthem_mobile_app/models/collection_model.dart';
 import 'package:gatherthem_mobile_app/services/collection_service.dart';
+import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/theme/styles.dart';
 import 'package:gatherthem_mobile_app/ui/screens/collection_screen.dart';
 import 'package:gatherthem_mobile_app/ui/screens/edit_collection_screen.dart';
@@ -26,6 +27,7 @@ class CollectionTile extends StatelessWidget {
 
         var isEditionMode = snapshot.data ?? false;
         if (isEditionMode) {
+          /// Edition mode is activated, so we display the tile with a blur effect and 2 buttons : edit and delete
           return SizedBox(
             height: 95,
             child: Stack(
@@ -54,6 +56,7 @@ class CollectionTile extends StatelessWidget {
                         mini: true,
                         backgroundColor: Colors.orangeAccent,
                         child: const Icon(Icons.edit_outlined),
+                        tooltip: Strings.editLabel,
                       ),
                       const Padding(padding: EdgeInsets.only(right: 10)),
                       FloatingActionButton(
@@ -67,7 +70,8 @@ class CollectionTile extends StatelessWidget {
                           },
                           mini: true,
                           backgroundColor: Colors.redAccent,
-                          child: const Icon(Icons.delete_outline_rounded)
+                          child: const Icon(Icons.delete_outline_rounded),
+                          tooltip: Strings.deleteLabel,
                       ),
                       const Padding(padding: EdgeInsets.only(right: 10)),
                       IconButton(
@@ -75,7 +79,8 @@ class CollectionTile extends StatelessWidget {
                           icon: Icon(
                               Icons.close,
                               color: Theme.of(context).backgroundColor
-                          )
+                          ),
+                          tooltip: Strings.menuClose
                       ),
                     ],
                   ),
@@ -103,6 +108,7 @@ class CollectionTile extends StatelessWidget {
         child: InkWell(
           borderRadius: BorderRadius.circular(10),
           onTap: () {
+            /// passage à l'écran de la collection préssée
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) =>
@@ -165,7 +171,8 @@ class CollectionTile extends StatelessWidget {
                       icon: Icon(
                         Icons.more_vert_rounded,
                         color: Theme.of(context).backgroundColor,
-                      )
+                      ),
+                      tooltip: Strings.menuOpen
                   ),
                 ),
               )

@@ -1,7 +1,9 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:gatherthem_mobile_app/blocs/bloc_profile.dart';
 import 'package:gatherthem_mobile_app/globals.dart';
 import 'package:gatherthem_mobile_app/theme/app_theme_data.dart';
 import 'package:gatherthem_mobile_app/ui/screens/login_screen.dart';
@@ -23,10 +25,26 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown
     ]);
+
+    /// Initialisation of the bloc profile
+    blocProfile = BlocProfile();
+    AdaptiveThemeMode themeMode = AdaptiveThemeMode.system;
+    /// Switch to load user preference for app theme
+    switch (sharedPreferences.getInt("theme_mode") ?? 0) {
+      case 0:
+        themeMode = AdaptiveThemeMode.system;
+        break;
+      case 1:
+        themeMode = AdaptiveThemeMode.light;
+        break;
+      case 2:
+        themeMode = AdaptiveThemeMode.dark;
+        break;
+    }
     return AdaptiveTheme(
       light: buildLightTheme(),
       dark: buildDarkTheme(),
-      initial: AdaptiveThemeMode.system,
+      initial: themeMode,
       builder: (theme, darkTheme) =>  MaterialApp(
         title: 'GatherThem',
         debugShowCheckedModeBanner: false,
@@ -37,6 +55,7 @@ class MyApp extends StatelessWidget {
           Locale("fr"),
         ],
         home: const LoginScreen(),
+        builder: EasyLoading.init(),
       ),
     );
   }
