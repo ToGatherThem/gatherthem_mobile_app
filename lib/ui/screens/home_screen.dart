@@ -76,11 +76,17 @@ class HomeScreen extends StatelessWidget {
                                         child: ClipRRect(
                                             borderRadius: BorderRadius.circular(90),
                                             child: (profile.image == null) ?
-                                            const Icon(
-                                                Icons.account_circle_rounded,
-                                                size: 90
+                                            Stack(
+                                              children: const [
+                                                Center(
+                                                  child: Icon(
+                                                      Icons.person_rounded,
+                                                      size: 70,
+                                                  ),
+                                                ),
+                                              ],
                                             )
-                                                : Image(
+                                            : Image(
                                               image: MemoryImage(profile.image!),
                                               fit: BoxFit.cover,
                                             )

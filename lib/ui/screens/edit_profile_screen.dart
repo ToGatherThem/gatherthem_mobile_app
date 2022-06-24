@@ -51,6 +51,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             Row(
               children: [
                 InkWell(
+                  borderRadius: BorderRadius.circular(90),
                   onTap: () => selectImageModal.show(
                       context: context,
                       onImageSelected: (Uint8List? image) {

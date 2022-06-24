@@ -58,6 +58,7 @@ class _EditItemScreenState extends State<EditItemScreen> {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   InkWell(
+                    borderRadius: BorderRadius.circular(10),
                     onTap: () => selectImageModal.show(
                       context: context,
                       onImageSelected: (image) {
