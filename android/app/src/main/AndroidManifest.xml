@@ -2,6 +2,7 @@
     package="fr.bryanprolong.gatherthem.gatherthem_mobile_app">
     <permission android:name="android.permission.INTERNET" />
     <permission android:name="android.permission.WRIRE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="GatherThem"
         android:name="${applicationName}"
