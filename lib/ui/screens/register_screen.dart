@@ -15,79 +15,85 @@ class RegisterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
-      resizeToAvoidBottomInset: false,
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const Spacer(),
-            Image(
-                height: 100,
-                image: Image.asset('assets/logoWhite.png').image
-            ),
-            Text(
-              Strings.registerTitle,
-              style: Styles.getTitleStyle(context),
-              textAlign: TextAlign.center,
-            ),
-            const Padding(padding: EdgeInsets.only(top: 50)),
-            TextInput(
-                label: Strings.userNameLabel,
-                icon: Icons.person_rounded,
-                onChanged: (value){
-                  credentials["username"] = value;
-                }
-            ),
-            EmailInput(
-                label: Strings.emailLabel,
-                icon: Icons.mail_rounded,
-                onChanged: (value){
-                  credentials["email"] = value;
-                }
-            ),
-            PasswordInput(
-                label: Strings.passwordLabel,
-                icon: Icons.lock_rounded,
-                onChanged: (value){
-                  credentials["password"] = value;
-                }
-            ),
-            PasswordInput(
-                label: Strings.confirmPasswordLabel,
-                icon: Icons.lock_rounded,
-                onChanged: (value){
-                  credentials["confirm_password"] = value;
-                }
-            ),
-            const Padding(padding: EdgeInsets.only(top: 50)),
-            ActionButton(
-              onPressed: () {
-                validate(context);
-              },
-              text: Strings.signUpLabel,
-              icon: Icons.login_rounded,
-              width: 120,
-            ),
-            const Spacer(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  Strings.alreadyRegistered,
-                  style: TextStyle(
-                    color: Theme.of(context).primaryColor,
+    return AutofillGroup(
+      child: Scaffold(
+        backgroundColor: Theme.of(context).backgroundColor,
+        resizeToAvoidBottomInset: false,
+        body: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Spacer(),
+              Image(
+                  height: 100,
+                  image: Image.asset('assets/logoWhite.png').image
+              ),
+              Text(
+                Strings.registerTitle,
+                style: Styles.getTitleStyle(context),
+                textAlign: TextAlign.center,
+              ),
+              const Padding(padding: EdgeInsets.only(top: 50)),
+              TextInput(
+                  label: Strings.userNameLabel,
+                  icon: Icons.person_rounded,
+                  autofillHints: const [AutofillHints.username],
+                  onChanged: (value){
+                    credentials["username"] = value;
+                  }
+              ),
+              EmailInput(
+                  label: Strings.emailLabel,
+                  icon: Icons.mail_rounded,
+                  autofillHints: const [AutofillHints.email],
+                  onChanged: (value){
+                    credentials["email"] = value;
+                  }
+              ),
+              PasswordInput(
+                  label: Strings.passwordLabel,
+                  icon: Icons.lock_rounded,
+                  autofillHints: const [AutofillHints.newPassword],
+                  onChanged: (value){
+                    credentials["password"] = value;
+                  }
+              ),
+              PasswordInput(
+                  label: Strings.confirmPasswordLabel,
+                  icon: Icons.lock_rounded,
+                  autofillHints: const [AutofillHints.newPassword],
+                  onChanged: (value){
+                    credentials["confirm_password"] = value;
+                  }
+              ),
+              const Padding(padding: EdgeInsets.only(top: 50)),
+              ActionButton(
+                onPressed: () {
+                  validate(context);
+                },
+                text: Strings.signUpLabel,
+                icon: Icons.login_rounded,
+                width: 120,
+              ),
+              const Spacer(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    Strings.alreadyRegistered,
+                    style: TextStyle(
+                      color: Theme.of(context).primaryColor,
+                    ),
                   ),
-                ),
-                TextButton(onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginScreen()));
-                }, child: Text(Strings.signInNow, style: TextStyle(color: Theme.of(context).highlightColor),)),
-              ],
-            )
-          ],
+                  TextButton(onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginScreen()));
+                  }, child: Text(Strings.signInNow, style: TextStyle(color: Theme.of(context).highlightColor),)),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

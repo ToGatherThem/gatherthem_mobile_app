@@ -10,8 +10,9 @@ class TextInput extends StatelessWidget {
   final int? minLines;
   final int? maxLines;
   final int? maxLength;
+  final Iterable<String>? autofillHints;
 
-  const TextInput({Key? key, required this.label, this.initialValue, this.icon, required this.onChanged, this.minLines, this.maxLines, this.maxLength}) : super(key: key);
+  const TextInput({Key? key, required this.label, this.initialValue, this.icon, required this.onChanged, this.minLines, this.maxLines, this.maxLength, this.autofillHints}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +25,7 @@ class TextInput extends StatelessWidget {
         maxLength: maxLength,
         icon: icon,
         defaultValue: initialValue,
+        autofillHints: autofillHints
     );
   }
 }

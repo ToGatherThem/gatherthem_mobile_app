@@ -8,8 +8,9 @@ class EmailInput extends StatelessWidget {
   final String? defaultValue;
   final IconData? icon;
   final void Function(String) onChanged;
+  final Iterable<String>? autofillHints;
 
-  const EmailInput({Key? key, required this.label, this.defaultValue, this.icon, required this.onChanged}) : super(key: key);
+  const EmailInput({Key? key, required this.label, this.defaultValue, this.icon, required this.onChanged, this.autofillHints}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +20,7 @@ class EmailInput extends StatelessWidget {
         onChanged: onChanged,
         icon: icon,
         defaultValue: defaultValue,
+        autofillHints: autofillHints
     );
   }
 }

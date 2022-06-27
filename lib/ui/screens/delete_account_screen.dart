@@ -27,7 +27,7 @@ class DeleteAccountScreen extends StatelessWidget {
               backgroundColor: Colors.redAccent,
               text: Strings.deleteAccountButton,
               onPressed: () {
-                Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const HomeScreen()), ModalRoute.withName('/'));
+                Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const HomeScreen()), (Route<dynamic> route) => false);
                 FToast fToast = FToast();
                 fToast.init(context);
                 fToast.showToast(

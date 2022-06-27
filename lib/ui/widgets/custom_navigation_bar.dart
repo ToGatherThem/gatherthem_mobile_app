@@ -30,7 +30,7 @@ class CustomNavigationBar extends StatelessWidget {
                   Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(builder: (context) => const HomeScreen()),
-                    ModalRoute.withName('/'),
+                        (Route<dynamic> route) => false,
                   );
                 },
                 tooltip: Strings.home,
@@ -44,7 +44,7 @@ class CustomNavigationBar extends StatelessWidget {
                         Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(builder: (context) => const SearchScreen()),
-                          ModalRoute.withName('/'),
+                          (Route<dynamic> route) => false,
                         );
                     },
                     tooltip: Strings.search,
