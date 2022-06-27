@@ -20,7 +20,7 @@ class AuthenticationService extends Service {
         })
         .then((value) {
           if (value != null) {
-            Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const HomeScreen()), ModalRoute.withName('/'));
+            Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const HomeScreen()), (Route<dynamic> route) => false);
           }
         });
   }
@@ -30,7 +30,7 @@ class AuthenticationService extends Service {
     get(url, context)
         .then((value) {
           if (value != null) {
-            Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const LoginScreen()), ModalRoute.withName('/'));
+            Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const LoginScreen()), (Route<dynamic> route) => false);
           }
         });
   }
