@@ -51,35 +51,17 @@ class LoginScreen extends StatelessWidget {
                   }
               ),
               const Padding(padding: EdgeInsets.only(top: 50)),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ActionButton(
-                    onPressed: () {
-                      AuthenticationService().login(
-                          context,
-                          "admin",
-                          "exemple"
-                      );
-                    },
-                    text: "Admin",
-                    backgroundColor: Colors.orangeAccent,
-                    icon: Icons.admin_panel_settings_rounded,
-                    width: 90,
-                  ),
-                  ActionButton(
-                    onPressed: () {
-                      AuthenticationService().login(
-                          context,
-                          credentials["username"]!,
-                          credentials["password"]!
-                      );
-                    },
-                    text: Strings.loginLabel,
-                    icon: Icons.login_rounded,
-                    width: 120,
-                  ),
-                ]
+              ActionButton(
+                onPressed: () {
+                  AuthenticationService().login(
+                      context,
+                      credentials["username"]!,
+                      credentials["password"]!
+                  );
+                },
+                text: Strings.loginLabel,
+                icon: Icons.login_rounded,
+                width: 120,
               ),
               const Spacer(),
               Row(

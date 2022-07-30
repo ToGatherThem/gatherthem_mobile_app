@@ -46,11 +46,11 @@ class HomeScreen extends StatelessWidget {
                           }
                           CustomLoading.dismiss();
                           ProfileModel profile = snapshotProfile.data!;
-                          bool isPremium = profile.authorities
-                              .where((element) => element.code == "PREMIUM")
+                          bool isAdmin = profile.authorities
+                              .where((element) => element.code == "ADMIN")
                               .isNotEmpty;
-                          Color color = isPremium
-                              ? CustomColors.premiumGreen
+                          Color color = isAdmin
+                              ? CustomColors.adminColor
                               : Colors.transparent;
                           return Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
