@@ -13,87 +13,73 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
-      resizeToAvoidBottomInset: false,
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const Spacer(),
-            Image(
-              height: 100,
-              image: Image.asset('assets/logoWhite.png').image
-            ),
-            Text(
-              Strings.loginTitle,
-              style: Styles.getTitleStyle(context),
-              textAlign: TextAlign.center,
-            ),
-            const Padding(padding: EdgeInsets.only(top: 50)),
-            TextInput(
-              label: Strings.userNameLabel,
-              icon: Icons.person_rounded,
-              onChanged: (value){
-                credentials["username"] = value;
-              }
-            ),
-            PasswordInput(
-                label: Strings.passwordLabel,
-                icon: Icons.lock_rounded,
+    return AutofillGroup(
+      child: Scaffold(
+        backgroundColor: Theme.of(context).backgroundColor,
+        resizeToAvoidBottomInset: false,
+        body: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Spacer(),
+              Image(
+                height: 100,
+                image: Image.asset('assets/logoWhite.png').image
+              ),
+              Text(
+                Strings.loginTitle,
+                style: Styles.getTitleStyle(context),
+                textAlign: TextAlign.center,
+              ),
+              const Padding(padding: EdgeInsets.only(top: 50)),
+              TextInput(
+                label: Strings.userNameLabel,
+                icon: Icons.person_rounded,
+                autofillHints: const [AutofillHints.username],
                 onChanged: (value){
-                  credentials["password"] = value;
+                  credentials["username"] = value;
                 }
-            ),
-            const Padding(padding: EdgeInsets.only(top: 50)),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ActionButton(
-                  onPressed: () {
-                    AuthenticationService().login(
-                        context,
-                        "admin",
-                        "exemple"
-                    );
-                  },
-                  text: "Admin",
-                  backgroundColor: Colors.orangeAccent,
-                  icon: Icons.admin_panel_settings_rounded,
-                  width: 90,
-                ),
-                ActionButton(
-                  onPressed: () {
-                    AuthenticationService().login(
-                        context,
-                        credentials["username"]!,
-                        credentials["password"]!
-                    );
-                  },
-                  text: Strings.loginLabel,
-                  icon: Icons.login_rounded,
-                  width: 120,
-                ),
-              ]
-            ),
-            const Spacer(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  Strings.notRegistered,
-                  style: TextStyle(
-                    color: Theme.of(context).primaryColor,
+              ),
+              PasswordInput(
+                  label: Strings.passwordLabel,
+                  icon: Icons.lock_rounded,
+                  autofillHints: const [AutofillHints.password],
+                  onChanged: (value){
+                    credentials["password"] = value;
+                  }
+              ),
+              const Padding(padding: EdgeInsets.only(top: 50)),
+              ActionButton(
+                onPressed: () {
+                  AuthenticationService().login(
+                      context,
+                      credentials["username"]!,
+                      credentials["password"]!
+                  );
+                },
+                text: Strings.loginLabel,
+                icon: Icons.login_rounded,
+                width: 120,
+              ),
+              const Spacer(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    Strings.notRegistered,
+                    style: TextStyle(
+                      color: Theme.of(context).primaryColor,
+                    ),
                   ),
-                ),
-                TextButton(onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const RegisterScreen()));
-                }, child: Text(Strings.signUpNow, style: TextStyle(color: Theme.of(context).highlightColor),)),
-              ],
-            )
-          ],
+                  TextButton(onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const RegisterScreen()));
+                  }, child: Text(Strings.signUpNow, style: TextStyle(color: Theme.of(context).highlightColor),)),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

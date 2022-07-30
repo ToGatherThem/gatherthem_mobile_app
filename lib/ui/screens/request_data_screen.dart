@@ -26,7 +26,7 @@ class RequestDataScreen extends StatelessWidget {
               width: 150,
               text: Strings.requestDataButton,
               onPressed: () {
-                Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const HomeScreen()), ModalRoute.withName('/'));
+                Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const HomeScreen()), (Route<dynamic> route) => false);
                 FToast fToast = FToast();
                 fToast.init(context);
                 fToast.showToast(

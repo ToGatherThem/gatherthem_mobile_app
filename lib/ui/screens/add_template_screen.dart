@@ -1,14 +1,9 @@
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'dart:core';
-import 'package:gatherthem_mobile_app/blocs/bloc_templates.dart';
 import 'package:gatherthem_mobile_app/globals.dart';
-import 'package:gatherthem_mobile_app/models/collection_infos_model.dart';
 import 'package:gatherthem_mobile_app/models/property_creation_model.dart';
 import 'package:gatherthem_mobile_app/models/template_infos_model.dart';
 import 'package:gatherthem_mobile_app/models/template_model.dart';
-import 'package:gatherthem_mobile_app/services/collection_service.dart';
 import 'package:gatherthem_mobile_app/services/template_service.dart';
 import 'package:gatherthem_mobile_app/theme/strings.dart';
 import 'package:gatherthem_mobile_app/theme/styles.dart';
@@ -16,7 +11,6 @@ import 'package:gatherthem_mobile_app/ui/widgets/buttons/action_button.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/dialogs/error_dialog.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/inputs/autocomplete_input.dart';
 import 'package:gatherthem_mobile_app/ui/widgets/inputs/text_input.dart';
-import 'package:gatherthem_mobile_app/ui/widgets/modals/select_image_modal.dart';
 import 'package:gatherthem_mobile_app/utils.dart';
 
 class AddTemplateScreen extends StatefulWidget {

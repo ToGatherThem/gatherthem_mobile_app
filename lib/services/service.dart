@@ -87,7 +87,7 @@ abstract class Service{
       Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(builder: (context) => const LoginScreen()),
-              (Route<dynamic> route) => true
+              (Route<dynamic> route) => false
       );
       Utils.openDialog(context, Strings.unexpectedError);
       throw e;
@@ -96,7 +96,7 @@ abstract class Service{
       Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(builder: (context) => const LoginScreen()),
-              (Route<dynamic> route) => true
+              (Route<dynamic> route) => false
       );
       throw e;
     }

@@ -13,8 +13,9 @@ class BaseInput extends StatelessWidget {
   final int? maxLength;
   final FocusNode? focusNode;
   final TextEditingController? controller;
+  final Iterable<String>? autofillHints;
 
-  const BaseInput({Key? key, required this.label, required this.keyboardType, this.defaultValue, this.icon, this.obscureText = false, required this.onChanged, this.minLines, this.maxLines, this.maxLength, this.focusNode, this.controller}) : super(key: key);
+  const BaseInput({Key? key, required this.label, required this.keyboardType, this.defaultValue, this.icon, this.obscureText = false, required this.onChanged, this.minLines, this.maxLines, this.maxLength, this.focusNode, this.controller, this.autofillHints}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +29,7 @@ class BaseInput extends StatelessWidget {
       minLines: minLines,
       maxLines: maxLines ?? 1,
       maxLength: maxLength,
+      autofillHints: autofillHints,
       decoration: InputDecoration(
         labelText: label,
         icon: (icon != null) ? Icon(icon) : null,

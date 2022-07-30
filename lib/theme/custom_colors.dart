@@ -20,5 +20,5 @@ class CustomColors{
 
 
   /// Premium colors
-  static const premiumGreen = Color(0xFF14AC4C);
+  static const adminColor = Color(0xFF8e42fe);
 }
